@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Injectable } from '@
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
-import { User } from '@prisma/client';
+import { User } from './entities/user.entity';
 
 
 @Injectable()
@@ -11,7 +11,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  async create(@Body() CreateUserDto: CreateUserDto): Promise<User> {
+     create(@Body() CreateUserDto: CreateUserDto) {
     return this.usersService.create(CreateUserDto);
   }
 

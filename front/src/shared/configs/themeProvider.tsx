@@ -1,16 +1,16 @@
-'use client'
-import React, { ReactNode } from 'react'
-import { ThemeProvider as Provider } from 'next-themes'
+// 'use client'
+// import React, { ReactNode } from 'react'
+// import { ThemeProvider as Provider } from 'next-themes'
 
 
-const ThemeProvider = ({children}:{children:ReactNode}) => {
-  return (
-    <Provider >
+// const ThemeProvider = ({children}:{children:ReactNode}) => {
+//   return (
+//     <Provider >
        
-      {children}
+//       {children}
    
-      </Provider>
-  )
-}
+//       </Provider>
+//   )
+// }
 
-export default ThemeProvider
+// export default ThemeProvider
