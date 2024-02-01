@@ -7,8 +7,8 @@ import { User } from './entities/user.entity';
 export class UsersService {
     constructor(private readonly prisma: PrismaService){}
 
-  async create(data: User): Promise<User> {
-    return this.prisma.user.create({data})
+    create(data: User): Promise<User> {
+    return  this.prisma.user.create({data})
 
   }
 
