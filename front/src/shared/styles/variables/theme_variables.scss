@@ -1,0 +1,43 @@
+:root {
+    /* Your default theme */
+    --background:rgba(245, 245, 247, 1);;
+
+    
+
+
+        //buttons:
+//primary
+    --btn-primary-bg:rgba(0, 204, 45, 1);
+    --btn-primary-bg-hover: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    linear-gradient(0deg, #00CC2D, #00CC2D);
+    --btn-primary-text:rgba(255, 255, 255, 1);
+
+  //primary-outlined
+    --btn-bg-primary-outlined: rgba(255, 255, 255, 1);
+    --btn-primary-outlined-text:rgba(0, 204, 45, 1);
+    --btn-primary-outlined-text-hover:rgb(11, 144, 40) ;
+    
+    
+
+
+
+ 
+     //------Swiper---------------------
+
+     //pagination
+     --swiper-pagination-color:rgba(255, 102, 51, 1);
+     --swiper-pagination-bullet-size: 11.26px;
+     --swiper-pagination-bullet-horizontal-gap: 7.5px;
+     --swiper-pagination-bullet-inactive-color: rgba(210, 210, 215, 1);
+     --swiper-pagination-bullet-inactive-opacity: 1;
+  }
+  
+  [data-theme='dark'] {
+
+ 
+  }
+
+
+  [data-theme='light'] {
+
+  }

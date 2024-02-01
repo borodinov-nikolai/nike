@@ -1,0 +1,30 @@
+.root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 12px;
+    border: none;
+    width: 200px;
+    height: 43px;
+}
+
+
+.primary {
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    &:hover {
+        background: var(--btn-primary-bg-hover);
+    }
+}
+
+.primary_outlined {
+    background: var(--btn-bg-primary-outlined);
+    color: var(--btn-primary-outlined-text);
+    &:hover {
+       color: var(--btn-primary-outlined-text-hover)
+        
+    }
+}

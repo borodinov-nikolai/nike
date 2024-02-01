@@ -1,0 +1,18 @@
+.root {
+    border: none;
+    height: 48px;
+    width: 320px;
+    padding: 0 16px;
+    background: white;
+    border-radius: 12px;
+    caret-color: rgba(255, 102, 51, 1);
+    font-size: 16px;
+    line-height: 24px;
+
+    &:focus {
+         outline: 1px solid rgba(255, 102, 51, 1);
+    }
+}
+
+
+
