@@ -10,7 +10,7 @@ const Test = () => {
     const [email, setEmail] = useState<string>()
     const [password, setPassword] = useState<string>()
     const [authApi, result] = usePostUserMutation()
-    const {data: users, isLoading} = useGetUserQuery()
+    const {data: users} = useGetUserQuery()
  
     console.log(result.data)
  console.log(users)
@@ -45,7 +45,7 @@ const Test = () => {
        <ul className={styles.userList} >
            {
             users?.map((user)=> {
-                return <li>{user.email}</li>
+                return <li key={user.id} >{user.email}</li>
             })
            }
        </ul>
