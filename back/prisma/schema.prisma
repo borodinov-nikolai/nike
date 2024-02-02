@@ -12,14 +12,10 @@ model User {
   email    String @unique
   password String 
   name     String?
-  role     String   @default("USER")
-  product  Product[]
 }
 
 model Product {
   id       Int    @id @default(autoincrement())
   name     String @unique
   price    Int
-  owner    User? @relation(fields: [userId], references: [id])
-  userId   Int?
 }

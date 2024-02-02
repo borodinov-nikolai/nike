@@ -1,45 +1,41 @@
 :root {
     // Theme
-    --background:white;
+    --background: white;
 
+    //------------button---------------
     
+    //primary
+    --btn-primary-bg: #1e1e1e;
+    --btn-primary-bg-hover: #000000;
+    --btn-primary-text: rgba(255, 255, 255, 1);
+    --btn-primary-text-hover: rgba(255, 255, 255, 1);
 
+    //secondary
+    --btn-secondary-bg: #ff6915;
+    --btn-secondary-bg-hover: #ff9315;
+    --btn-secondary-text: rgba(255, 255, 255, 1);
+    --btn-secondary-text-hover: rgba(255, 255, 255, 1);
 
-        //button:
-//primary
-    --btn-primary-bg:#1E1E1E;
-    --btn-primary-bg-hover:#000000;
-    --btn-primary-text:rgba(255, 255, 255, 1);
-    --btn-primary-text-hover:rgba(255, 255, 255, 1);
+    //-------------checbox----------------
 
- //secondary
- --btn-secondary-bg:#FF6915;
- --btn-secondary-bg-hover:#FF9315;
- --btn-secondary-text:rgba(255, 255, 255, 1);
- --btn-secondary-text-hover:rgba(255, 255, 255, 1);
+    --checkbox-checked-bg-color: #000000;
 
-      //checbox: 
+    //-------------radiobutton-------------
 
-      --checkbox-bg-color: #000000;
+    --radiobutton-checked-bg-color: #000000;
 
+    //--------------Swiper-------------------
 
- 
-     //------Swiper---------------------
+    //pagination
+    --swiper-pagination-color: #000000;
+    --swiper-pagination-bullet-size: 11.26px;
+    --swiper-pagination-bullet-horizontal-gap: 7.5px;
+    --swiper-pagination-bullet-inactive-color: rgba(210, 210, 215, 1);
+    --swiper-pagination-bullet-inactive-opacity: 1;
+}
 
-     //pagination
-     --swiper-pagination-color:rgba(255, 102, 51, 1);
-     --swiper-pagination-bullet-size: 11.26px;
-     --swiper-pagination-bullet-horizontal-gap: 7.5px;
-     --swiper-pagination-bullet-inactive-color: rgba(210, 210, 215, 1);
-     --swiper-pagination-bullet-inactive-opacity: 1;
-  }
-  
-  [data-theme='dark'] {
+[data-theme="dark"] {
+}
 
- 
-  }
-
-
-  [data-theme='light'] {
-
-  }
+[data-theme="light"] {
+}

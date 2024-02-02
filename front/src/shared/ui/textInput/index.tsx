@@ -6,6 +6,7 @@ interface Props {
   placeholder?: string
   type?: 'text' | 'password'
   className?: string
+  onChange?: (e:React.ChangeEvent<HTMLInputElement>)=> void
  [key:string]: any
 }
 
@@ -13,7 +14,7 @@ const TextInput: FC<Props> = ({placeholder, type='text', className, ...props}) =
 
 
   return (
-        <input type={type} {...props}  placeholder={placeholder}
+        <input  type={type} {...props}  placeholder={placeholder}
          className={[styles.root, className].filter(Boolean).join(' ')}></input>
   )
 }

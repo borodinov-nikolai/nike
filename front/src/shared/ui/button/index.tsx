@@ -10,12 +10,13 @@ interface Props {
     type?: 'button' | 'reset' | 'submit'
     children?: ReactNode,
     className?: string,
+    onSubmit?: ()=> void
     [key: string]: any
 }
 
 const Button: FC<Props> = ({ children, type='button', variant = 'primary', className, ...props }) => {
     return (
-        <button type={type}   {...props} className={[styles.root, styles[variant], className].filter(Boolean).join(' ')} >
+        <button  type={type}   {...props} className={[styles.root, styles[variant], className].filter(Boolean).join(' ')} >
             <p className={styles.text} >
                 {children}
                 </p>
