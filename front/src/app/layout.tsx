@@ -1,4 +1,6 @@
 import StoreProvider from "@/shared/configs/storeProvider";
+import { Footer } from "@/widgets/footer";
+import { Header } from "@/widgets/header";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -17,7 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <StoreProvider>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+      <Header/>{children}
+      <Footer/>
+      </body>
       </StoreProvider>
     </html>
   );

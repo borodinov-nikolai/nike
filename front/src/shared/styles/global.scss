@@ -4,17 +4,6 @@
 
 
 
-
-
-.container {
-    width: 100%;
-    margin: 0 auto;
-    max-width: 1600px;
-    padding: 0 16px;  
-    
-   
-}
-
 body {
     background: var(--background);
     position: relative;
@@ -22,10 +11,27 @@ body {
 }
 
 
+.container {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1400px;
+    padding: 0 15px;  
+    
+   
+}
 
 
-@include breakpoint(3xl) {
+
+@include breakpoint(md) {
+    .container {
+        padding: 0 25px;
+    }
+}
+
+
+@include breakpoint(2xl) {
     .container {
         padding: 0;
     }
+
 }

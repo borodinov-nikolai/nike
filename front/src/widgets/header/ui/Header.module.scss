@@ -1,0 +1,213 @@
+@import '../../../shared/styles/mixins/breakpoints';
+
+
+.root {
+    width: 100%;
+
+   
+}
+
+
+
+.navbar {
+    display: none;
+}
+
+
+.menu {
+    border-top: 1px solid rgba(234, 234, 234, 1);
+    border-bottom: 1px solid rgba(234, 234, 234, 1);
+}
+
+.menu_inner {
+    width: 100%;
+    height: 70px;
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    grid-template-rows: 1fr;
+    justify-content: space-between;
+}
+
+.burger {
+    grid-row: 1;
+    grid-column: 1;
+    width: 59px;
+    border-right: 1px solid rgba(234, 234, 234, 1);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 100%;
+}
+
+.burger_text {
+    display: none;
+}
+
+.logo {
+    grid-row: 1;
+    grid-column: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.categories {
+    display: none;
+}
+
+.icons {
+    grid-row: 1;
+    grid-column: 3;
+    padding: 0 7px 0 15px;
+    display: flex;
+    gap: 32px;
+    border-left: 1px solid rgba(234, 234, 234, 1);
+
+}
+
+
+.icon {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+.search {
+    display: none;
+}
+
+.profile {
+    display: none;
+}
+
+@include breakpoint(md) {
+
+
+    .menu_inner {
+     grid-template-columns: max-content 1fr max-content;
+    }
+
+    .logo {
+        grid-column: 1;
+        border-right: 1px solid rgba(234, 234, 234, 1);
+        padding-right: 30px;
+
+    }
+
+    .burger {
+        padding-left: 32px;
+        grid-column: 2;
+        border: none;
+    }
+
+    .burger_text {
+        display: block;
+        font-size: 15px;
+        line-height: 11px;
+        font-weight: 500;
+        margin-left: 10px;
+
+    }
+   
+    .icons {
+       gap: 0;
+       padding: 0;
+    }
+    .icon {
+        width: 70px;
+        justify-content: center;
+        border-right: 1px solid rgba(234, 234, 234, 1);
+    }
+    
+    
+.search {
+    display: flex;
+}
+
+.profile {
+    display: flex;
+}
+
+}
+
+@include breakpoint(2xl) {
+
+
+    .navbar {
+        display: block;
+    }
+
+    .navbar_inner {
+        display: flex;
+        align-items: center;
+        height: 45px;
+        justify-content: space-between;
+    }
+
+    .links {
+        display: flex;
+        gap: 40px;
+    
+    }
+
+    .links_item {
+        font-size: 14px;
+        line-height: 11px;
+    }
+
+    .auth {
+        display: flex;
+        gap: 7px;
+        align-items: center;
+
+    }
+
+    .auth_text {
+        font-size: 12px;
+        line-height: 11px;
+    }
+
+ 
+
+    .burger {
+        display: none;
+    }
+
+    .categories {
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 11px;
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+        gap: 57px;
+        img {
+            margin-right: 15px;
+        }
+    }
+
+    .profile {
+        display: none;
+    }
+    
+    
+    .icons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .favorites {
+        grid-row: 1;
+        grid-column: 2;
+    }
+    .cart {
+        grid-row: 1;
+        grid-column: 3;
+    }
+    .search {
+        grid-row: 1;
+        grid-column: 1;
+    }
+}

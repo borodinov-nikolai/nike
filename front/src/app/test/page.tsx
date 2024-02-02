@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import styles from './Test.module.scss'
 import { useGetUserQuery, usePostUserMutation } from './api/auth'
+import Image from 'next/image'
 
 
 
@@ -48,6 +49,7 @@ const Test = () => {
             })
            }
        </ul>
+       <Image src={'/images/snikers.png'} width={600} height={700} alt='snikers' />
     </main>
 
   )
