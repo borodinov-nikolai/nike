@@ -1,4 +1,4 @@
-import { emptySplitApi } from "@/shared/configs/rtk_base"
+import { emptySplitApi } from "@/src/shared/configs/rtk_base"
 
 
 

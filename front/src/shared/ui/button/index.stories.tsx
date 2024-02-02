@@ -9,28 +9,22 @@ const meta: Meta<typeof Button> = {
     layout: "centered",
   },
 
-//   argTypes: {
-//     color: {
-//       name: "Color",
-//       control: "radio",
-//       options: ["orange", "gray"],
-//       defaultValue: { summary: "orange" },
-//       description: "Change color",
-//     },
-//   },
 
-  // argTypes: {
-  //   size: {
-  //     name: "Size",
-  //     control: "radio",
-  //     options: ["small", "normal"],
-  //     defaultValue: { summary: "normal" },
-  //     description: "Change size:",
-  //   },
-  // },
 
+
+     argTypes: {
+      variant: {
+        name: 'variant',
+        control: 'radio',
+        options: ["primary", "secondary"],
+        defaultValue: { summary: "primary" },
+        description: 'change variant:'
+      }
+     },
+
+     
   args: {
-    children: 'Button'
+    children: 'Button',
   },
 };
 
@@ -39,7 +33,7 @@ type Story = StoryObj<typeof Button>;
 
 export const button: Story = {
   args: {
-  
+      variant: 'primary',
   },
 };
 

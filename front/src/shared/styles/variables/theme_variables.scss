@@ -5,20 +5,22 @@
     
 
 
-        //buttons:
+        //button:
 //primary
-    --btn-primary-bg:rgba(0, 204, 45, 1);
-    --btn-primary-bg-hover: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    linear-gradient(0deg, #00CC2D, #00CC2D);
+    --btn-primary-bg:#1E1E1E;
+    --btn-primary-bg-hover:#000000;
     --btn-primary-text:rgba(255, 255, 255, 1);
+    --btn-primary-text-hover:rgba(255, 255, 255, 1);
 
-  //primary-outlined
-    --btn-bg-primary-outlined: rgba(255, 255, 255, 1);
-    --btn-primary-outlined-text:rgba(0, 204, 45, 1);
-    --btn-primary-outlined-text-hover:rgb(11, 144, 40) ;
-    
-    
+ //secondary
+ --btn-secondary-bg:#FF6915;
+ --btn-secondary-bg-hover:#FF9315;
+ --btn-secondary-text:rgba(255, 255, 255, 1);
+ --btn-secondary-text-hover:rgba(255, 255, 255, 1);
 
+      //checbox: 
+
+      --checkbox-bg-color: #000000;
 
 
  

@@ -1,7 +1,7 @@
 .root {
     display: block;
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
 }
 
 
@@ -18,10 +18,9 @@
     position: absolute;
     cursor: pointer;
     user-select: none;
-    width: 24px;
-    height: 24px;
-    border: 2px solid rgba(158, 158, 158, 1); 
-    border-radius: 6px;
+    width: 22px;
+    height: 22px;
+    border: 1px solid#D6D6D6; 
     background-color: rgba(255, 255, 255, 1);
 
     &::before {
@@ -31,15 +30,14 @@
         top: 50%;
         left: 50%;
         translate: -50% -50%;
-        width: 24px;
-        height: 24px;
-        background: url('../../assets/icons/checkmark.svg');
+        width: 22px;
+        height: 22px;
+        background: url('../../assets/icons/checkmark.png');
         background-repeat: no-repeat;
-        background-size: 10px 10px;
+        background-size: 9px 6px;
         background-position: center;
-        background-color: rgba(255, 102, 51, 1);
-        border-radius: 6px;
-        transition-duration: 0.4s;
+        background-color: var(--checkbox-bg-color);
+        transition-duration: 0.2s;
     }
 }
 

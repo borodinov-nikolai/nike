@@ -1,30 +1,63 @@
 .root {
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: 500;
-    border-radius: 12px;
     border: none;
-    width: 200px;
-    height: 43px;
+    width: 250px;
+    height: 65px;
+    display: flex;
+    justify-content: space-between;
 }
 
 
 .primary {
-    background: var(--btn-primary-bg);
+    background-color: var(--btn-primary-bg);
     color: var(--btn-primary-text);
+
+    .image_holder {
+        background-color: var(--btn-primary-bg-hover);
+    }
     &:hover {
-        background: var(--btn-primary-bg-hover);
+        background-color: var(--btn-primary-bg-hover);
+        color:var(--btn-primary-text-hover) ;
+
+        .image_holder {
+            background-color:var(--btn-primary-bg) ;
+        }
     }
 }
 
-.primary_outlined {
-    background: var(--btn-bg-primary-outlined);
-    color: var(--btn-primary-outlined-text);
+.secondary {
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+
+    .image_holder {
+        background-color: var(--btn-secondary-bg-hover);
+    }
     &:hover {
-       color: var(--btn-primary-outlined-text-hover)
-        
+        background-color: var(--btn-secondary-bg-hover);
+        color:var(--btn-secondary-text-hover) ;
+
+        .image_holder {
+            background-color:var(--btn-secondary-bg) ;
+        }
     }
 }
+
+.text {
+    margin: 0 auto;
+}
+
+.image_holder {
+    width: 65px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+

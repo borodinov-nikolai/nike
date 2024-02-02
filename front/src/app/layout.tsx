@@ -1,6 +1,7 @@
-import StoreProvider from "@/shared/configs/storeProvider";
-import { Footer } from "@/widgets/footer";
-import { Header } from "@/widgets/header";
+import '@/src/shared/styles/global.scss';
+import StoreProvider from "@/src/shared/configs/storeProvider";
+import { Footer } from "@/src/widgets/footer";
+import { Header } from "@/src/widgets/header";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
