@@ -14,7 +14,7 @@ const TextInput: FC<Props> = ({placeholder, type='text', className, ...props}) =
 
 
   return (
-        <input  type={type} {...props}  placeholder={placeholder}
+        <input type={type} {...props}  placeholder={placeholder}
          className={[styles.root, className].filter(Boolean).join(' ')}></input>
   )
 }

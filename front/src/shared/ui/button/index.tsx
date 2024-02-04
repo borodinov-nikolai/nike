@@ -1,7 +1,9 @@
-import React, { FC, ReactNode } from 'react'
-import styles from './Button.module.scss'
+'use client'
+import React, { FC, ReactNode} from 'react'
 import Image from 'next/image'
 import Img_arrow from '../../assets/icons/arrow.png'
+import dynamic from 'next/dynamic'
+import styles from './Button.module.scss'
 
 
 
@@ -15,8 +17,11 @@ interface Props {
 }
 
 const Button: FC<Props> = ({ children, type='button', variant = 'primary', className, ...props }) => {
+
+
+    
     return (
-        <button  type={type}   {...props} className={[styles.root, styles[variant], className].filter(Boolean).join(' ')} >
+        <button type={type}   {...props} className={[styles.root, styles[variant], className].filter(Boolean).join(' ')} >
             <p className={styles.text} >
                 {children}
                 </p>

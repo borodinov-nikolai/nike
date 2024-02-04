@@ -1,14 +1,15 @@
 'use client'
 import React, { useState } from 'react'
-import styles from './AuthModule.module.scss';
+import styles from './Authorization.module.scss';
 import TextInput from '@/src/shared/ui/textInput';
 import Image from 'next/image';
 import Button from '@/src/shared/ui/button';
 import Checkbox from '@/src/shared/ui/checkbox';
 import { useRegistrationMutation } from '../api';
+import Link from 'next/link';
 
 
-const AuthModule = () => {
+const Authorization = () => {
   const [identifier, setIdentifier] = useState<string>()
   const [password, setPassword] = useState<string>()
   const [registrationApi, result] = useRegistrationMutation()
@@ -51,9 +52,9 @@ const AuthModule = () => {
             </div>
 
             <div className={styles.resetPassword} >
-              <p>Восстановить пароль</p>
+              <Link href={'#'} >Восстановить пароль</Link>
               </div>
-         <Button type='submit' className={styles.submitBtn}>Войти в кабинет</Button>
+         <div className={styles.submitBtn} ><Button type='submit'  >Войти в кабинет</Button></div>
 
          <div className={styles.rememberMe} >
           <Checkbox/>
@@ -69,15 +70,16 @@ const AuthModule = () => {
               </div>
               <p>
                 <span>Регистрация на сайте</span> позволяет получить доступ к статусу и истории вашего заказа. Просто заполните поля ниже, и вы получите учетную запись. Мы запрашиваем у вас только информацию, необходимую для того, чтобы сделать процесс покупки более быстрым и легким.</p>
-              <Button variant={'secondary'}>Зарегистрироваться
-              </Button>
+              <Link href={'/registration'}>
+                <Button variant={'secondary'}>Зарегистрироваться
+                </Button>
+              </Link>
              </div>
          </div>
         </div>
-    
       </div>
     </div>
   )
 }
 
-export default AuthModule
+export default Authorization
