@@ -4,12 +4,14 @@ import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.int
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
 import { ValidationPipe } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
 
 
 
 async function start() {
-  const app = await NestFactory.create(AppModule);
+  console.log('JWT_SECRET in process.env:', process.env.JWT_SECRET);
   const PORT = process.env.PORT || 5000
+  const app = await NestFactory.create(AppModule);
   
   const corsOptions: CorsOptions = {
     origin: true,

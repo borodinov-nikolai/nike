@@ -1,10 +1,9 @@
+import { JwtModule} from '@nestjs/jwt';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AppController } from './app.controller';
 import { DbModule } from './db/db.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { JwtModule } from '@nestjs/jwt';
 
 
 
@@ -12,14 +11,12 @@ import { JwtModule } from '@nestjs/jwt';
 @Module({
   imports: [ConfigModule.forRoot({
     envFilePath: `.env.${process.env.NODE_ENV}`
-  }), JwtModule.register({
-    global: true,
-    secret: process.env.JWT_SECRET,
-    signOptions:{
-      expiresIn: '7d'
-    }
+  }),JwtModule.register({
+    global: true, 
+    secret: process.env.JWT_SECRET|| "ekneohevce9e329f32",
+    signOptions: {expiresIn: '1d'}
   }), DbModule, UsersModule, AuthModule],
-  controllers: [AppController],
+  controllers: [],
   providers: [],
   exports: []
 })

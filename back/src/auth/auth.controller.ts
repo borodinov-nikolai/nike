@@ -1,8 +1,9 @@
-import { Body, Controller, Post, Response} from '@nestjs/common';
+import { Body, Controller, Post, Res} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dtos/auth.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { User } from 'src/users/entities/user.entity';
+import { Response } from 'express';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -19,8 +20,8 @@ export class AuthController {
       description: 'успешная регистрация нового пользователя',
       type: User
     })
-    signUp(@Body() body: AuthDto, @Response() res):Promise<User>{
-      return this.authService.signUp(body)
+    signUp(@Body() body: AuthDto, @Res({passthrough: true}) res:Response):Promise<User>{
+      return this.authService.signUp(body, res)
     }
 
 
