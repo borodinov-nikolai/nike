@@ -1,4 +1,4 @@
-import { Body, Controller, Post} from '@nestjs/common';
+import { Body, Controller, Post, Response} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dtos/auth.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -19,7 +19,7 @@ export class AuthController {
       description: 'успешная регистрация нового пользователя',
       type: User
     })
-    signUp(@Body() body: AuthDto):Promise<User>{
+    signUp(@Body() body: AuthDto, @Response() res):Promise<User>{
       return this.authService.signUp(body)
     }
 
