@@ -1,46 +1,41 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, Res, UseGuards } from '@nestjs/common';
-import { GetSessionInfoDto, SignInBodyDto, SignUpBodyDto } from './dto';
-import { ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger';
+import { Body, Controller, Post} from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { Response } from 'express';
-import { CookieService } from './cookie.service';
-import { AuthGuard } from './auth.guard';
-import { SessionInfo } from './session-info.decorator';
+import { AuthDto } from './dtos/auth.dto';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { User } from 'src/users/entities/user.entity';
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
+  constructor(private readonly authService: AuthService) {}
 
-    constructor(private authService: AuthService, private cookieService: CookieService){}
 
     @Post('sign-up')
-    @ApiCreatedResponse()
-     async signUp(@Body() body: SignUpBodyDto, @Res({passthrough:true}) res: Response){
-        const {accessToken} = await this.authService.signUp(body.email, body.password);
-        this.cookieService.setToken(res, accessToken);
-
-    }
-    @Post('sign-in')
-    @ApiOkResponse()
-    @HttpCode(HttpStatus.OK)
-    async signIn(@Body() body: SignInBodyDto, @Res({passthrough: true}) res: Response) {
-        const {accessToken} = await this.authService.signIn(body.email, body.password);
-        this.cookieService.setToken(res, accessToken)
-    }
-
-    @Post('sign-out')
-    @ApiOkResponse()
-    @HttpCode(HttpStatus.OK)
-    @UseGuards(AuthGuard)
-    signOut(@Res({passthrough: true}) res: Response){
-       this.cookieService.removeToken(res);
-    }
-
-     @Get('session')
-    @ApiOkResponse({
-        type: GetSessionInfoDto
+    @ApiOperation({
+      summary: 'регистрация нового пользователя'
     })
-    @UseGuards(AuthGuard)   
-    getSessionInfo(@SessionInfo() session : GetSessionInfoDto){
-        return session
+    @ApiResponse({
+      status: 201,
+      description: 'успешная регистрация нового пользователя',
+      type: User
+    })
+    signUp(@Body() body: AuthDto):Promise<User>{
+      return this.authService.signUp(body)
     }
+
+
+    
+    @Post('sign-in')
+    @ApiOperation({
+      summary: 'авторизация пользователя'
+    })
+    @ApiResponse({
+      status: 200,
+      description: 'авторизация прошла успешно',
+      type: User
+    })
+    signIn(@Body() body: AuthDto):Promise<User>{
+      return this.authService.signIn(body)
+    }
+  
 }

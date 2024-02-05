@@ -1,58 +1,34 @@
-import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
-import { PasswordService } from './password.service';
-import { JwtService } from '@nestjs/jwt';
+import { AuthDto } from './dtos/auth.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
 
-    constructor(
-        private userService: UsersService,
-        private passwordService: PasswordService,
-        private jwtService: JwtService
-        ){}
+    constructor(private usersService: UsersService){}
 
-   async signUp(email: string, password: string) {
-       const user = await this.userService.findByEmail(email);
+        signUp(body:AuthDto){
+        const salt = bcrypt.genSaltSync(10)
+        const hash = bcrypt.hashSync(body.password, salt)
+        return this.usersService.createUser({email: body.email, password: hash})
+    }
 
-       if(user) {
-        throw new BadRequestException({type: 'email-exists'})
+    async signIn(body:AuthDto) {
+       const user = await this.usersService.getUser(body.email);
+       if(!user){
+        throw new NotFoundException('user with this email not found');
        }
 
-       const salt = this.passwordService.getSalt()
-       const hash = this.passwordService.getHash(password, salt)
+       const passwordCheck = bcrypt.compareSync(body.password, user.password)
 
-       const newUser = await this.userService.create(email, hash, salt)
+       if(!passwordCheck){
+        throw new UnauthorizedException('wrong password')
+       }
 
-       const accessToken = await this.jwtService.signAsync({
-         id: newUser.id,
-         email: newUser.email
-    })
-
-       return {accessToken};
-
+       return user;
     }
 
-    async signIn(email: string, password: string) {
-        const user = await this.userService.findByEmail(email);
-
-        if(!user) {
-         throw new UnauthorizedException()
-        }
- 
-      
-        const hash = this.passwordService.getHash(password, user.salt)
-           if(hash !== user.hash) {
-            throw new UnauthorizedException()
-           }
-
- 
-        const accessToken = await this.jwtService.signAsync({
-          id: user.id,
-          email: user.email
-     })
- 
-        return {accessToken};
-    }
+    
 
 }
