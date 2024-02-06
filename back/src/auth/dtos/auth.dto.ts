@@ -14,4 +14,12 @@ export class AuthDto {
         default:'1234'
       })
     password: string
+    @ApiProperty()
+    login: string
+    @ApiProperty()
+    phone_number: string
+    @ApiProperty()
+    name?: string
+    @ApiProperty()
+    surname?: string
 }
