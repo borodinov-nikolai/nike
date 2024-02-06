@@ -13,7 +13,7 @@ import { AuthModule } from './auth/auth.module';
     envFilePath: `.env.${process.env.NODE_ENV}`
   }),JwtModule.register({
     global: true, 
-    secret: process.env.JWT_SECRET|| "ekneohevce9e329f32",
+    secret: process.env.JWT_SECRET,
     signOptions: {expiresIn: '1d'}
   }), DbModule, UsersModule, AuthModule],
   controllers: [],

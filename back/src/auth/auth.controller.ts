@@ -1,9 +1,10 @@
-import { Body, Controller, Post, Res} from '@nestjs/common';
+import { Body, Controller, Get, Post, Res, UseGuards} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dtos/auth.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { User } from 'src/users/entities/user.entity';
 import { Response } from 'express';
+import { AuthGuard } from './auth.guard';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -35,8 +36,20 @@ export class AuthController {
       description: 'авторизация прошла успешно',
       type: User
     })
-    signIn(@Body() body: AuthDto):Promise<User>{
-      return this.authService.signIn(body)
+    signIn(@Body() body: AuthDto,  @Res({passthrough: true}) res:Response):Promise<User>{
+      return this.authService.signIn(body, res)
     }
+
+
+    @ApiOperation({
+      summary: 'получить свои данные'
+    })
+    @UseGuards(AuthGuard)
+    @Get('me')
+    getMe(){
+      return 'мои данные'
+    } 
+
+    
   
 }
