@@ -8,6 +8,8 @@ import Checkbox from '@/src/shared/ui/checkbox'
 import Link from 'next/link'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { useRegistrationMutation } from '../api'
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import { useRouter } from 'next/navigation'
 
 
 type Inputs = {
@@ -20,9 +22,10 @@ type Inputs = {
 }
 
 const Registration = () => {
-  const[registration, result] = useRegistrationMutation()
-  const {control, handleSubmit, watch, formState:{errors}} = useForm<Inputs>({
-    defaultValues:{
+  const [registration, result] = useRegistrationMutation()
+  const router = useRouter()
+  const { control, setError, handleSubmit, watch, formState: { errors } } = useForm<Inputs>({
+    defaultValues: {
       email: '',
       login: '',
       phone_number: '',
@@ -30,116 +33,137 @@ const Registration = () => {
       password_confirm: ''
     }
   });
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-   
-    const {password_confirm, ...data1} = data
 
-    console.log(data1)
-     registration(data1)
-  }
-console.log(result)
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+
+    const { password_confirm, ...body } = data
+    const res = await registration(body)
+    if("error" in res){
+      const error = res.error as FetchBaseQueryError
+      const {message} = error.data as {message: string}
+  
+       if( message === "User with this email already exists"){
+          setError('email', {
+            type: 'manual',
+            message: 'Пользователь с таким email уже существует'
+          })
+       }
+      }
+
+      if("data" in res) {
+       router.push('/')
+      }
+ 
+    }
+  
 
   return (
     <div className={styles.root} >
-    <div className={'container'} >
-      <h1 className={styles.title} >Регистрация</h1>
-      <div className={styles.borderBlock} >
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form} action="">
-        <div className={styles.form_item} >
-          <label htmlFor='email' className={styles.label} >Email</label>
+      <div className={'container'} >
+        <h1 className={styles.title} >Регистрация</h1>
+        <div className={styles.borderBlock} >
+          <form onSubmit={handleSubmit(onSubmit)} className={styles.form} action="">
+            <div className={styles.form_item} >
+              <label htmlFor='email' className={styles.label} >Email</label>
 
 
-          <Controller
-        name="email"
-        control={control}
-        rules={{ required: "Это поле обязательно", pattern: {value: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/, message: 'пожалуйста введите корректный email'}  }}
-        render={({ field }) => <TextInput type='text' id='email' placeholder={'Введите email адрес'} className={styles.input} {...field} />}
-      />
-     <p className={styles.error} >{errors.email?.message}</p>
+              <Controller
+                name="email"
+                control={control}
+                rules={{ required: "это поле обязательно", pattern: { value: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/, message: 'пожалуйста введите корректный email' } }}
+                render={({ field }) => <TextInput type='text' id='email' placeholder={'введите email адрес'} className={styles.input} {...field} />}
+              />
+             {errors.email && <span className={styles.error} >{errors.email?.message}</span>}
 
-          </div>
-        <div className={styles.form_item} >
-          <label htmlFor='login' className={styles.label}>Введиет логин</label>
-
-
-          <Controller
-        name="login"
-        control={control}
-        rules={{required: "Это поле обязательно"}}
-        render={({ field }) => <TextInput  className={styles.input} id='login' type={'text'} placeholder={'Ваш логин'} {...field} />}
-      />
-
-         <p className={styles.error} >{errors.login?.message}</p>
-          </div>
-        <div className={styles.form_item} >
-          <label htmlFor='phone_number' className={styles.label}>Номер телефона</label>
-          <Controller
-        name="phone_number"
-        control={control}
-        rules={{required: "Это поле обязательно"}}
-        render={({ field }) => <TextInput  {...field} className={styles.input} id='phone_number' type={'text'} placeholder={'+7 (___) ___ - ___ - ___'} />}
-      />
-         <p className={styles.error} >{errors.phone_number?.message}</p>
-
-          </div>
-        <div className={styles.form_item} >
-          <label htmlFor='password' className={styles.label}>Пароль</label>
-          <div className={styles.password_input} >
-          <Controller
-        name="password"
-        control={control}
-        rules={{required: "Это поле обязательно", minLength:{value: 4, message: 'длина должна быть не менее 4 символов'}, maxLength: {value:8, message: 'длина должна быть не более 8 символов'}}}
-        render={({ field }) =>  <TextInput {...field} className={styles.input} id='password' type={'password'} placeholder={'Придумайте пароль'} />}
-      />
-  <p className={styles.error} >{errors.password?.message}</p>
-           <Image className={styles.password_inputImage} src={'/icons/eye.png'} width={18} height={12} alt='eye icon' />
-          </div>
-          </div>
-        <div className={styles.form_item} >
-          <label htmlFor='password_confirm' className={styles.label}>Повторите пароль</label>
-          <div className={styles.password_input} >
-          <Controller
-        name="password_confirm"
-        control={control}
-        rules={{required: "Это поле обязательно", minLength:{value: 4, message: 'длина должна быть не менее 4 символов'}, maxLength: {value:8, message: 'длина должна быть не более 8 символов'}}}
-        render={({ field }) =>   <TextInput {...field} className={styles.input} id='password_confirm' type={'password'} placeholder={'Придумайте пароль'} />}
-      />
-              <p className={styles.error} >{errors.password_confirm?.message}</p>
-        
-           <Image className={styles.password_inputImage} src={'/icons/eye.png'} width={18} height={12} alt='eye icon' />
-          </div>
-          </div>
-
-       
-       <div className={styles.rememberMe} >
-        <div>
-    
-          <Checkbox/>
-          </div>
-        <p>Я соглашаюсь на обработку персональных данных в соответствии с <Link href={'#'}>политикой конфиденциальности</Link></p>
-       </div>
-       <div  className={styles.submitBtn}><Button type='submit' >Создать аккаунт</Button></div>
-
-      </form>
-       <div className={styles.toRegistration} > 
-           <div className={styles.toRegistration_block} >
-            <div className={styles.toRegistration_header} >
-              <Image className={styles.toRegistration_icon} src={'/icons/add_user.png'} width={38} height={45} alt='icon add user' />
-              <h2>Уже есть аккаунт?
-              </h2>
             </div>
-            <p>
-              Перейдите к <span>авторизации</span> если у вас уже есть зарегистрированный аккаунт.</p>
-            <Link href={'/authorization'}>
-              <Button variant={'secondary'}>Авторизоваться
-              </Button>
-            </Link>
-           </div>
-       </div>
+            <div className={styles.form_item} >
+              <label htmlFor='login' className={styles.label}>Введиет логин</label>
+
+
+              <Controller
+                name="login"
+                control={control}
+                rules={{ required: "это поле обязательно" }}
+                render={({ field }) => <TextInput className={styles.input} id='login' type={'text'} placeholder={'Ваш логин'} {...field} />}
+              />
+
+             {errors.login && <span className={styles.error} >{errors.login?.message}</span>} 
+            </div>
+            <div className={styles.form_item} >
+              <label htmlFor='phone_number' className={styles.label}>Номер телефона</label>
+              <Controller
+                name="phone_number"
+                control={control}
+                rules={{ required: "это поле обязательно" }}
+                render={({ field }) => <TextInput  {...field} className={styles.input} id='phone_number' type={'text'} placeholder={'+7 (___) ___ - ___ - ___'} />}
+              />
+               {errors.phone_number && <span className={styles.error} >{errors.phone_number?.message}</span>}
+
+            </div>
+            <div className={styles.form_item} >
+              <label htmlFor='password' className={styles.label}>Пароль</label>
+              <div className={styles.password_input} >
+                <Controller
+                  name="password"
+                  control={control}
+                  rules={{ required: "это поле обязательно", minLength: { value: 4, message: 'длина должна быть не менее 4 символов' }, maxLength: { value: 8, message: 'длина должна быть не более 8 символов' } }}
+                  render={({ field }) => <TextInput {...field} className={styles.input} id='password' type={'password'} placeholder={'Придумайте пароль'} />}
+                />
+                {errors.password && <span className={styles.error} >{errors.password?.message}</span>}
+                <Image className={styles.password_inputImage} src={'/icons/eye.png'} width={18} height={12} alt='eye icon' />
+              </div>
+            </div>
+            <div className={styles.form_item} >
+              <label htmlFor='password_confirm' className={styles.label}>Повторите пароль</label>
+              <div className={styles.password_input} >
+                <Controller
+                  name="password_confirm"
+                  control={control}
+                  rules={{
+                    required: "это поле обязательно",
+                    minLength: { value: 4, message: 'длина должна быть не менее 4 символов' },
+                    maxLength: { value: 8, message: 'длина должна быть не более 8 символов' },
+                    validate: (value)=>value === watch('password') || 'Пароли не совпадают'
+                  }}
+                  render={({ field }) => <TextInput {...field} className={styles.input} id='password_confirm' type={'password'} placeholder={'Придумайте пароль'} />}
+                />
+                 {errors.password_confirm && <span className={styles.error} >{errors.password_confirm?.message}</span>}
+
+                <Image className={styles.password_inputImage} src={'/icons/eye.png'} width={18} height={12} alt='eye icon' />
+              </div>
+            </div>
+
+
+            <div className={styles.rememberMe} >
+              <div>
+
+                <Checkbox />
+              </div>
+              <p>Я соглашаюсь на обработку персональных данных в соответствии с <Link href={'#'}>политикой конфиденциальности</Link></p>
+            </div>
+            <div className={styles.submitBtn}><Button type='submit' >Создать аккаунт</Button></div>
+
+          </form>
+          <div className={styles.toRegistration} >
+            <div className={styles.toRegistration_block} >
+              <div className={styles.toRegistration_header} >
+                <Image className={styles.toRegistration_icon} src={'/icons/add_user.png'} width={38} height={45} alt='icon add user' />
+                <h2>Уже есть аккаунт?
+                </h2>
+              </div>
+              <p>
+                Перейдите к <span>авторизации</span> если у вас уже есть зарегистрированный аккаунт.</p>
+              <Link href={'/authorization'}>
+                <Button variant={'secondary'}>Авторизоваться
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+
       </div>
-  
     </div>
-  </div>
   )
 }
 

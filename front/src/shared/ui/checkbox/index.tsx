@@ -19,4 +19,8 @@ const Checkbox:FC<Props> = React.forwardRef(({...props},  ref: React.LegacyRef<H
   )
 })
 
+
+
+Checkbox.displayName = "Checkbox"
+
 export default Checkbox

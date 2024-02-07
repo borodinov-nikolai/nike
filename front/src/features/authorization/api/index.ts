@@ -12,10 +12,10 @@ const extendedApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({
     autorization: build.mutation<User, User>({
       query: ({identifier, password})=> ({
-        url: '/sign-in',
+        url: '/auth/sign-in',
         method: 'POST',
         body: {
-          email: identifier,
+          identifier,
           password
         }
       }),

@@ -4,7 +4,7 @@ export class CreateUserDto{
     email: string
     password: string
     login: string
-    phone_number: string
+    phoneNumber: string
     name?: string
     surname?: string
 }

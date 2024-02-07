@@ -6,11 +6,37 @@ import { CreateUserDto } from './dtos/users.dto';
 export class UsersService {
  constructor(private db: DbService){}
 
- getUser(email: string){
+
+ getUserById(id:number){
+   return this.db.user.findUnique({
+      where: {
+       id
+      },
+      select:{
+         id: true,
+         email: true,
+         login: true,
+         phoneNumber: true,
+         createdAt: true
+      }
+   })
+ }
+
+ getUserByEmail(email: string){
    return this.db.user.findUnique({
       where: {
        email
+      },
+      select:{
+         id: true,
+         email: true,
+         login: true,
+         phoneNumber: true,
+         createdAt: true,
+         role: true,
+         password: true
       }
+      
    })
  }
 
@@ -22,9 +48,20 @@ export class UsersService {
       throw new ConflictException('User with this email already exists')
    }
     return this.db.user.create({
-      data
+      data,
+      select:{
+         id: true,
+         email: true,
+         login: true,
+         phoneNumber: true,
+         createdAt: true,
+         role: true
+      }
     })
  }
+
+
+
 
  updateUser(){}
 

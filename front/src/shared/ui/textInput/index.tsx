@@ -19,6 +19,6 @@ const TextInput: FC<Props> = React.forwardRef(({placeholder, type='text', classN
   )
 })
 
-
+TextInput.displayName = "TextInput"
 
 export default TextInput
