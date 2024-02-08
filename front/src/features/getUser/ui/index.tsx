@@ -6,7 +6,6 @@ import React from 'react';
 const GetUser = () => {
 
   const user =  useGetUserQuery()
-  console.log(user.data)
     
 
   return (

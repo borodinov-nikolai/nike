@@ -33,7 +33,6 @@ const Authorization = () => {
     }
 
     if("data" in res) {
-        console.log(res)
        localStorage.setItem('jwt', res.data.accessToken)
        window.location.href = "/"
        

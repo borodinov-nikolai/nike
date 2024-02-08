@@ -53,7 +53,6 @@ export class AuthService {
    async refresh(req: Request, res: Response){
        const accessToken = req.headers['authorization']
        const refreshToken = req.cookies.jwt
-       console.log(req.headers)
        if(!accessToken || !refreshToken) {
         throw new UnauthorizedException()
        }

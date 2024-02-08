@@ -60,7 +60,7 @@ FetchBaseQueryError
     } else {
       // В случае неудачи при получении нового токена, произвести выход из системы
         localStorage.removeItem('jwt')
-      console.log('выход из системы')
+   
   
     }
   }

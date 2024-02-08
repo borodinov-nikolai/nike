@@ -9,7 +9,6 @@ import { JwtModule } from '@nestjs/jwt';
 
 
 async function start() {
-  console.log('JWT_SECRET in process.env:', process.env.JWT_SECRET);
   const PORT = process.env.PORT || 5000
   const app = await NestFactory.create(AppModule);
   

@@ -58,7 +58,7 @@ const Registration = () => {
       }
  
     }
-  console.log(result.data)
+ 
 
   return (
     <div className={styles.root} >
