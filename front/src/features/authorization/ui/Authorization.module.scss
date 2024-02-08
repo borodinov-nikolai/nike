@@ -2,7 +2,8 @@
 
 
 .root {
-    padding-top: 70px;
+    padding-top: 66px;
+    padding-bottom: 80px;
 }
 
 
@@ -169,7 +170,11 @@ line-height: 27px;
 
 @include breakpoint(md) {
 
-
+    .root {
+        padding-top: 63px;
+        padding-bottom: 80px;
+    }
+  
    
 
     .borderBlock {
@@ -208,7 +213,10 @@ line-height: 27px;
 
 @include breakpoint(2xl) {
 
-
+    .root {
+        padding-top: 76px;
+        padding-bottom: 120px;
+    }
     .title {
         font-size: 45px;
         line-height: 48px;

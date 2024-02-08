@@ -1,9 +1,9 @@
+import '@/src/shared/styles/global.scss';
 import StoreProvider from "@/src/shared/configs/storeProvider";
 import { Footer } from "@/src/widgets/footer";
 import { Header } from "@/src/widgets/header";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import '@/src/shared/styles/global.scss';
 import { GetUser } from "../features/getUser";
 
 const inter = Inter({ subsets: ["latin"] });

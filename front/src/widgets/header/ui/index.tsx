@@ -26,10 +26,11 @@ const user = useGetUserQuery()
             <li className={styles.links_item} ><Link href={"#"}>Контакты</Link></li>
             <li className={styles.links_item} ><Link href={"#"}>Индивидуальный заказ</Link></li>
           </ul>
-          <Link href={'./authorization'} className={styles.auth}>
-             {user.data?.login}
+          <Link href={user? './account' : './authorization'} className={styles.auth}>
+            {user && user.data?.login}
               <Svg_auth />
-              <p className={styles.auth_text} >Вход \ Регистрация</p>
+                {user && <p className={styles.auth_text} > Личный кабинет</p>}
+              {!user && <p className={styles.auth_text} >Вход \ Регистрация</p>}
             
           </Link>
         </div>
