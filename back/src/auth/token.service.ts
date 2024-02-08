@@ -7,8 +7,8 @@ import { DbService } from "src/db/db.service";
 
 
 type Payload = {
-id: number,
-role: "ADMIN" | "MODERATOR" | "AUTHOR" | "USER"
+    id: number,
+    role: "ADMIN" | "MODERATOR" | "AUTHOR" | "USER"
 }
 
 
@@ -18,23 +18,23 @@ export class TokenService {
 
 
 
-     
+
     async generateTokens({ id, role }: Payload) {
 
         const payload = { id, role }
         const accessToken = await this.jwtService.signAsync(payload, { secret: process.env.JWT_SECRET, expiresIn: '1d', });
         const refreshToken = await this.jwtService.signAsync(payload, { secret: process.env.JWT_SECRET, expiresIn: '30d', });
 
-        const refreshTokenInDb =  await this.db.refreshToken.findUnique({
+        const refreshTokenInDb = await this.db.refreshToken.findUnique({
             where: {
                 userId: id
             }
         })
 
-       
-        if(refreshTokenInDb) {
+
+        if (refreshTokenInDb) {
             await this.db.refreshToken.update({
-                where: {userId: id},
+                where: { userId: id },
                 data: {
                     userId: id,
                     token: refreshToken
@@ -49,46 +49,46 @@ export class TokenService {
             })
         }
 
-      
-      return { accessToken, refreshToken }
+
+        return { accessToken, refreshToken }
     }
 
-   
+
 
 
     async verifyToken(token: string) {
-        
-        return await this.jwtService.verify(token, {secret:process.env.JWT_SECRET})
-}
 
-        
-   async decodeToken(token: string) {
-    const payload: Payload =  await this.jwtService.decode(token)
-     return payload
-   }
+        return await this.jwtService.verify(token, { secret: process.env.JWT_SECRET })
+    }
 
-      async compareRefreshTokens({userId, token}:{userId: number, token: string}){
 
-   
-            const tokenFromDb = await this.db.refreshToken.findUnique({
-                where: {
-                    userId
-                }
-            }) 
-             
-            if(!tokenFromDb){
-                return false
+    async decodeToken(token: string) {
+        const payload: Payload = await this.jwtService.decode(token)
+        return payload
+    }
+
+    async compareRefreshTokens({ userId, token }: { userId: number, token: string }) {
+
+
+        const tokenFromDb = await this.db.refreshToken.findUnique({
+            where: {
+                userId
             }
-        
-             if(tokenFromDb.token === token) {
-                   return true
+        })
 
-             }
-        
+        if (!tokenFromDb) {
             return false
-        
+        }
 
-      }
+        if (tokenFromDb.token === token) {
+            return true
+
+        }
+
+        return false
+
+
+    }
 
 
 

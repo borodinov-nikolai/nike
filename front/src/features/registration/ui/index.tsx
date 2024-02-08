@@ -16,7 +16,7 @@ type Inputs = {
 
   email: string,
   login: string,
-  phone_number: string,
+  phoneNumber: string,
   password: string,
   password_confirm: string
 }
@@ -28,7 +28,7 @@ const Registration = () => {
     defaultValues: {
       email: '',
       login: '',
-      phone_number: '',
+      phoneNumber: '',
       password: '',
       password_confirm: ''
     }
@@ -52,11 +52,13 @@ const Registration = () => {
       }
 
       if("data" in res) {
+        localStorage.setItem('jwt', res.data.accessToken
+        )
        router.push('/')
       }
  
     }
-  
+  console.log(result.data)
 
   return (
     <div className={styles.root} >
@@ -91,14 +93,14 @@ const Registration = () => {
              {errors.login && <span className={styles.error} >{errors.login?.message}</span>} 
             </div>
             <div className={styles.form_item} >
-              <label htmlFor='phone_number' className={styles.label}>Номер телефона</label>
+              <label htmlFor='phoneNumber' className={styles.label}>Номер телефона</label>
               <Controller
-                name="phone_number"
+                name="phoneNumber"
                 control={control}
                 rules={{ required: "это поле обязательно" }}
-                render={({ field }) => <TextInput  {...field} className={styles.input} id='phone_number' type={'text'} placeholder={'+7 (___) ___ - ___ - ___'} />}
+                render={({ field }) => <TextInput  {...field} className={styles.input} id='phoneNumber' type={'text'} placeholder={'+7 (___) ___ - ___ - ___'} />}
               />
-               {errors.phone_number && <span className={styles.error} >{errors.phone_number?.message}</span>}
+               {errors.phoneNumber && <span className={styles.error} >{errors.phoneNumber?.message}</span>}
 
             </div>
             <div className={styles.form_item} >

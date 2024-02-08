@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import styles from './Header.module.scss'
 import Image from 'next/image'
@@ -7,8 +8,12 @@ import Svg_auth from '@/public/icons/auth.svg'
 import Svg_profile from '@/public/icons/profile.svg'
 import Svg_favorites from '@/public/icons/favorites.svg'
 import Svg_cart from '@/public/icons/cart.svg'
+import { useGetUserQuery } from '@/src/entities/user'
 
 const Header = () => {
+
+const user = useGetUserQuery()
+
   return (
     <header className={styles.root} >
       <div className={styles.navbar}>
@@ -22,7 +27,7 @@ const Header = () => {
             <li className={styles.links_item} ><Link href={"#"}>Индивидуальный заказ</Link></li>
           </ul>
           <Link href={'./authorization'} className={styles.auth}>
-         
+             {user.data?.login}
               <Svg_auth />
               <p className={styles.auth_text} >Вход \ Регистрация</p>
             

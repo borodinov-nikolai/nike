@@ -3,31 +3,20 @@ import { emptySplitApi } from "@/src/shared/configs/rtk_base"
 
 
 interface User {
-  id?: number
+  id: number
   email:string
-  password: string
+  login: string
+  phoneNumaber: string
 }
 
 const extendedApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({
-    postUser: build.mutation<User, User>({
-      query: ({email, password})=> ({
-        url: '/users',
-        method: 'POST',
-        body: {
-            email,
-            password
-        }
-      }),
-      invalidatesTags:['User']
-     
-    }),
-    getUser : build.query<Array<User>, void>({
-      query: ()=> '/users',
+    getUser : build.query<User, void>({
+      query: ()=> '/auth/me',
       providesTags:['User']
     })
   }),
   overrideExisting: false,
 })
 
-export const {usePostUserMutation, useGetUserQuery} = extendedApi
+export const {useGetUserQuery} = extendedApi

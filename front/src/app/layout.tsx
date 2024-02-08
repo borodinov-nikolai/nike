@@ -4,6 +4,7 @@ import { Header } from "@/src/widgets/header";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import '@/src/shared/styles/global.scss';
+import { GetUser } from "../features/getUser";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <StoreProvider>
+        <GetUser/>
       <body className={inter.className}>
       <Header/>{children}
       <Footer/>

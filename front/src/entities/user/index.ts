@@ -1,4 +1,4 @@
-import { useGetUserQuery, usePostUserMutation} from "./api";
+import { useGetUserQuery} from "./api";
 
 
-export { useGetUserQuery, usePostUserMutation};
+export { useGetUserQuery};
