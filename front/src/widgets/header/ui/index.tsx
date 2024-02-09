@@ -12,7 +12,9 @@ import { useGetUserQuery } from '@/src/entities/user'
 
 const Header = () => {
 
-const user = useGetUserQuery()
+const {data: userData, isSuccess} = useGetUserQuery();
+
+
 
   return (
     <header className={styles.root} >
@@ -26,11 +28,11 @@ const user = useGetUserQuery()
             <li className={styles.links_item} ><Link href={"#"}>Контакты</Link></li>
             <li className={styles.links_item} ><Link href={"#"}>Индивидуальный заказ</Link></li>
           </ul>
-          <Link href={user? './account' : './authorization'} className={styles.auth}>
-            {user && user.data?.login}
+          <Link href={isSuccess? './account' : './authorization'} className={styles.auth}>
+            {isSuccess && userData?.login}
               <Svg_auth />
-                {user && <p className={styles.auth_text} > Личный кабинет</p>}
-              {!user && <p className={styles.auth_text} >Вход \ Регистрация</p>}
+                {isSuccess && <p className={styles.auth_text} > Личный кабинет</p>}
+              {!isSuccess && <p className={styles.auth_text} >Вход \ Регистрация</p>}
             
           </Link>
         </div>

@@ -1,0 +1,67 @@
+@import '../../../../shared/styles/mixins/breakpoints';
+
+
+.root {
+  
+}
+
+.list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+.item {
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 101px;
+    border: 1px solid #EAEAEA;
+    gap: 12px;
+
+
+    >p {
+        text-align: center;
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: 500;
+        color: #232323;
+        width: min-content;
+    }
+
+
+      svg {
+        path {
+            stroke: #C7C7C7;
+        }
+      }
+
+      &:hover {
+      background-color: black;
+      color: white;
+
+      svg {
+        path: {
+            stroke: white;
+        }
+      }
+
+      p {
+        color: white;
+      }
+
+      }
+}
+
+
+@include breakpoint(md) {
+
+
+    .list{
+        display: flex;
+    }
+}

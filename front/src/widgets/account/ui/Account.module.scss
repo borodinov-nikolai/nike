@@ -1,0 +1,72 @@
+@import '../../../shared/styles/mixins/breakpoints';
+
+
+
+.root {
+    padding-top: 35px;
+    padding-bottom: 80px;
+}
+
+
+.title {
+font-size: 25px;
+line-height: 31px;
+font-weight: 500;
+}
+
+.mainWrapper {
+    margin-top: 15px;
+}
+
+.navbarTitle {
+    font-size: 20px;
+    line-height: 27px;
+    font-weight: 500;
+}
+
+.mobileNavbar {
+    margin-top: 15px;
+}
+
+
+
+@include breakpoint(md) {
+    .root {
+        padding-top: 32px;
+    }
+
+    .mainWrapper {
+        margin-top: 18px;
+    }
+    .mobileNavbar {
+        margin-top: 18px;
+    }
+    
+}
+
+@include breakpoint(2xl){
+    .root {
+        padding-top: 45px;
+        padding-bottom: 120px;
+    }
+
+
+    .title {
+        font-size: 45px;
+        line-height: 48px;
+        }
+
+        .mainWrapper {
+            display: flex;
+            margin-top: 50px;
+        }
+
+
+        .navbarTitle {
+            font-size: 23px;
+
+        }
+        .mobileNavbar {
+            display: none;
+        }
+}
