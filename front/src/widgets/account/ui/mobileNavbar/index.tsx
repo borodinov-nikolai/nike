@@ -7,33 +7,54 @@ import Svg_AccauntPassword from '../../assets/icons/accaunt_password.svg'
 import Svg_AccauntFavorites from '../../assets/icons/accaunt_favorites.svg'
 import Svg_AccauntExit from '../../assets/icons/accaunt_exit.svg'
 
+
+
+const navbarItmsList =[
+  {
+    id: 1,
+    icon: <Svg_AccauntProfile/>,
+    title: "РЕДАКТИРОВАТЬ ПРОФИЛЬ"
+  },
+  {
+    id: 2,
+    icon: <Svg_AccauntOrders/>,
+    title: "МОИ ЗАКАЗЫ"
+  },
+  {
+    id: 3,
+    icon: <Svg_AccauntAdress/>,
+    title: "МОЙ АДРЕС"
+  },
+  {
+    id: 4,
+    icon: <Svg_AccauntPassword/>,
+    title: "СМЕНИТЬ ПАРОЛЬ"
+  },
+  {
+    id: 5,
+    icon: <Svg_AccauntFavorites/>,
+    title: "ИЗБРАННЫЕ ТОВАРЫ"
+  },
+  {
+    id:6,
+    icon: <Svg_AccauntExit/>,
+    title: "ВЫЙТИ ИЗ АККАУНТА"
+  },
+
+]
+
+
 const MobileNavbar = () => {
   return (
     <nav className={styles.root} >
       <ul className={styles.list} >
-        <li className={styles.item} >
-          <Svg_AccauntProfile/>
-          <p>РЕДАКТИРОВАТЬ ПРОФИЛЬ</p>
-          </li>
-        <li className={styles.item} >
-          <Svg_AccauntOrders/>
-          <p>МОИ ЗАКАЗЫ</p></li>
-        <li className={styles.item} >
-          <Svg_AccauntAdress/>
-          <p>МОЙ АДРЕС</p>
-          </li>
-        <li className={styles.item} >
-          <Svg_AccauntPassword/>
-          <p>СМЕНИТЬ ПАРОЛЬ</p>
-          </li>
-        <li className={styles.item} >
-          <Svg_AccauntFavorites/>
-          <p>ИЗБРАННЫЕ ТОВАРЫ</p>
-          </li>
-        <li className={styles.item} >
-          <Svg_AccauntExit/>
-          <p>ВЫЙТИ ИЗ АККАУНТА</p>
-          </li>
+        {navbarItmsList.map(({id, icon, title})=> {
+            return <li key={id} className={styles.item} >
+            {icon}
+            <p>{title}</p>
+            </li>
+        })}
+      
       
       </ul>
     </nav>

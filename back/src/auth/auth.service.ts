@@ -50,6 +50,14 @@ export class AuthService {
   }
 
 
+
+  async signOut(res: Response) {
+
+    res.clearCookie('jwt')
+    return 'signout success'
+  }
+
+
    async refresh(req: Request, res: Response){
        const accessToken = req.headers['authorization']
        const refreshToken = req.cookies.jwt

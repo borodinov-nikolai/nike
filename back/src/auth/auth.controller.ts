@@ -40,6 +40,15 @@ export class AuthController {
       return this.authService.signIn(body, res)
     }
 
+    @Get('sign-out')
+    @ApiOperation({
+      summary: 'выйти из аккаунта'
+    })
+    @ApiResponse({})
+    signOut(@Res({passthrough: true}) res: Response) {
+        return this.authService.signOut(res)
+    }
+
 
     @ApiOperation({
       summary: 'получить свои данные'
@@ -65,6 +74,8 @@ export class AuthController {
     refresh(@Req() req:Request,  @Res({passthrough: true}) res:Response){
       return this.authService.refresh(req, res)
     }
-    
+
+
+   
   
 }

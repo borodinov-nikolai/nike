@@ -28,6 +28,10 @@ font-weight: 500;
     margin-top: 15px;
 }
 
+.desktopNavbar {
+    display: none;
+}
+
 
 
 @include breakpoint(md) {
@@ -68,5 +72,9 @@ font-weight: 500;
         }
         .mobileNavbar {
             display: none;
+        }
+        .desktopNavbar {
+            margin-top: 25px;
+            display: block;
         }
 }
