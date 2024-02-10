@@ -4,7 +4,7 @@ import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.int
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
 import { ValidationPipe } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
+
 
 
 
@@ -20,7 +20,7 @@ async function start() {
   };
 
   app.enableCors(corsOptions);
-  app.setGlobalPrefix('api');
+  app.setGlobalPrefix('api', { exclude: ['admin*'] });
   const config = new DocumentBuilder().setTitle('nike').build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);

@@ -4,6 +4,9 @@ import { ConfigModule } from '@nestjs/config';
 import { DbModule } from './db/db.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 
 
@@ -16,9 +19,14 @@ import { AuthModule } from './auth/auth.module';
     global: true, 
     secret: process.env.JWT_SECRET,
     signOptions: {expiresIn: '1d'}
-  }), DbModule, UsersModule, AuthModule],
+  }), 
+  ServeStaticModule.forRoot({
+    rootPath: join(__dirname, '..', '/build'),
+    serveRoot: '/',
+    exclude: ['/api/(.*)'],
+  }),
+  DbModule, UsersModule, AuthModule, DashboardModule],
   controllers: [],
-  providers: [],
   exports: []
 })
 export class AppModule {}
