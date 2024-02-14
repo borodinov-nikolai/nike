@@ -1,13 +1,12 @@
-'use client'
 import React from 'react'
-import styles from './DesktopNavbar.module.scss'
+import styles from './Navbar.module.scss'
 import Svg_AccauntProfile from '../../assets/icons/accaunt_profile.svg'
 import Svg_AccauntOrders from '../../assets/icons/accaunt_orders.svg'
 import Svg_AccauntAddress from '../../assets/icons/accaunt_adress.svg'
 import Svg_AccauntPassword from '../../assets/icons/accaunt_password.svg'
 import Svg_AccauntFavorites from '../../assets/icons/accaunt_favorites.svg'
 import Svg_AccauntExit from '../../assets/icons/accaunt_exit.svg'
-import { useSignOutMutation} from '../../api'
+
 
 
 const navbarItmsList = [
@@ -47,43 +46,31 @@ const navbarItmsList = [
     title: "ВЫЙТИ ИЗ АККАУНТА",
     value: 'signOut'
   },
-
 ]
 
 
-
-const DesktopNavbar = ({setContent}:{setContent: React.Dispatch<React.SetStateAction<string | undefined>>}) => {
-  const [signOut] = useSignOutMutation()
+const Navbar = ({setContent, current}:{setContent: React.Dispatch<React.SetStateAction<string | undefined>>, current: string | undefined}) => {
 
 
-
-  const handleSignout = async () => {
-    signOut()
-    localStorage.removeItem('jwt')
-    console.log('click')
-    window.location.href = '/'
+  const handleChange = (value: string)=> {
+    setContent(value);
+    localStorage.setItem('accountNavbarValue', value)
   }
 
   return (
     <nav className={styles.root} >
-      <ul className={styles.list}>
-        {navbarItmsList.map(({ id, icon, title, value }) => {
-
-          
-          return (title === "ВЫЙТИ ИЗ АККАУНТА" ? <li onClick={() => handleSignout()} key={id} className={styles.item} >
+      <ul className={styles.list} >
+        {navbarItmsList.map(({id, icon, title, value})=> {
+            return <li onClick={()=>handleChange(value)} key={id} className={ [styles.item, current === value && styles.active ].filter(Boolean).join(' ')} >
             {icon}
-            <p>{title}</p>
-          </li>
-            :
-            <li onClick={()=>setContent(value)} key={id} className={styles.item} >
-              {icon}
-              <p>{title}</p>
+            <p className={styles.text} >{title}</p>
             </li>
-          )
         })}
+      
+      
       </ul>
     </nav>
   )
 }
 
-export default DesktopNavbar
+export default Navbar

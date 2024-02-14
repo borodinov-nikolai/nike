@@ -2,7 +2,7 @@
 
 
 .root {
-  
+  width: auto;
 }
 
 .list {
@@ -24,7 +24,7 @@
     gap: 12px;
 
 
-    >p {
+    .text {
         text-align: center;
         font-size: 12px;
         line-height: 18px;
@@ -41,18 +41,17 @@
       }
 
       &:hover {
-      background-color: black;
-      color: white;
+      background-color: rgb(237, 237, 237);
 
-      svg {
-        path: {
-            stroke: white;
-        }
-      }
+      // svg {
+      //   path: {
+      //       stroke: white;
+      //   }
+      // }
 
-      p {
-        color: white;
-      }
+      // .text {
+      //   color: white;
+      // }
 
       }
 }
@@ -60,8 +59,12 @@
 .active {
   background-color: black;
   color: white;
-  >p{
+  .text{
     color: white;
+  }
+
+  &:hover {
+    background-color: black;
   }
 }
 
@@ -72,4 +75,25 @@
     .list{
         display: flex;
     }
+}
+
+
+@include breakpoint(2xl) {
+
+  .list {
+    width: 323px;
+   flex-direction: column;
+
+  }
+
+  .item {
+    flex-direction: row;
+    height: 75px;
+
+    .text {
+      font-size: 13px;
+      line-height: 20px;
+      width: max-content;
+    }
+  }
 }

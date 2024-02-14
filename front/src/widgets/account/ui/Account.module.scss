@@ -15,7 +15,9 @@ font-weight: 500;
 }
 
 .mainWrapper {
-    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap:15px;
 }
 
 .navbarTitle {
@@ -24,13 +26,15 @@ font-weight: 500;
     font-weight: 500;
 }
 
-.mobileNavbar {
+.navbar {
     margin-top: 15px;
 }
 
-.desktopNavbar {
-    display: none;
+.content {
+    width: 100%;
+   
 }
+
 
 
 
@@ -40,9 +44,9 @@ font-weight: 500;
     }
 
     .mainWrapper {
-        margin-top: 18px;
+        gap: 20px;
     }
-    .mobileNavbar {
+    .navbar {
         margin-top: 18px;
     }
     
@@ -61,20 +65,19 @@ font-weight: 500;
         }
 
         .mainWrapper {
-            display: flex;
+            
+           flex-direction: row;
             margin-top: 50px;
         }
 
 
         .navbarTitle {
-            font-size: 23px;
+            font-size: 28px;
+            line-height: 32px;
 
         }
-        .mobileNavbar {
-            display: none;
-        }
-        .desktopNavbar {
+        
+        .navbar {
             margin-top: 25px;
-            display: block;
         }
 }

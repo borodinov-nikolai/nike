@@ -1,0 +1,18 @@
+@import '../../../../shared/styles/mixins/breakpoints';
+
+
+.root {
+    width: 100%;
+}
+
+.title {
+    font-size: 21px;
+    line-height: 32px;
+    font-weight: 500;
+}
+
+.content {
+    margin-top: 15px;
+    border: 1px solid #EAEAEA;
+    padding: 15px;
+}

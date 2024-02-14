@@ -1,14 +1,23 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Account.module.scss'
-import MobileNavbar from './mobileNavbar'
-import DesktopNavbar from './desktopNavbar'
+import MobileNavbar from './navbar'
 import { ProfileRedactor } from '@/src/features/accountContent/profileRedactor'
 import { OrdersHistory } from '@/src/features/accountContent/ordersHistory'
 
 
 const Account = () => {
-  const [currentContent, setCurrentContent] = useState<string>()
+  const [currentContent, setCurrentContent] = useState<string>();
+
+useEffect(()=> {
+
+  const savedValue = localStorage.getItem('accountNavbarValue');
+  if(savedValue) {
+    setCurrentContent(savedValue)
+  } else {
+    setCurrentContent('profile')
+  }
+})
   console.log(currentContent)
   return (
     <div className={styles.root} >
@@ -17,16 +26,11 @@ const Account = () => {
         <div className={styles.mainWrapper }>
           <div className={styles.navbarWrapper} >
             <h2 className={styles.navbarTitle} >Добро пожаловать, User</h2>
-            <div className={styles.mobileNavbar} ><MobileNavbar current={currentContent} setContent={setCurrentContent} /></div>
-            <div className={styles.desktopNavbar} ><DesktopNavbar setContent={setCurrentContent} /></div>
+            <div className={styles.navbar} ><MobileNavbar current={currentContent} setContent={setCurrentContent} /></div>
           </div>
           <div className={styles.content} >
-            <div className={styles.contentInner} >
-              <ProfileRedactor/>
-            </div>
-            <div className={styles.contentInner} >
-              <OrdersHistory/>
-            </div>
+            {currentContent === 'profile' && <ProfileRedactor/> }
+            {currentContent === 'orders' &&  <OrdersHistory/>}
           </div>
         </div>
       </div>

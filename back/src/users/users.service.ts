@@ -7,37 +7,43 @@ export class UsersService {
  constructor(private db: DbService){}
 
 
- getUserById(id:number){
-   return this.db.user.findUnique({
-      where: {
-       id
-      },
-      select:{
-         id: true,
-         email: true,
-         login: true,
-         phoneNumber: true,
-         createdAt: true
-      }
-   })
+ getUserById(id: number | undefined){
+   if(id) {
+      return this.db.user.findUnique({
+         where: {
+          id
+         },
+         select:{
+            id: true,
+            email: true,
+            login: true,
+            phoneNumber: true,
+            createdAt: true
+         }
+      })
+   }
+  
  }
 
- getUserByEmail(email: string){
-   return this.db.user.findUnique({
-      where: {
-       email
-      },
-      select:{
-         id: true,
-         email: true,
-         login: true,
-         phoneNumber: true,
-         createdAt: true,
-         role: true,
-         password: true
-      }
-      
-   })
+ getUserByEmail(email: string | undefined){
+   if(email){
+      return this.db.user.findUnique({
+         where: {
+          email
+         },
+         select:{
+            id: true,
+            email: true,
+            login: true,
+            phoneNumber: true,
+            createdAt: true,
+            role: true,
+            password: true
+         }
+         
+      })
+   }
+   
  }
 
  async createUser(data: CreateUserDto){
