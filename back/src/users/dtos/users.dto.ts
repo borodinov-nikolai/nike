@@ -8,3 +8,11 @@ export class CreateUserDto{
     name?: string
     surname?: string
 }
+
+export class UpdateUserDto{
+    email: string
+    login: string
+    phoneNumber: string
+    name?: string
+    surname?: string
+}

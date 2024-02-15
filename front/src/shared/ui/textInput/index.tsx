@@ -7,6 +7,7 @@ interface Props {
   type?: 'text' | 'password'
   className?: string
   onChange?: (e:React.ChangeEvent<HTMLInputElement>)=> void
+  onKeyDown?: (e:React.KeyboardEvent<HTMLInputElement>)=> void
  [key:string]: any
 }
 

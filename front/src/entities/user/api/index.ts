@@ -6,7 +6,8 @@ interface User {
   id: number
   email:string
   login: string
-  phoneNumaber: string
+  phoneNumber: string
+  [key:string]: any
 }
 
 const extendedApi = emptySplitApi.injectEndpoints({

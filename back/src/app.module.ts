@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { AccountModule } from './account/account.module';
 
 
 
@@ -25,7 +26,7 @@ import { join } from 'path';
     serveRoot: '/',
     exclude: ['/api/(.*)'],
   }),
-  DbModule, UsersModule, AuthModule, DashboardModule],
+  DbModule, UsersModule, AuthModule, DashboardModule, AccountModule],
   controllers: [],
   exports: []
 })

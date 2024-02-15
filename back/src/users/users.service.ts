@@ -1,6 +1,6 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { DbService } from 'src/db/db.service';
-import { CreateUserDto } from './dtos/users.dto';
+import { CreateUserDto, UpdateUserDto } from './dtos/users.dto';
 
 @Injectable()
 export class UsersService {
@@ -69,7 +69,17 @@ export class UsersService {
 
 
 
- updateUser(){}
+ async updateUser({id, data}: {id: number, data:UpdateUserDto}){
+    const updatedUser = await this.db.user.update({
+      where: {
+         id
+      },
+     data
+    })
+   return updatedUser
+
+ }
+
 
  removeUser(){}
 }

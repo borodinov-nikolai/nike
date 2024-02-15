@@ -5,12 +5,13 @@ import { DbModule } from 'src/db/db.module';
 import { UsersModule } from 'src/users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { TokenService } from './token.service';
+import { RolesGuard } from './roles.guard';
 
 
 @Module({
   imports: [DbModule, UsersModule, JwtModule],
   controllers: [AuthController],
   providers: [AuthService, TokenService],
-  exports: [AuthService]
+  exports: [TokenService]
 })
 export class AuthModule {}
