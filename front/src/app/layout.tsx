@@ -24,11 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <StoreProvider>
-        
       <body className={inter.className}>
       <CheckAuth>
       <Header/>
+      <main>
         {children}
+        </main>
       <Footer/>
       </CheckAuth>
       </body>

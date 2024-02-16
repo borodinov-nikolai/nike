@@ -1,0 +1,62 @@
+
+
+
+.root {
+    position: relative;
+}
+
+.swiper {
+    height: 500px;
+    width: 100%;
+    :global {
+        .swiper-pagination{
+            width: max-content;
+            height: max-content;
+            position: absolute;
+            top: 50%;
+            translate: 0% -50%;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 49px;
+            left: unset;
+        }
+
+        .swiper-pagination-bullet {
+            width: 8px;
+            height: 8px;
+        }
+    }
+  
+ }
+ 
+ .slide {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(128, 128, 128);
+ }
+
+ .btn {
+
+    z-index: 100;
+    position: absolute;
+    cursor: pointer;
+    height: 98px;
+    width: 98px;
+    border: 1px solid #E2E2E2;
+    border-radius: 50%;
+ }
+ 
+ .prevBtn {
+    bottom: 50px;
+    left: 100px;
+ }
+
+ .nextBtn {
+    bottom: 50px;
+    left: 210px;
+ }
+ 
