@@ -59,22 +59,6 @@ line-height: 27px;
 
 
 
-.password_input {
-    width: 100%;
-    position: relative;
-
-    .password_inputImage{
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 24px;
-    }
-    input {
-        &:not(:placeholder-shown) + .password_inputImage {
-        display: none;
-        }
-    }
-}
 
 
 

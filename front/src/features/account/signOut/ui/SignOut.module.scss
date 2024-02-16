@@ -1,0 +1,41 @@
+@import '../../../../shared/styles/mixins/breakpoints';
+
+
+
+.root {
+    width: 100%;
+}
+
+
+.title {
+    font-size: 21px;
+    line-height: 32px;
+    font-weight: 500;
+}
+
+.content {
+    min-height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    border: 1px solid #EAEAEA;
+    padding: 15px;
+}
+
+@include breakpoint(md){
+    .content {
+        margin-top: 25px;;
+    }
+}
+
+
+@include breakpoint(2xl){
+    .content {
+        margin-top: 55px;
+    }
+    .content {
+        padding: 40px;
+        height: 450px;
+    }
+}

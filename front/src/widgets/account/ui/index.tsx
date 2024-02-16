@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Account.module.scss'
 import MobileNavbar from './navbar'
-import { ProfileRedactor } from '@/src/features/accountContent/profileRedactor'
-import { OrdersHistory } from '@/src/features/accountContent/ordersHistory'
+import { ProfileRedactor } from '@/src/features/account/profileRedactor'
+import { OrdersHistory } from '@/src/features/account/ordersHistory'
 import { useGetUserQuery } from '@/src/entities/user'
+import { SignOut } from '@/src/features/account/signOut'
 
 
 
@@ -36,6 +37,7 @@ useEffect(()=> {
           <div className={styles.content} >
             {currentContent === 'profile' && <ProfileRedactor/> }
             {currentContent === 'orders' &&  <OrdersHistory/>}
+            {currentContent === 'signOut' &&  <SignOut/>}
           </div>
         </div>
       </div>

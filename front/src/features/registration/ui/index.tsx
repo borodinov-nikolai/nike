@@ -10,6 +10,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { useRegistrationMutation } from '../api'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { useRouter } from 'next/navigation'
+import PasswordInput from '@/src/shared/ui/passwordInput'
 
 
 type Inputs = {
@@ -105,20 +106,17 @@ const Registration = () => {
             </div>
             <div className={styles.form_item} >
               <label htmlFor='password' className={styles.label}>Пароль</label>
-              <div className={styles.password_input} >
                 <Controller
                   name="password"
                   control={control}
                   rules={{ required: "это поле обязательно", minLength: { value: 4, message: 'длина должна быть не менее 4 символов' }, maxLength: { value: 8, message: 'длина должна быть не более 8 символов' } }}
-                  render={({ field }) => <TextInput {...field} className={styles.input} id='password' type={'password'} placeholder={'Придумайте пароль'} />}
+                  render={({ field }) => <PasswordInput {...field} className={styles.input} id='password' type={'password'} placeholder={'Придумайте пароль'} />}
                 />
                 {errors.password && <span className={styles.error} >{errors.password?.message}</span>}
-                <Image className={styles.password_inputImage} src={'/icons/eye.png'} width={18} height={12} alt='eye icon' />
-              </div>
+       
             </div>
             <div className={styles.form_item} >
               <label htmlFor='password_confirm' className={styles.label}>Повторите пароль</label>
-              <div className={styles.password_input} >
                 <Controller
                   name="password_confirm"
                   control={control}
@@ -128,12 +126,11 @@ const Registration = () => {
                     maxLength: { value: 8, message: 'длина должна быть не более 8 символов' },
                     validate: (value)=>value === watch('password') || 'Пароли не совпадают'
                   }}
-                  render={({ field }) => <TextInput {...field} className={styles.input} id='password_confirm' type={'password'} placeholder={'Придумайте пароль'} />}
+                  render={({ field }) => <PasswordInput {...field} className={styles.input} id='password_confirm' type={'password'} placeholder={'Повторите пароль'} />}
                 />
                  {errors.password_confirm && <span className={styles.error} >{errors.password_confirm?.message}</span>}
 
-                <Image className={styles.password_inputImage} src={'/icons/eye.png'} width={18} height={12} alt='eye icon' />
-              </div>
+             
             </div>
 
 

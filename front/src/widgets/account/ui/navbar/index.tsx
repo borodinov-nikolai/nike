@@ -10,6 +10,8 @@ import Svg_AccauntExit from '../../assets/icons/accaunt_exit.svg'
 
 
 
+
+
 const navbarItmsList = [
   {
     id: 1,
@@ -57,6 +59,8 @@ const Navbar = ({setContent, current}:{setContent: React.Dispatch<React.SetState
     setContent(value);
     localStorage.setItem('accountNavbarValue', value)
   }
+
+ 
 
   return (
     <nav className={styles.root} >
