@@ -11,6 +11,7 @@ import Svg_cart from '@/public/icons/cart.svg'
 import { useGetUserQuery } from '@/src/entities/user'
 
 const Header = () => {
+ 
 
 const {data: userData, isSuccess} = useGetUserQuery();
 

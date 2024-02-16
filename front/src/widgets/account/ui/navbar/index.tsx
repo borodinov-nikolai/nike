@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import styles from './Navbar.module.scss'
 import Svg_AccauntProfile from '../../assets/icons/accaunt_profile.svg'

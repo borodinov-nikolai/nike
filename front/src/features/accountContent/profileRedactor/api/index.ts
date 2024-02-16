@@ -6,7 +6,7 @@ import { emptySplitApi } from "@/src/shared/configs/rtk_base"
 type Inputs = {
     email?: string,
     login?: string,
-    phoneNumber?: string
+    phoneNumber?: string,
 }
 
 const extendedApi = emptySplitApi.injectEndpoints({

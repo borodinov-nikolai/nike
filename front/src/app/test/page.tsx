@@ -10,7 +10,9 @@ const page = () => {
    
   return (
     <main className={styles.root}>   
-
+         
+         <div className='container' >  тест</div>
+       
     </main>
 
   )

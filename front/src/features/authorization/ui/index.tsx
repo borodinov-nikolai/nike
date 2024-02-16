@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { useAutorizationMutation } from '../api';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -18,6 +19,7 @@ interface Inputs {
 }
 
 const Authorization = () => {
+  const router = useRouter()
   const [authorization, result] = useAutorizationMutation()
   const { control, handleSubmit, setError, formState: { errors } } = useForm({
     defaultValues: {
@@ -40,8 +42,8 @@ const Authorization = () => {
     }
 
     if("data" in res) {
-       localStorage.setItem('jwt', res.data.accessToken)
-       window.location.href = "/"
+       localStorage.setItem('jwt', res.data.accessToken) 
+       router.push('/account')
  
     }
   }

@@ -93,7 +93,7 @@
     .burger_text {
         display: block;
         font-size: 15px;
-        line-height: 11px;
+        line-height: 18px;
         font-weight: 500;
         margin-left: 10px;
     }
@@ -137,9 +137,9 @@
 
     .links_item {
         height: 100%;
-        font-size: 14px;
-        line-height: 11px;
         a {
+            font-size: 14px;
+            line-height: 17px;
              
             display: flex;
             align-items: center;
@@ -148,15 +148,19 @@
     }
 
     .auth {
+        font-size: 18px;
+        line-height: 18px;
         display: flex;
+        font-weight: 700;
         gap: 7px;
         align-items: center;
         height: 100%;
     }
 
     .auth_text {
-        font-size: 12px;
-        line-height: 11px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 14px;
     }
 
     .burger {
@@ -165,13 +169,18 @@
 
     .categories {
         font-weight: 500;
-        font-size: 15px;
-        line-height: 11px;
         display: flex;
         justify-content: center;
         height: 100%;
         align-items: center;
         gap: 57px;
+        li {
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 18px;
+            font-weight: 500;
+
+        }
         img {
             margin-right: 15px;
         }

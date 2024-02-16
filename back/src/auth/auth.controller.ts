@@ -1,9 +1,11 @@
-import { Body, Controller, Get, Post, Req, Res} from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Res, UseGuards} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dtos/auth.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { User } from 'src/users/entities/user.entity';
 import { Request, Response } from 'express';
+import { RolesGuard } from './roles.guard';
+import { Roles } from './roles.decorator';
 
 @ApiTags('auth')
 
@@ -54,7 +56,8 @@ export class AuthController {
       summary: 'получить свои данные'
     })
  
- 
+   @UseGuards(RolesGuard)
+   @Roles(['USER'])
     @Get('me')
     getMe(@Req() req: Request):Promise<User>{
       return this.authService.getMe(req)

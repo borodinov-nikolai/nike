@@ -94,6 +94,7 @@ export class AuthService {
 
    async getMe(req: Request) {
        const authorizationHeader = req.headers['authorization'];
+       
        const token = authorizationHeader?.split(' ')[1]
 
        const payload = await this.tokenService.decodeToken(token);

@@ -7,20 +7,23 @@ import { OrdersHistory } from '@/src/features/accountContent/ordersHistory'
 import { useGetUserQuery } from '@/src/entities/user'
 
 
+
 const Account = () => {
   const {data:user} = useGetUserQuery()
+  
   const [currentContent, setCurrentContent] = useState<string>();
 
 useEffect(()=> {
-
   const savedValue = localStorage.getItem('accountNavbarValue');
   if(savedValue) {
     setCurrentContent(savedValue)
   } else {
     setCurrentContent('profile')
   }
-})
 
+},[])
+   
+ 
   return (
     <div className={styles.root} >
       <div className={"container"} >
@@ -38,6 +41,8 @@ useEffect(()=> {
       </div>
     </div>
   )
+ 
+  
 }
 
 export default Account
