@@ -29,9 +29,13 @@
     width: 59px;
     border-right: 1px solid rgba(234, 234, 234, 1);
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
-    height: 100%;
+    height: auto;
+    >img {
+        width: 100%;
+        height: auto;
+    }
 }
 
 .burger_text {

@@ -57,7 +57,7 @@ const Navbar = ({setContent, current}:{setContent: React.Dispatch<React.SetState
 
   const handleChange = (value: string)=> {
     setContent(value);
-    localStorage.setItem('accountNavbarValue', value)
+    sessionStorage.setItem('accountNavbarValue', value)
   }
 
  

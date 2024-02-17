@@ -12,7 +12,7 @@ const SignOut = () => {
 
     const handleClick = ()=> {
         localStorage.removeItem('jwt')
-        localStorage.removeItem('accountNavbarValue')
+        sessionStorage.removeItem('accountNavbarValue')
         signOut()
    router.push('/')
     }

@@ -15,7 +15,7 @@ const Account = () => {
   const [currentContent, setCurrentContent] = useState<string>();
 
 useEffect(()=> {
-  const savedValue = localStorage.getItem('accountNavbarValue');
+  const savedValue = sessionStorage.getItem('accountNavbarValue');
   if(savedValue) {
     setCurrentContent(savedValue)
   } else {
