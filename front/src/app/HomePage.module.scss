@@ -1,8 +1,9 @@
-
+@import '../shared/styles/mixins/breakpoints';
 
 
 .root {
-   height: 100vh;
+   min-height: 100vh;
+   height: max-content;
    
 }
 
@@ -11,5 +12,14 @@
    margin-top: 38px;
 }
 
+.advantages {
+margin-top: 50px;
+}
 
 
+
+@include breakpoint(md){
+   .advantages {
+      margin-top: 38px;
+   }
+}

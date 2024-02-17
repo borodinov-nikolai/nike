@@ -1,0 +1,83 @@
+@import '../../../../shared/styles/mixins/breakpoints';
+
+
+.root {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 100%;
+    border-top: 1px solid #EAEAEA;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.listItem {
+    display: flex;
+    gap: 23px;
+
+ 
+}
+
+.text {
+
+    >h3 {
+        font-size: 15px;
+        line-height: 26px;
+        font-weight: 500;
+    }
+
+    >p {
+        margin-top: 8px;
+        font-size: 14px;
+        line-height: 21px;
+        color: #4B4B4B;
+    }
+}
+
+@include breakpoint(md){
+
+    .list {
+        gap: unset;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+    .listItem {
+        max-width: 412px;
+    }
+
+
+    .text {
+        >h3 {
+            font-size: 14px;
+            line-height: 19px;
+        }
+    }
+}
+
+
+@include breakpoint(2xl){
+    
+    .root {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .text {
+        >h3 {
+            font-size: 18px;
+            line-height: 26px;
+        }
+
+        >p {
+            font-size: 15px;
+            line-height: 25px;
+        }
+    }
+
+}
