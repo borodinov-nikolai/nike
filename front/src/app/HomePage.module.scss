@@ -16,10 +16,23 @@
 margin-top: 50px;
 }
 
+.newProductsSlider {
+   margin-top: 40px;
+}
+
 
 
 @include breakpoint(md){
    .advantages {
       margin-top: 38px;
+   }
+   .newProductsSlider {
+      margin-top: 50px;
+   }
+}
+
+@include breakpoint(2xl){
+   .newProductsSlider {
+      margin-top: 90px;
    }
 }

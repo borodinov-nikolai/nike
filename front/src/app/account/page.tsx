@@ -18,14 +18,14 @@ const page = () => {
   ]
   
   return (
-    <div className={styles.root} >
+    <main className={styles.root} >
       <div className='container' >
       <div className={styles.breadcrumb} >
         <Breadcrumb items={breadcrumbs} />
       </div>
      <Account/>
      </div>
-    </div>
+    </main>
   )
 }
     

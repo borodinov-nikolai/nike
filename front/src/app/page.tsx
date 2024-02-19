@@ -1,17 +1,17 @@
-import Link from 'next/link';
 import styles from './HomePage.module.scss'
-import Button from '@/src/shared/ui/button/index';
-import { Carousel } from '../features/homePage/carousel';
-import { Advantages } from '../features/homePage/advantages';
+import { Carousel } from '../features/carousel';
+import { Advantages } from '../entities/advantages';
+import { NewProductsSlider } from '../widgets/newProductsSlider';
 
 
 export default  async function Home() {
 
 
   return (
-    <div className={styles.root} >
-        <div className={styles.carousel} ><Carousel/></div>
-        <div className={styles.advantages} ><Advantages/></div>
-    </div>
+    <main className={styles.root} >
+        <section className={styles.carousel} ><Carousel/></section>
+        <section className={styles.advantages} ><Advantages/></section>
+        <section className={styles.newProductsSlider} ><NewProductsSlider/></section>
+    </main>
   );
 }

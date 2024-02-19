@@ -3,9 +3,9 @@ import React from 'react'
 import styles from './AuthPage.module.scss'
 const page = () => {
   return (
-    <div className={styles.root}>
+    <main className={styles.root}>
       <Authorization/>
-    </div>
+    </main>
   )
 }
 

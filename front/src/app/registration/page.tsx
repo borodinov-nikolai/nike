@@ -5,9 +5,9 @@ import styles from './RegistrationPage.module.scss'
 
 const page = () => {
   return (
-    <div className={styles.root} >
+    <main className={styles.root} >
         <Registration/>
-    </div>
+    </main>
   )
 }
 

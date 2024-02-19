@@ -27,9 +27,7 @@ export default function RootLayout({
       <body className={inter.className}>
       <CheckAuth>
       <Header/>
-      <main>
         {children}
-        </main>
       <Footer/>
       </CheckAuth>
       </body>
