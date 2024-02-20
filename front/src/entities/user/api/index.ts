@@ -9,7 +9,7 @@ interface User {
   phoneNumber: string
   [key:string]: any
 }
-
+const token = typeof window !== 'undefined' && localStorage.getItem('jwt')
 const extendedApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({
     getUser : build.query<User, void>({
@@ -20,4 +20,4 @@ const extendedApi = emptySplitApi.injectEndpoints({
   overrideExisting: false,
 })
 
-export const {useGetUserQuery} = extendedApi
+export const {useGetUserQuery} = token ? extendedApi : {useGetUserQuery:()=>{return {data:null, isLoading: false, isSuccess: false}}}

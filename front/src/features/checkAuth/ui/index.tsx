@@ -5,8 +5,8 @@ import React, { ReactNode } from 'react';
 
 
 const CheckAuth = ({ children }: { children: ReactNode }) => {
-  const location = usePathname()
   const { isLoading, isSuccess } = useGetUserQuery()
+  const location = usePathname()
 
   const forbiddenRoutes = [
     '/account'
@@ -15,7 +15,7 @@ const CheckAuth = ({ children }: { children: ReactNode }) => {
 
   if (forbiddenRoutes.includes(location)) {
 
-    if (!isLoading && !isSuccess) {
+    if (!isLoading && !isSuccess && typeof window !== 'undefined') {
 
       window.location.href = '/'
       return null
