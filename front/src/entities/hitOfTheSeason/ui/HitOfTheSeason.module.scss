@@ -1,0 +1,105 @@
+@import '../../../shared/styles/mixins/breakpoints';
+
+
+.inner {
+    background-color: #1E1E1E;
+    padding: 35px;
+    overflow: hidden;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+   font-size: 34px;
+   line-height: 40px;
+   font-weight: 500;
+   >span {
+    display: inline-block;
+    width: 76px;
+    height: 2px;
+    background-color: white;
+    margin-bottom: 11px;
+
+   }
+}
+
+.name {
+    margin-top: 17px;
+    font-size: 22px;
+    line-height: 26px;
+}
+
+.price {
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 20px;
+
+    >span {
+        font-size: 22px;
+        line-height: 26px;
+    }
+}
+
+.button {
+    width: max-content;
+    margin: 0 auto;
+    margin-top: 15px;
+    >button {
+        width: 265px;
+    }
+}
+
+.imageHolder {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.image {
+    display: none;
+}
+
+
+.image_m {
+    margin-top: 40px;
+    z-index: 2;
+    width: auto;
+   transform: translate(-10%) rotate(-10deg);
+   height: 300px;
+}
+
+.logo_m {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -60%);
+}
+
+.info {
+    display: flex;
+    gap: 14px;
+}
+
+.plusIcon {
+    opacity: 50%;
+    width: 18px;
+    height: 18px;
+}
+
+.infoText {
+    font-size: 15px;
+    line-height: 23px;
+}
+
+@include breakpoint(md) {
+    .inner {
+        flex-direction: row;
+    }
+
+    .info {
+        display: none;
+    }
+}

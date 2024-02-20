@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Account.module.scss'
 import MobileNavbar from './navbar'
-import { ProfileRedactor } from '@/src/features/account/profileRedactor'
-import { OrdersHistory } from '@/src/features/account/ordersHistory'
+import { ProfileRedactor } from '@/src/features/profileRedactor'
+import { OrdersHistory } from '@/src/features/ordersHistory'
 import { useGetUserQuery } from '@/src/entities/user'
-import { SignOut } from '@/src/features/account/signOut'
+import { SignOut } from '@/src/features/signOut'
 
 
 

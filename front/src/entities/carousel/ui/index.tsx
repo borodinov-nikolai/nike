@@ -49,7 +49,7 @@ const Carousel = () => {
                         delay: 4000,
                         disableOnInteraction: false
                     }}
-                    speed={2000}
+                    speed={800}
                     loop={true}
                     spaceBetween={40}
                     onAutoplayTimeLeft={onAutoplayTimeLeft}
@@ -58,9 +58,9 @@ const Carousel = () => {
                         <h2 className={styles.title} >AIR MAX <span className={styles.titleLine} ></span> <br/> FlYKNIT RACER</h2>
                         <p className={styles.text} >Усиленный носок и прочный пластиковый каркас. Инновационная технология раскрывается через перфорированную стельку</p>
                         <div  className={styles.image_holder}>
-                            <Image className={[styles.image, styles.image_lg].join(' ')} src={'/images/carousel_image.png'} width={1000} height={1000} alt='carousel image'/>
-                            <Image  className={[styles.image, styles.image_sm].join(' ')} src={'/images/carousel_image.png'} width={400} height={400} alt='carousel image'/>
-                            <Image  className={styles.logo} src={'/images/carousel_logo.png'} width={400} height={400} alt='carousel logo'/>
+                            <Image   className={[styles.image, styles.image_sm].join(' ')} src={'/images/carousel_image.png'}  width={400} height={400} alt='carousel image'/>
+                            <Image className={[styles.image, styles.image_lg].join(' ')} src={'/images/carousel_image.png'} width={800} height={800} alt='carousel image'/>
+                            <Image  className={styles.logo} src={'/images/carousel_logo.png'}  width={380} height={380} alt='carousel logo'/>
                         </div>
                         <p className={styles.price} >от <span>7899 ₽</span></p>
                         <div className={styles.button} ><Button>Подробнее</Button></div>
@@ -75,8 +75,8 @@ const Carousel = () => {
                         <p className={styles.text} >Усиленный носок и прочный пластиковый каркас. Инновационная технология раскрывается через перфорированную стельку</p>
                         <div  className={styles.image_holder}>
                         <Image className={[styles.image, styles.image_sm].join(' ')} src={'/images/carousel_image.png'} width={400} height={400} alt='carousel image'/>
-                            <Image className={[styles.image, styles.image_lg].join(' ')} src={'/images/carousel_image.png'} width={1000} height={1000} alt='carousel image'/>
-                            <Image  className={styles.logo} src={'/images/carousel_logo.png'} width={400} height={400} alt='carousel logo'/>
+                            <Image  className={[styles.image, styles.image_lg].join(' ')} src={'/images/carousel_image.png'} width={800} height={800} alt='carousel image'/>
+                            <Image  className={styles.logo} src={'/images/carousel_logo.png'}  width={380} height={380} alt='carousel logo'/>
                         </div>
                         <p className={styles.price} >от <span>7899 ₽</span></p>
                         <div className={styles.button} ><Button>Подробнее</Button></div>

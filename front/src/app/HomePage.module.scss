@@ -20,6 +20,14 @@ margin-top: 50px;
    margin-top: 40px;
 }
 
+.bestSellingSlider {
+   margin-top: 84px;
+}
+
+.heatOfTheSeason {
+   margin-top: 70px;
+}
+
 
 
 @include breakpoint(md){
@@ -29,10 +37,22 @@ margin-top: 50px;
    .newProductsSlider {
       margin-top: 50px;
    }
+   .bestSellingSlider {
+      margin-top: 70px;
+   }
+  
+   
 }
 
 @include breakpoint(2xl){
    .newProductsSlider {
       margin-top: 90px;
+   }
+   
+   .bestSellingSlider {
+      margin-top: 115px;
+   }
+   .heatOfTheSeason {
+      margin-top: 115px;
    }
 }
