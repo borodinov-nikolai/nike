@@ -55,7 +55,7 @@ const Carousel = () => {
                     onAutoplayTimeLeft={onAutoplayTimeLeft}
                 >
                     <SwiperSlide className={styles.slide} >
-                        <h2 className={styles.title} >AIR MAX ——— FlYKNIT RACER</h2>
+                        <h2 className={styles.title} >AIR MAX <span className={styles.titleLine} ></span> <br/> FlYKNIT RACER</h2>
                         <p className={styles.text} >Усиленный носок и прочный пластиковый каркас. Инновационная технология раскрывается через перфорированную стельку</p>
                         <div  className={styles.image_holder}>
                             <Image className={[styles.image, styles.image_lg].join(' ')} src={'/images/carousel_image.png'} width={1000} height={1000} alt='carousel image'/>
@@ -64,14 +64,14 @@ const Carousel = () => {
                         </div>
                         <p className={styles.price} >от <span>7899 ₽</span></p>
                         <div className={styles.button} ><Button>Подробнее</Button></div>
+                    </SwiperSlide>
                         <div className={styles.navigaton} >
                         <button className={styles.nav_btn} onClick={handlePrev}  ><FaArrowLeftLong/></button>
                             <button className={styles.nav_btn} onClick={handleNext}  ><FaArrowRightLong/></button>
                         </div>
-                    </SwiperSlide>
                 
                     <SwiperSlide className={styles.slide} >
-                        <h2 className={styles.title} >AIR MAX ——— FlYKNIT RACER</h2>
+                        <h2 className={styles.title} >AIR MAX <span className={styles.titleLine} ></span> <br/> FlYKNIT RACER</h2>
                         <p className={styles.text} >Усиленный носок и прочный пластиковый каркас. Инновационная технология раскрывается через перфорированную стельку</p>
                         <div  className={styles.image_holder}>
                         <Image className={[styles.image, styles.image_sm].join(' ')} src={'/images/carousel_image.png'} width={400} height={400} alt='carousel image'/>
@@ -80,11 +80,11 @@ const Carousel = () => {
                         </div>
                         <p className={styles.price} >от <span>7899 ₽</span></p>
                         <div className={styles.button} ><Button>Подробнее</Button></div>
+                    </SwiperSlide>
                         <div className={styles.navigaton} >
                         <button className={styles.nav_btn} onClick={handlePrev}  ><FaArrowLeftLong/></button>
                             <button className={styles.nav_btn} onClick={handleNext}  ><FaArrowRightLong/></button>
                         </div>
-                    </SwiperSlide>
                 
                 
                 

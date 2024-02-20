@@ -27,9 +27,7 @@
   
  }
  
- .slide {
-    height: max-content;
-    width: max-content;
+ .slide {   
     display: flex;
     align-items: center;
      flex-direction: column;
@@ -39,7 +37,16 @@
     font-size: 34px;
     line-height: 40px;
     font-weight: 500;
+}
+
+.titleLine{
+    width: 110px;
+    margin-bottom: 12px;
+    display: inline-block;
+    height: 2px;
+    background-color: black;
  }
+ 
 
  .text {
     margin-top: 9px;
@@ -113,18 +120,21 @@ font-weight: 500;
         height: 100%;
         display: grid;
         grid-template-columns: 316px 1fr;
-        grid-template-rows: repeat(5, max-content);
+        grid-template-rows: repeat(4, max-content);
         align-content: space-around;
         
     }
  
 
  .title {
+    margin-top: 20%;
     font-size: 34px;
     line-height: 40px;
     grid-column: 1;
     grid-row: 1;
  }
+
+ 
 
  .text {
 
@@ -151,6 +161,7 @@ font-weight: 500;
     grid-row: 3;
 }
 .button {
+    margin-bottom: 40%;
     grid-column: 1;
     grid-row: 4;
 }
@@ -163,7 +174,7 @@ font-weight: 500;
    
 
     .swiper {
-        height: 50vh;
+        height: 60vh;
         
         :global {
             .swiper-pagination{
@@ -183,16 +194,23 @@ font-weight: 500;
     }
 
     .title {
+        margin-top: 50px;
         font-size: 69px;
         line-height: 81px;
     }
 
+    .titleLine {
+        margin-bottom: 24px;
+        width: 123px;
+    }
+
     .image_holder {
-        grid-row: 1/6;
+        grid-row: 1/5;
     }
 
     .image {
-        width: 75%;
+        height: 125%;
+        width: auto;
     }
     .image_lg{
         display: block;
@@ -201,24 +219,29 @@ font-weight: 500;
         display: none;
     }
 
+    .button {
+        margin-bottom: 176px;
+    }
+
     .navigaton {
-        margin-top: 20px;
-        grid-template-columns: 1;
-        grid-template-rows: 6;
         display: flex;
         gap: 14px;
+        position: absolute;
+        left: 0px;
+        bottom: 20px;
     }
     .nav_btn {
         z-index: 100;
         cursor: pointer;
         height: 98px;
         width: 98px;
-        background-color: #F5F5F5;
+        background-color: white;
         border: none;
         border-radius: 50%;
+        border: 1px solid #E2E2E2;
         &:hover {
-            background-color: white;
-            border: 1px solid #E2E2E2;
+            background-color: #F5F5F5;
+            border: none;
         }
      }
  

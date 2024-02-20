@@ -1,8 +1,4 @@
-
-
-
-
-
+@import "../../../shared/styles/mixins/breakpoints";
 
 .header {
     display: flex;
@@ -25,20 +21,62 @@
 
 .arrowLeft {
     cursor: pointer;
-    >svg {
+    > svg {
         width: 33px;
         height: auto;
+    }
+    &:hover {
+        > svg {
+            opacity: 0.4;
+        }
     }
 }
 .arrowRight {
     cursor: pointer;
-    >svg {
+    > svg {
         transform: scaleX(-1);
         width: 33px;
         height: auto;
     }
+
+    &:hover {
+        > svg {
+            opacity: 0.4;
+        }
+    }
 }
 
 .slider {
-     margin-top: 33px;
+    width: 100%;
+   height: 175vw;
+    margin-top: 33px;
+    
+}
+
+@include breakpoint(md) {
+    .slider {
+        height: unset;
+    }
+}
+
+@include breakpoint(2xl) {
+    .title {
+        font-size: 39px;
+        line-height: 50px;
+    }
+
+    .arrowLeft {
+        > svg {
+            width: 39px;
+        }
+    }
+    .arrowRight {
+        > svg {
+            width: 39px;
+        }
+    }
+
+    .slider {
+        margin-top: 60px;
+    }
 }

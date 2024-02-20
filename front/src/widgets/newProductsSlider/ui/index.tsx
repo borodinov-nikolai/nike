@@ -1,10 +1,9 @@
 import React from 'react'
 import styles from './NewProductsSlider.module.scss'
-import { Swiper, SwiperSlide } from 'swiper/react'
 
 
 
-import 'swiper/css';
+
 import { Slider } from '@/src/entities/slider';
 import { ProductCard } from '@/src/entities/productCard';
 
@@ -44,6 +43,33 @@ const products = [
     gender: "w",
     price: 7899,
     oldPrice: 11699
+  },
+  {
+    id: 5,
+    name: 'Nike Air VaporMax 2023 Flyknit 5',
+    images: ['/images/product_img_2.png'],
+    colors: ['gray', 'black', 'red', 'white'],
+    gender: "m",
+    price: 7899,
+    oldPrice: 5999
+  },
+  {
+    id: 5,
+    name: 'Nike Air VaporMax 2023 Flyknit 5',
+    images: ['/images/product_img_2.png'],
+    colors: ['gray', 'black', 'red', 'white'],
+    gender: "m",
+    price: 7899,
+    oldPrice: 5999
+  },
+  {
+    id: 5,
+    name: 'Nike Air VaporMax 2023 Flyknit 5',
+    images: ['/images/product_img_2.png'],
+    colors: ['gray', 'black', 'red', 'white'],
+    gender: "m",
+    price: 7899,
+    oldPrice: 5999
   },
   {
     id: 5,

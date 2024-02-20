@@ -1,4 +1,4 @@
-
+@import '../../../shared/styles/mixins/breakpoints';
 
 
 .root {
@@ -9,4 +9,129 @@
 .image {
     width: 100%;
     height: auto;
+}
+
+.description {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.gender {
+    font-size: 3.0vw;
+    line-height: 3.0vw;
+    color: #747474;
+    font-weight: 500;
+}
+
+.name {
+    font-size: 4.4vw;
+    line-height: 6vw;
+}
+
+
+.colors {
+    font-size: 3.9vw;
+    line-height: 6vw;
+    display: flex;
+    gap: 10px;
+}
+
+.color {
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+}
+
+.price {
+    font-size: 5vw;
+    line-height: 6vw;
+    vertical-align: bottom;
+}
+
+.oldPrice {
+    font-size: 3.9vw;
+    line-height: 6vw;
+    color: #8888;
+    text-decoration:line-through;
+}
+
+
+@include breakpoint(md){
+    .gender {
+        font-size: 11px;
+        line-height: 11px;
+    }
+    
+    .name {
+        font-size: 16px;
+        line-height: 22px;
+    }
+    
+    
+    .colors {
+        font-size: 14px;
+        line-height: 26px;
+    }
+    
+    .color {
+        height: 14px;
+        width: 14px;
+    }
+    
+    .price {
+        font-size: 18px;
+        line-height: 26px;
+    }
+    
+    .oldPrice {
+        font-size: 14px;
+        line-height: 26px;
+    }
+}
+
+@include breakpoint(2xl) {
+
+
+    .description {
+        margin-top: 25px;
+        gap: 9px;
+    }
+
+    .gender {
+        font-size: 12px;
+        line-height: 12px;
+    }
+    
+    .name {
+        font-size: 19px;
+        line-height: 26px;
+    }
+    
+    
+    .colors {
+        font-size: 15px;
+        line-height: 26px;
+    }
+    
+    .color {
+        height: 15px;
+        width: 15px;
+    }
+    
+
+    .prices {
+        display: flex;
+        gap: 10px;
+    }
+    .price {
+        font-size: 19px;
+        line-height: 26px;
+    }
+    
+    .oldPrice {
+        font-size: 15px;
+        line-height: 26px;
+    }
 }
