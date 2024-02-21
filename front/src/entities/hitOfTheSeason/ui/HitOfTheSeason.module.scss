@@ -3,12 +3,12 @@
 
 .inner {
     background-color: #1E1E1E;
+    position: relative;
     padding: 35px;
     overflow: hidden;
     color: white;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .title {
@@ -47,7 +47,7 @@
     margin: 0 auto;
     margin-top: 15px;
     >button {
-        width: 265px;
+        max-width: 265px;
     }
 }
 
@@ -55,6 +55,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
 
 }
@@ -68,25 +69,33 @@
     z-index: 2;
     width: auto;
    transform: translate(-10%) rotate(-10deg);
-   height: 300px;
+   height: 200px;
 }
 
-.logo_m {
+.logo {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -60%);
+    scale: 0.75;
+    transform: translate(-65%, -65%);
 }
 
 .info {
+    width: 100%;
     display: flex;
     gap: 14px;
+
 }
 
 .plusIcon {
-    opacity: 50%;
-    width: 18px;
-    height: 18px;
+    flex-shrink: 0;
+   height: 18px;
+   width: 18px;
+    >svg {
+        opacity: 50%;
+        width: 100% !important;
+        height: 100% !important;
+    }
 }
 
 .infoText {
@@ -99,7 +108,86 @@
         flex-direction: row;
     }
 
+    .button {
+        margin-left: 0;
+    }
+
     .info {
         display: none;
+    }
+
+  .imageHolder {
+    translate: 0% 5%;
+    scale: 1.4;
+      width: 100%;
+  }
+}
+
+@include breakpoint(2xl) {
+
+
+    .inner {
+        padding: 110px 70px;
+    }
+
+    .title {
+        font-size: 62px;
+        line-height: 73.5px;
+    }
+
+    .name {
+        margin-top: 28px;
+        font-size: 36px;
+        line-height: 42px;
+    }
+
+    .price {
+        margin-top: 28px;
+        font-size: 16px;
+        line-height: 20px;
+          >span {
+            font-size: 22px;
+            line-height: 26px;
+          }
+    }
+
+    .button {
+        margin-top: 22px;
+        >button {
+            width: 246px;
+        }
+    }
+
+    .imageHolder {
+        scale: 1.8
+    }
+
+    .image_m {
+        display: none 
+    }
+
+    .image {
+        display: block;
+        margin-top: 40px;
+    z-index: 2;
+    width: auto;
+   transform: translate(-10%) rotate(-10deg);
+   height: 300px;
+    }
+
+    .logo {
+        scale: 1.2;
+        translate: 35% 15%;
+    }
+
+    .info {
+        position: absolute;
+        display: flex;
+        right: 40px;
+        bottom: 104px;
+        width: 300px;
+        font-size: 15px;
+        line-height: 22px;
+        opacity: 0.7;
     }
 }

@@ -17,11 +17,13 @@ const HeatOfTheSeason = () => {
                 </div>
                     <div className={styles.imageHolder} >
                         <Image src={'/images/hit_of_the_season_img.png'} width={1500} height={618} alt='hit of the season image' className={styles.image} />
-                        <Image src={'/images/hit_of_the_season_img_m.png'} width={560} height={395} alt='hit of the season image' className={styles.image_m} />
-                        <Image src={'/images/hit_of_the_season_logo_m.png'} width={294} height={105} alt='hit of the season image' className={styles.logo_m} />
+                        <Image src={'/images/hit_of_the_season_img.png'} width={560} height={395} alt='hit of the season image' className={styles.image_m} />
+                        <Image src={'/images/hit_of_the_season_logo.png'} width={294} height={105} alt='hit of the season image' className={styles.logo} />
                     </div>
                 <div className={styles.info} >
-                <HiPlus className={styles.plusIcon} />
+                <div  className={styles.plusIcon} >
+                    <HiPlus  />
+                </div>
                 <p className={styles.infoText} >Уникальная технология структуры стельки позволяет забыть про обувь на ноге.</p>
             </div>
             </div>
