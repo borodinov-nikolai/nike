@@ -47,6 +47,7 @@
     margin: 0 auto;
     margin-top: 15px;
     >button {
+        z-index: 1000 !important;
         max-width: 265px;
     }
 }
@@ -69,15 +70,15 @@
     z-index: 2;
     width: auto;
    transform: translate(-10%) rotate(-10deg);
-   height: 200px;
+   height: 300px;
 }
 
 .logo {
     position: absolute;
     left: 50%;
     top: 50%;
-    scale: 0.75;
-    transform: translate(-65%, -65%);
+    scale: 1.08;
+    transform: translate(-45%, -55%);
 }
 
 .info {
@@ -117,9 +118,19 @@
     }
 
   .imageHolder {
+    position: relative;
     translate: 0% 5%;
-    scale: 1.4;
       width: 100%;
+  }
+
+  .image_m {
+    position: absolute;
+    scale: 1.1;
+  }
+
+  .logo {
+   scale: 1.28;
+   transform: translate(-35%, -50%);
   }
 }
 
@@ -158,9 +169,7 @@
         }
     }
 
-    .imageHolder {
-        scale: 1.8
-    }
+   
 
     .image_m {
         display: none 
@@ -171,13 +180,14 @@
         margin-top: 40px;
     z-index: 2;
     width: auto;
-   transform: translate(-10%) rotate(-10deg);
+   transform: translate(-10%, 5%) rotate(-10deg);
    height: 300px;
+   scale: 2;
     }
 
     .logo {
-        scale: 1.2;
-        translate: 35% 15%;
+        scale: 2.4;
+        transform: translate(-20%, -25%);
     }
 
     .info {

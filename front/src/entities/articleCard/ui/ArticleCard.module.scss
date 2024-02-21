@@ -1,0 +1,112 @@
+@import '../../../shared/styles/mixins/breakpoints';
+
+
+.root {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    width: 296px;
+    height: 387px;
+    padding: 20px;
+    padding-bottom: 30px;
+    color: white;
+    background-size: auto 100% !important;
+    background-repeat: no-repeat !important;
+    transition: background-size 0.3s ease;
+    background-position: center !important;
+
+    &:hover {
+        background-size:  auto 110% !important;
+    }
+}
+
+.type {
+    padding: 10px;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #DBE5EB;
+    color: black;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 500;
+}
+
+.title {
+    font-size: 21px;
+    line-height: 26px;
+    margin-top: 32px;
+}
+
+.description {
+    display: none;
+}
+.footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.more {
+    font-size: 15px;
+    line-height: 39px;
+    font-weight: 500;
+    border-bottom: 1px solid white;
+}
+
+.date {
+    font-size: 11px;
+    line-height: 29px;
+}
+
+
+@include breakpoint(2xl) {
+    .root {
+        width: 670px;
+        height: 461px;
+        padding: 40px;
+        padding-bottom: 44px;
+            &:hover {
+                background-size:  auto 120% !important;
+            }
+    }
+
+    .type {
+        padding: 16px 10px;
+    }
+
+     .title {
+        max-width: 400px;
+        margin-top: 23px;
+        font-size: 27px;
+        line-height: 36px;
+     }
+
+     .description {
+        margin-top: 120px;
+        display: flex;
+        gap: 14px;
+        font-size: 18px;
+        line-height: 29px;
+        max-width: 291px;
+     }
+
+   
+    
+
+     .plusIcon {
+        margin-top: 4px;
+        flex-shrink: 0;
+     }
+
+
+     .more {
+        font-size: 18px;
+     }
+
+     .date {
+        font-size: 14px;
+     }
+}

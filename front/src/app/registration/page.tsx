@@ -6,7 +6,7 @@ import styles from './RegistrationPage.module.scss'
 const page = () => {
   return (
     <main className={styles.root} >
-        <Registration/>
+        <section><Registration/></section>
     </main>
   )
 }
