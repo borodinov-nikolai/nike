@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
-import styles from './ProductCard.module.scss'
+import styles from './DiscountProductCard.module.scss'
 import Image from 'next/image'
 
 interface Props {
 id: number
 name: string
-images: string[]
+image: string
 gender: string
 colors: string[]
 price: number
@@ -13,16 +13,12 @@ oldPrice: number | null
 }
 
 
-const ProductCard:FC<Props> = ({id, name, images, gender, colors, price, oldPrice}) => {
+const DiscountProductCard:FC<Props> = ({id, name, image, gender, colors, price, oldPrice}) => {
   return (
     <div className={styles.root} >
-   
-        <div className={styles.imageHolder} >
-          <Image className={styles.image}  src={images?.[0]} width={440} height={445} alt='product image'/>
-        </div>
-      
+      <Image className={styles.image}  src={image} quality={100} width={440} height={445} alt='product image'/>
        <div className={styles.description} >
-         <p className={styles.gender} >{gender === 'm'? 'мужские': 'женские'}</p>
+         <p className={styles.gender} >{gender === 'm'? 'МУЖСКИЕ': 'ЖЕНСКИЕ'}</p>
          <h3 className={styles.name} >{name}</h3>
          <ul className={styles.colors} >Цвета: 
           {colors.map((color, index ) => <li className={styles.color} style={{backgroundColor: color}} key={index} ></li>)}
@@ -37,4 +33,4 @@ const ProductCard:FC<Props> = ({id, name, images, gender, colors, price, oldPric
   )
 }
 
-export default ProductCard
+export default DiscountProductCard

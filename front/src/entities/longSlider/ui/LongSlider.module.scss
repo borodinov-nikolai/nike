@@ -2,7 +2,9 @@
 
 
 .root {
+    height: max-content;
     overflow: hidden;
+    padding-bottom: 40px;
 }
 
 
@@ -13,7 +15,7 @@
 }
 
 .title {
-    width: min-content;
+    max-width: 205px;
     font-size: 24px;
     line-height: 32px;
     font-weight: 500;
@@ -57,14 +59,26 @@
     margin-top: 30px;
     position: relative;
     width: 100%;
-    height: 387px;
+    height: max-content;
 }
 
 .swiper {
-    position: absolute;
+    overflow: visible;
     width: 100vw;
-    left: 0;
-    top: 0;
+    height: max-content;
+    :global {
+
+        .swiper-wrapper {
+            height: max-content !important;
+        }
+        .swiper-scrollbar {
+            left: 0;
+            cursor: pointer;
+            bottom: -40px;
+            width: 95vw;
+            max-width: 1360px;
+        }
+    }
 }
 
 .swiperSlide {
@@ -75,7 +89,12 @@
 
 @include breakpoint(2xl) {
 
+    .root {
+        padding-bottom: 60px;
+    }
+
     .title {
+        max-width: 414px;
         font-size: 39px;
         line-height: 50px;
     }
@@ -85,10 +104,21 @@
     }
 
     .content {
-        height: 461px;
+        // height: 461px;
+    }
+
+
+    .swiper {
+        width: 80vw;
+        :global {
+            .swiper-scrollbar {
+                bottom: -60px;
+            }
+        }
     }
 
     .swiperSlide {
+        height: max-content;
         margin-right: 20px;
     }
 }

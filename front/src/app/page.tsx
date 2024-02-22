@@ -5,6 +5,8 @@ import { BestSellingSlider } from '../widgets/bestSellingSlider';
 import { HeatOfTheSeason } from '../entities/hitOfTheSeason';
 import { Carousel } from '../entities/carousel';
 import ArticlesSlider from '../widgets/articlesSlider/ui';
+import { DiscountsSlider } from '../widgets/discountsSlider';
+import { NewCollections } from '../entities/newCollections';
 
 
 export default  async function Home() {
@@ -18,6 +20,8 @@ export default  async function Home() {
         <section className={styles.bestSellingSlider} ><BestSellingSlider/></section>
         <section className={styles.heatOfTheSeason} ><HeatOfTheSeason/></section>
         <section className={styles.articlesSlider} ><ArticlesSlider/></section>
+        <section className={styles.discountsSlider} ><DiscountsSlider/></section>
+        <section className={styles.newCollections} ><NewCollections/></section>
         
     </main>
   );

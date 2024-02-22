@@ -2,50 +2,40 @@
 
 
 .root {
+    background-color: #F5F5F5;
     cursor: pointer;
-    max-width: 440px;
+    width: 258px;
+    padding: 20px;
+    padding-top: 15px;
 }
 
-
-
-
-.imageHolder {
-    overflow: hidden;
-}
 .image {
     width: 100%;
     height: auto;
-    transition: scale 0.3s ease;
-}
-
-
-.root:hover .image{
-    scale: 1.1;
 }
 
 .description {
-    margin-top: 15px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 18px;
 }
 
 .gender {
-    font-size: 3.0vw;
-    line-height: 3.0vw;
+    font-size: 11px;
+    line-height: 11px;
     color: #747474;
     font-weight: 500;
 }
 
 .name {
-    font-size: 4.4vw;
-    line-height: 6vw;
+    font-size: 18px;
+    line-height: 25px;
 }
 
 
 .colors {
-    font-size: 3.9vw;
-    line-height: 6vw;
+    font-size: 15px;
+    line-height: 26px;
     display: flex;
     gap: 10px;
 }
@@ -56,29 +46,52 @@
     border-radius: 50%;
 }
 
+
+.prices {
+    display: flex;
+    gap: 10px;
+}
+
 .price {
-    font-size: 5vw;
-    line-height: 6vw;
+    font-size: 19px;
+    line-height: 26px;
     vertical-align: bottom;
 }
 
 .oldPrice {
-    font-size: 3.9vw;
-    line-height: 6vw;
+    font-size: 15px;
+    line-height: 26px;
     color: #8888;
     text-decoration:line-through;
 }
 
 
 @include breakpoint(md){
+    
+     .root {
+        width: 522px;
+        display: flex;
+        padding: 17px 20px;
+     }
+
+
+     .image {
+        width: 50%;
+     }
+
+     .description {
+        width: 50%;
+     }
+
     .gender {
         font-size: 11px;
         line-height: 11px;
     }
     
     .name {
-        font-size: 16px;
-        line-height: 22px;
+        width: 243px;
+        font-size: 18px;
+        line-height: 25px;
     }
     
     
@@ -91,6 +104,8 @@
         height: 14px;
         width: 14px;
     }
+
+
     
     .price {
         font-size: 18px;
@@ -106,9 +121,20 @@
 @include breakpoint(2xl) {
 
 
+    .root {
+        width: 900px;
+        height: 450px;
+        padding: 0px 0px;
+    }
+
+    .image {
+        width: 50%;
+    }
+
     .description {
-        margin-top: 25px;
-        gap: 9px;
+           width: 50%;
+          justify-content: center;
+          align-items: flex-start;
     }
 
     .gender {
@@ -117,8 +143,9 @@
     }
     
     .name {
-        font-size: 19px;
-        line-height: 26px;
+        width: 346px;
+        font-size: 28px;
+        line-height: 38px;
     }
     
     

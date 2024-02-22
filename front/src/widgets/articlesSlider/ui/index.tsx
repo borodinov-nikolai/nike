@@ -63,7 +63,7 @@ const cards = articles.map(({id, title, description, image, date, type})=>{
 const ArticlesSlider = () => {
   return (
     <div>
-        <LongSlider title={'ПОСЛЕДНИЕ ПУБЛИКАЦИИ'} cards={cards} />
+        <LongSlider scrollbar={true} title={'ПОСЛЕДНИЕ ПУБЛИКАЦИИ'} cards={cards} />
     </div>
   )
 }

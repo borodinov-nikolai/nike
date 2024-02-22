@@ -5,22 +5,25 @@ import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
 
 
 
+import { Scrollbar } from 'swiper/modules';
 import 'swiper/css';
+import 'swiper/css/scrollbar';
 
 
 interface Props {
   title: string
   cards: ReactNode[]
+  scrollbar?: boolean
 }
 
 
-const LongSlider:FC<Props> = ({cards, title}) => {
+const LongSlider:FC<Props> = ({cards, title, scrollbar = false}) => {
 
 
   let swiper: SwiperClass
 
   return (
-    <div className={styles.root} >
+    <div style={{paddingBottom: scrollbar ? undefined : "0px"}} className={styles.root} >
       <div className={[styles.inner, ' container'].join(' ')} >
         <div className={styles.header} >
           <h2 className={styles.title} >{title}</h2>
@@ -40,6 +43,12 @@ const LongSlider:FC<Props> = ({cards, title}) => {
         </div>
         <div className={styles.content} >
           <Swiper
+          scrollbar={{
+            draggable:true,
+            enabled: scrollbar ? true : false,
+            
+          }}
+          modules={[Scrollbar]}
           className={styles.swiper}
           slidesPerView={'auto'}
           onSwiper={(swiperInstance)=>{
