@@ -7,6 +7,7 @@ import { Carousel } from '../entities/carousel';
 import ArticlesSlider from '../widgets/articlesSlider/ui';
 import { DiscountsSlider } from '../widgets/discountsSlider';
 import { NewCollections } from '../entities/newCollections';
+import { AboutStore } from '../entities/aboutStore';
 
 
 export default  async function Home() {
@@ -22,6 +23,7 @@ export default  async function Home() {
         <section className={styles.articlesSlider} ><ArticlesSlider/></section>
         <section className={styles.discountsSlider} ><DiscountsSlider/></section>
         <section className={styles.newCollections} ><NewCollections/></section>
+        <section className={styles.aboutStore} ><AboutStore/></section>
         
     </main>
   );

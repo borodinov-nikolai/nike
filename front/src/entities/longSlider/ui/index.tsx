@@ -24,7 +24,7 @@ const LongSlider:FC<Props> = ({cards, title, scrollbar = false}) => {
 
   return (
     <div style={{paddingBottom: scrollbar ? undefined : "0px"}} className={styles.root} >
-      <div className={[styles.inner, ' container'].join(' ')} >
+      <div className={[styles.inner, 'container'].join(' ')} >
         <div className={styles.header} >
           <h2 className={styles.title} >{title}</h2>
           <div className={styles.arrows} >

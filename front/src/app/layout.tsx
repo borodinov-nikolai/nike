@@ -1,13 +1,17 @@
+import localFont from 'next/font/local'
 import '@/src/shared/styles/global.scss';
 import StoreProvider from "@/src/shared/configs/storeProvider";
 import { Footer } from "@/src/widgets/footer";
 import { Header } from "@/src/widgets/header";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+
 import { CheckAuth } from '../features/checkAuth';
 
 
-const inter = Inter({ subsets: ["latin"] });
+const pragmatica = localFont({
+  src: '../../public/fonts/Pragmatica.ttf',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <StoreProvider>
-      <body className={inter.className}>
+      <body className={pragmatica.className} id='__next'>
       <CheckAuth>
       <Header/>
         {children}
