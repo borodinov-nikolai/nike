@@ -1,12 +1,11 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 
-const SettingsPage = () => {
+
+
+const HomePage = () => {
   return (
-    <div>
-        <div>SettingsPage</div>
-        <div> <Link to='/' >На главную</Link> </div>
-    </div>
+    <div>HomePage</div>
   )
 }
-export default SettingsPage
+
+export default HomePage

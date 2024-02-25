@@ -53,6 +53,10 @@ export class UsersService {
    if(user){
       throw new ConflictException('User with this email already exists')
    }
+   if(data.role === "ADMIN" && data.role === user.role) {
+      throw new ConflictException('Admin alredy exist')
+   }
+
     return this.db.user.create({
       data,
       select:{

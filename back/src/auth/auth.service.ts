@@ -33,7 +33,7 @@ export class AuthService {
     if (!user) {
       throw new NotFoundException('user with this email not found');
     }
-
+    
     const passwordCheck = bcrypt.compareSync(body.password, user.password);
 
     if (!passwordCheck) {

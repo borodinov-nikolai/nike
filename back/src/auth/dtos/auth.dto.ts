@@ -17,6 +17,8 @@ export class AuthDto {
     @ApiProperty()
     login: string
     @ApiProperty()
+    role?: "ADMIN"|"MODERATOR"|"AUTHOR"|"USER"
+    @ApiProperty()
     phoneNumber: string
     @ApiProperty()
     name?: string
