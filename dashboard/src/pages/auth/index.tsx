@@ -1,10 +1,14 @@
-import React from 'react'
+import { Auth } from "../../widgets/auth"
+import styles from './AuthPage.module.scss'
+
+
 
 
 
 const AuthPage = () => {
+ 
   return (
-    <div>AuthPage</div>
+    <div className={styles.root} ><Auth/></div>
   )
 }
 
