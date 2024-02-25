@@ -17,10 +17,12 @@ const PasswordInput: FC<Props> = React.forwardRef(({placeholder, type='text', cl
 
   return (
         <div className={styles.root} >
-            <input type={showPassword ? 'text': 'password'} {...props}  placeholder={placeholder}
-             className={[styles.input, className].filter(Boolean).join(' ')}></input>
-             {showPassword && <BiShow onClick={()=>setShowPassword(!showPassword)} className={styles.icon} />}
-             {!showPassword && <BiHide onClick={()=>setShowPassword(!showPassword)} className={styles.icon} />}
+            <div className={styles.inner} >
+              <input type={showPassword ? 'text': 'password'} {...props}  placeholder={placeholder}
+               className={[styles.input, className].filter(Boolean).join(' ')}></input>
+               {showPassword && <BiShow onClick={()=>setShowPassword(!showPassword)} className={styles.icon} />}
+               {!showPassword && <BiHide onClick={()=>setShowPassword(!showPassword)} className={styles.icon} />}
+            </div>
 
         </div>
   )

@@ -1,5 +1,4 @@
 import { BaseQueryFn, FetchArgs, FetchBaseQueryError, createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { useRouter } from 'next/navigation';
 
 
 
@@ -14,7 +13,7 @@ const baseQueryWithReauth: BaseQueryFn<
 >
   = async (args, api, extraOptions) => {
     let result = await fetchBaseQuery({
-      baseUrl: process.env.NEXT_PUBLIC_BACKEND_API,
+      baseUrl: process.env.REACT_APP_BACKEND_API,
       credentials: 'include',
       prepareHeaders: (headers) => {
         const token: string | null = localStorage.getItem('jwt');

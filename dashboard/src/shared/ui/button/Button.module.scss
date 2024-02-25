@@ -8,9 +8,9 @@
     font-weight: 500;
     border: none;
     width: 250px;
-    height: 65px;
+    height: 50px;
     display: flex;
-    justify-content: space-between;
+    border-radius: 12px;
 }
 
 
@@ -18,16 +18,10 @@
     background-color: var(--btn-primary-bg);
     color: var(--btn-primary-text);
 
-    .image_holder {
-        background-color: var(--btn-primary-bg-hover);
-    }
     &:hover {
         background-color: var(--btn-primary-bg-hover);
         color:var(--btn-primary-text-hover) ;
 
-        .image_holder {
-            background-color:var(--btn-primary-bg) ;
-        }
     }
 }
 
@@ -35,29 +29,17 @@
     background-color: var(--btn-secondary-bg);
     color: var(--btn-secondary-text);
 
-    .image_holder {
-        background-color: var(--btn-secondary-bg-hover);
-    }
+ 
     &:hover {
         background-color: var(--btn-secondary-bg-hover);
         color:var(--btn-secondary-text-hover) ;
 
-        .image_holder {
-            background-color:var(--btn-secondary-bg) ;
-        }
+       
     }
 }
 
 .text {
     margin: 0 auto;
-}
-
-.image_holder {
-    width: 65px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 

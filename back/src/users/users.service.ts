@@ -50,11 +50,16 @@ export class UsersService {
    const user = await this.db.user.findUnique({where:{
       email: data.email
    }})
+   const admin = await this.db.user.findFirst({where:{
+      role: 'ADMIN'
+   }})
+
    if(user){
       throw new ConflictException('User with this email already exists')
    }
-   if(data.role === "ADMIN" && data.role === user.role) {
-      throw new ConflictException('Admin alredy exist')
+  
+   if(data.role === 'ADMIN' && data.role === admin?.role) {
+     throw new ConflictException('Admin alredy exist')
    }
 
     return this.db.user.create({

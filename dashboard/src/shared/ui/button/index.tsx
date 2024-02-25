@@ -8,23 +8,17 @@ interface Props {
     variant?: 'primary' | 'secondary',
     type?: 'button' | 'reset' | 'submit'
     children?: ReactNode,
-    className?: string,
     onSubmit?: ()=> void
     [key: string]: any
 }
 
-const Button: FC<Props> = ({ children, type='button', variant = 'primary', className, ...props }) => {
+const Button: FC<Props> = ({ children, type='button', variant = 'primary', ...props }) => {
 
 
     
     return (
-        <button type={type}   {...props} className={[styles.root, styles[variant], className].filter(Boolean).join(' ')} >
-            <p className={styles.text} >
+        <button type={type}   {...props} className={[styles.root, styles[variant]].filter(Boolean).join(' ')} >
                 {children}
-                </p>
-            <div className={styles.image_holder} >
-                {/* <Image className={styles.image} src={Img_arrow} width={14} height={14} alt='arrow icon' /> */}
-            </div>
             </button>
     )
 
