@@ -1,19 +1,45 @@
 
+import { useNavigate } from 'react-router-dom';
 import Button from '../../../shared/ui/button';
 import PasswordInput from '../../../shared/ui/passwordInput';
 import TextInput from '../../../shared/ui/textInput';
+import { useAuthorizationMutation } from '../api';
 import styles from './AuthorizationForm.module.scss';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 
 
-
+interface Inputs {
+  email: string
+  password: string
+}
 
 
 const AuthorizationForm = () => {
-    const {control, handleSubmit, setError, formState: { errors }} = useForm()
+    const {control, handleSubmit, setError, formState: { errors }} = useForm({
+      defaultValues: {
+        email: '',
+        password: ''
+      }
+    })
+    const [authorization, result] = useAuthorizationMutation()
+    const navigate = useNavigate()
+
+
+    const onSubmit: SubmitHandler<Inputs> = async (data)=> {
+      const res = await authorization(data)
+      console.log(res)
+      if("data" in res){
+        localStorage.setItem('jwt', res.data.accessToken);
+        navigate('/')
+      } 
+      if('error' in res){
+        console.log(res.error)
+      }
+    }
+
   return (
-    <form className={styles.root} >
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.root} >
       <div className={styles.formItems} >
         <div className={styles.formItem} >
           <label className={styles.label}  htmlFor="email">Введите email</label>

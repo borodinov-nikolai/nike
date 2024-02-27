@@ -57,7 +57,7 @@ export class AuthController {
     })
  
    @UseGuards(RolesGuard)
-   @Roles(['USER'])
+   @Roles(['ADMIN','USER'])
     @Get('me')
     getMe(@Req() req: Request):Promise<User>{
       return this.authService.getMe(req)
