@@ -1,5 +1,3 @@
-
-
 import { useState } from 'react'
 import { AuthorizationForm } from '../../../features/authorizationForm'
 import { RegistrationForm } from '../../../features/registrationForm'

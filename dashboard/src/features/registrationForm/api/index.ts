@@ -28,8 +28,7 @@ const extendedApi = emptySplitApi.injectEndpoints({
                     password,
                     role
                 }
-            }),
-            invalidatesTags: ["User"]
+            })
         })
     }),
     overrideExisting: false

@@ -1,7 +1,9 @@
 
+import { useNavigate } from 'react-router-dom';
 import Button from '../../../shared/ui/button';
 import PasswordInput from '../../../shared/ui/passwordInput';
 import TextInput from '../../../shared/ui/textInput';
+import { useGetUserQuery } from '../../user';
 import { useRegistrationMutation } from '../api';
 import styles from './RegistrationForm.module.scss';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
@@ -22,12 +24,14 @@ const RegistrationForm = () => {
         confirm_password: ''
       }
     })
-    const [registration, result] = useRegistrationMutation()
 
+    const [registration, result] = useRegistrationMutation()
+  
     const onSubmit:SubmitHandler<Inputs> = async ({email , password})=> {
       const res = await registration({email, password, role: String("ADMIN")})
       if("data" in res) {
              localStorage.setItem('jwt', res.data.accessToken)
+             window.location.href = '/admin'
       }
       if('error' in res) {
         console.log(res.error)

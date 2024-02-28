@@ -6,6 +6,7 @@ import TextInput from '../../../shared/ui/textInput';
 import { useAuthorizationMutation } from '../api';
 import styles from './AuthorizationForm.module.scss';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useGetUserQuery } from '../../user';
 
 
 
@@ -23,15 +24,16 @@ const AuthorizationForm = () => {
       }
     })
     const [authorization, result] = useAuthorizationMutation()
-    const navigate = useNavigate()
+
+
 
 
     const onSubmit: SubmitHandler<Inputs> = async (data)=> {
       const res = await authorization(data)
       console.log(res)
       if("data" in res){
-        localStorage.setItem('jwt', res.data.accessToken);
-        navigate('/')
+         localStorage.setItem('jwt', res.data.accessToken);
+        window.location.href ='/admin'
       } 
       if('error' in res){
         console.log(res.error)

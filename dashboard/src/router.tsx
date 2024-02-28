@@ -1,25 +1,32 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes} from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomePage from './pages'
 import AuthPage from './pages/auth'
-import { useGetUserQuery } from './features/user'
+import SecureRoute from './secureRoute'
+
+
 
 
 const Router = () => {
-  const {data: user, isLoading, isSuccess} = useGetUserQuery();
-  console.log('глобальный',user)
+
+ 
 
 
-  return (
-    <>
-    <BrowserRouter basename='/admin' >
-    <Routes> 
-      <Route path='/' Component={HomePage} />
-      <Route path='/auth' Component={AuthPage} />
-    </Routes>
-  </BrowserRouter>
-  </> 
-  )
+       return (
+        <BrowserRouter basename='/admin' >
+  
+          <Routes>
+            <Route path='/' element={SecureRoute(<HomePage/>)} />
+            <Route path='/auth' element={<AuthPage/>}/>
+          </Routes>
+        </BrowserRouter>
+  
+      )
+   
+    
+   
+  
+
 }
 
 export default Router
