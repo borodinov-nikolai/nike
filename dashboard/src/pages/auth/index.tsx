@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom"
-import { useGetUserQuery } from "../../features/user"
+import { useGetUserQuery } from "../../entities/user"
 import { Auth } from "../../widgets/auth"
 import styles from './AuthPage.module.scss'
 

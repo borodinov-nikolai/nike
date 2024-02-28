@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../../shared/ui/button';
 import PasswordInput from '../../../shared/ui/passwordInput';
 import TextInput from '../../../shared/ui/textInput';
-import { useGetUserQuery } from '../../user';
+import { useGetUserQuery } from '../../../entities/user';
 import { useRegistrationMutation } from '../api';
 import styles from './RegistrationForm.module.scss';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';

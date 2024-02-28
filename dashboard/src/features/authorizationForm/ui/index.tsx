@@ -6,7 +6,7 @@ import TextInput from '../../../shared/ui/textInput';
 import { useAuthorizationMutation } from '../api';
 import styles from './AuthorizationForm.module.scss';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { useGetUserQuery } from '../../user';
+import { useGetUserQuery } from '../../../entities/user';
 
 
 

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { useGetUserQuery } from '../../user'
+import { useGetUserQuery } from '../../../entities/user'
 import { Navigate } from 'react-router-dom'
 
 const SecureRoute = (component: ReactNode) => {
