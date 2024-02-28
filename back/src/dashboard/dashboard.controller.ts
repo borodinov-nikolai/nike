@@ -1,8 +1,9 @@
 import { Controller, Get, Res} from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { join } from 'path';
 
-
+@ApiTags('dashboard')
 @Controller()
 export class DashboardController {
 
