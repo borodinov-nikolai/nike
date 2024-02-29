@@ -3,7 +3,7 @@ import { ApiProperty } from "@nestjs/swagger"
 
 
 
-export class Product {
+export class ProductDto {
     @ApiProperty()
     name: string
     @ApiProperty()

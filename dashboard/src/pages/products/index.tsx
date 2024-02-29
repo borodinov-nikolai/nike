@@ -1,10 +1,13 @@
 import React from 'react'
+import { Products } from '../../widgets/products'
 
 
 
 const ProductsPage = () => {
   return (
-    <div>ProductsPage</div>
+    <>
+    <Products/>
+    </>
   )
 }
 
