@@ -8,4 +8,6 @@ export class ProductDto {
     name: string
     @ApiProperty()
     price: number
+    @ApiProperty()
+    file: any
 }

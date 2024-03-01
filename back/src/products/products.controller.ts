@@ -1,8 +1,9 @@
-import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Product } from './entities/product.entity';
 import { ProductDto } from './dtos/product.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiTags('products')
 
@@ -25,6 +26,10 @@ export class ProductsController {
   }
 
   @Post()
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    console.log(file);
+  }
   @ApiOperation({
     summary: 'добавить продукт'
   })
@@ -34,6 +39,7 @@ export class ProductsController {
     type: Product
   })
   addProduct(@Body() body: ProductDto):Promise<Product> {
+    delete body.file
     return this.productsService.create(body)
   }
 

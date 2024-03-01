@@ -9,21 +9,27 @@ import { useAddProductMutation } from '../../../entities/product/api'
 interface Inputs {
     name: string,
     price: number
+    image: Object[]
 }
 
 const AddProduct = () => {
   const {register, watch, handleSubmit, reset} = useForm({
     defaultValues: {
       name: '',
-      price: 0
+      price: 0,
+      image: []
     }
   })
 const [addProduct] = useAddProductMutation()
 
-  const onSubmit: SubmitHandler<Inputs> = async({name, price})=> {
-     const res = await addProduct({name, price:Number(price)})
+  const onSubmit: SubmitHandler<Inputs> = async({name, price, image})=> {
+    const formData = new FormData()
+    formData.append('name', name)
+     const res = await addProduct({name, price:Number(price), file:image[0]})
      reset()
   }
+
+  console.log(watch('image'))
 
   return (
     <div className={styles.root} >
@@ -35,6 +41,10 @@ const [addProduct] = useAddProductMutation()
         <div>
           <label htmlFor="price"></label>
           <input {...register('price')} id='price' type='number' />
+        </div>
+        <div>
+          <label htmlFor="image"></label>
+          <input {...register('image')} type="file" id='image' />
         </div>
         <button type='submit' >сохранить</button>
       </form>

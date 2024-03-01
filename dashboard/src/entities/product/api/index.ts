@@ -14,6 +14,7 @@ interface Product {
 interface Inputs {
     name: string
     price: number
+    file: Object
 }
 
 const extendedApi = emptySplitApi.injectEndpoints({
@@ -27,6 +28,9 @@ const extendedApi = emptySplitApi.injectEndpoints({
             query: (data)=> ({
                 url: '/products',
                 method: "POST",
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
                 body: data,
             }),
             invalidatesTags: ['Product']
