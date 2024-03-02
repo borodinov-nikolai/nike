@@ -1,11 +1,10 @@
-import { useNavigate } from "react-router-dom";
 import Button from "../../../shared/ui/button";
 import PasswordInput from "../../../shared/ui/passwordInput";
 import TextInput from "../../../shared/ui/textInput";
 import { useAuthorizationMutation } from "../api";
 import styles from "./AuthorizationForm.module.scss";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { useGetUserQuery } from "../../../entities/user";
+
 
 interface Inputs {
   email: string;
