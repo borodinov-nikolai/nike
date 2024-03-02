@@ -7,7 +7,6 @@ import { useDeleteProductMutation } from '../../../entities/product/api'
 const ProductsList = () => {
   const {data:products} = useGetAllProductsQuery()
   const [deleteProduct] = useDeleteProductMutation()
-console.log(products)
   const handleDelete = (id:number)=> {
        deleteProduct(id)
   }
@@ -18,7 +17,7 @@ console.log(products)
       <ul className={styles.list} >
         
         {products?.map(({id, name, price, image, createdAt})=> {
-          return <li key={id} className={styles.item} ><p>{id}</p> <p><img  className={styles.image}  src={`http://localhost:5000/${image}`} /></p> <p> {name}</p><p>{price}</p> <p>{createdAt}</p>
+          return <li key={id} className={styles.item} ><p>{id}</p> <p><img  className={styles.image}  src={`http://localhost:5000/uploads/images/${image}`} /></p> <p> {name}</p><p>{price}</p> <p>{createdAt}</p>
            <p><button className={styles.deleteBtn} onClick={()=>handleDelete(id)} >X</button></p></li>
         })}
       </ul>

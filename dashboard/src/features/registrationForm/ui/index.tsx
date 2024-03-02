@@ -36,7 +36,6 @@ const RegistrationForm = () => {
       if('error' in res) {
         console.log(res.error)
       }
-      console.log(res)
     }
 
    

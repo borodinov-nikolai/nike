@@ -32,7 +32,7 @@ const [addProduct] = useAddProductMutation()
      reset()
   }
 
-  console.log(watch('image'))
+ 
 
   return (
     <div className={styles.root} >

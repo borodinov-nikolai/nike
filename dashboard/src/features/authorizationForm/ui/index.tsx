@@ -30,7 +30,6 @@ const AuthorizationForm = () => {
 
     const onSubmit: SubmitHandler<Inputs> = async (data)=> {
       const res = await authorization(data)
-      console.log(res)
       if("data" in res){
          localStorage.setItem('jwt', res.data.accessToken);
         window.location.href ='/admin'

@@ -9,7 +9,8 @@ export class DashboardController {
 
   @Get('admin*')
   serveAdminApp(@Res() res: Response) {
-    const appPath = join(__dirname, '..', '../build/root');
+    const rootPath = process.cwd()
+    const appPath = join(rootPath, 'files');
     res.sendFile('index.html', { root: appPath });
   }
 

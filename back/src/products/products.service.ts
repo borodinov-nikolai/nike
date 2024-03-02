@@ -2,10 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { DbService } from 'src/db/db.service';
 import { Product } from './entities/product.entity';
 import { ProductDto } from './dtos/product.dto';
+import { FileService } from 'src/file/file.service';
 
 @Injectable()
 export class ProductsService {
-    constructor(private readonly db: DbService){}
+    constructor(private readonly db: DbService, private readonly fileService: FileService){}
 
     async findAll(){
         const products = await this.db.product.findMany()
@@ -24,6 +25,9 @@ export class ProductsService {
                 id
             }
         })
+        this.fileService.deleteFile(product.image, 'images')
+
+
         return product;
     }
 }

@@ -10,8 +10,8 @@ import { join } from 'path';
 import { AccountModule } from './account/account.module';
 import { ProductsModule } from './products/products.module';
 import { MulterModule } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
 import { multerConfig } from 'configs/multer.config';
+import { FileModule } from './file/file.module';
 
 
 
@@ -27,11 +27,11 @@ import { multerConfig } from 'configs/multer.config';
   }), 
   MulterModule.register(multerConfig),
   ServeStaticModule.forRoot({
-    rootPath: join(__dirname, '..', '..' ,'uploads'),
-    // serveRoot: '/',  
-    // exclude: ['/api/(.*)'],
+    rootPath: join(__dirname, '..', '..' ,'files'),
+    serveRoot: '/',  
+    exclude: ['/api/(.*)'],
   }),
-  DbModule, UsersModule, AuthModule, DashboardModule, AccountModule, ProductsModule],
+  DbModule, UsersModule, AuthModule, DashboardModule, AccountModule, ProductsModule, FileModule],
   controllers: [],
   exports: []
 })
