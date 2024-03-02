@@ -9,5 +9,5 @@ export class ProductDto {
     @ApiProperty()
     price: number
     @ApiProperty()
-    file: any
+    image: string
 }

@@ -9,6 +9,9 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AccountModule } from './account/account.module';
 import { ProductsModule } from './products/products.module';
+import { MulterModule } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { multerConfig } from 'configs/multer.config';
 
 
 
@@ -22,10 +25,11 @@ import { ProductsModule } from './products/products.module';
     secret: process.env.JWT_SECRET,
     signOptions: {expiresIn: '1d'}
   }), 
+  MulterModule.register(multerConfig),
   ServeStaticModule.forRoot({
-    rootPath: join(__dirname, '..', '/build'),
-    serveRoot: '/',
-    exclude: ['/api/(.*)'],
+    rootPath: join(__dirname, '..', '..' ,'uploads'),
+    // serveRoot: '/',  
+    // exclude: ['/api/(.*)'],
   }),
   DbModule, UsersModule, AuthModule, DashboardModule, AccountModule, ProductsModule],
   controllers: [],

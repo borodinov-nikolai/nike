@@ -10,7 +10,7 @@
     font-weight: 500;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
      justify-items: center;
     border-bottom: 2px solid black;
     border-top: 2px solid black;
@@ -27,8 +27,9 @@
     padding: 10px 0;
     border-bottom: 1px solid black;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     justify-items: center;  
+    align-items: center;
 }
 
 
@@ -43,4 +44,9 @@
     &:hover {
         background-color: rgb(55, 55, 55);
     }
+}
+
+.image {
+    height: 50px;
+    width: auto;
 }

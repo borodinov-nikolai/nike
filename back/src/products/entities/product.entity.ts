@@ -10,6 +10,8 @@ export class Product {
     @ApiProperty()
     price: number
     @ApiProperty()
+    image: string
+    @ApiProperty()
     createdAt?: Date
     @ApiProperty()
     updatedAt?: Date

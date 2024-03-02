@@ -45,6 +45,7 @@ model Product {
   id    Int   @id @default(autoincrement())
   name  String
   price Int
+  image String
   categories Category[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

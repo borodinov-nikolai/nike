@@ -5,6 +5,7 @@ interface Product {
     id: number
     name: string
     price: number
+    image: string
     createdAt: string
     updatedAt: string
 
@@ -14,7 +15,6 @@ interface Product {
 interface Inputs {
     name: string
     price: number
-    file: Object
 }
 
 const extendedApi = emptySplitApi.injectEndpoints({
@@ -24,13 +24,10 @@ const extendedApi = emptySplitApi.injectEndpoints({
             providesTags: ['Product']
         },
         ),
-        addProduct:build.mutation<Product, Inputs>({
+        addProduct:build.mutation<Product, FormData>({
             query: (data)=> ({
                 url: '/products',
                 method: "POST",
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
                 body: data,
             }),
             invalidatesTags: ['Product']

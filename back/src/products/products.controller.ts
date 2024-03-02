@@ -4,6 +4,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Product } from './entities/product.entity';
 import { ProductDto } from './dtos/product.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { multerConfig } from 'configs/multer.config';
 
 @ApiTags('products')
 
@@ -26,10 +27,7 @@ export class ProductsController {
   }
 
   @Post()
-  @UseInterceptors(FileInterceptor('file'))
-  uploadFile(@UploadedFile() file: Express.Multer.File) {
-    console.log(file);
-  }
+  @UseInterceptors(FileInterceptor('image', multerConfig))
   @ApiOperation({
     summary: 'добавить продукт'
   })
@@ -38,9 +36,10 @@ export class ProductsController {
     description: 'успешно',
     type: Product
   })
-  addProduct(@Body() body: ProductDto):Promise<Product> {
-    delete body.file
-    return this.productsService.create(body)
+  addProduct(@UploadedFile() file:Express.Multer.File, @Body() body: ProductDto){
+    const image = file.filename
+    const {name, price} = body
+    return this.productsService.create({name, price: Number(price), image})
   }
 
   @Delete()

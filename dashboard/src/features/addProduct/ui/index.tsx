@@ -24,8 +24,11 @@ const [addProduct] = useAddProductMutation()
 
   const onSubmit: SubmitHandler<Inputs> = async({name, price, image})=> {
     const formData = new FormData()
+    formData.append('image', image[0] as Blob)
     formData.append('name', name)
-     const res = await addProduct({name, price:Number(price), file:image[0]})
+    formData.append('price', String(price))
+
+     const res = await addProduct(formData)
      reset()
   }
 

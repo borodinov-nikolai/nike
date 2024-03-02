@@ -18,7 +18,6 @@ async function start() {
     credentials: true,
     optionsSuccessStatus: 204,
   };
-
   app.enableCors(corsOptions);
   app.setGlobalPrefix('api', { exclude: ['admin*'] });
   const config = new DocumentBuilder().setTitle('nike').build();
