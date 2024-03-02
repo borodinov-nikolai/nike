@@ -5,7 +5,6 @@ $breakpoints: (
   xl: 1200px,
   2xl: 1400px,
   3xl: 1600px,
-
 );
 
 @mixin breakpoint($point) {
@@ -15,4 +14,3 @@ $breakpoints: (
     @content;
   }
 }
-

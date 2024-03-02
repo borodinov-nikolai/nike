@@ -1,3 +1,3 @@
-import ProductsList from "./ui"
+import ProductsList from "./ui";
 
-export {ProductsList};
+export { ProductsList };

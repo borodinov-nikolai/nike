@@ -1,14 +1,12 @@
-import React from 'react'
-import { Products } from '../../widgets/products'
-
-
+import React from "react";
+import { Products } from "../../widgets/products";
 
 const ProductsPage = () => {
   return (
     <>
-    <Products/>
+      <Products />
     </>
-  )
-}
+  );
+};
 
-export default ProductsPage
+export default ProductsPage;

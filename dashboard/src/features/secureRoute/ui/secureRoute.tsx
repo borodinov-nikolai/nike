@@ -1,20 +1,19 @@
-import React, { ReactNode } from 'react'
-import { useGetUserQuery } from '../../../entities/user'
-import { Navigate } from 'react-router-dom'
+import React, { ReactNode } from "react";
+import { useGetUserQuery } from "../../../entities/user";
+import { Navigate } from "react-router-dom";
 
 const SecureRoute = (component: ReactNode) => {
-    const {data: user, isLoading} = useGetUserQuery()
+  const { data: user, isLoading } = useGetUserQuery();
 
-   if(!isLoading && user){
-       return component
-   } 
-   
-   if(!isLoading && !user) {
-    return <Navigate to='/auth' replace={true}/>
-   }
+  if (!isLoading && user) {
+    return component;
+  }
 
-   
-   return null
-}
+  if (!isLoading && !user) {
+    return <Navigate to="/auth" replace={true} />;
+  }
 
-export default SecureRoute
+  return null;
+};
+
+export default SecureRoute;

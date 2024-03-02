@@ -14,16 +14,16 @@ export class AccountController {
   constructor(private readonly accountService: AccountService) {}
 
   @ApiOperation({
-    summary: 'редактирвание профиля'
+    summary: 'редактирвание профиля',
   })
   @ApiResponse({
     status: 200,
     description: 'успешно',
-    type: User
+    type: User,
   })
-  @Roles(["ADMIN","USER"])
+  @Roles(['ADMIN', 'USER'])
   @Post('/edit')
-  editProfile(@Body() body: editProfileDto, @Req() req: Request){
-    return this.accountService.editProfile({body, req})
+  editProfile(@Body() body: editProfileDto, @Req() req: Request) {
+    return this.accountService.editProfile({ body, req });
   }
 }

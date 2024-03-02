@@ -9,22 +9,18 @@ const meta: Meta<typeof Button> = {
     layout: "centered",
   },
 
+  argTypes: {
+    variant: {
+      name: "variant",
+      control: "radio",
+      options: ["primary", "secondary"],
+      defaultValue: { summary: "primary" },
+      description: "change variant:",
+    },
+  },
 
-
-
-     argTypes: {
-      variant: {
-        name: 'variant',
-        control: 'radio',
-        options: ["primary", "secondary"],
-        defaultValue: { summary: "primary" },
-        description: 'change variant:'
-      }
-     },
-
-     
   args: {
-    children: 'Button',
+    children: "Button",
   },
 };
 
@@ -33,7 +29,6 @@ type Story = StoryObj<typeof Button>;
 
 export const button: Story = {
   args: {
-      variant: 'primary',
+    variant: "primary",
   },
 };
-

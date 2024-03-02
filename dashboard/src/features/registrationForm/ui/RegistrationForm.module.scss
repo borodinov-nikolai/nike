@@ -1,41 +1,33 @@
-
-
-
 .root {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-
-.formItems{
-display: flex;
-flex-direction: column;
-gap: 20px;
+.formItems {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .formItem {
-    min-width: 200px;
-    max-width: 500px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
- 
+  min-width: 200px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .label {
-    width: 100%;
-    font-size: 20px;
-    color: rgb(96, 96, 96);
-    
+  width: 100%;
+  font-size: 20px;
+  color: rgb(96, 96, 96);
 }
 
-
-
 .button {
-    margin: 0 auto;
-    margin-top: 40px;
+  margin: 0 auto;
+  margin-top: 40px;
 
-    button {
-        width: 150px;
-    }
+  button {
+    width: 150px;
+  }
 }

@@ -9,18 +9,12 @@ const meta: Meta<typeof PasswordInput> = {
     layout: "centered",
   },
 
-
-
-  args: {
-   
-  },
+  args: {},
 };
 
 export default meta;
 type Story = StoryObj<typeof PasswordInput>;
 
 export const passwordInput: Story = {
-  args: {
-  
-  },
+  args: {},
 };

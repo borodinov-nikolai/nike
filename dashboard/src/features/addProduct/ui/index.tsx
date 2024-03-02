@@ -1,58 +1,53 @@
-import React from 'react'
-import styles from './AddProduct.module.scss'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { useAddProductMutation } from '../../../entities/product/api'
-
-
-
+import React from "react";
+import styles from "./AddProduct.module.scss";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useAddProductMutation } from "../../../entities/product/api";
 
 interface Inputs {
-    name: string,
-    price: number
-    image: Object[]
+  name: string;
+  price: number;
+  image: Object[];
 }
 
 const AddProduct = () => {
-  const {register, watch, handleSubmit, reset} = useForm({
+  const { register, watch, handleSubmit, reset } = useForm({
     defaultValues: {
-      name: '',
+      name: "",
       price: 0,
-      image: []
-    }
-  })
-const [addProduct] = useAddProductMutation()
+      image: [],
+    },
+  });
+  const [addProduct] = useAddProductMutation();
 
-  const onSubmit: SubmitHandler<Inputs> = async({name, price, image})=> {
-    const formData = new FormData()
-    formData.append('image', image[0] as Blob)
-    formData.append('name', name)
-    formData.append('price', String(price))
+  const onSubmit: SubmitHandler<Inputs> = async ({ name, price, image }) => {
+    const formData = new FormData();
+    formData.append("image", image[0] as Blob);
+    formData.append("name", name);
+    formData.append("price", String(price));
 
-     const res = await addProduct(formData)
-     reset()
-  }
-
- 
+    const res = await addProduct(formData);
+    reset();
+  };
 
   return (
-    <div className={styles.root} >
+    <div className={styles.root}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)} action="">
         <div>
           <label htmlFor="name"></label>
-          <input {...register('name')} id='name' type='text' />
+          <input {...register("name")} id="name" type="text" />
         </div>
         <div>
           <label htmlFor="price"></label>
-          <input {...register('price')} id='price' type='number' />
+          <input {...register("price")} id="price" type="number" />
         </div>
         <div>
           <label htmlFor="image"></label>
-          <input {...register('image')} type="file" id='image' />
+          <input {...register("image")} type="file" id="image" />
         </div>
-        <button type='submit' >сохранить</button>
+        <button type="submit">сохранить</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default AddProduct
+export default AddProduct;

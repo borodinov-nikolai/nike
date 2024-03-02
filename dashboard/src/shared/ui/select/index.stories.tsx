@@ -9,18 +9,12 @@ const meta: Meta<typeof Select> = {
     layout: "centered",
   },
 
-
-
-  args: {
-   
-  },
+  args: {},
 };
 
 export default meta;
 type Story = StoryObj<typeof Select>;
 
 export const select: Story = {
-  args: {
-  
-  },
+  args: {},
 };

@@ -1,38 +1,33 @@
-@import '../../styles/mixins/breakpoints';
-
+@import "../../styles/mixins/breakpoints";
 
 .root {
- width: 100%;
+  width: 100%;
 }
 
-
 .list {
-    display: flex;
-    gap: 9px;
+  display: flex;
+  gap: 9px;
 }
 
 .main_item {
-color: #868686;
+  color: #868686;
 }
 
 .item {
-color: #434343;
-
+  color: #434343;
 }
 
 .arrow {
-    margin-right: 9px;
+  margin-right: 9px;
 }
 
 .link {
-    font-size: 12px;
-    line-height: 11px;
+  font-size: 12px;
+  line-height: 11px;
 }
 
 @include breakpoint(2xl) {
-
-
-    .link {
-        font-size: 14px;
-    }
+  .link {
+    font-size: 14px;
+  }
 }

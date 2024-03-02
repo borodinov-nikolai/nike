@@ -9,18 +9,12 @@ const meta: Meta<typeof Range> = {
     layout: "centered",
   },
 
-
-
-  args: {
-   
-  },
+  args: {},
 };
 
 export default meta;
 type Story = StoryObj<typeof Range>;
 
 export const range: Story = {
-  args: {
-  
-  },
+  args: {},
 };

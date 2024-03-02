@@ -1,40 +1,40 @@
 :root {
-    // Theme
-    --background: rgb(235, 235, 235);
+  // Theme
+  --background: rgb(235, 235, 235);
 
-    //------------button---------------
-    
-    //primary
-    --btn-primary-bg: #000000;
-    --btn-primary-bg-hover: #2d2d2d;
-    --btn-primary-text: rgba(255, 255, 255, 1);
-    --btn-primary-text-hover: rgba(255, 255, 255, 1);
+  //------------button---------------
 
-    //secondary
-    --btn-secondary-bg: #ff6915;
-    --btn-secondary-bg-hover: #ff9315;
-    --btn-secondary-text: rgba(255, 255, 255, 1);
-    --btn-secondary-text-hover: rgba(255, 255, 255, 1);
+  //primary
+  --btn-primary-bg: #000000;
+  --btn-primary-bg-hover: #2d2d2d;
+  --btn-primary-text: rgba(255, 255, 255, 1);
+  --btn-primary-text-hover: rgba(255, 255, 255, 1);
 
-    //-------------checbox----------------
+  //secondary
+  --btn-secondary-bg: #ff6915;
+  --btn-secondary-bg-hover: #ff9315;
+  --btn-secondary-text: rgba(255, 255, 255, 1);
+  --btn-secondary-text-hover: rgba(255, 255, 255, 1);
 
-    --checkbox-checked-bg-color: #000000;
+  //-------------checbox----------------
 
-    //-------------radiobutton-------------
+  --checkbox-checked-bg-color: #000000;
 
-    --radiobutton-checked-bg-color: #000000;
+  //-------------radiobutton-------------
 
-    //--------------Swiper-------------------
+  --radiobutton-checked-bg-color: #000000;
 
-    //pagination
-    --swiper-pagination-color: #000000;
-    --swiper-pagination-bullet-size: 11.26px;
-    --swiper-pagination-bullet-horizontal-gap: 7.5px;
-    --swiper-pagination-bullet-inactive-color: #1F1F1F;
-    --swiper-pagination-bullet-inactive-opacity: 0.3;
+  //--------------Swiper-------------------
 
-    //scrollbar
-    --swiper-scrollbar-drag-bg-color: #FF6915;
+  //pagination
+  --swiper-pagination-color: #000000;
+  --swiper-pagination-bullet-size: 11.26px;
+  --swiper-pagination-bullet-horizontal-gap: 7.5px;
+  --swiper-pagination-bullet-inactive-color: #1f1f1f;
+  --swiper-pagination-bullet-inactive-opacity: 0.3;
+
+  //scrollbar
+  --swiper-scrollbar-drag-bg-color: #ff6915;
 }
 
 [data-theme="dark"] {

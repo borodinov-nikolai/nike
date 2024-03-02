@@ -9,18 +9,12 @@ const meta: Meta<typeof Switch> = {
     layout: "centered",
   },
 
-
-
-  args: {
-   
-  },
+  args: {},
 };
 
 export default meta;
 type Story = StoryObj<typeof Switch>;
 
 export const switcher: Story = {
-  args: {
-  
-  },
+  args: {},
 };

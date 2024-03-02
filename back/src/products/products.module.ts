@@ -5,7 +5,7 @@ import { DbModule } from 'src/db/db.module';
 import { FileModule } from 'src/file/file.module';
 
 @Module({
-  imports:[DbModule, FileModule],
+  imports: [DbModule, FileModule],
   controllers: [ProductsController],
   providers: [ProductsService],
 })

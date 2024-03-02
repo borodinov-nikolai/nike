@@ -1,5 +1,3 @@
 import { useGetAllProductsQuery } from "./api";
 
-
-
-export {useGetAllProductsQuery};
+export { useGetAllProductsQuery };

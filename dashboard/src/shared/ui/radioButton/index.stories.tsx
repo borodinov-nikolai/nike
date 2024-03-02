@@ -9,18 +9,12 @@ const meta: Meta<typeof RadioButton> = {
     layout: "centered",
   },
 
-
-
-  args: {
-   
-  },
+  args: {},
 };
 
 export default meta;
 type Story = StoryObj<typeof RadioButton>;
 
 export const radioButton: Story = {
-  args: {
-  
-  },
+  args: {},
 };

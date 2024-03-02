@@ -9,18 +9,12 @@ const meta: Meta<typeof Checkbox> = {
     layout: "centered",
   },
 
-
-
-  args: {
-   
-  },
+  args: {},
 };
 
 export default meta;
 type Story = StoryObj<typeof Checkbox>;
 
 export const checkbox: Story = {
-  args: {
-  
-  },
+  args: {},
 };

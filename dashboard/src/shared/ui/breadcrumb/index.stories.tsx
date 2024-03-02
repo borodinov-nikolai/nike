@@ -9,19 +9,17 @@ const meta: Meta<typeof Breadcrumb> = {
     layout: "centered",
   },
 
-
-
   args: {
     items: [
-        {
-            label: "страница 1",
-            url: '/page1'
-        },
-        {
-            label: "страница 2",
-            url: '/page2'
-        },
-    ]
+      {
+        label: "страница 1",
+        url: "/page1",
+      },
+      {
+        label: "страница 2",
+        url: "/page2",
+      },
+    ],
   },
 };
 
@@ -29,7 +27,5 @@ export default meta;
 type Story = StoryObj<typeof Breadcrumb>;
 
 export const breadcrumb: Story = {
-  args: {
-  
-  },
+  args: {},
 };

@@ -1,4 +1,3 @@
 import SecureRoute from "./ui/secureRoute";
 
-
-export {SecureRoute};
+export { SecureRoute };

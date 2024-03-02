@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Product } from './entities/product.entity';
@@ -7,51 +15,52 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { multerConfig } from 'configs/multer.config';
 
 @ApiTags('products')
-
-
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Get()
   @ApiOperation({
-    summary: 'получить все продукты'
+    summary: 'получить все продукты',
   })
   @ApiResponse({
     status: 200,
     description: 'успешно',
-    type: Product
+    type: Product,
   })
-  getAll():Promise<Product[]> {
-     return this.productsService.findAll()
+  getAll(): Promise<Product[]> {
+    return this.productsService.findAll();
   }
 
   @Post()
   @UseInterceptors(FileInterceptor('image', multerConfig))
   @ApiOperation({
-    summary: 'добавить продукт'
+    summary: 'добавить продукт',
   })
   @ApiResponse({
     status: 200,
     description: 'успешно',
-    type: Product
+    type: Product,
   })
-  addProduct(@UploadedFile() file:Express.Multer.File, @Body() body: ProductDto){
-    const image = file.filename
-    const {name, price} = body
-    return this.productsService.create({name, price: Number(price), image})
+  addProduct(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() body: ProductDto,
+  ) {
+    const image = file.filename;
+    const { name, price } = body;
+    return this.productsService.create({ name, price: Number(price), image });
   }
 
   @Delete()
   @ApiOperation({
-    summary: 'удалить продукт'
+    summary: 'удалить продукт',
   })
   @ApiResponse({
     status: 200,
     description: 'успешно',
-    type: Product
+    type: Product,
   })
-  removeProduct(@Body() body: {id:number}) {
-    return this.productsService.delete(body.id)
+  removeProduct(@Body() body: { id: number }) {
+    return this.productsService.delete(body.id);
   }
 }

@@ -1,24 +1,21 @@
 .root {
-    height: 50px;
-    width: 100%;
-    padding: 0 20px;
-    background: white;
-    caret-color: unset;
+  height: 50px;
+  width: 100%;
+  padding: 0 20px;
+  background: white;
+  caret-color: unset;
+  font-size: 16px;
+  line-height: 24px;
+  border: 1px solid rgb(117, 117, 117);
+  border-radius: 12px;
+
+  &:focus {
+    outline: 1px solid #cacaca;
+  }
+
+  &::placeholder {
+    color: #c1c1c1;
     font-size: 16px;
-    line-height: 24px;
-    border: 1px solid rgb(117, 117, 117);
-    border-radius: 12px;
-
-    &:focus {
-         outline:1px solid #cacaca;
-    }
-
-    &::placeholder {
-        color: #C1C1C1;
-        font-size: 16px;
-        line-height: 27px;
-    }
+    line-height: 27px;
+  }
 }
-
-
-

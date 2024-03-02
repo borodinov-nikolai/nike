@@ -1,4 +1,3 @@
 import Products from "./ui";
 
-
-export {Products};
+export { Products };

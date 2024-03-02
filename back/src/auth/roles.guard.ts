@@ -1,59 +1,52 @@
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
-import { Reflector } from "@nestjs/core";
-import { Request } from "express";
-import { Roles } from "./roles.decorator";
-import { TokenService } from "./token.service";
-
-
-
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { Request } from 'express';
+import { Roles } from './roles.decorator';
+import { TokenService } from './token.service';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
-   constructor(private tokenService: TokenService,
+  constructor(
+    private tokenService: TokenService,
     private reflector: Reflector,
-    ){}
+  ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-        const requset:Request = context.switchToHttp().getRequest();
-        const roles = this.reflector.get(Roles, context.getHandler());
+    const requset: Request = context.switchToHttp().getRequest();
+    const roles = this.reflector.get(Roles, context.getHandler());
 
-        if(!roles){
-            return false
-        }
+    if (!roles) {
+      return false;
+    }
 
-        if(roles.includes('ALL')){
-            return true
-        }
+    if (roles.includes('ALL')) {
+      return true;
+    }
 
-      const authorizationHeader = requset.headers['authorization']
-      if(!authorizationHeader) {
-        throw new UnauthorizedException()
-      }
+    const authorizationHeader = requset.headers['authorization'];
+    if (!authorizationHeader) {
+      throw new UnauthorizedException();
+    }
 
-      const accessToken = authorizationHeader.split(' ')[1]
+    const accessToken = authorizationHeader.split(' ')[1];
 
-      try {
-         await this.tokenService.verifyToken(accessToken);
+    try {
+      await this.tokenService.verifyToken(accessToken);
+    } catch (error) {
+      throw new UnauthorizedException(error);
+    }
 
-      } catch(error) {
+    const payload = await this.tokenService.decodeToken(accessToken);
 
-        throw new UnauthorizedException(error)
-      }
-    
+    if (roles.includes(payload.role)) {
+      return true;
+    }
 
-      const payload = await this.tokenService.decodeToken(accessToken)
-
-      if(roles.includes(payload.role)){
-
-
-        return true
-      }
-
-         
-
-   
-
-
-        return false
-   }
+    return false;
+  }
 }

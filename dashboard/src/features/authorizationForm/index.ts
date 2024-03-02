@@ -1,4 +1,3 @@
 import AuthorizationForm from "./ui";
 
-
-export {AuthorizationForm};
+export { AuthorizationForm };

@@ -9,18 +9,12 @@ const meta: Meta<typeof TextInput> = {
     layout: "centered",
   },
 
-
-
-  args: {
-   
-  },
+  args: {},
 };
 
 export default meta;
 type Story = StoryObj<typeof TextInput>;
 
 export const textInput: Story = {
-  args: {
-  
-  },
+  args: {},
 };
