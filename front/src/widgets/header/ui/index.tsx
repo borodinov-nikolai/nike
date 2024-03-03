@@ -9,6 +9,8 @@ import Svg_profile from '@/public/icons/profile.svg'
 import Svg_favorites from '@/public/icons/favorites.svg'
 import Svg_cart from '@/public/icons/cart.svg'
 import { useGetUserQuery } from '@/src/entities/user'
+import MobileNavabr from './mobileNavbar'
+import Drawer from '@/src/shared/ui/drawer'
 
 
 
@@ -48,10 +50,10 @@ const {data: userData, isSuccess} = useGetUserQuery()
 
       <div className={styles.menu} >
         <div className={styles.menu_inner + ' container'} >
-          <div className={styles.burger} >
+          <Drawer className={styles.burger} content={<MobileNavabr/>} >
             <Image src={'/icons/burger.png'} width={36} height={8} alt='burger icon' />
             <p className={styles.burger_text} >Меню</p>
-          </div>
+          </Drawer>
        
             <Link className={styles.logo} href={'/'}>
               <Image src={'/icons/logo.png'} width={59} height={19} alt='logo' />
@@ -85,6 +87,8 @@ const {data: userData, isSuccess} = useGetUserQuery()
         </div>
       </div>
 
+    
+ 
     </header>
   )
 }
