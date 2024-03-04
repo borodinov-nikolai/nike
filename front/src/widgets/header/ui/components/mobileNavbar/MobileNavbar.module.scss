@@ -3,6 +3,7 @@
 
 .root {
 width: 100%;
+color: black;
 }
 
 .title {
@@ -73,13 +74,13 @@ width: 100%;
         }
 
         p {
+            color: black !important;
             width: max-content;
             border-bottom: 1px solid transparent; 
-            transition: color 0.3s ease, border 0.3s ease;
         }
 
        &:hover p {
-            color: #FB5A00;
+            color: #FB5A00 !important;
             border-color:#FB5A00;
             
         }

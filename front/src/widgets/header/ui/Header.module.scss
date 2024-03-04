@@ -33,9 +33,17 @@
     justify-content: flex-start;
     align-items: center;
     height: auto;
-    >img {
-        width: 36px;
-        height: auto;
+    
+    &:hover {
+        svg {
+            line {
+             stroke: #FB5A00;
+            }
+         }
+
+         p {
+            color: #FB5A00;
+         }
     }
 }
 
@@ -92,9 +100,16 @@
     }
 
     .burger {
-        padding-left: 32px;
+        display: flex;
+        align-items: flex-end;
+        margin-left: 35px;
+        width: max-content;
         grid-column: 2;
         border: none;
+
+        svg {
+            margin-bottom: 3px;
+        }
     }
 
     .burger_text {
@@ -152,6 +167,10 @@
             align-items: center;
             height: 100% !important;
         }
+
+        &:hover {
+            color: #FB5A00;
+        }
     }
 
     .auth {
@@ -168,6 +187,10 @@
         font-weight: 400;
         font-size: 14px;
         line-height: 14px;
+
+        &:hover {
+            color: #FB5A00;
+        }
     }
 
     .burger {
@@ -181,7 +204,7 @@
         height: 100%;
         align-items: center;
         gap: 57px;
-        li {
+        >li {
             cursor: pointer;
             font-size: 16px;
             line-height: 18px;
@@ -189,13 +212,12 @@
             height: 100%;
             display: flex;
             align-items: center;
-            transition: color 0.3s ease;
 
             &:hover {
                 color:#FB5A00;
             }       
          }
-        img {
+        >img {
             margin-right: 15px;
         }
     }
@@ -225,8 +247,10 @@
     }
 
     .dropdownMenu {
+        will-change: transform;
+        overflow: hidden;
         height: 0px;
-        box-shadow: 2px 0px 40px 10px rgba(0, 0, 0, 0.063);
+        box-shadow: 0px 10px 55px 0px #00000014;
         background-color: rgb(255, 255, 255);
         z-index: 100;
         left: 0px;
@@ -236,7 +260,37 @@
         transition: height 0.3s ease;
     }
 
+
+    .catalog {
+
+        .catalogLink {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            
+            >svg {
+                margin-bottom: 3px;
+            }
+        }
+
+        
+        &:hover {
+          .catalogLink {
+
+              >svg {
+                 line {
+                  stroke: #FB5A00;
+                 }
+              }
+          }
+        }
+      
+     
+    }
+
     .catalog:hover .dropdownMenu {
-          height: 400px;
+          height: 426px;
     }
 }
