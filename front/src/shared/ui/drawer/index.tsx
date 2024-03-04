@@ -8,10 +8,9 @@ import { IoCloseOutline } from "react-icons/io5";
 interface Props{
     children: ReactNode
     content?: ReactNode
-    className?: string
 }
 
-const Drawer:FC<Props> = ({children, content, className}) => {
+const Drawer:FC<Props> = ({children, content}) => {
 const [isOpen, setIsOpen] = useState<boolean>(false)
 
 useEffect(()=> {
@@ -30,7 +29,7 @@ useEffect(()=> {
 
   return (
     <>
-        <div className={className} onClick={()=> setIsOpen(true)} > {children} </div>
+        <div className={styles.openBtn}  onClick={()=> setIsOpen(true)} > {children} </div>
         <div className={[styles.root, isOpen && styles.root__open].filter(Boolean).join(' ')} >
         <div onClick={()=>{setIsOpen(false)}} className={styles.fade} ></div>
             <div className={styles.content_wrapper} >

@@ -50,19 +50,23 @@ const {data: userData, isSuccess} = useGetUserQuery()
 
       <div className={styles.menu} >
         <div className={styles.menu_inner + ' container'} >
-          <Drawer className={styles.burger} content={<MobileNavabr/>} >
-            <Image src={'/icons/burger.png'} width={36} height={8} alt='burger icon' />
-            <p className={styles.burger_text} >Меню</p>
+            <div className={styles.burger} >
+          <Drawer content={<MobileNavabr/>} >
+              <Image src={'/icons/burger.png'} width={36} height={8} alt='burger icon' />
+              <p className={styles.burger_text} >Меню</p>
           </Drawer>
+            </div>
        
             <Link className={styles.logo} href={'/'}>
               <Image src={'/icons/logo.png'} width={59} height={19} alt='logo' />
             </Link>
         
           <ul className={styles.categories} >
-            <li>
+            <li className={styles.catalog} >
               <Image src={'/icons/burger.png'} width={36} height={8} alt='burger icon' />
-              Каталог</li>
+              Каталог
+            <div className={styles.dropdownMenu} ></div>
+              </li>
             <li>Мужские</li>
             <li>Женские</li>
             <li>Детские</li>
@@ -87,7 +91,7 @@ const {data: userData, isSuccess} = useGetUserQuery()
         </div>
       </div>
 
-    
+
  
     </header>
   )

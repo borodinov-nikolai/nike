@@ -2,10 +2,12 @@
 
 
 .root {
-
+width: 100%;
 }
 
 .title {
+    cursor: pointer;
+    width: 100%;
     padding: 20px 15px;
     background-color: black;
     color: white;
@@ -14,18 +16,33 @@
 }
 
 
-.catalog {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+
+.catalogContent_wrapper{  
+    overflow: hidden;
+    visibility: visible;
+    max-height: 0;
+    padding: 0;
+    transition: max-height 0.3s ease, visibility 0.3s ease;
 }
 
+.catalog:hover .catalogContent_wrapper {
+    max-height: 1000px;
+    visibility: visible;
+}
 
-.catalog_item {
+.catalogContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 8px 25px;
+}
+
+.accordion {
 
 
     >div{
-        width: 278px;
+        width: 100%;
 
         >h3 {
             font-size: 15px;
@@ -39,5 +56,81 @@
 }
 
 
+.accordionContent {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    >li {
+        a {
+            display: block;
+            width: 100%;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 14px;
+            width: 100%;
+            height: 100%;
+        }
 
+        p {
+            width: max-content;
+            border-bottom: 1px solid transparent; 
+            transition: color 0.3s ease, border 0.3s ease;
+        }
 
+       &:hover p {
+            color: #FB5A00;
+            border-color:#FB5A00;
+            
+        }
+
+       
+    }
+
+    svg {
+        stroke: black !important;
+    }
+}
+
+.categoriesList {
+    display: flex;
+    flex-direction: column;
+    border-top:  1px solid #EAEAEA;
+
+    >li {
+
+        a {
+            display: block;
+            cursor: pointer;
+            padding: 20px 15px;
+            font-size: 14px;
+            line-height: 14px;
+            font-weight: 500;
+            border-bottom: 1px solid #EAEAEA;
+            transition: color 0.3s ease;
+            &:hover {
+                color: #FB5A00;
+            }
+        }
+       
+    }
+}
+
+.navigationList {
+
+    >li {
+      
+
+        a {
+            display: block;
+            padding: 20px 15px;
+            font-size: 15px;
+            line-height: 15px;
+            transition: color 0.3s ease;
+        }
+
+        &:hover {
+            color: #FB5A00;
+        }
+    }
+}

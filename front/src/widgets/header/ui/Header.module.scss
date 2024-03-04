@@ -2,6 +2,7 @@
 
 .root {
     width: 100%;
+    position: relative;
 }
 
 
@@ -37,6 +38,8 @@
         height: auto;
     }
 }
+
+
 
 .burger_text {
     display: none;
@@ -183,12 +186,21 @@
             font-size: 16px;
             line-height: 18px;
             font-weight: 500;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
 
-        }
+            &:hover {
+                color:#FB5A00;
+            }       
+         }
         img {
             margin-right: 15px;
         }
     }
+
+  
 
     .profile {
         display: none;
@@ -210,5 +222,21 @@
     .search {
         grid-row: 1;
         grid-column: 1;
+    }
+
+    .dropdownMenu {
+        height: 0px;
+        box-shadow: 2px 0px 40px 10px rgba(0, 0, 0, 0.063);
+        background-color: rgb(255, 255, 255);
+        z-index: 100;
+        left: 0px;
+          top: 117px;
+        position: absolute;
+        width: 100%;
+        transition: height 0.3s ease;
+    }
+
+    .catalog:hover .dropdownMenu {
+          height: 400px;
     }
 }
