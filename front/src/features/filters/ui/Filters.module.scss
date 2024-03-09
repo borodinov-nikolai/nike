@@ -25,6 +25,11 @@
   
 }
 
+.sizes {
+    border-right: 1px solid #DFDFDF;
+}
+
+
 .filtersMobileOpener {
     display: flex;
     align-items: center;
@@ -32,7 +37,7 @@
     line-height: 16px;
     gap: 10px;
     &:hover {
-        color: var(--text-hover)
+        color: var(--link-hover)
     }
 }
 
@@ -57,4 +62,9 @@
         display: flex;
         height: 100%;
     }
+
+    .filtersInner {
+        height: 70px;
+    }
+    
 }

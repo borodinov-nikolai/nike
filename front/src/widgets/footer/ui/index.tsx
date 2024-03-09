@@ -35,13 +35,15 @@ const Footer = () => {
       <div className={[styles.inner, ' container'].join(" ")} >
         <div className={styles.blocks} >
           <div className={styles.startBlock} >
+              <Link href={'/'} >
             <div className={styles.logo} >
-              <Image className={styles.logo_logoImg} src={'/images/footer_logo.png'} width={90} height={31} quality={100} alt='footer logo' />
-              <div>
-                <Image className={styles.logo_swooshImg} src={'/images/swoosh.png'} width={114} height={18} quality={100} alt='swoosh image' />
-                <Image className={styles.logo_storeImg} src={'/images/store.png'} width={84} height={18} quality={100} alt='store image' />
-              </div>
+                <Image className={styles.logo_logoImg} src={'/images/footer_logo.png'} width={90} height={31} quality={100} alt='footer logo' />
+                <div>
+                  <Image className={styles.logo_swooshImg} src={'/images/swoosh.png'} width={114} height={18} quality={100} alt='swoosh image' />
+                  <Image className={styles.logo_storeImg} src={'/images/store.png'} width={84} height={18} quality={100} alt='store image' />
+                </div>
             </div>
+              </Link>
             <ul className={styles.socials} >
               <li><Link href={'#'} ><Image src={'/icons/inst.png'} width={20} height={20} alt='socials icon' /> </Link></li>
               <li><Link href={'#'} ><Image src={'/icons/vk.png'} width={23} height={12} alt='socials icon' /> </Link></li>

@@ -1,0 +1,27 @@
+.sizesContent {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #DFDFDF;
+}
+.list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: row;
+    gap: 10px;}
+
+    .listItem {
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 400;
+        width: 83px;
+        height: 45px;
+        border: 1px solid #DFDFDF;
+
+        &__active {
+            background-color: black;
+            color: white;
+        }
+    }

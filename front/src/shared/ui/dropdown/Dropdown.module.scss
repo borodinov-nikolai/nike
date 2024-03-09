@@ -1,0 +1,41 @@
+
+
+
+.root {
+    position: relative;
+}
+
+.currentOption {
+    cursor: pointer;
+    height: 70px;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+}
+
+
+.name {
+    font-size: 16px;
+    line-height: 16px;
+}
+
+
+
+.content {
+    overflow: hidden;
+    position: absolute;
+    top: 70px;
+    max-height: 0px;
+    visibility: hidden;
+    transition: max-height 0.3s ease, visibility 0.3s ease;
+    width: max-content;
+    z-index: 10;
+
+    &__open {
+    max-height: 400px;
+    visibility: visible;
+    }
+}
+
