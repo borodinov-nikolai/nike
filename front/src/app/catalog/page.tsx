@@ -1,11 +1,13 @@
 import React from 'react'
+import { Catalog } from '@/src/widgets/catalog'
 
 
-
-const Catalog = () => {
+const CatalogPage = () => {
   return (
-    <div>Catalog</div>
+    <div>
+      <Catalog/>
+    </div>
   )
 }
 
-export default Catalog
+export default CatalogPage

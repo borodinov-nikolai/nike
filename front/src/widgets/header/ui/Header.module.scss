@@ -62,7 +62,15 @@
 }
 
 .categories {
-    display: none;
+    display: none;      
+}
+
+.categoriesLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 .icons {
@@ -75,9 +83,23 @@
 }
 
 .icon {
+    cursor: pointer;
     height: 100%;
     display: flex;
     align-items: center;
+
+    >svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    &:hover {
+        background-color: black;
+        >svg {
+            stroke: white !important;
+            
+        }
+    }
 }
 
 .search {
@@ -181,6 +203,12 @@
         gap: 7px;
         align-items: center;
         height: 100%;
+
+        &:hover {
+            .auth_text {
+                color: #FB5A00;
+            }
+        }
     }
 
     .auth_text {
@@ -188,9 +216,7 @@
         font-size: 14px;
         line-height: 14px;
 
-        &:hover {
-            color: #FB5A00;
-        }
+            
     }
 
     .burger {

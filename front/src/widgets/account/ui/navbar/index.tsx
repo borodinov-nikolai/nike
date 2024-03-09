@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './Navbar.module.scss'
 import Svg_AccauntProfile from '../../assets/icons/accaunt_profile.svg'
 import Svg_AccauntOrders from '../../assets/icons/accaunt_orders.svg'
@@ -61,7 +61,7 @@ const Navbar = ({setContent, current}:{setContent: React.Dispatch<React.SetState
   }
 
  
-
+  
   return (
     <nav className={styles.root} >
       <ul className={styles.list} >

@@ -60,7 +60,7 @@ const DropdownMenu = () => {
                       <Image src={'/images/dropdown_menu_img.jpeg'} width={440}  height={346} alt='new collection image' />
                       <div className={styles.newCollection_text} >
                         <h3>Новая коллекция в каталоге Nike Air Max Solo</h3>
-                        <Link href={'#'}>Перейти в каталог</Link>
+                        <Link href={'/catalog'}>Перейти в каталог</Link>
                       </div>
                 </div>
         </div>

@@ -1,14 +1,9 @@
 import { emptySplitApi } from "@/src/shared/configs/rtk_base"
+import { User } from "../interfaces"
 
 
 
-interface User {
-  id: number
-  email:string
-  login: string
-  phoneNumber: string
-  [key:string]: any
-}
+
 const token = typeof window !== 'undefined' && localStorage.getItem('jwt')
 const extendedApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({

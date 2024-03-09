@@ -3,11 +3,11 @@ import React from 'react'
 import styles from './Header.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
-import Svg_search from '@/public/icons/search.svg'
+import { FiSearch } from "react-icons/fi";
 import Svg_auth from '@/public/icons/auth.svg'
-import Svg_profile from '@/public/icons/profile.svg'
-import Svg_favorites from '@/public/icons/favorites.svg'
-import Svg_cart from '@/public/icons/cart.svg'
+import { LuUser } from "react-icons/lu";
+import { GrFavorite } from "react-icons/gr";
+import { IoBagOutline } from "react-icons/io5";
 import { useGetUserQuery } from '@/src/entities/user'
 import MobileNavabr from './components/mobileNavbar'
 import Drawer from '@/src/shared/ui/drawer'
@@ -54,8 +54,8 @@ const {data: userData, isSuccess} = useGetUserQuery()
             <div className={styles.burger} >
           <Drawer content={<MobileNavabr/>} >
           <svg width="37" height="11" viewBox="0 0 37 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-<line x1="36.0878" y1="1.96484" x2="11.0878" y2="1.96484" stroke="black" stroke-width="2"/>
-<line x1="36.0878" y1="9.96484" x2="0.0877685" y2="9.96484" stroke="black" stroke-width="2"/>
+<line x1="36.0878" y1="1.96484" x2="11.0878" y2="1.96484" stroke="black" strokeWidth="2"/>
+<line x1="36.0878" y1="9.96484" x2="0.0877685" y2="9.96484" stroke="black" strokeWidth="2"/>
 </svg>
 
               <p className={styles.burger_text} >Меню</p>
@@ -70,33 +70,57 @@ const {data: userData, isSuccess} = useGetUserQuery()
             <li className={styles.catalog} >
             <Link className={styles.catalogLink}  href={'/catalog'} >
               <svg width="37" height="11" viewBox="0 0 37 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="36.0878" y1="1.96484" x2="11.0878" y2="1.96484" stroke="black" stroke-width="2"/>
-              <line x1="36.0878" y1="9.96484" x2="0.0877685" y2="9.96484" stroke="black" stroke-width="2"/>
+              <line x1="36.0878" y1="1.96484" x2="11.0878" y2="1.96484" stroke="black" strokeWidth="2"/>
+              <line x1="36.0878" y1="9.96484" x2="0.0877685" y2="9.96484" stroke="black" strokeWidth="2"/>
               </svg>
                 <p>Каталог</p>
             </Link>
               <div className={styles.dropdownMenu} ><DropdownMenu/></div>
               </li>
-            <li>Мужские</li>
-            <li>Женские</li>
-            <li>Детские</li>
-            <li>Распродажа</li>
+              <li>
+            <Link className={styles.categoriesLink} href={'#'}>
+                Мужские
+            </Link>
+                </li>
+            <li>
+            <Link className={styles.categoriesLink} href={'#'}>
+              Женские
+            </Link>
+              </li>
+            <li>
+            <Link className={styles.categoriesLink} href={'#'}>
+                Детские
+            </Link>
+            </li>
+            <li>
+            <Link className={styles.categoriesLink} href={'/#'}>
+                Распродажа
+            </Link>
+            </li>
           </ul>
           <div className={styles.icons} >
-            <div className={[styles.favorites, styles.icon].join(' ')} >
-              <Svg_favorites />
-            </div>
-            <div className={[styles.cart, styles.icon].join(' ')} >
-              <Svg_cart />
-            </div>
+            
+            <Link className={[styles.favorites, styles.icon].join(' ')} href={"#"} >
+                <GrFavorite/>
+            </Link>
+             
+             
+            <Link className={[styles.cart, styles.icon].join(' ')} href={'#'} >
+                <IoBagOutline />
+            </Link>
+             
 
-            <div className={[styles.search, styles.icon].join(' ')} >
-              <Svg_search />
-              </div>
+              
+            <Link className={[styles.search, styles.icon].join(' ')} href={'#'} >
+                <FiSearch />
+            </Link>
+                
 
-            <div className={[styles.profile, styles.icon].join(' ')} >
-              <Svg_profile />
-            </div>
+            <Link  className={[styles.profile, styles.icon].join(' ')} href={'#'} >
+             
+                <LuUser />
+             
+            </Link>
           </div>
         </div>
       </div>
