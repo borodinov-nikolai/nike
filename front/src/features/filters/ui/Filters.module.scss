@@ -1,0 +1,60 @@
+@import '../../../shared/styles/mixins/breakpoints';
+
+
+.root {
+   width: 100%;
+
+}
+
+.filters {
+    border-top: 1px solid #DFDFDF;
+    border-bottom: 1px solid #DFDFDF;
+}
+
+.filtersInner {
+    height: 54px;
+}
+
+.filtersMobile {
+    cursor: pointer;
+    width: max-content;
+    height: 100%;
+ 
+    margin: 0 auto;
+
+  
+}
+
+.filtersMobileOpener {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 16px;
+    gap: 10px;
+    &:hover {
+        color: var(--text-hover)
+    }
+}
+
+.burgerIcon {
+    height: 24px;
+    width: auto;
+   margin-bottom: 5px;
+}
+
+.filtersDesktop {
+    display: none;
+}
+
+
+@include breakpoint(2xl){
+
+    .filtersMobile{
+        display: none;
+    }
+
+    .filtersDesktop {
+        display: flex;
+        height: 100%;
+    }
+}

@@ -20,9 +20,7 @@ const page = () => {
   return (
     <main className={styles.root} >
       <div className='container' >
-      <div className={styles.breadcrumb} >
         <Breadcrumb items={breadcrumbs} />
-      </div>
      <Account/>
      </div>
     </main>

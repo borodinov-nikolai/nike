@@ -7,8 +7,11 @@ export class FileService {
 
   async deleteFile(fileName: string, category: string): Promise<void> {
     const filePath = this.filePathService.getFile(fileName, category);
-    if(filePath){
-      await fs.promises.unlink(filePath);
-    }
+    
+   try {
+    await fs.promises.unlink(filePath);
+   } catch(e){
+    console.error(e)
+   }
   }
 }
