@@ -5,27 +5,18 @@ import styles from './Range.module.scss'
 
 
 interface Props {
-    setValues: React.Dispatch<React.SetStateAction<{
-        left: number;
-        right: number;
-    }>>,
-    values: {left: number, right: number }
+    setValues: (value: number, input: string) => void,
+    values: {min: number, max: number }
 }
 
 
-const Range:FC<Props> = ({setValues, values={left: 2500, right: 7500}}) => {
+const Range:FC<Props> = ({setValues, values={min: 2500, max: 7500}}) => {
     const progress = useRef<HTMLInputElement>(null)
 
 
 
-    const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>, slider: string) => {
-        const value = Number(e.target.value);
-
-        if (slider === 'left' && value < values.right) {
-            setValues({left:value, right: values.right});
-        } else if (slider === 'right' && value > values.left) {
-            setValues({right:value, left: values.left});
-        }
+    const handleRangeChange = (e: string, input: string) => {
+           setValues(Number(e), input)
     };
 
 
@@ -35,8 +26,8 @@ const Range:FC<Props> = ({setValues, values={left: 2500, right: 7500}}) => {
     useEffect(() => {
         if (progress.current) {
             const style = progress.current.style
-            style.left = values.left / 100 + "%";
-            style.right = (100 - values.right / 100) + "%";
+            style.left = values.min / 100 + "%";
+            style.right = (100 - values.max / 100) + "%";
             }   
     }, [values]);
 
@@ -53,16 +44,16 @@ const Range:FC<Props> = ({setValues, values={left: 2500, right: 7500}}) => {
                     type="range"
                     min="0"
                     max="10000"
-                    onChange={(e) => handleRangeChange(e, 'left')}
-                    value={values.left}
+                    onChange={(e) => handleRangeChange(e.target.value, 'min')}
+                    value={values.min}
                     className={styles.rangeMin}
                 />
                 <input
                     type="range"
                     min="0"
                     max="10000"
-                    onChange={(e) => handleRangeChange(e, 'right')}
-                    value={values.right}
+                    onChange={(e) => handleRangeChange(e.target.value, 'max')}
+                    value={values.max}
                     className={styles.rangeMax}
                 />
             </div>

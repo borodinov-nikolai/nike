@@ -9,21 +9,27 @@ const Advantages = () => {
             <div className={styles.inner + ' container'} >
                <ul className={styles.list} >
                 <li className={styles.listItem} >
-                    <Image src={'/icons/shield.png'} width={36} height={36} alt='shield'/>
+                    <div className={styles.imageHolder}>
+                        <Image  className={styles.image} src={'/icons/shield.png'} width={36} height={36} alt='shield'/>
+                    </div>
                     <div className={styles.text} >
                         <h3 >ТОЛЬКО ОРИГИНАЛЬНЫЕ<br/> ТОВАРЫ</h3>
                         <p>Гарантированная подлинность Nike и высокое качество кроссовок.</p>
                     </div>
                 </li>
                 <li className={styles.listItem} >
-                    <Image src={'/icons/3_stars.png'} width={36} height={36} alt='shield'/>
-                    <div className={styles.text} >
+                    <div className={styles.imageHolder}>
+                        <Image className={styles.image} src={'/icons/3_stars.png'} width={36} height={36} alt='shield'/>
+                    </div>
+                    <div className={styles.text} > 
                         <h3>ПРОФЕССИОНАЛЬНЫЙ<br/> СЕРВИС</h3>
                         <p>Команда экспертов, готовых помочь с выбором размера ответить на все вопросы.</p>
                     </div>
                 </li>
                 <li className={styles.listItem} >
-                    <Image src={'/icons/cart_with_heart.png'} width={36} height={36} alt='shield'/>
+                    <div className={styles.imageHolder}>
+                        <Image className={styles.image} src={'/icons/cart_with_heart.png'} width={36} height={36} alt='shield'/>
+                    </div>
                     <div className={styles.text} >
                         <h3>ЭКСКЛЮЗИВНЫЙ<br/> ВЫБОР</h3>
                         <p>Богатый ассортимент оригинальных моделей Nike, включая редкие выпуски.</p>

@@ -12,10 +12,13 @@
 .imageHolder {
     overflow: hidden;
 }
+
+
+
 .image {
     width: 100%;
     height: auto;
-    transition: scale 0.3s ease;
+    transition: scale 0.3s ease; 
 }
 
 
@@ -120,8 +123,7 @@
         font-size: 19px;
         line-height: 26px;
     }
-    
-    
+
     .colors {
         font-size: 15px;
         line-height: 26px;
@@ -132,6 +134,10 @@
         width: 15px;
     }
     
+    .image {
+        width: 440px;
+        height: 440px;
+    }
 
     .prices {
         display: flex;

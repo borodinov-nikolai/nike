@@ -6,12 +6,12 @@
 
 }
 
-.filters {
+.filtersTop {
     border-top: 1px solid #DFDFDF;
     border-bottom: 1px solid #DFDFDF;
 }
 
-.filtersInner {
+.filtersTopInner {
     height: 54px;
 }
 
@@ -49,6 +49,9 @@
     align-items: center;
     border-right: 1px solid #DFDFDF;
     background-color: #FBFBFB;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 500px;
 }
 
 .filtersMobileOpener {
@@ -73,8 +76,27 @@
 }
 
 
-.sorts {
+.filtersBottom {
     height: 126px;
+}
+
+.filtersBottomInner {
+    padding: 40px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftBlock {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    line-height: 15px;
+    color: #B5B5B5;
+}
+
+.rightBlock {
+display: flex;
+gap: 70px;
 }
 
 
@@ -89,7 +111,7 @@
         height: 100%;
     }
 
-    .filtersInner {
+    .filtersTopInner {
         height: 70px;
     }
     

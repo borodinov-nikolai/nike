@@ -2,28 +2,33 @@
 import React, { useState } from 'react'
 import styles from './Price.module.scss'
 import Range from '@/src/shared/ui/range'
+import { useAppDispatch, useAppSelector } from '@/src/shared/store/hooks'
+import { setPrice } from '../../../store/filtersSlice'
 
 
 const Price = () => {
-    const [values, setValues] = useState<{left:number, right:number}>({left: 2500, right:7500})
-
-    const handleValue = (value:number, input: string) => {
-           if(input === 'left' && value < values.right) {
-            setValues({left: value, right: values?.right})
+    const dispatch = useAppDispatch()
+    const {price} = useAppSelector((state)=> state.filters)
+   
+    
+    const handleValue = (value:number, input:string) => {
+           if(input === 'min' && value < price.max) {
+            dispatch(setPrice({min: value, max: price?.max}))
            }
-           if(input === 'right' && value > values.left) {
-            setValues({right: value, left: values?.left})
+           if(input === 'max' && value > price.min) {
+            dispatch(setPrice({max: value, min: price?.min})) 
            } 
     }
 
   
+
   return (
     <div className={styles.root} >
         <h3 className={styles.name} >Цена:</h3>
-        <div className={styles.range} ><Range setValues={setValues} values={values}/></div>
+        <div className={styles.range} ><Range values={price} setValues={handleValue} /></div>
         <div className={styles.inputs} >
-            <div className={styles.inputHolder} ><input value={values.left} onChange={(e)=> handleValue(Number(e.target.value), 'left')}  type="number" /> ₽</div>
-            <div className={styles.inputHolder} ><input value={values.right} onChange={(e)=> handleValue(Number(e.target.value), 'right')}  type="number" /> ₽</div>
+            <div className={styles.inputHolder} ><input value={price.min} onChange={(e)=> handleValue(Number(e.target.value), 'min')}  type="number" /> ₽</div>
+            <div className={styles.inputHolder} ><input value={price.max} onChange={(e)=> handleValue(Number(e.target.value), 'max')}  type="number" /> ₽</div>
         </div>
     </div>
   )

@@ -17,9 +17,11 @@ const ProductCard:FC<Props> = ({id, name, images, gender, colors, price, oldPric
   return (
     <div className={styles.root} >
    
-        <div className={styles.imageHolder} >
-          <Image className={styles.image}  src={images?.[0]} width={440} height={445} alt='product image'/>
-        </div>
+        
+          <div className={styles.imageHolder} >
+              <Image className={styles.image} src={images?.[0]} width={440} height={440} alt='product image'/>
+          </div>
+      
       
        <div className={styles.description} >
          <p className={styles.gender} >{gender === 'm'? 'мужские': 'женские'}</p>

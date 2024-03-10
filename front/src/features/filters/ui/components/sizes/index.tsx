@@ -2,30 +2,32 @@
 import React, { FC } from 'react'
 import styles from './Sizes.module.scss'
 import Dropdown from '@/src/shared/ui/dropdown'
+import { useAppDispatch, useAppSelector } from '@/src/shared/store/hooks'
+import { setSizes } from '../../../store/filtersSlice'
+
 
 
 
 const sizesList = [36,37,38,39,40]
 
 
-interface Props {
-    sizes: number[]
-    setSizes: React.Dispatch<React.SetStateAction<number[]>>
-}
 
-const Sizes:FC<Props> = ({setSizes, sizes}) => {
+
+const Sizes = () => {
+         const dispatch = useAppDispatch()
+         const {sizes} = useAppSelector((state)=> state.filters)
          
-
+     
     const handleSet = (size:number)=> {
          
         if(sizes.includes(size)) {
-            setSizes(sizes.filter( item => item !== size ))
+          dispatch(setSizes((sizes.filter( item => item !== size ))))
         } else {
-            setSizes([...sizes, size])
+            dispatch(setSizes([...sizes, size]))
         }
     }
 
-    console.log(sizes)
+
   return (
     <Dropdown name='Размер (EU)'>
     <div className={styles.sizesContent} >

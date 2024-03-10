@@ -1,26 +1,34 @@
 'use client'
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './Select.module.scss';
 
-const Select = () => {
-  const [currentLabel, setCurrentLabel] = useState<string>('option 1');
-  const [currentValue, setCurrentValue] = useState<string>();
+
+
+interface Props {
+  options?: {id: number, label: string, value: string}[],
+  setValue?: (value: string) => void
+}
+
+const Select: FC<Props> = ({options = [
+  {id: 1, label: 'option 1', value:'опция 1'},
+  {id: 2, label: 'option 2', value:'опция 2'},
+  {id: 3, label: 'option 3', value:'опция 3'},
+  {id: 4, label: 'option 4', value:'опция 4'},
+ ],
+ setValue
+} ) => {
+  const [currentLabel, setCurrentLabel] = useState<string>(options[0].label);
    const [isOpen, setIsOPen] = useState<boolean>(false)
-  const options = [
-    {id: 1, label: 'option 1', value:'опция 1'},
-    {id: 2, label: 'option 2', value:'опция 2'},
-    {id: 3, label: 'option 3', value:'опция 3'},
-    {id: 4, label: 'option 4', value:'опция 4'},
-   ]
+
 
   const toogleDropdown = ()=> {
     setIsOPen(!isOpen)
   }
 
   const handleOptionClick = ({label, value}: {label:string, value: string})=> {
-    setCurrentLabel(label);
-    setCurrentValue(value)
+    setCurrentLabel(label)
     setIsOPen(false)
+    setValue && setValue(value)
   }
 
   return (
