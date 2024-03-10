@@ -2,11 +2,12 @@
 import React, { useState } from 'react'
 import styles from './Filters.module.scss'
 import { RxHamburgerMenu } from "react-icons/rx";
-import Select from '@/src/shared/ui/select'
 import Drawer from '@/src/shared/ui/drawer';
-import CustomSelect from '@/src/shared/ui/dropdown';
-import Dropdown from '@/src/shared/ui/dropdown';
 import Sizes from './components/sizes';
+import Price from './components/price';
+import Color from './components/color';
+import Material from './components/material';
+
 
 
 const Filters = () => {
@@ -26,10 +27,10 @@ const Filters = () => {
           </div>
         <div className={styles.filtersDesktop} >
           <div className={styles.sizes} ><Sizes sizes={sizes} setSizes={setSizes} /></div>
-          <div className={styles.price} ></div>
-          <div className={styles.color} ></div>
-          <div className={styles.material} ></div>
-          <div className={styles.reset} ></div>
+          <div className={styles.price} > <Price/> </div>
+          <div className={styles.color} > <Color/></div>
+          <div className={styles.material} ><Material/></div>
+          <div className={styles.reset} >СБРОСИТЬ ВСЕ</div>
 
         </div>
         </div>

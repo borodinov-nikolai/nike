@@ -14,7 +14,7 @@ const Catalog = async () => {
     >
         <div className={styles.filters} ><Filters/></div>
       <div className={[styles.inner, ' container'].join(' ')} >
-        {products.map(({id, name, price, image})=> {
+        {products?.map(({id, name, price, image})=> {
           return <ProductCard key={id} id={id} name={name} images={[process.env.NEXT_PUBLIC_BACKEND_UPLOADS + '/images/' + image]} price={price} gender={'мужские'}
           oldPrice={4000} colors={['red', 'blue', 'green']}
           />

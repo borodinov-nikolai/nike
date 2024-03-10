@@ -1,13 +1,23 @@
+
+
+
+.root {
+    
+    width: 400px;
+   
+
+}
+
+
 .slider {
-    width: 500px;
+   width: 100%;
     position: relative;
-    margin-top: 50px;
- height: 10px;
+ height: 2px;
  border-radius: 5px;
  background: #ddd; 
        .progress {
-            height: 10px;
-            background: rgba(255, 102, 51, 1);  
+            height: 2px;
+            background:  var(--range-progress-bg);  
             border-radius: 5px;  
             position: absolute;
             left: 25%;
@@ -22,8 +32,8 @@
         position: absolute;
         top: -12px;
         left: -2px;
-        height: 10px;
-        width: 500px;
+        height: 17px;
+        width: 100%;
         background: none;
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -32,26 +42,24 @@
 
 
     input[type="range"]::-webkit-slider-thumb {
+        position: relative;
         cursor: pointer;
-        border: 1px solid white ;
         pointer-events: auto;
-        height: 25px;
-        width: 25px;
-        background: rgba(255, 102, 51, 1);
+        height: 10px;
+        width: 10px;
+        background: rgb(0, 0, 0);
         -webkit-appearance: none;
         border-radius: 50%;
-
-        &:hover {
-            background: rgb(255, 121, 77);
-        }
     }
+
+ 
 
     input[type="range"]::-moz-range-thumb {
         pointer-events: auto;
         border: none;
-        height: 17px;
-        width: 17px;
-        background:  rgba(255, 102, 51, 1);
+        height: 10px;
+        width: 10px;
+        background:  rgb(0, 0, 0);
         -moz-appearance: none;
         border-radius: 50%;
     }
