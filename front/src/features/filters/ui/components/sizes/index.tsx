@@ -17,15 +17,6 @@ const Sizes = () => {
          const dispatch = useAppDispatch()
          const {sizes} = useAppSelector((state)=> state.filters)
          
-     
-    const handleSet = (size:number)=> {
-         
-        if(sizes.includes(size)) {
-          dispatch(setSizes((sizes.filter( item => item !== size ))))
-        } else {
-            dispatch(setSizes([...sizes, size]))
-        }
-    }
 
 
   return (
@@ -33,7 +24,7 @@ const Sizes = () => {
     <div className={styles.sizesContent} >
       <ul className={styles.list} >
         {sizesList.map((size)=> {
-            return <li className={[styles.listItem, sizes.includes(size) && styles.listItem__active].filter(Boolean).join(' ')} onClick={()=> handleSet(size)} key={size} >{size}</li>
+            return <li className={[styles.listItem, sizes.includes(size) && styles.listItem__active].filter(Boolean).join(' ')} onClick={()=> dispatch(setSizes(size))} key={size} >{size}</li>
         } )}
        
       </ul>

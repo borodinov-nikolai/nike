@@ -94,9 +94,23 @@
     color: #B5B5B5;
 }
 
+.changedFiltersInner {
+    display: flex;
+    margin-top: 15px;
+    gap: 20px;
+    height: 15px;
+}
+
 .rightBlock {
 display: flex;
 gap: 70px;
+
+}
+
+.changedFilter {
+    cursor: pointer;
+    font-size: 14px;
+    color: rgb(54, 54, 54);
 }
 
 

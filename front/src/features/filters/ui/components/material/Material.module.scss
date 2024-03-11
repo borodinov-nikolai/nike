@@ -1,6 +1,29 @@
 
 
 
-.root {
-  
+.content {
+    margin-left: -1px;
+    width: 182px;
+    padding: 20px 10px;
+    background-color: white;
+    border: 1px solid #DFDFDF;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.listItem {
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    >p {
+        font-size: 15px;
+        line-height: 15px;
+    }
 }

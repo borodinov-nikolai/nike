@@ -27,8 +27,8 @@ const Price = () => {
         <h3 className={styles.name} >Цена:</h3>
         <div className={styles.range} ><Range values={price} setValues={handleValue} /></div>
         <div className={styles.inputs} >
-            <div className={styles.inputHolder} ><input value={price.min} onChange={(e)=> handleValue(Number(e.target.value), 'min')}  type="number" /> ₽</div>
-            <div className={styles.inputHolder} ><input value={price.max} onChange={(e)=> handleValue(Number(e.target.value), 'max')}  type="number" /> ₽</div>
+            <div className={styles.inputHolder} ><input readOnly value={price.min} type="number" /> ₽</div>
+            <div className={styles.inputHolder} ><input readOnly value={price.max} type="number" /> ₽</div>
         </div>
     </div>
   )
