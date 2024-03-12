@@ -19,7 +19,7 @@ interface FiltersState {
 const initialState: FiltersState = {
     sizes: [],
     pageSize: 9,
-    sort: 'price:desc',
+    sort: 'asc',
     price: {min: 2500, max: 7500},
     colors: [],
     materials: []
@@ -56,7 +56,7 @@ export const filterSlice = createSlice({
         resetFilters: (state) => {
             state.pageSize = 9
             state.price = {min: 2500, max: 7500}
-            state.sort = 'price:desc'
+            state.sort = 'asc'
             state.sizes = []
             state.colors = []
             state.materials =[]

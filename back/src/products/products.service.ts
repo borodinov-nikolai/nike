@@ -11,8 +11,11 @@ export class ProductsService {
     private readonly fileService: FileService,
   ) {}
 
-  async findAll() {
-    const products = await this.db.product.findMany();
+  async findAll(query: any) {
+    const {orderBy} = query
+    const products = await this.db.product.findMany({
+     orderBy
+    });
     return products;
   }
 

@@ -9,8 +9,8 @@ import { useAppSelector } from '@/src/shared/store/hooks'
 
 
 const options = [
-  {id: 1, label: 'Цена по убыванию', value: 'price:desc'},
-  {id: 2, label: 'Цена по возрастанию', value: 'price:asc'},
+  {id: 1, label: 'Цена по убыванию', value: 'asc'},
+  {id: 2, label: 'Цена по возрастанию', value: 'desc'},
 ]
 
 

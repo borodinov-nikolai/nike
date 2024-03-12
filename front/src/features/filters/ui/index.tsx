@@ -34,7 +34,11 @@ const Filters = () => {
    const queryString = qs.stringify({
     sizes,  
     colors,
-    sort,
+    orderBy: [
+      {
+        price: sort
+      }
+    ],
     materials,
     pageSize,
     price

@@ -32,7 +32,7 @@ export class ProductsController {
   })
   getAll(@Query() query): Promise<Product[]> {
     console.log(query)
-    return this.productsService.findAll();
+    return this.productsService.findAll(query);
   } 
 
   @Post()
