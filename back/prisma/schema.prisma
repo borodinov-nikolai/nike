@@ -47,6 +47,8 @@ model Product {
   price Int
   image String
   categories Category[]
+  colors Color[]
+  materials Material[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -54,7 +56,20 @@ model Product {
 model Category {
    id   Int   @id @default(autoincrement())
    name String
+   value String
    products Product[]
-   createdAt DateTime @default(now())
-   updatedAt DateTime @updatedAt
+}
+
+model Color {
+  id Int @id @default(autoincrement())
+  name String
+  value String
+  products Product[]
+}
+
+model Material {
+  id Int @id @default(autoincrement())
+  name String
+  value String
+  products Product[]
 }

@@ -3,7 +3,9 @@ import {
   Controller,
   Delete,
   Get,
+  Param,
   Post,
+  Query,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -28,9 +30,10 @@ export class ProductsController {
     description: 'успешно',
     type: Product,
   })
-  getAll(): Promise<Product[]> {
+  getAll(@Query() query): Promise<Product[]> {
+    console.log(query)
     return this.productsService.findAll();
-  }
+  } 
 
   @Post()
   @UseInterceptors(FileInterceptor('image', multerConfig))

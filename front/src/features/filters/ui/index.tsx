@@ -11,12 +11,14 @@ import { useAppDispatch, useAppSelector } from '@/src/shared/store/hooks';
 import PageSize from './components/pageSize';
 import Sort from './components/sort';
 import { removePrice, resetFilters, setColors, setMaterials, setSizes } from '../store/filtersSlice';
-
+import qs from 'qs'
+import { useRouter } from 'next/navigation';
 
 
 
 
 const Filters = () => {
+  const router = useRouter()
   const [showPrice, setShowPrice] = useState<boolean>(false)
    const {sizes, pageSize, sort, materials, colors, price } = useAppSelector((state)=> state.filters)
   const dispatch = useAppDispatch()
@@ -27,6 +29,21 @@ const Filters = () => {
       setShowPrice(true) 
     }
   },[price])
+
+  useEffect(()=> {
+   const queryString = qs.stringify({
+    sizes,  
+    colors,
+    sort,
+    materials,
+    pageSize,
+    price
+   })
+  
+    router.replace(`?${queryString}`)
+   
+   
+  },[sizes, pageSize, sort, materials, colors, price ])
 
   return (
     <div className={styles.root} >
