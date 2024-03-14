@@ -1,7 +1,10 @@
 import React from "react";
+import { Categories } from "../../widgets/categories";
 
 const CategoriesPage = () => {
-  return <div>CategoriesPage</div>;
+  return <div>
+    <Categories/>
+  </div>;
 };
 
 export default CategoriesPage;

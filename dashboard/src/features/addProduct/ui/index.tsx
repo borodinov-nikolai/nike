@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./AddProduct.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAddProductMutation } from "../../../entities/product/api";
+import { Navigate, useNavigate } from "react-router-dom";
 
 interface Inputs {
   name: string;
@@ -10,7 +11,8 @@ interface Inputs {
 }
 
 const AddProduct = () => {
-  const { register, watch, handleSubmit, reset } = useForm({
+  const navigate = useNavigate();
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       name: "",
       price: 0,
@@ -26,25 +28,30 @@ const AddProduct = () => {
     formData.append("price", String(price));
 
     const res = await addProduct(formData);
-    reset();
+    if ("data" in res) {
+      reset();
+      navigate("/products", { replace: true });
+    }
   };
 
   return (
     <div className={styles.root}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)} action="">
-        <div>
-          <label htmlFor="name"></label>
+        <div className={styles.formItem}>
+          <label htmlFor="name">Название</label>
           <input {...register("name")} id="name" type="text" />
         </div>
-        <div>
-          <label htmlFor="price"></label>
+        <div className={styles.formItem}>
+          <label htmlFor="price">Цена</label>
           <input {...register("price")} id="price" type="number" />
         </div>
-        <div>
-          <label htmlFor="image"></label>
+        <div className={styles.formItem}>
+          <label htmlFor="image">Изображение</label>
           <input {...register("image")} type="file" id="image" />
         </div>
-        <button type="submit">сохранить</button>
+        <button className={styles.saveBtn} type="submit">
+          сохранить
+        </button>
       </form>
     </div>
   );

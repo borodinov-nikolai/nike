@@ -8,7 +8,7 @@ export class CategoriesService {
    constructor(private readonly db: DbService){}
 
     async create(data:AddCategoryDto): Promise<Category> {
-      const category = this.db.category.create({
+      const category = await this.db.category.create({
             data
         })
 
@@ -16,7 +16,7 @@ export class CategoriesService {
     }
 
     async findAll(): Promise<Category[]> {
-        const categories = this.db.category.findMany()
+        const categories = await this.db.category.findMany()
         return categories
     }
 

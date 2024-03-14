@@ -1,10 +1,10 @@
-import React from "react";
-import { Products } from "../../widgets/products";
+import { ProductsList } from "../../features/productsList";
+import Button from "../../shared/ui/button";
 
 const ProductsPage = () => {
   return (
     <>
-      <Products />
+      <ProductsList/>
     </>
   );
 };
