@@ -45,7 +45,11 @@ model Product {
   id    Int   @id @default(autoincrement())
   name  String
   price Int
+  oldPrice Int?
   image String
+  new Boolean?
+  hit Boolean?
+  discount Boolean?
   categories Category[]
   colors Color[]
   materials Material[]

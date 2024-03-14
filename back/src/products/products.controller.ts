@@ -3,7 +3,6 @@ import {
   Controller,
   Delete,
   Get,
-  Param,
   Post,
   Query,
   UploadedFile,
@@ -12,7 +11,7 @@ import {
 import { ProductsService } from './products.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Product } from './entities/product.entity';
-import { ProductDto } from './dtos/product.dto';
+import { AddProductDto, DeleteProductDto} from './dtos/product.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { multerConfig } from 'configs/multer.config';
 
@@ -47,7 +46,7 @@ export class ProductsController {
   })
   addProduct(
     @UploadedFile() file: Express.Multer.File,
-    @Body() body: ProductDto,
+    @Body() body: AddProductDto,
   ) {
     const image = file.filename;
     const { name, price } = body;
@@ -63,7 +62,7 @@ export class ProductsController {
     description: 'успешно',
     type: Product,
   })
-  removeProduct(@Body() body: { id: number }) {
+  removeProduct(@Body() body: DeleteProductDto) {
     return this.productsService.delete(body.id);
   }
 }

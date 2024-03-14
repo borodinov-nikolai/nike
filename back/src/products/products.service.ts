@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { DbService } from 'src/db/db.service';
-import { ProductDto } from './dtos/product.dto';
+import { AddProductDto, DeleteProductDto } from './dtos/product.dto';
 import { FileService } from 'src/file/file.service';
 import { Product } from './entities/product.entity';
 
@@ -19,7 +19,7 @@ export class ProductsService {
     return products;
   }
 
-  async create(data: ProductDto): Promise<Product> {
+  async create(data: AddProductDto): Promise<Product> {
     const product = await this.db.product.create({
       data,
     });

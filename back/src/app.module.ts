@@ -13,6 +13,7 @@ import { multerConfig } from 'configs/multer.config';
 import { FileModule } from './file/file.module';
 import { jwtConfig } from 'configs/jwt.config';
 import { staticConfig } from 'configs/static.config';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { staticConfig } from 'configs/static.config';
     AccountModule,
     ProductsModule,
     FileModule,
+    CategoriesModule,
   ],
   controllers: [],
   exports: [],
