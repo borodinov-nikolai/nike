@@ -3,6 +3,10 @@ import { Product } from "../interfaces";
 
 
 
+
+
+
+
 const extendedApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({
     getAllProducts: build.query<Product[], void>({
@@ -17,6 +21,14 @@ const extendedApi = emptySplitApi.injectEndpoints({
       query: (data) => ({
         url: "/products",
         method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Products"],
+    }),
+    updateProduct: build.mutation<Product, {id: number, data: FormData}>({
+      query: ({id, data}) => ({
+        url: `/products/${id}`,
+        method: "PUT",
         body: data,
       }),
       invalidatesTags: ["Products"],
@@ -40,4 +52,5 @@ export const {
   useGetOneProductQuery,
   useAddProductMutation,
   useDeleteProductMutation,
+  useUpdateProductMutation
 } = extendedApi;

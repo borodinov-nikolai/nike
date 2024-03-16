@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { DbService } from 'src/db/db.service';
-import { AddProductDto, DeleteProductDto } from './dtos/product.dto';
+import { AddProductDto, DeleteProductDto, UpdateProductDto } from './dtos/product.dto';
 import { FileService } from 'src/file/file.service';
 import { Product } from './entities/product.entity';
 
@@ -19,7 +19,7 @@ export class ProductsService {
     return products;
   }
 
-  async findOne(id: string) {
+  async findOne(id: number) {
     const product = await this.db.product.findUnique({
       where: {
         id: Number(id),
@@ -31,11 +31,11 @@ export class ProductsService {
     return product;
   }
 
-  async create(data: AddProductDto): Promise<Product> {
-    const {categoryId, ...fields} = data
+  async create(body: AddProductDto): Promise<Product> {
+    const {categoryId, ...data} = body
     const product = await this.db.product.create({
       data: {
-        ... fields,
+        ...data,
         categories: {
          connect:{
           id:Number(categoryId)
@@ -46,6 +46,33 @@ export class ProductsService {
     });
     return product;
   }
+
+
+  async update(id:number, body: UpdateProductDto): Promise<Product> {
+    const {image, categoryId, ...data} = body
+
+    if(image) {
+      const product = await this.findOne(id)
+      this.fileService.deleteFile(product.image, 'images');
+    }
+    const updatedProduct = await this.db.product.update({
+      where: {
+        id
+      },
+      data: {
+         ...data,
+        image: image && image,
+        categories: {
+          set: {
+            id: Number(categoryId)
+          }
+        }
+      }
+    })
+    return updatedProduct
+  }
+
+
   async delete(id: number) {
     const product = await this.db.product.delete({
       where: {

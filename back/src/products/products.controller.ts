@@ -13,7 +13,7 @@ import {
 import { ProductsService } from './products.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Product } from './entities/product.entity';
-import { AddProductDto, DeleteProductDto} from './dtos/product.dto';
+import { AddProductDto, DeleteProductDto, UpdateProductDto} from './dtos/product.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { multerConfig } from 'configs/multer.config';
 
@@ -47,7 +47,7 @@ export class ProductsController {
   })
   getOne(@Param('id') id: string): Promise<Product> {
     console.log(id)
-    return this.productsService.findOne(id);
+    return this.productsService.findOne(Number(id));
   } 
 
 
@@ -71,7 +71,7 @@ export class ProductsController {
   }
 
 
-  @Put()
+  @Put(':id')
   @UseInterceptors(FileInterceptor('image', multerConfig))
   @ApiOperation({
     summary: 'изменить продукт',
@@ -83,11 +83,14 @@ export class ProductsController {
   })
   updateProduct(
     @UploadedFile() file: Express.Multer.File,
-    @Body() body: AddProductDto,
+    @Body() body: UpdateProductDto,
+    @Param('id') id: string
   ) {
-    const image = file.filename;
-    const { name, price, categoryId } = body;
-    return this.productsService.create({ name, price: Number(price), image, categoryId});
+ 
+      const image = file && file.filename;
+     console.log(image)
+    const { name, price , categoryId} = body;
+    return this.productsService.update(Number(id), { name, price: Number(price), image, categoryId});
   }
 
 

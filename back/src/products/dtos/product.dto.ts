@@ -15,3 +15,15 @@ export class DeleteProductDto {
   @ApiProperty()
   id: number
 }
+
+
+export class UpdateProductDto {
+  @ApiProperty()
+  name?: string;
+  @ApiProperty()
+  price?: number;
+  @ApiProperty()
+  categoryId?: number;
+  @ApiProperty()
+  image?: string;
+}

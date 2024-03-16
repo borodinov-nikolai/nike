@@ -1,6 +1,6 @@
 import styles from "./AddProduct.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useAddProductMutation, useGetOneProductQuery } from "../../../../entities/product/api";
+import { useAddProductMutation, useGetOneProductQuery, useUpdateProductMutation } from "../../../../entities/product/api";
 import {useNavigate, useParams} from "react-router-dom";
 import { useGetAllCategoriesQuery } from "../../../../entities/category";
 import { useEffect } from "react";
@@ -15,9 +15,11 @@ interface Inputs {
 
 const AddProduct = () => {
   const navigate = useNavigate();
-  const {edit: productId} = useParams();
+  const {edit: params} = useParams();
   const {data: categories} = useGetAllCategoriesQuery()
-  const {data: product} = useGetOneProductQuery(Number(productId), {skip: productId === 'add' && true})
+  const [addProduct] = useAddProductMutation();
+  const [updateProduct] = useUpdateProductMutation();
+  const {data: product} = useGetOneProductQuery(Number(params), {skip: params === 'add' && true})
   const { register, watch, handleSubmit, reset, setValue } = useForm({
     defaultValues: {
       name: '',
@@ -34,12 +36,10 @@ const AddProduct = () => {
       setValue('name', product.name)
       setValue('price', product.price)
       setValue('categoryId', product.categories[0].id)
-      
     }
 
   }, [product])
 
-  const [addProduct] = useAddProductMutation();
 
   const onSubmit: SubmitHandler<Inputs> = async ({ name, price, image, categoryId }) => {
     const formData = new FormData();
@@ -47,14 +47,24 @@ const AddProduct = () => {
     formData.append("name", name);
     formData.append("price", String(price));
     formData.append("categoryId", String(categoryId));
+    if(params === 'add') {
 
-    const res = await addProduct(formData);
-    if ("data" in res) {
-      reset();
-      navigate("/products", { replace: true });
-    }
-  };
+      const res = await addProduct(formData);
+      if ("data" in res) {
+        reset();
+        navigate("/products", { replace: true });
+      }
+    } else {
+      const res = await updateProduct({id: Number(params), data: formData})
+      if ("data" in res) {
+        reset();
+        navigate("/products", { replace: true });
+      }
+    }}
+
+
 console.log(product)
+
   return (
     <div className={styles.root}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)} action="">
