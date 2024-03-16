@@ -68,6 +68,6 @@ const baseQueryWithReauth: BaseQueryFn<
 
 export const emptySplitApi = createApi({
   baseQuery: baseQueryWithReauth,
-  tagTypes: ["User", "Product"],
+  tagTypes: ["User", "Product", "Category"],
   endpoints: () => ({}),
 });

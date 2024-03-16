@@ -6,6 +6,8 @@ export class AddProductDto {
   @ApiProperty()
   price: number;
   @ApiProperty()
+  categoryId: number;
+  @ApiProperty()
   image: string;
 }
 

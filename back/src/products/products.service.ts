@@ -20,8 +20,17 @@ export class ProductsService {
   }
 
   async create(data: AddProductDto): Promise<Product> {
+    const {categoryId, ...fields} = data
     const product = await this.db.product.create({
-      data,
+      data: {
+        ... fields,
+        categories: {
+         connect:{
+          id:Number(categoryId)
+        }
+         
+        }
+      }
     });
     return product;
   }

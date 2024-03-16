@@ -9,10 +9,7 @@ interface Product {
   updatedAt: string;
 }
 
-interface Inputs {
-  name: string;
-  price: number;
-}
+
 
 const extendedApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({

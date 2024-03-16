@@ -21,7 +21,8 @@ export class CategoriesService {
     }
 
     async delete(id: number): Promise<string> {
-        this.db.category.delete({
+        console.log(id)
+        await this.db.category.delete({
             where: {
                 id
             }

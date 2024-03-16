@@ -1,10 +1,12 @@
-import React from "react";
-import { Categories } from "../../widgets/categories";
+import { CategoriesList } from "../../features/category/categoriesList";
+
+
+
 
 const CategoriesPage = () => {
-  return <div>
-    <Categories/>
-  </div>;
+  return <>
+    <CategoriesList/>
+  </>
 };
 
 export default CategoriesPage;

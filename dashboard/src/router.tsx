@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/home";
 import AuthPage from "./pages/auth";
@@ -9,6 +8,7 @@ import CategoriesPage from "./pages/categories";
 import TypesPage from "./pages/types/typesPage";
 import UsersPage from "./pages/users";
 import ProductEditPage from "./pages/products/[edit]";
+import CategoryEditPage from "./pages/categories/[edit]";
 
 const Router = () => {
   return (
@@ -20,6 +20,7 @@ const Router = () => {
           <Route path="/products" element={SecureRoute(<ProductsPage />)} />
           <Route path="/products/:edit" element={SecureRoute(<ProductEditPage/>)} />
           <Route path="/categories" element={SecureRoute(<CategoriesPage />)} />
+          <Route path="/categories/:edit" element={SecureRoute(<CategoryEditPage />)} />
           <Route path="/types" element={SecureRoute(<TypesPage />)} />
           <Route path="/users" element={SecureRoute(<UsersPage />)} />
         </Route>

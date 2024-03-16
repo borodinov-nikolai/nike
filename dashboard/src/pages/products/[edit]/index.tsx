@@ -1,5 +1,5 @@
-import React from 'react'
-import { AddProduct } from '../../../features/addProduct'
+import { AddProduct } from "../../../features/product/addProduct"
+
 
 
 

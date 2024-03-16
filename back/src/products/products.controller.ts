@@ -49,8 +49,8 @@ export class ProductsController {
     @Body() body: AddProductDto,
   ) {
     const image = file.filename;
-    const { name, price } = body;
-    return this.productsService.create({ name, price: Number(price), image });
+    const { name, price, categoryId } = body;
+    return this.productsService.create({ name, price: Number(price), image, categoryId});
   }
 
   @Delete()

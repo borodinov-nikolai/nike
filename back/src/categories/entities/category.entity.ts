@@ -13,4 +13,8 @@ export class Category {
     value: string
     @ApiProperty()
     products?: Product[]
+    @ApiProperty()
+    createdAt?: Date;
+    @ApiProperty()
+    updatedAt?: Date;
 }

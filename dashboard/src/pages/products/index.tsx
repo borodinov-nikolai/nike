@@ -1,5 +1,6 @@
-import { ProductsList } from "../../features/productsList";
-import Button from "../../shared/ui/button";
+import { ProductsList } from "../../features/product/productsList";
+
+
 
 const ProductsPage = () => {
   return (
