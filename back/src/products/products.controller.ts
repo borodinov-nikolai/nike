@@ -32,7 +32,6 @@ export class ProductsController {
     type: Product,
   })
   getAll(@Query() query): Promise<Product[]> {
-    console.log(query)
     return this.productsService.findAll(query);
   } 
 
@@ -46,7 +45,6 @@ export class ProductsController {
     type: Product,
   })
   getOne(@Param('id') id: string): Promise<Product> {
-    console.log(id)
     return this.productsService.findOne(Number(id));
   } 
 
@@ -66,8 +64,8 @@ export class ProductsController {
     @Body() body: AddProductDto,
   ) {
     const image = file.filename;
-    const { name, price, categoryId } = body;
-    return this.productsService.create({ name, price: Number(price), image, categoryId});
+    const { name, price, categories } = body;
+    return this.productsService.create({ name, price: Number(price), image, categories});
   }
 
 
@@ -88,9 +86,15 @@ export class ProductsController {
   ) {
  
       const image = file && file.filename;
-     console.log(image)
-    const { name, price , categoryId} = body;
-    return this.productsService.update(Number(id), { name, price: Number(price), image, categoryId});
+    const { name, price } = body;
+    const categories : number[] = []
+    for(const key of Object.keys(body)) {
+      if(key.startsWith('category_'))
+         categories.push(Number(body[key]))
+    }
+    console.log(categories)
+
+    return this.productsService.update(Number(id), { name, price: Number(price), image, categories});
   }
 
 

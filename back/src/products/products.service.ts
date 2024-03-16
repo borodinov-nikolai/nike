@@ -32,14 +32,12 @@ export class ProductsService {
   }
 
   async create(body: AddProductDto): Promise<Product> {
-    const {categoryId, ...data} = body
+    const {categories, ...data} = body
     const product = await this.db.product.create({
       data: {
         ...data,
         categories: {
-         connect:{
-          id:Number(categoryId)
-        }
+         connect: categories.map((category) => {return {id: category}})
          
         }
       }
@@ -49,7 +47,7 @@ export class ProductsService {
 
 
   async update(id:number, body: UpdateProductDto): Promise<Product> {
-    const {image, categoryId, ...data} = body
+    const {image, categories, ...data} = body
 
     if(image) {
       const product = await this.findOne(id)
@@ -63,9 +61,8 @@ export class ProductsService {
          ...data,
         image: image && image,
         categories: {
-          set: {
-            id: Number(categoryId)
-          }
+          set: categories.map((category) => {return {id: category}})
+          
         }
       }
     })

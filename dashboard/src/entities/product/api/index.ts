@@ -25,11 +25,11 @@ const extendedApi = emptySplitApi.injectEndpoints({
       }),
       invalidatesTags: ["Products"],
     }),
-    updateProduct: build.mutation<Product, {id: number, data: FormData}>({
-      query: ({id, data}) => ({
+    updateProduct: build.mutation<Product, {id: number, formData: FormData}>({
+      query: ({id, formData}) => ({
         url: `/products/${id}`,
         method: "PUT",
-        body: data,
+        body: formData,
       }),
       invalidatesTags: ["Products"],
     }),

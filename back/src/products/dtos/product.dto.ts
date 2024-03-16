@@ -6,7 +6,7 @@ export class AddProductDto {
   @ApiProperty()
   price: number;
   @ApiProperty()
-  categoryId: number;
+  categories: number[];
   @ApiProperty()
   image: string;
 }
@@ -23,7 +23,7 @@ export class UpdateProductDto {
   @ApiProperty()
   price?: number;
   @ApiProperty()
-  categoryId?: number;
+  categories?: number[];
   @ApiProperty()
   image?: string;
 }

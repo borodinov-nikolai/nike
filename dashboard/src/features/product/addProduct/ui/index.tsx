@@ -4,21 +4,19 @@ import { useAddProductMutation, useGetOneProductQuery, useUpdateProductMutation 
 import {useNavigate, useParams} from "react-router-dom";
 import { useGetAllCategoriesQuery } from "../../../../entities/category";
 import { useEffect } from "react";
-import Button from "../../../../shared/ui/button";
-import Checkbox from "../../../../shared/ui/checkbox";
 
 
 interface Inputs {
   name: string;
   price: number;
-  categoriesList: number[];
+  categories: number[];
   image: Object[];
 }
 
 const AddProduct = () => {
   const navigate = useNavigate();
   const {edit: params} = useParams();
-  const {data: categories} = useGetAllCategoriesQuery()
+  const {data: categoriesList} = useGetAllCategoriesQuery()
   const [addProduct] = useAddProductMutation();
   const [updateProduct] = useUpdateProductMutation();
   const {data: product} = useGetOneProductQuery(Number(params), {skip: params === 'add' && true})
@@ -27,7 +25,7 @@ const AddProduct = () => {
       name: '',
       price: 0,
       image: [],
-      categoriesList: []
+      categories: []
     },
   });
 
@@ -37,18 +35,21 @@ const AddProduct = () => {
     if(product) {
       setValue('name', product.name)
       setValue('price', product.price)
-
+      const categories : number[] = product.categories.map(({id})=> id)
+      setValue('categories', categories as never[])
     }
 
   }, [product])
 
 
-  const onSubmit: SubmitHandler<Inputs> = async ({ name, price, image, categoriesList }) => {
+  const onSubmit: SubmitHandler<Inputs> = async ({ name, price, image, categories}) => {
     const formData = new FormData();
     formData.append("image", image[0] as Blob);
     formData.append("name", name);
     formData.append("price", String(price));
-    formData.append("categoryId", String(categoriesList));
+    categories.forEach((category, index)=> {
+      formData.append(`category_${index}`, String(category))
+    })
     if(params === 'add') {
 
       const res = await addProduct(formData);
@@ -57,7 +58,7 @@ const AddProduct = () => {
         navigate("/products", { replace: true });
       }
     } else {
-      const res = await updateProduct({id: Number(params), data: formData})
+      const res = await updateProduct({id: Number(params), formData})
       if ("data" in res) {
         reset();
         navigate("/products", { replace: true });
@@ -65,7 +66,7 @@ const AddProduct = () => {
     }}
 
 
-console.log(watch('categoriesList'))
+console.log(product)
 
   return (
     <div className={styles.root}>
@@ -85,16 +86,15 @@ console.log(watch('categoriesList'))
         <div className={styles.formItem}>
         <h2 className={styles.formItemTitle} >Категории</h2>
         <Controller
-        name='categoriesList'
+        name='categories'
         control={control}
         render={({field})=> {
          return  <>
-           {categories?.map(({id, name, value})=> {
+           {categoriesList?.map(({id, name, value})=> {
               return <div key={id} className={styles.category} ><label> 
                 <input
               onChange={(e)=> {
                 const newValue = Number(e.target.value)
-                console.log(newValue)
                 const array: number[] = [...field.value]
                 let newArray: number[]
                  if( array.includes(newValue)){
@@ -103,12 +103,13 @@ console.log(watch('categoriesList'))
                   newArray = [...array, newValue]
                  }
                 field.onChange(newArray)
+                 
               }}
-              value={id} 
-           
+              value={id}
+               checked={(field.value as number[]).includes(id)}
                type="checkbox" /> {name}</label></div>
             })}  
-            </> 
+            </>   
         }}
         />
             
