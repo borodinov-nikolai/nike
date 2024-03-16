@@ -1,8 +1,10 @@
 import styles from "./AddProduct.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useAddProductMutation } from "../../../../entities/product/api";
-import {useNavigate } from "react-router-dom";
+import { useAddProductMutation, useGetOneProductQuery } from "../../../../entities/product/api";
+import {useNavigate, useParams} from "react-router-dom";
 import { useGetAllCategoriesQuery } from "../../../../entities/category";
+import { useEffect } from "react";
+
 
 interface Inputs {
   name: string;
@@ -13,15 +15,30 @@ interface Inputs {
 
 const AddProduct = () => {
   const navigate = useNavigate();
+  const {edit: productId} = useParams();
   const {data: categories} = useGetAllCategoriesQuery()
-  const { register, watch, handleSubmit, reset } = useForm({
+  const {data: product} = useGetOneProductQuery(Number(productId), {skip: productId === 'add' && true})
+  const { register, watch, handleSubmit, reset, setValue } = useForm({
     defaultValues: {
-      name: "",
+      name: '',
       price: 0,
       image: [],
       categoryId: 0
     },
   });
+
+
+  useEffect(()=> {
+   
+    if(product) {
+      setValue('name', product.name)
+      setValue('price', product.price)
+      setValue('categoryId', product.categories[0].id)
+      
+    }
+
+  }, [product])
+
   const [addProduct] = useAddProductMutation();
 
   const onSubmit: SubmitHandler<Inputs> = async ({ name, price, image, categoryId }) => {
@@ -37,7 +54,7 @@ const AddProduct = () => {
       navigate("/products", { replace: true });
     }
   };
-
+console.log(product)
   return (
     <div className={styles.root}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)} action="">

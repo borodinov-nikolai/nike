@@ -1,17 +1,8 @@
 import { emptySplitApi } from "../../../shared/configs/rtk_base";
+import { Category, Inputs } from "../interfaces";
 
-interface Category {
-  id: number;
-  name: string;
-  value: string;
-  createdAt: string;
-  updatedAt: string;
-}
 
-interface Inputs {
-  name: string;
-  value: string;
-}
+
 
 const extendedApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({

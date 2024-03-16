@@ -19,6 +19,18 @@ export class ProductsService {
     return products;
   }
 
+  async findOne(id: string) {
+    const product = await this.db.product.findUnique({
+      where: {
+        id: Number(id),
+      },
+      include: {
+        categories: true
+      }
+    })
+    return product;
+  }
+
   async create(data: AddProductDto): Promise<Product> {
     const {categoryId, ...fields} = data
     const product = await this.db.product.create({

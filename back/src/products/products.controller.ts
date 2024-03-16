@@ -3,7 +3,9 @@ import {
   Controller,
   Delete,
   Get,
+  Param,
   Post,
+  Put,
   Query,
   UploadedFile,
   UseInterceptors,
@@ -34,6 +36,21 @@ export class ProductsController {
     return this.productsService.findAll(query);
   } 
 
+  @Get(':id')
+  @ApiOperation({
+    summary: 'получить один продукт',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'успешно',
+    type: Product,
+  })
+  getOne(@Param('id') id: string): Promise<Product> {
+    console.log(id)
+    return this.productsService.findOne(id);
+  } 
+
+
   @Post()
   @UseInterceptors(FileInterceptor('image', multerConfig))
   @ApiOperation({
@@ -52,6 +69,27 @@ export class ProductsController {
     const { name, price, categoryId } = body;
     return this.productsService.create({ name, price: Number(price), image, categoryId});
   }
+
+
+  @Put()
+  @UseInterceptors(FileInterceptor('image', multerConfig))
+  @ApiOperation({
+    summary: 'изменить продукт',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'успешно',
+    type: Product,
+  })
+  updateProduct(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() body: AddProductDto,
+  ) {
+    const image = file.filename;
+    const { name, price, categoryId } = body;
+    return this.productsService.create({ name, price: Number(price), image, categoryId});
+  }
+
 
   @Delete()
   @ApiOperation({
