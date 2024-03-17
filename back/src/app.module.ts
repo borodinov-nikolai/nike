@@ -1,19 +1,20 @@
 import { JwtModule } from '@nestjs/jwt';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { DbModule } from './db/db.module';
-import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
-import { DashboardModule } from './dashboard/dashboard.module';
+import { DbModule } from './modules/db/db.module';
+import { UsersModule } from './modules/users/users.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { AccountModule } from './account/account.module';
-import { ProductsModule } from './products/products.module';
+import { AccountModule } from './modules/account/account.module';
+import { ProductsModule } from './modules/products/products.module';
 import { MulterModule } from '@nestjs/platform-express';
-import { multerConfig } from 'configs/multer.config';
-import { FileModule } from './file/file.module';
-import { jwtConfig } from 'configs/jwt.config';
-import { staticConfig } from 'configs/static.config';
-import { CategoriesModule } from './categories/categories.module';
+import { multerConfig } from 'src/configs/multer.config';
+import { FileModule } from './modules/file/file.module';
+import { jwtConfig } from 'src/configs/jwt.config';
+import { staticConfig } from 'src/configs/static.config';
+import { CategoriesModule } from './modules/categories/categories.module';
+import { SizesModule } from './modules/sizes/sizes.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { CategoriesModule } from './categories/categories.module';
     ProductsModule,
     FileModule,
     CategoriesModule,
+    SizesModule,
   ],
   controllers: [],
   exports: [],

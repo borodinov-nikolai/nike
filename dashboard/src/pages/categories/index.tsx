@@ -1,12 +1,11 @@
 import { CategoriesList } from "../../features/category/categoriesList";
 
-
-
-
 const CategoriesPage = () => {
-  return <>
-    <CategoriesList/>
-  </>
+  return (
+    <>
+      <CategoriesList />
+    </>
+  );
 };
 
 export default CategoriesPage;

@@ -1,12 +1,7 @@
-import AddCategory from "../../../features/category/addCategory/ui"
-
-
-
+import AddCategory from "../../../features/category/addCategory/ui";
 
 const CategoryEditPage = () => {
-  return (
-    <AddCategory/>
-  )
-}
+  return <AddCategory />;
+};
 
-export default CategoryEditPage
+export default CategoryEditPage;

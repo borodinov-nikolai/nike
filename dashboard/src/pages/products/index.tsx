@@ -1,11 +1,9 @@
 import { ProductsList } from "../../features/product/productsList";
 
-
-
 const ProductsPage = () => {
   return (
     <>
-      <ProductsList/>
+      <ProductsList />
     </>
   );
 };

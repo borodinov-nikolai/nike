@@ -4,8 +4,8 @@ import qs from 'qs'
 
 
 
-export const getProducts = async (params: any) => {
-    // const query = qs.stringify(params)
+export const getProducts = async (params: Record<string, string>) => {
+ 
     try {
         const { data }: { data: Product[] } = await $serverAPI.get('/products', {
             params: params

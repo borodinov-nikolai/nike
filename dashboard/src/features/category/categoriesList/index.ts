@@ -1,4 +1,1 @@
-export {CategoriesList} from "./ui";
-
-
-
+export { CategoriesList } from "./ui";

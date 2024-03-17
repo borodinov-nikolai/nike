@@ -5,10 +5,10 @@ import { ProductCard } from '@/src/entities/productCard'
 import { Filters } from '@/src/features/filters'
 
 
-const Catalog = async ({searchParams}:{searchParams: any}) => {
+const Catalog = async ({params, searchParams}:{params: {category: string}, searchParams: Record<string, string>}) => {
 
-   const products = await getProducts(searchParams)
-  
+   const products = await getProducts({...params, ...searchParams})
+   console.log(searchParams)
   return (
     <div className={styles.root} 
     >

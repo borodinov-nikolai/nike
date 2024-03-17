@@ -85,7 +85,7 @@ const Filters = () => {
           })}
         </div>
       </div>
-      <div className={styles.filtersBottom} >
+      <div className={styles.filtersBottomDesktop} >
         <div className={[styles.filtersBottomInner, ' container'].join(' ')} >
           <div className={styles.leftBlock} >Показано {pageSize} из 137 товаров</div>
           <div className={styles.rightBlock}>

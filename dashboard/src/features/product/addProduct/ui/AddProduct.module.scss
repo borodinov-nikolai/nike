@@ -31,7 +31,6 @@
 }
 
 .formItem {
-
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -44,7 +43,6 @@
 }
 
 .addCategoryBtn {
-  
   button {
     width: 100%;
     height: 40px;
@@ -53,17 +51,17 @@
 }
 
 .category {
-  
-  >label {
+  > label {
     user-select: none;
     cursor: pointer;
-   display: flex;
-   gap: 10px;
-   align-items: center;
+    display: flex;
+    gap: 10px;
+    align-items: center;
   }
 }
 
-
 .formItemTitle {
-    font-size: 24px;
+  margin-top: 15px;
+  font-size: 24px;
+  margin-bottom: 20px;
 }

@@ -18,9 +18,15 @@ const Router = () => {
         <Route element={SecureRoute(<Layout />)}>
           <Route path="/" element={SecureRoute(<HomePage />)} />
           <Route path="/products" element={SecureRoute(<ProductsPage />)} />
-          <Route path="/products/:edit" element={SecureRoute(<ProductEditPage/>)} />
+          <Route
+            path="/products/:edit"
+            element={SecureRoute(<ProductEditPage />)}
+          />
           <Route path="/categories" element={SecureRoute(<CategoriesPage />)} />
-          <Route path="/categories/:edit" element={SecureRoute(<CategoryEditPage />)} />
+          <Route
+            path="/categories/:edit"
+            element={SecureRoute(<CategoryEditPage />)}
+          />
           <Route path="/types" element={SecureRoute(<TypesPage />)} />
           <Route path="/users" element={SecureRoute(<UsersPage />)} />
         </Route>

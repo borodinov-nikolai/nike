@@ -1,9 +1,6 @@
 import { emptySplitApi } from "../../../shared/configs/rtk_base";
 import { Category, Inputs } from "../interfaces";
 
-
-
-
 const extendedApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({
     getAllCategories: build.query<Category[], void>({
@@ -33,7 +30,7 @@ const extendedApi = emptySplitApi.injectEndpoints({
 });
 
 export const {
-useGetAllCategoriesQuery,
-useAddCategoryMutation,
-useDeleteCategoryMutation
+  useGetAllCategoriesQuery,
+  useAddCategoryMutation,
+  useDeleteCategoryMutation,
 } = extendedApi;

@@ -1,12 +1,12 @@
 import styles from "./AddProduct.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAddProductMutation } from "../../../../entities/product/api";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAddCategoryMutation } from "../../../../entities/category";
 
 interface Inputs {
   name: string;
-  value: string
+  value: string;
 }
 
 const AddCategory = () => {
@@ -19,7 +19,10 @@ const AddCategory = () => {
   });
   const [addCategory] = useAddCategoryMutation();
 
-  const onSubmit: SubmitHandler<Inputs> = async (data: {name: string, value: string}) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data: {
+    name: string;
+    value: string;
+  }) => {
     const res = await addCategory(data);
     if ("data" in res) {
       reset();

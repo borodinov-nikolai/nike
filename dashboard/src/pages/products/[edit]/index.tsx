@@ -1,12 +1,7 @@
-import { AddProduct } from "../../../features/product/addProduct"
-
-
-
+import { AddProduct } from "../../../features/product/addProduct";
 
 const ProductEditPage = () => {
-  return (
-    <AddProduct/>
-  )
-}
+  return <AddProduct />;
+};
 
-export default ProductEditPage
+export default ProductEditPage;

@@ -1,8 +1,10 @@
 import styles from "./ProductsList.module.scss";
 import Button from "../../../../shared/ui/button";
 import { Link } from "react-router-dom";
-import { useDeleteCategoryMutation, useGetAllCategoriesQuery } from "../../../../entities/category";
-
+import {
+  useDeleteCategoryMutation,
+  useGetAllCategoriesQuery,
+} from "../../../../entities/category";
 
 export const CategoriesList = () => {
   const { data: categories } = useGetAllCategoriesQuery();
@@ -39,9 +41,11 @@ export const CategoriesList = () => {
           })}
         </ul>
       </div>
-      <div className={styles.addBtn} ><Link to={'/categories/add'} ><Button>Добавить</Button></Link></div>
+      <div className={styles.addBtn}>
+        <Link to={"/categories/add"}>
+          <Button>Добавить</Button>
+        </Link>
+      </div>
     </div>
   );
 };
-
-

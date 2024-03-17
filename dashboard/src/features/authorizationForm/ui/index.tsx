@@ -5,7 +5,6 @@ import { useAuthorizationMutation } from "../api";
 import styles from "./AuthorizationForm.module.scss";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
-
 interface Inputs {
   email: string;
   password: string;

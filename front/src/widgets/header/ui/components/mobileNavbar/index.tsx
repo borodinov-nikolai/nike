@@ -14,40 +14,40 @@ const MobileNavabr = () => {
           <div className={styles.accordion} >
               <Accordion title={'Димесизон'}>
               <ul className={styles.accordionContent} >
-                <li><Link href={'#'}><p>Для бега</p></Link></li>
-                <li><Link href={'#'} ><p>Повседневная</p></Link></li>
-                <li><Link href={'#'} ><p>Треккинговая</p></Link></li>
-                <li><Link href={'#'} ><p>Кожаные</p></Link></li>
+                <li><Link href={'/catalog/all'}><p>Для бега</p></Link></li>
+                <li><Link href={'/catalog/all'} ><p>Повседневная</p></Link></li>
+                <li><Link href={'/catalog/all'} ><p>Треккинговая</p></Link></li>
+                <li><Link href={'/catalog/all'} ><p>Кожаные</p></Link></li>
               </ul>
               </Accordion>
               </div>
                       <div className={styles.accordion} >
               <Accordion title={'Лето'}>
               <ul className={styles.accordionContent} >
-                <li><Link href={'#'}><p>Для бега</p></Link></li>
-                <li><Link href={'#'} ><p>Повседневная</p></Link></li>
-                <li><Link href={'#'} ><p>Треккинговая</p></Link></li>
-                <li><Link href={'#'} ><p>Кожаные</p></Link></li>
+                <li><Link href={'/catalog/all'}><p>Для бега</p></Link></li>
+                <li><Link href={'/catalog/all'} ><p>Повседневная</p></Link></li>
+                <li><Link href={'/catalog/all'} ><p>Треккинговая</p></Link></li>
+                <li><Link href={'/catalog/all'} ><p>Кожаные</p></Link></li>
               </ul>
               </Accordion>
               </div>
                       <div className={styles.accordion} >
               <Accordion title={'Зима'}>
               <ul className={styles.accordionContent} >
-                <li><Link href={'#'}><p>Для бега</p></Link></li>
-                <li><Link href={'#'} ><p>Повседневная</p></Link></li>
-                <li><Link href={'#'} ><p>Треккинговая</p></Link></li>
-                <li><Link href={'#'} ><p>Кожаные</p></Link></li>
+                <li><Link href={'/catalog/all'}><p>Для бега</p></Link></li>
+                <li><Link href={'/catalog/all'} ><p>Повседневная</p></Link></li>
+                <li><Link href={'/catalog/all'} ><p>Треккинговая</p></Link></li>
+                <li><Link href={'/catalog/all'} ><p>Кожаные</p></Link></li>
               </ul>
               </Accordion>
               </div>
                       <div className={styles.accordion} >
               <Accordion title={'Модели'}>
               <ul className={styles.accordionContent} >
-                <li><Link href={'#'}><p>Для бега</p></Link></li>
-                <li><Link href={'#'} ><p>Повседневная</p></Link></li>
-                <li><Link href={'#'} ><p>Треккинговая</p></Link></li>
-                <li><Link href={'#'} ><p>Кожаные</p></Link></li>
+                <li><Link href={'/catalog/all'}><p>Для бега</p></Link></li>
+                <li><Link href={'/catalog/all'} ><p>Повседневная</p></Link></li>
+                <li><Link href={'/catalog/all'} ><p>Треккинговая</p></Link></li>
+                <li><Link href={'/catalog/all'} ><p>Кожаные</p></Link></li>
               </ul>
               </Accordion>
               </div>
@@ -56,20 +56,20 @@ const MobileNavabr = () => {
       </div>
       <div className={styles.categories} >
         <ul className={styles.categoriesList} >
-          <li><Link href={'#'} >МУЖСКИЕ</Link></li>
-          <li><Link href={'#'} >ЖЕНСКИЕ</Link></li>
-          <li><Link href={'#'} >ДЕТСКИЕ</Link></li>
-          <li><Link href={'#'} >РАСПРОДАЖА</Link></li>
+          <li><Link href={'/catalog/man'} >МУЖСКИЕ</Link></li>
+          <li><Link href={'/catalog/woman'} >ЖЕНСКИЕ</Link></li>
+          <li><Link href={'/catalog/children'} >ДЕТСКИЕ</Link></li>
+          <li><Link href={'/catalog/all'} >РАСПРОДАЖА</Link></li>
         </ul>
       </div>
       <div className={styles.navigation} >
         <ul className={styles.navigationList} >
-          <li><Link href={'#'} >О магазине</Link></li>
-          <li><Link href={'#'} >Наш блог</Link></li>
-          <li><Link href={'#'} >Доставка</Link></li>
-          <li><Link href={'#'} >Оплата</Link></li>
-          <li><Link href={'#'} >Контакты</Link></li>
-          <li><Link href={'#'} >Индивидуальный заказ</Link></li>
+          <li><Link href={'/catalog/all'} >О магазине</Link></li>
+          <li><Link href={'/catalog/all'} >Наш блог</Link></li>
+          <li><Link href={'/catalog/all'} >Доставка</Link></li>
+          <li><Link href={'/catalog/all'} >Оплата</Link></li>
+          <li><Link href={'/catalog/all'} >Контакты</Link></li>
+          <li><Link href={'/catalog/all'} >Индивидуальный заказ</Link></li>
         </ul>
       </div>
     </div>

@@ -1,12 +1,6 @@
 import { emptySplitApi } from "../../../shared/configs/rtk_base";
 import { Product } from "../interfaces";
 
-
-
-
-
-
-
 const extendedApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({
     getAllProducts: build.query<Product[], void>({
@@ -14,8 +8,8 @@ const extendedApi = emptySplitApi.injectEndpoints({
       providesTags: ["Products"],
     }),
     getOneProduct: build.query<Product, number>({
-      query: (id)=> `/products/${id}`,
-      providesTags: ["Products",'Product'],
+      query: (id) => `/products/${id}`,
+      providesTags: ["Products", "Product"],
     }),
     addProduct: build.mutation<Product, FormData>({
       query: (data) => ({
@@ -25,8 +19,8 @@ const extendedApi = emptySplitApi.injectEndpoints({
       }),
       invalidatesTags: ["Products"],
     }),
-    updateProduct: build.mutation<Product, {id: number, formData: FormData}>({
-      query: ({id, formData}) => ({
+    updateProduct: build.mutation<Product, { id: number; formData: FormData }>({
+      query: ({ id, formData }) => ({
         url: `/products/${id}`,
         method: "PUT",
         body: formData,
@@ -52,5 +46,5 @@ export const {
   useGetOneProductQuery,
   useAddProductMutation,
   useDeleteProductMutation,
-  useUpdateProductMutation
+  useUpdateProductMutation,
 } = extendedApi;
