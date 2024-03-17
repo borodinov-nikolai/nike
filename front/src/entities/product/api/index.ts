@@ -1,6 +1,5 @@
 import { $serverAPI } from "@/src/shared/configs/axiosServerConfig"
 import { Product } from "../interfaces"
-import qs from 'qs'
 
 
 

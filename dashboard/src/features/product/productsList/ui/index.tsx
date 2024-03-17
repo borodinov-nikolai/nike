@@ -4,10 +4,13 @@ import { useGetAllProductsQuery } from "../../../../entities/product";
 import { useDeleteProductMutation } from "../../../../entities/product/api";
 import Button from "../../../../shared/ui/button";
 import { Link, useNavigate } from "react-router-dom";
+import qs from 'qs';
+
+
 
 const ProductsList = () => {
   const navigate = useNavigate();
-  const { data: products } = useGetAllProductsQuery();
+  const { data: products } = useGetAllProductsQuery(qs.stringify({orderBy:[{id:'asc'}]}));
   const [deleteProduct] = useDeleteProductMutation();
   const handleDelete = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,

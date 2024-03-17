@@ -12,22 +12,35 @@ export class ProductsService {
   ) { }
 
   async findAll(query: any) {
-    const { orderBy, price, category} = query
-    console.log(query)
-    const products = await this.db.product.findMany({
-      orderBy,
+    const { orderBy, price, category, sizes} = query
+    console.log(sizes)
+    
+    const filters = {
+      orderBy: orderBy ?
+       orderBy : {
+          price: 'asc'
+       },
       where: {
         price: {
           lte: price?.max && +price.max,
           gte: price?.min && +price.min,
         },
-        categories: {
+        categories: category && category !=="all" ? {
           some: {
-            value: (category && category !=="all") ? category : {}
+            value: category
           }
-        }
+        }: undefined,
+         sizes: sizes? {
+          some: {
+            value: {
+              in: sizes ? sizes : []
+            }
+          }
+        } : undefined
       }
-    });
+    }
+    
+    const products = await this.db.product.findMany(filters);
     return products;
   }
 
@@ -37,7 +50,8 @@ export class ProductsService {
         id: +id,
       },
       include: {
-        categories: true
+        categories: true,
+        sizes: true
       }
     })
     return product;
@@ -46,9 +60,14 @@ export class ProductsService {
   async create(body: AddProductDto): Promise<Product> {
     const { price, name, image } = body
     const categories: number[] = []
+    const sizes: number[] = []
     for (const key of Object.keys(body)) {
       if (key.startsWith('category_'))
         categories.push(+body[key])
+    }
+    for (const key of Object.keys(body)) {
+      if (key.startsWith('size_'))
+      sizes.push(+body[key])
     }
     const product = await this.db.product.create({
       data: {
@@ -57,7 +76,9 @@ export class ProductsService {
         price: +price,
         categories: {
           connect: categories.map((category) => { return { id: category } })
-
+        },
+        sizes: {
+          connect: sizes.map((size)=> { return {id: size} } )
         }
       }
     });
@@ -68,9 +89,14 @@ export class ProductsService {
   async update(id: number, body: UpdateProductDto): Promise<Product> {
     const { image, price, name } = body
     const categories: number[] = []
+    const sizes: number[] = []
     for (const key of Object.keys(body)) {
       if (key.startsWith('category_'))
         categories.push(+body[key])
+    }
+    for (const key of Object.keys(body)) {
+      if (key.startsWith('size_'))
+      sizes.push(+body[key])
     }
     if (image) {
       const product = await this.findOne(id)
@@ -86,7 +112,9 @@ export class ProductsService {
         price: +price,
         categories: {
           set: categories.map((category) => { return { id: category } })
-
+        },
+        sizes: {
+          set: sizes.map((size) => { return { id: size } })
         }
       }
     })

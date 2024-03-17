@@ -9,11 +9,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useGetAllCategoriesQuery } from "../../../../entities/category";
 import { useEffect } from "react";
 import Checkbox from "../../../../shared/ui/checkbox";
+import { useGetAllSizesQuery } from "../../../../entities/size";
 
 interface Inputs {
   name: string;
   price: number;
   categories: number[];
+  sizes: number[];
   image: Object[];
 }
 
@@ -21,16 +23,18 @@ const AddProduct = () => {
   const navigate = useNavigate();
   const { edit: params } = useParams();
   const { data: categoriesList } = useGetAllCategoriesQuery();
+  const {data: sizesList} = useGetAllSizesQuery()
   const [addProduct] = useAddProductMutation();
   const [updateProduct] = useUpdateProductMutation();
   const { data: product } = useGetOneProductQuery(Number(params), {
     skip: params === "add" && true,
   });
-  const { register, watch, handleSubmit, reset, setValue, control } = useForm({
+  const { register, handleSubmit, reset, setValue, control } = useForm({
     defaultValues: {
       name: "",
       price: 0,
       image: [],
+      sizes: [],
       categories: [],
     },
   });
@@ -40,7 +44,9 @@ const AddProduct = () => {
       setValue("name", product.name);
       setValue("price", product.price);
       const categories: number[] = product.categories.map(({ id }) => id);
+      const sizes: number[] = product.sizes.map(({ id }) => id);
       setValue("categories", categories as never[]);
+      setValue("sizes", sizes as never[]);
     }
   }, [product]);
 
@@ -48,6 +54,7 @@ const AddProduct = () => {
     name,
     price,
     image,
+    sizes,
     categories,
   }) => {
     const formData = new FormData();
@@ -56,6 +63,9 @@ const AddProduct = () => {
     formData.append("price", String(price));
     categories.forEach((category, index) => {
       formData.append(`category_${index}`, String(category));
+    });
+    sizes.forEach((size, index) => {
+      formData.append(`size_${index}`, String(size));
     });
     if (params === "add") {
       const res = await addProduct(formData);
@@ -119,6 +129,45 @@ const AddProduct = () => {
                             checked={(field.value as number[]).includes(id)}
                           />{" "}
                           {name}
+                        </label>
+                      </div>
+                    );
+                  })}
+                </>
+              );
+            }}
+          />
+        </div>
+        <div className={styles.formItem}>
+          <h2 className={styles.formItemTitle}>Размеры:</h2>
+          <Controller
+            name="sizes"
+            control={control}
+            render={({ field }) => {
+              return (
+                <>
+                  {sizesList?.map(({ id, value }) => {
+                    return (
+                      <div key={id} className={styles.category}>
+                        <label>
+                          <Checkbox
+                            onChange={(e) => {
+                              const newValue = Number(e.target.value);
+                              const array: number[] = [...field.value];
+                              let newArray: number[];
+                              if (array.includes(newValue)) {
+                                newArray = array.filter(
+                                  (item) => item !== newValue,
+                                );
+                              } else {
+                                newArray = [...array, newValue];
+                              }
+                              field.onChange(newArray);
+                            }}
+                            value={id}
+                            checked={(field.value as number[]).includes(id)}
+                          />{" "}
+                          {value}
                         </label>
                       </div>
                     );

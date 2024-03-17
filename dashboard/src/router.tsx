@@ -5,10 +5,11 @@ import { SecureRoute } from "./features/secureRoute";
 import Layout from "./layout";
 import ProductsPage from "./pages/products";
 import CategoriesPage from "./pages/categories";
-import TypesPage from "./pages/types/typesPage";
 import UsersPage from "./pages/users";
 import ProductEditPage from "./pages/products/[edit]";
 import CategoryEditPage from "./pages/categories/[edit]";
+import SizesPage from "./pages/sizes";
+import SizeEditPage from "./pages/sizes/[edit]";
 
 const Router = () => {
   return (
@@ -27,7 +28,11 @@ const Router = () => {
             path="/categories/:edit"
             element={SecureRoute(<CategoryEditPage />)}
           />
-          <Route path="/types" element={SecureRoute(<TypesPage />)} />
+          <Route path="/sizes" element={SecureRoute(<SizesPage />)} />
+          <Route
+            path="/sizes/:edit"
+            element={SecureRoute(<SizeEditPage />)}
+          />
           <Route path="/users" element={SecureRoute(<UsersPage />)} />
         </Route>
       </Routes>

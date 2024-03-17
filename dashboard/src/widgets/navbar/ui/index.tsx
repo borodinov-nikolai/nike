@@ -3,7 +3,7 @@ import { NavLink, useLocation } from "react-router-dom";
 
 const items = [
   { id: 1, url: "/products", name: "Products" },
-  { id: 2, url: "/types", name: "Types" },
+  { id: 2, url: "/sizes", name: "Sizes" },
   { id: 3, url: "/categories", name: "Categories" },
   { id: 4, url: "/users", name: "Users" },
 ];
