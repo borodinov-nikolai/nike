@@ -14,7 +14,7 @@ const Range:FC<Props> = ({onChange}) => {
     const progress = useRef<HTMLInputElement>(null)
     const [values, setValues] = useState<{min: number, max:number}>({min: 2500, max:7500})
 
-// console.log(values)
+
     const handleRangeChange = (e: string, input: string) => {
         const value = Number(e)
           if(input === 'min' && value < values.max) {

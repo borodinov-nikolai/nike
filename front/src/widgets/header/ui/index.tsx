@@ -12,6 +12,7 @@ import { useGetUserQuery } from '@/src/entities/user'
 import MobileNavabr from './components/mobileNavbar'
 import Drawer from '@/src/shared/ui/drawer'
 import DropdownMenu from './components/dropdownMenu'
+import { usePathname } from 'next/navigation'
 
 
 
@@ -22,7 +23,7 @@ import DropdownMenu from './components/dropdownMenu'
 
 const Header = () => {
  
-
+const pathname = usePathname()
 const {data: userData, isSuccess} = useGetUserQuery()
 
 
@@ -68,7 +69,7 @@ const {data: userData, isSuccess} = useGetUserQuery()
         
           <ul className={styles.categories} >
             <li className={styles.catalog} >
-            <Link className={styles.catalogLink}  href={'/catalog/all'} >
+            <Link className={styles.catalogLink}  href={pathname === '/catalog/all'? "#" : '/catalog/all'} >
               <svg width="37" height="11" viewBox="0 0 37 11" fill="none" xmlns="http://www.w3.org/2000/svg">
               <line x1="36.0878" y1="1.96484" x2="11.0878" y2="1.96484" stroke="black" strokeWidth="2"/>
               <line x1="36.0878" y1="9.96484" x2="0.0877685" y2="9.96484" stroke="black" strokeWidth="2"/>
@@ -78,22 +79,22 @@ const {data: userData, isSuccess} = useGetUserQuery()
               <div className={styles.dropdownMenu} ><DropdownMenu/></div>
               </li>
               <li>
-            <Link className={styles.categoriesLink} href={'/catalog/man'}>
+            <Link className={styles.categoriesLink} href={pathname === '/catalog/man'? "#" : '/catalog/man'}>
                 Мужские
             </Link>
                 </li>
             <li>
-            <Link className={styles.categoriesLink} href={'/catalog/woman'}>
+            <Link passHref={true} className={styles.categoriesLink} href={pathname === '/catalog/woman'? "#" : '/catalog/woman'}>
               Женские
             </Link>
               </li>
             <li>
-            <Link className={styles.categoriesLink} href={'/catalog/children'}>
+            <Link className={styles.categoriesLink} href={pathname === '/catalog/children'? "#" : '/catalog/children'}>
                 Детские
             </Link>
             </li>
             <li>
-            <Link className={styles.categoriesLink} href={'/catalog/sale'}>
+            <Link className={styles.categoriesLink} href={'#'}>
                 Распродажа
             </Link>
             </li>

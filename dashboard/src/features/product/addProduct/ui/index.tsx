@@ -82,7 +82,7 @@ const AddProduct = () => {
     }
   };
 
-  console.log(product);
+
 
   return (
     <div className={styles.root}>

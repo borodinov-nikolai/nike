@@ -25,7 +25,7 @@ const materialsList = [
 const Material = () => {
   const {materials} = useAppSelector((state)=> state.filters)
   const dispatch = useAppDispatch()
-  console.log(materials)
+
 
 
   return (

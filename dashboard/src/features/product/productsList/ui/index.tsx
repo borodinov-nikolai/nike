@@ -19,7 +19,7 @@ const ProductsList = () => {
     e.stopPropagation();
     deleteProduct(id);
   };
-  console.log(products);
+
   return (
     <div className={styles.root}>
       <div>

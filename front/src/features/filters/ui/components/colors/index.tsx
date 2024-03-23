@@ -27,7 +27,7 @@ const colorsList = [
 const Colors = () => {
   const {colors} = useAppSelector((state)=> state.filters)
   const dispatch = useAppDispatch()
-  console.log(colors)
+
   return (
    
       <Dropdown name='Цвет'>

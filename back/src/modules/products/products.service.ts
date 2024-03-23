@@ -13,7 +13,7 @@ export class ProductsService {
 
   async findAll(query: any) {
     const { orderBy, price, category, sizes} = query
-    console.log(sizes)
+  
     
     const filters = {
       orderBy: orderBy ?
