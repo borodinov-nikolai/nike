@@ -13,7 +13,7 @@ import Sort from './components/sort';
 import { removePrice, resetFilters, setColors, setMaterials, setSizes } from '../store/filtersSlice';
 import qs from 'qs'
 import { useRouter } from 'next/navigation';
-
+import { useDebounce } from 'use-debounce';
 
 
 
@@ -22,13 +22,13 @@ const Filters = () => {
   const [showPrice, setShowPrice] = useState<boolean>(false)
    const {sizes, pageSize, sort, materials, colors, price } = useAppSelector((state)=> state.filters)
   const dispatch = useAppDispatch()
-
+ const [debouncedPrice] = useDebounce(price, 500)
 
   useEffect(()=> {
-    if(price.min !== 2500 || price.max !== 7500) {
+    if((debouncedPrice.min !== 2500 || debouncedPrice.max !== 7500 )&& !showPrice) {
       setShowPrice(true) 
     }
-  },[price])
+  },[debouncedPrice, showPrice])
 
   useEffect(()=> {
    const queryString = qs.stringify({
@@ -41,13 +41,13 @@ const Filters = () => {
     ],
     materials,
     pageSize,
-    price
+    price: debouncedPrice
    })
   
     router.replace(`?${queryString}`)
    
    
-  },[sizes, pageSize, sort, materials, colors, price ])
+  },[sizes, pageSize, sort, materials, colors, debouncedPrice ])
 
   return (
     <div className={styles.root} >
@@ -76,7 +76,7 @@ const Filters = () => {
           {sizes?.map((size)=> {
             return <div className={styles.changedFilter} onClick={()=> dispatch(setSizes(size))}  key={size} >{size} x</div> 
           })}
-          {(price.min !== 0 || price.max !== 0) && showPrice && <div onClick={()=>{ dispatch(removePrice()); setShowPrice(false)}} className={styles.changedFilter} >цена от {price.min} до {price.max} x</div> }
+          {(price.min !== 0 || price.max !== 0) && showPrice && <div onClick={()=>{ dispatch(removePrice()); setShowPrice(false)}} className={styles.changedFilter} >цена от {debouncedPrice.min} до {debouncedPrice.max} x</div> }
           {colors?.map((color)=> {
             return <div className={styles.changedFilter} onClick={()=> dispatch(setColors(color))}  key={color} >{color} x</div> 
           })}

@@ -17,11 +17,7 @@ const Price = () => {
   return (
     <div className={styles.root} >
         <h3 className={styles.name} >Цена:</h3>
-        <div className={styles.range} ><Range onChange={(value)=> dispatch(setPrice(value))}/></div>
-        <div className={styles.inputs} >
-            <div className={styles.inputHolder} ><input readOnly value={price.min} type="number" /> ₽</div>
-            <div className={styles.inputHolder} ><input readOnly value={price.max} type="number" /> ₽</div>
-        </div>
+       <Range onChange={(value)=> dispatch(setPrice(value))}/>
     </div>
   )
 }
