@@ -4,8 +4,10 @@ import { NavLink, useLocation } from "react-router-dom";
 const items = [
   { id: 1, url: "/products", name: "Products" },
   { id: 2, url: "/sizes", name: "Sizes" },
-  { id: 3, url: "/categories", name: "Categories" },
-  { id: 4, url: "/users", name: "Users" },
+  { id: 3, url: "/colors", name: "Colors" },
+  { id: 4, url: "/materials", name: "Materials" },
+  { id: 5, url: "/categories", name: "Categories" },
+  { id: 6, url: "/users", name: "Users" },
 ];
 
 const Navbar = () => {

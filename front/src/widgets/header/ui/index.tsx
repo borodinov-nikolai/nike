@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { ReactNode, useEffect, useRef, useState } from 'react'
 import styles from './Header.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -24,7 +24,20 @@ import { usePathname } from 'next/navigation'
 const Header = () => {
  
 const pathname = usePathname()
+const [showDropdown, setShowDropdown] = useState<boolean>(false)
 const {data: userData, isSuccess} = useGetUserQuery()
+const dropdownMenu = useRef<HTMLDivElement>(null)
+
+
+useEffect(()=> {
+
+  if(showDropdown && dropdownMenu.current) {
+    dropdownMenu.current.style.height = '436px'
+  }
+  if(!showDropdown && dropdownMenu.current) {
+    dropdownMenu.current.style.height = '0px'
+  }
+}, [showDropdown])
 
 
 
@@ -68,15 +81,15 @@ const {data: userData, isSuccess} = useGetUserQuery()
             </Link>
         
           <ul className={styles.categories} >
-            <li className={styles.catalog} >
-            <Link className={styles.catalogLink}  href={pathname === '/catalog/all'? "#" : '/catalog/all'} >
-              <svg width="37" height="11" viewBox="0 0 37 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="36.0878" y1="1.96484" x2="11.0878" y2="1.96484" stroke="black" strokeWidth="2"/>
-              <line x1="36.0878" y1="9.96484" x2="0.0877685" y2="9.96484" stroke="black" strokeWidth="2"/>
-              </svg>
-                <p>Каталог</p>
-            </Link>
-              <div className={styles.dropdownMenu} ><DropdownMenu/></div>
+            <li onMouseEnter={()=>setShowDropdown(true)} onMouseLeave={()=>setShowDropdown(false)} className={styles.catalog} >
+              <div className={styles.catalogMenu} >
+                <svg width="37" height="11" viewBox="0 0 37 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="36.0878" y1="1.96484" x2="11.0878" y2="1.96484" stroke="black" strokeWidth="2"/>
+                <line x1="36.0878" y1="9.96484" x2="0.0877685" y2="9.96484" stroke="black" strokeWidth="2"/>
+                </svg>
+                  <p>Каталог</p>
+              </div>         
+              <div  ref={dropdownMenu} className={styles.dropdownMenu} ><DropdownMenu setShow={setShowDropdown}/></div>
               </li>
               <li>
             <Link className={styles.categoriesLink} href={pathname === '/catalog/man'? "#" : '/catalog/man'}>

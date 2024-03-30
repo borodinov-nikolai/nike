@@ -10,6 +10,10 @@ import ProductEditPage from "./pages/products/[edit]";
 import CategoryEditPage from "./pages/categories/[edit]";
 import SizesPage from "./pages/sizes";
 import SizeEditPage from "./pages/sizes/[edit]";
+import ColorsPage from "./pages/colors";
+import MaterialsPage from "./pages/materials";
+import MaterialEditPage from "./pages/materials/[edit]";
+import ColorEditPage from "./pages/colors/[edit]";
 
 const Router = () => {
   return (
@@ -32,6 +36,16 @@ const Router = () => {
           <Route
             path="/sizes/:edit"
             element={SecureRoute(<SizeEditPage />)}
+          />
+          <Route path="/colors" element={SecureRoute(<ColorsPage/>)} />
+          <Route
+            path="/colors/:edit"
+            element={SecureRoute(<ColorEditPage />)}
+          />
+          <Route path="/materials" element={SecureRoute(<MaterialsPage/>)} />
+          <Route
+            path="/materials/:edit"
+            element={SecureRoute(<MaterialEditPage />)}
           />
           <Route path="/users" element={SecureRoute(<UsersPage />)} />
         </Route>
