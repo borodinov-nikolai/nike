@@ -5,76 +5,28 @@ import styles from './Range.module.scss'
 
 
 interface Props {
-    onChange?: (value: { min: number, max: number }) => void
-    handleValues?: { min: number, max: number }
+    onChange?: ([]) => void
+    value?: number[]
 }
 
 
-const Range: FC<Props> = ({ onChange}) => {
+const Range: FC<Props> = ({ onChange, value }) => {
     const progress = useRef<HTMLInputElement>(null)
-    const [rangeValueMin, setRangeValueMin] = useState<number>(2500)
-    const [rangeValueMax, setRangeValueMax] = useState<number>(7500)
-    const [inputValueMin, setInputValueMin] = useState<number>(2500)
-    const [inputValueMax, setInputValueMax] = useState<number>(7500)
-    const inputMinRef = useRef<HTMLInputElement>(null)
-    const inputMaxRef = useRef<HTMLInputElement>(null)
+    const [rangeValue, setRangeValue] = useState<number[]>([25, 75])
 
-    
+
 
     const handleRangeChange = (e: string, input: string) => {
-        const value = Number(e)
-
-
-        if (input === 'min' && value < rangeValueMax) {
-         
-         setRangeValueMin(value);
-         setInputValueMin(value);
+        const inputValue = Number(e)
+        if (input === 'min' && inputValue < rangeValue[1]) {
+            const newValue = [inputValue, rangeValue[1]]
+            setRangeValue(newValue)
+            onChange && onChange(newValue)
         }
-        else if (input === 'max' && value > rangeValueMin) {
-           setRangeValueMax(value)
-           setInputValueMax(value)
-        }
-      
-
-    };
-
-
-useEffect(()=> {
-    if (onChange) {
-        onChange({ min: rangeValueMin, max: rangeValueMax })
-    }
-}, [rangeValueMin, rangeValueMax])
-
-
-
-
-        const handleMinInput = () => {
-
-            if (inputMinRef.current && !isNaN(+inputMinRef.current.value)) {
-                const value = +inputMinRef.current.value
-                const newValue = Math.max(Math.min(value, inputValueMax), 0)
-                setInputValueMin(newValue)
-                setRangeValueMin(newValue)
-            }
-        }
-
-
-
-    const handleMaxInput = () => {
-        if (inputMaxRef.current && !isNaN(+inputMaxRef.current.value)) {
-            const value = +inputMaxRef.current.value
-            const newValue = Math.min(Math.max(value, inputValueMin), 10000)
-            setInputValueMax(newValue)
-            setRangeValueMax(newValue)
-        }
-    }
-
-
-    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        const pattern = /[0-9]/;
-    
-        if (!pattern.test(event.key)) {
-            event.preventDefault();
+        else if (input === 'max' && inputValue > rangeValue[0]) {
+            const newValue = [rangeValue[0], inputValue]
+            setRangeValue(newValue)
+            onChange && onChange(newValue)
         }
     };
 
@@ -82,13 +34,18 @@ useEffect(()=> {
     useEffect(() => {
         if (progress.current) {
             const style = progress.current.style
-            style.left = rangeValueMin/100 + "%";
-            style.right = (100 - (rangeValueMax/100) ) + "%";
+            style.left = rangeValue[0] + "%";
+            style.right = (100 - (rangeValue[1])) + "%";
         }
-    }, [rangeValueMin, rangeValueMax]);
+    }, [rangeValue]);
 
- 
 
+
+    useEffect(() => {
+        if (value) {
+            setRangeValue(value)
+        }
+    }, [value])
 
     return (
 
@@ -102,25 +59,20 @@ useEffect(()=> {
                     <input
                         type="range"
                         min="0"
-                        max="10000"
+                        max="100"
                         onChange={(e) => handleRangeChange(e.target.value, 'min')}
-                        value={rangeValueMin}
+                        value={rangeValue[0]}
                         className={styles.rangeMin}
                     />
                     <input
                         type="range"
                         min="0"
-                        max="10000"
+                        max="100"
                         onChange={(e) => handleRangeChange(e.target.value, 'max')}
-                        value={rangeValueMax}
+                        value={rangeValue[1]}
                         className={styles.rangeMax}
                     />
                 </div>
-            </div>
-            <div className={styles.numberInputs} >
-                <div className={styles.input} ><input ref={inputMinRef} onBlur={handleMinInput} onChange={(e) => setInputValueMin(+e.target.value)} onKeyPress={handleKeyPress} type="text" value={inputValueMin} /> ₽</div>
-                <div className={styles.input} ><input ref={inputMaxRef} onBlur={handleMaxInput} onChange={(e) => setInputValueMax(+e.target.value)}  onKeyPress={handleKeyPress} type="text" value={inputValueMax} /> ₽</div>
-
             </div>
         </div>
     )

@@ -1,4 +1,3 @@
-import { RootState } from "@/src/shared/store/store"
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
 
@@ -10,7 +9,7 @@ interface FiltersState {
     pageSize: number
     sizes: number[]
     sort: string
-    price: {min: number, max: number}
+    price: number[]
     colors: string[]
     materials: string[]
 }
@@ -20,7 +19,7 @@ const initialState: FiltersState = {
     sizes: [],
     pageSize: 9,
     sort: 'asc',
-    price: {min: 2500, max: 7500},
+    price: [2500, 7500],
     colors: [],
     materials: []
 }
@@ -47,15 +46,15 @@ export const filterSlice = createSlice({
         setSort: (state, action: PayloadAction<string>)=> {
             state.sort = action.payload
         },
-        setPrice: (state, action: PayloadAction<{min: number, max: number}>)=> {
+        setPrice: (state, action: PayloadAction<number[]>)=> {
             state.price = action.payload
         },
         removePrice: (state)=> {
-            state.price = {min: 2500, max: 7500}
+            state.price = [2500, 7500]
         },
         resetFilters: (state) => {
             state.pageSize = 9
-            state.price = {min: 2500, max: 7500}
+            state.price = [2500, 7500]
             state.sort = 'asc'
             state.sizes = []
             state.colors = []

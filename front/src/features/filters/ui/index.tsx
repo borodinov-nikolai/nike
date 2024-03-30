@@ -25,10 +25,10 @@ const Filters = () => {
  const [debouncedPrice] = useDebounce(price, 500)
 
   useEffect(()=> {
-    if((debouncedPrice.min !== 2500 || debouncedPrice.max !== 7500 )&& !showPrice) {
+    if((debouncedPrice[0] !== 2500 || debouncedPrice[1] !== 7500) && !showPrice) {
       setShowPrice(true) 
-    }
-  },[debouncedPrice, showPrice])
+    } 
+  }, [debouncedPrice[0], debouncedPrice[1]])
 
   useEffect(()=> {
    const queryString = qs.stringify({
@@ -41,7 +41,7 @@ const Filters = () => {
     ],
     materials,
     pageSize,
-    price: debouncedPrice
+    price: {min: debouncedPrice[0], max: [debouncedPrice[1]]}
    })
   
     router.replace(`?${queryString}`)
@@ -76,7 +76,7 @@ const Filters = () => {
           {sizes?.map((size)=> {
             return <div className={styles.changedFilter} onClick={()=> dispatch(setSizes(size))}  key={size} >{size} x</div> 
           })}
-          {(price.min !== 0 || price.max !== 0) && showPrice && <div onClick={()=>{ dispatch(removePrice()); setShowPrice(false)}} className={styles.changedFilter} >цена от {debouncedPrice.min} до {debouncedPrice.max} x</div> }
+          {(price[0] !== 0 || price[1] !== 0) && showPrice && <div onClick={()=>{ dispatch(removePrice()); setShowPrice(false)}} className={styles.changedFilter} >цена от {debouncedPrice[0]} до {debouncedPrice[1]} x</div> }
           {colors?.map((color)=> {
             return <div className={styles.changedFilter} onClick={()=> dispatch(setColors(color))}  key={color} >{color} x</div> 
           })}
