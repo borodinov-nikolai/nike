@@ -15,6 +15,7 @@ import { jwtConfig } from 'src/configs/jwt.config';
 import { staticConfig } from 'src/configs/static.config';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { SizesModule } from './modules/sizes/sizes.module';
+import { ColorsModule } from './modules/colors/colors.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { SizesModule } from './modules/sizes/sizes.module';
     FileModule,
     CategoriesModule,
     SizesModule,
+    ColorsModule
   ],
   controllers: [],
   exports: [],

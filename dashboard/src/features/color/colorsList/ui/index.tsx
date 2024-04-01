@@ -1,13 +1,14 @@
 import styles from './ColorsList.module.scss';
 import Button from "../../../../shared/ui/button";
 import { Link } from "react-router-dom";
-import { useDeleteSizeMutation, useGetAllSizesQuery } from "../../../../entities/size";
+import { useGetAllColorsQuery } from '../../../../entities/color';
+import { useDeleteColorMutation } from '../../../../entities/color/api';
 
 export const ColorsList = () => {
-  const { data: sizes } = useGetAllSizesQuery();
-  const [deleteSize] = useDeleteSizeMutation();
+  const { data: colors } = useGetAllColorsQuery();
+  const [deleteColor] = useDeleteColorMutation();
   const handleDelete = (id: number) => {
-    deleteSize(id);
+    deleteColor(id);
   };
 
   return (
@@ -18,12 +19,12 @@ export const ColorsList = () => {
           <p>Дата создания</p>
         </div>
         <ul className={styles.list}>
-          {sizes?.map(({ id, value, createdAt }) => {
+          {colors?.map(({ id, name, value}) => {
             return (
               <li key={id} className={styles.item}>
                 <p>{id}</p>
-                <p>{value}</p>
-                <p>{createdAt}</p>
+                <p>{name}</p>
+                <p className={styles.color} style={{background: value}} ></p>
                 <p>
                   <button
                     className={styles.deleteBtn}
@@ -38,7 +39,7 @@ export const ColorsList = () => {
         </ul>
       </div>
       <div className={styles.addBtn}>
-        <Link to={"/sizes/add"}>
+        <Link to={"/colors/add"}>
           <Button>Добавить</Button>
         </Link>
       </div>

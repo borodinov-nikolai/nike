@@ -35,3 +35,16 @@
   flex-direction: column;
   gap: 10px;
 }
+
+
+.colorInput {
+  display: flex;
+  gap: 20px;
+
+}
+
+.color {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
