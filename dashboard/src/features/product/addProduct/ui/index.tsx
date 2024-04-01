@@ -10,12 +10,14 @@ import { useGetAllCategoriesQuery } from "../../../../entities/category";
 import { useEffect } from "react";
 import Checkbox from "../../../../shared/ui/checkbox";
 import { useGetAllSizesQuery } from "../../../../entities/size";
+import { Color, useGetAllColorsQuery } from "../../../../entities/color";
 
 interface Inputs {
   name: string;
   price: number;
   categories: number[];
   sizes: number[];
+  colors: Color[];
   image: Object[];
 }
 
@@ -24,6 +26,7 @@ const AddProduct = () => {
   const { edit: params } = useParams();
   const { data: categoriesList } = useGetAllCategoriesQuery();
   const {data: sizesList} = useGetAllSizesQuery()
+  const {data: colorsList} = useGetAllColorsQuery()
   const [addProduct] = useAddProductMutation();
   const [updateProduct] = useUpdateProductMutation();
   const { data: product } = useGetOneProductQuery(Number(params), {
@@ -35,6 +38,7 @@ const AddProduct = () => {
       price: 0,
       image: [],
       sizes: [],
+      colors: [],
       categories: [],
     },
   });
@@ -43,10 +47,12 @@ const AddProduct = () => {
     if (product) {
       setValue("name", product.name);
       setValue("price", product.price);
-      const categories: number[] = product.categories.map(({ id }) => id);
-      const sizes: number[] = product.sizes.map(({ id }) => id);
+      const categories: number[] = product.categories?.map(({id})=> id);
+      const sizes: number[] = product.sizes?.map(({id})=> id);
+      const colors: number[] = product.colors?.map(({id})=> id)
       setValue("categories", categories as never[]);
       setValue("sizes", sizes as never[]);
+      setValue('colors', colors as never[])
     }
   }, [product]);
 
@@ -55,18 +61,22 @@ const AddProduct = () => {
     price,
     image,
     sizes,
+    colors,
     categories,
   }) => {
     const formData = new FormData();
     formData.append("image", image[0] as Blob);
     formData.append("name", name);
     formData.append("price", String(price));
-    categories.forEach((category, index) => {
+    categories?.forEach((category, index) => {
       formData.append(`category_${index}`, String(category));
     });
-    sizes.forEach((size, index) => {
+    sizes?.forEach((size, index) => {
       formData.append(`size_${index}`, String(size));
     });
+    colors?.forEach((color, index)=> {
+      formData.append(`color_${index}`, String(color));
+    })
     if (params === "add") {
       const res = await addProduct(formData);
       if ("data" in res) {
@@ -168,6 +178,46 @@ const AddProduct = () => {
                             checked={(field.value as number[]).includes(id)}
                           />{" "}
                           {value}
+                        </label>
+                      </div>
+                    );
+                  })}
+                </>
+              );
+            }}
+          />
+           
+        </div>
+        <div className={styles.formItem} >
+        <h2 className={styles.formItemTitle}>Цвета:</h2>
+        <Controller
+            name="colors"
+            control={control}
+            render={({ field }) => {
+              return (
+                <>
+                  {colorsList?.map(({ id, name, value }) => {
+                    return (
+                      <div key={id} className={styles.category}>
+                        <label>
+                          <Checkbox
+                            onChange={(e) => {
+                              const newValue = Number(e.target.value);
+                              const array: number[] = [...field.value];
+                              let newArray: number[];
+                              if (array.includes(newValue)) {
+                                newArray = array.filter(
+                                  (item) => item !== newValue,
+                                );
+                              } else {
+                                newArray = [...array, newValue];
+                              }
+                              field.onChange(newArray);
+                            }}
+                            value={id}
+                            checked={(field.value as number[]).includes(id)}
+                          />{" "}
+                          <p className={styles.color} style={{background: value}} ></p>
                         </label>
                       </div>
                     );

@@ -61,6 +61,7 @@ export class ProductsService {
     const { price, name, image } = body
     const categories: number[] = []
     const sizes: number[] = []
+    console.log(body)
     for (const key of Object.keys(body)) {
       if (key.startsWith('category_'))
         categories.push(+body[key])
@@ -90,6 +91,7 @@ export class ProductsService {
     const { image, price, name } = body
     const categories: number[] = []
     const sizes: number[] = []
+    const colors: number[] = []
     for (const key of Object.keys(body)) {
       if (key.startsWith('category_'))
         categories.push(+body[key])
@@ -98,10 +100,15 @@ export class ProductsService {
       if (key.startsWith('size_'))
       sizes.push(+body[key])
     }
+    for(const key of Object.keys(body)) {
+      if(key.startsWith('color_'))
+      colors.push(+body[key])
+    }
     if (image) {
       const product = await this.findOne(id)
       this.fileService.deleteFile(product.image, 'images');
-    }
+    } 
+    console.log(categories)
     const updatedProduct = await this.db.product.update({
       where: {
         id
@@ -115,6 +122,9 @@ export class ProductsService {
         },
         sizes: {
           set: sizes.map((size) => { return { id: size } })
+        },
+        colors: {
+          set: colors.map((color)=> { return {id: color}})
         }
       }
     })

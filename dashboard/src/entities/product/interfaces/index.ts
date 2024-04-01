@@ -1,4 +1,5 @@
 import { Category } from "../../category";
+import { Color } from "../../color";
 import { Size } from "../../size";
 
 export interface Product {
@@ -8,6 +9,7 @@ export interface Product {
   image: string;
   categories: Category[];
   sizes: Size[];
+  colors: Color[];
   createdAt: string;
   updatedAt: string;
 }
