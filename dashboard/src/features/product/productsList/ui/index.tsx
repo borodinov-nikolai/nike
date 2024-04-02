@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./ProductsList.module.scss";
 import { useGetAllProductsQuery } from "../../../../entities/product";
-import { useDeleteProductMutation } from "../../../../entities/product/api";
+import { useDeleteProductMutation } from "../../../../entities/product";
 import Button from "../../../../shared/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import qs from 'qs';

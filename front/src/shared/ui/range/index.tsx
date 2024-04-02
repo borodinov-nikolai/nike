@@ -12,7 +12,7 @@ interface Props {
 
 const Range: FC<Props> = ({ onChange, value }) => {
     const progress = useRef<HTMLInputElement>(null)
-    const [rangeValue, setRangeValue] = useState<number[]>([25, 75])
+    const [rangeValue, setRangeValue] = useState<number[]>([0, 100])
 
 
 

@@ -1,3 +1,3 @@
-import { useGetUserQuery } from "./api";
+export { useGetUserQuery } from "./api";
 
-export { useGetUserQuery };
+

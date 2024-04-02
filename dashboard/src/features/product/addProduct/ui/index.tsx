@@ -12,7 +12,7 @@ import Checkbox from "../../../../shared/ui/checkbox";
 import { useGetAllSizesQuery } from "../../../../entities/size";
 import { Color, useGetAllColorsQuery } from "../../../../entities/color";
 import { Material } from "../../../../entities/material/interfaces";
-import { useGetAllMaterialsQuery } from "../../../../entities/material/api";
+import { useGetAllMaterialsQuery } from "../../../../entities/material";
 
 interface Inputs {
   name: string;
@@ -120,7 +120,7 @@ const AddProduct = () => {
           <label htmlFor="image">Изображение</label>
           <input {...register("image")} type="file" id="image" />
         </div>
-        <div className={styles.formItem}>
+        {categoriesList && categoriesList.length> 0 && <div className={styles.formItem}>
           <h2 className={styles.formItemTitle}>Категории:</h2>
           <Controller
             name="categories"
@@ -158,8 +158,8 @@ const AddProduct = () => {
               );
             }}
           />
-        </div>
-        <div className={styles.formItem}>
+        </div>}
+        {sizesList && sizesList.length > 0 && <div className={styles.formItem}>
           <h2 className={styles.formItemTitle}>Размеры:</h2>
           <Controller
             name="sizes"
@@ -198,8 +198,8 @@ const AddProduct = () => {
             }}
           />
            
-        </div>
-        <div className={styles.formItem} >
+        </div>}
+        {colorsList && colorsList?.length  > 0 && <div className={styles.formItem} >
         <h2 className={styles.formItemTitle}>Цвета:</h2>
         <Controller
             name="colors"
@@ -237,8 +237,8 @@ const AddProduct = () => {
               );
             }}
           />
-        </div>
-        <div className={styles.formItem} >
+        </div>}
+        {materialsList && materialsList.length > 0 && <div className={styles.formItem} >
         <h2 className={styles.formItemTitle}>Материалы:</h2>
         <Controller
             name="materials"
@@ -276,7 +276,7 @@ const AddProduct = () => {
               );
             }}
           />
-        </div>
+        </div>}
         <button className={styles.saveBtn} type="submit">
           сохранить
         </button>

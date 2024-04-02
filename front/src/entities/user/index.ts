@@ -1,4 +1,3 @@
-import { useGetUserQuery} from "./api";
+export { useGetUserQuery} from "./api";
+export type {User} from './interfaces'
 
-
-export { useGetUserQuery};

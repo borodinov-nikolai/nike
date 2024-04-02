@@ -1,7 +1,7 @@
 import styles from "./AddMaterial.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { useAddMaterialMutation, useGetMaterialQuery, useUpdateMaterialMutation } from "../../../../entities/material/api";
+import { useAddMaterialMutation, useGetMaterialQuery, useUpdateMaterialMutation } from "../../../../entities/material";
 import { useEffect } from "react";
 
 interface Inputs {

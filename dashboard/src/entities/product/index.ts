@@ -1,3 +1,8 @@
-import { useGetAllProductsQuery } from "./api";
+export {useGetAllProductsQuery,
+    useGetOneProductQuery,
+    useAddProductMutation,
+    useDeleteProductMutation,
+    useUpdateProductMutation, } from "./api";
 
-export { useGetAllProductsQuery };
+
+export type {Product} from './interfaces'

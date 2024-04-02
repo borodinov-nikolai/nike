@@ -19,7 +19,7 @@ const initialState: FiltersState = {
     sizes: [],
     pageSize: 9,
     sort: 'asc',
-    price: [2500, 7500],
+    price: [0, 10000],
     colors: [],
     materials: []
 }
@@ -50,11 +50,11 @@ export const filterSlice = createSlice({
             state.price = action.payload
         },
         removePrice: (state)=> {
-            state.price = [2500, 7500]
+            state.price = [0, 10000]
         },
         resetFilters: (state) => {
             state.pageSize = 9
-            state.price = [2500, 7500]
+            state.price = [0, 10000]
             state.sort = 'asc'
             state.sizes = []
             state.colors = []

@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAddSizeMutation } from "../../../../entities/size";
 import { useEffect } from "react";
-import { useGetSizeQuery, useUpdateSizeMutation } from "../../../../entities/size/api";
+import { useGetSizeQuery, useUpdateSizeMutation } from "../../../../entities/size";
 
 interface Inputs {
   value: string;

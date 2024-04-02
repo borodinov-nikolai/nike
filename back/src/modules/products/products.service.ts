@@ -12,9 +12,9 @@ export class ProductsService {
   ) { }
 
   async findAll(query: any) {
-    const { orderBy, price, category, sizes} = query
+    const { orderBy, price, category, sizes, colors, materials} = query
   
-    
+
     const filters = {
       orderBy: orderBy ?
        orderBy : {
@@ -29,14 +29,29 @@ export class ProductsService {
           some: {
             value: category
           }
-        }: undefined,
-         sizes: sizes? {
+        } : undefined,
+         sizes: sizes && {
           some: {
             value: {
-              in: sizes ? sizes : []
+              in: sizes
             }
           }
-        } : undefined
+        } ,
+        colors: colors && {
+          some: {
+            name: {
+              in: colors 
+            }
+          }
+        } ,
+        materials: {
+          some: {
+            name: {
+              in: materials 
+            }
+          }
+        }
+        
       }
     }
     

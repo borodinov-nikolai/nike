@@ -2,7 +2,7 @@ import styles from './ColorsList.module.scss';
 import Button from "../../../../shared/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { useGetAllColorsQuery } from '../../../../entities/color';
-import { useDeleteColorMutation } from '../../../../entities/color/api';
+import { useDeleteColorMutation } from '../../../../entities/color';
 
 export const ColorsList = () => {
   const navigate = useNavigate()

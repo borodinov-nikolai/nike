@@ -40,7 +40,7 @@ export class ColorsService {
         return colors
     }
     async delete(id: number) {
-        console.log(id)
+    
         await this.db.color.delete({
             where: {
                 id

@@ -25,7 +25,7 @@ const Filters = () => {
  const [debouncedPrice] = useDebounce(price, 500)
 
   useEffect(()=> {
-    if((debouncedPrice[0] !== 2500 || debouncedPrice[1] !== 7500) && !showPrice) {
+    if((debouncedPrice[0] !== 0 || debouncedPrice[1] !== 10000) && !showPrice) {
       setShowPrice(true) 
     } 
   }, [debouncedPrice[0], debouncedPrice[1]])

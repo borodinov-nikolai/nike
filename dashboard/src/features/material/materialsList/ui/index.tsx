@@ -1,7 +1,7 @@
 import styles from './MaterialsList.module.scss';
 import Button from "../../../../shared/ui/button";
 import { Link, useNavigate } from "react-router-dom";
-import { useDeleteMaterialMutation, useGetAllMaterialsQuery } from '../../../../entities/material/api';
+import { useDeleteMaterialMutation, useGetAllMaterialsQuery } from '../../../../entities/material';
 
 export const MaterialsList = () => {
   const navigate = useNavigate();

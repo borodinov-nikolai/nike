@@ -9,7 +9,7 @@ import { setPrice } from '../../../store/filtersSlice'
 const Price = () => {
     const dispatch = useAppDispatch()
     const {price} = useAppSelector((state)=> state.filters)
-    const [inputsValue, setInputsValue] = useState<number[]>([2500, 7500])
+    const [inputsValue, setInputsValue] = useState<number[]>([0, 10000])
    
    
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {

@@ -1,9 +1,8 @@
 import styles from "./AddProduct.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useAddProductMutation } from "../../../../entities/product/api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAddCategoryMutation } from "../../../../entities/category";
-import { useGetCategoryQuery, useUpdateCategoryMutation } from "../../../../entities/category/api";
+import { useGetCategoryQuery, useUpdateCategoryMutation } from "../../../../entities/category";
 import { useEffect } from "react";
 
 interface Inputs {

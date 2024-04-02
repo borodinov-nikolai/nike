@@ -1,5 +1,7 @@
 export {
   useGetAllCategoriesQuery,
+  useGetCategoryQuery,
+  useUpdateCategoryMutation,
   useAddCategoryMutation,
   useDeleteCategoryMutation,
 } from "./api";
