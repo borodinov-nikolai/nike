@@ -1,12 +1,14 @@
 import styles from './SizesList.module.scss';
 import Button from "../../../../shared/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDeleteSizeMutation, useGetAllSizesQuery } from "../../../../entities/size";
 
 export const SizesList = () => {
+  const navigate = useNavigate()
   const { data: sizes } = useGetAllSizesQuery();
   const [deleteSize] = useDeleteSizeMutation();
-  const handleDelete = (id: number) => {
+  const handleDelete = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>, id: number) => {
+    e.stopPropagation();
     deleteSize(id);
   };
 
@@ -20,14 +22,14 @@ export const SizesList = () => {
         <ul className={styles.list}>
           {sizes?.map(({ id, value, createdAt }) => {
             return (
-              <li key={id} className={styles.item}>
+              <li onClick={()=>navigate(`/sizes/${id}`)} key={id} className={styles.item}>
                 <p>{id}</p>
                 <p>{value}</p>
                 <p>{createdAt}</p>
                 <p>
                   <button
                     className={styles.deleteBtn}
-                    onClick={() => handleDelete(id)}
+                    onClick={(e) => handleDelete(e, id)}
                   >
                     X
                   </button>

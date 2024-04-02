@@ -1,13 +1,15 @@
 import styles from './ColorsList.module.scss';
 import Button from "../../../../shared/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useGetAllColorsQuery } from '../../../../entities/color';
 import { useDeleteColorMutation } from '../../../../entities/color/api';
 
 export const ColorsList = () => {
+  const navigate = useNavigate()
   const { data: colors } = useGetAllColorsQuery();
   const [deleteColor] = useDeleteColorMutation();
-  const handleDelete = (id: number) => {
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: number) => {
+    e.stopPropagation();
     deleteColor(id);
   };
 
@@ -21,14 +23,14 @@ export const ColorsList = () => {
         <ul className={styles.list}>
           {colors?.map(({ id, name, value}) => {
             return (
-              <li key={id} className={styles.item}>
+              <li onClick={()=> navigate(`/colors/${id}`)} key={id} className={styles.item}>
                 <p>{id}</p>
                 <p>{name}</p>
                 <p className={styles.color} style={{background: value}} ></p>
                 <p>
                   <button
                     className={styles.deleteBtn}
-                    onClick={() => handleDelete(id)}
+                    onClick={(e) => handleDelete(e, id)}
                   >
                     X
                   </button>

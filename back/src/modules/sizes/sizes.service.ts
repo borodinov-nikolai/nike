@@ -17,8 +17,30 @@ export class SizesService {
         return size
     }
 
+    async update(id: number, data: AddSizeDto) {
+        const size = await this.db.size.update({
+          where: {
+              id
+          },
+          data
+        })
+        return size
+      }
+  
+      async findOne(id: number) {
+          const size = await this.db.size.findUniqueOrThrow({
+              where: {
+                  id
+              }
+          })
+          return size
+  }
     async findAll(): Promise<Size[]> {
-        const sizes = await this.db.size.findMany()
+        const sizes = await this.db.size.findMany({
+            orderBy: {
+                id: 'asc'
+            }
+        })
         return sizes
     }
 

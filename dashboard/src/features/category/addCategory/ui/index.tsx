@@ -1,8 +1,10 @@
 import styles from "./AddProduct.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAddProductMutation } from "../../../../entities/product/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAddCategoryMutation } from "../../../../entities/category";
+import { useGetCategoryQuery, useUpdateCategoryMutation } from "../../../../entities/category/api";
+import { useEffect } from "react";
 
 interface Inputs {
   name: string;
@@ -10,25 +12,44 @@ interface Inputs {
 }
 
 const AddCategory = () => {
+  const {edit: param} = useParams()
   const navigate = useNavigate();
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit, reset, setValue } = useForm({
     defaultValues: {
       name: "",
       value: "",
     },
   });
+  const category = useGetCategoryQuery(Number(param), {skip: param ==='add' && true})
   const [addCategory] = useAddCategoryMutation();
-
+  const [updateCategory] = useUpdateCategoryMutation()
   const onSubmit: SubmitHandler<Inputs> = async (data: {
     name: string;
     value: string;
   }) => {
-    const res = await addCategory(data);
+   if(category.data){
+   const res = await updateCategory({id: Number(param), data})
+   if ("data" in res) {
+    reset();
+    navigate("/categories", { replace: true });
+  }
+   } else{
+     const res = await addCategory(data);
     if ("data" in res) {
       reset();
       navigate("/categories", { replace: true });
     }
+  }
   };
+
+  useEffect(()=> {
+
+    if(category.data) {
+      const {name, value} = category.data
+     setValue('name', name);
+     setValue('value', value)
+    }
+  }, [category])
 
   return (
     <div className={styles.root}>

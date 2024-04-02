@@ -23,6 +23,15 @@ export class MaterialsService {
       })
       return material
     }
+
+    async findOne(id: number) {
+        const material = await this.db.material.findUniqueOrThrow({
+            where: {
+                id
+            }
+        })
+        return material
+}
     async findAll() {
         const materials = await this.db.material.findMany({
             orderBy: {
@@ -31,14 +40,7 @@ export class MaterialsService {
         })
         return materials
     }
-    async findOne(id: number) {
-            const material = await this.db.material.findUniqueOrThrow({
-                where: {
-                    id
-                }
-            })
-            return material
-    }
+
     async delete(id: number) {
         await this.db.material.delete({
             where: {

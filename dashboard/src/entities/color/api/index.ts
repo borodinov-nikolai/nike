@@ -1,5 +1,5 @@
 import { emptySplitApi } from "../../../shared/configs/rtk_base";
-import { Color } from "../interfaces";
+import { Color, ColorDto } from "../interfaces";
 
 const extendedApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({
@@ -7,6 +7,20 @@ const extendedApi = emptySplitApi.injectEndpoints({
       query: () => "/colors",
       providesTags: ["Color"],
     }),
+    getColor: build.query<Color, number>({
+      query: (id)=>`colors/${id}`,
+      providesTags: ['Color']
+   }),
+   updateColor: build.mutation<Color, {id: number, data: ColorDto}>({
+     query: ({id, data})=> ({
+       url: `/colors/${id}`,
+       method: 'PUT',
+       body: {
+         ...data
+       }
+     }),
+     invalidatesTags: ['Color']
+   }),
     addColor: build.mutation<Color, {name: string, value: string}>({
       query: (data)=> ({
         url: '/colors',
@@ -33,4 +47,8 @@ const extendedApi = emptySplitApi.injectEndpoints({
 });
 
 
-export const{useGetAllColorsQuery, useAddColorMutation, useDeleteColorMutation} = extendedApi
+export const{useGetAllColorsQuery,
+  useGetColorQuery,
+  useUpdateColorMutation,
+   useAddColorMutation,
+    useDeleteColorMutation} = extendedApi

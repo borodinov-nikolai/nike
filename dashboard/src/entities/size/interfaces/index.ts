@@ -5,6 +5,6 @@ export interface Size {
   updatedAt: string;
 }
 
-export interface Inputs {
+export interface SizeDto {
   value: string;
 }

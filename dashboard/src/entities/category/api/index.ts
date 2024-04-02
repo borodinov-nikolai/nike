@@ -1,5 +1,6 @@
 import { emptySplitApi } from "../../../shared/configs/rtk_base";
-import { Category, Inputs } from "../interfaces";
+import { Category, CategoryDto} from "../interfaces";
+
 
 const extendedApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({
@@ -7,7 +8,21 @@ const extendedApi = emptySplitApi.injectEndpoints({
       query: () => "/categories",
       providesTags: ["Category"],
     }),
-    addCategory: build.mutation<Category, Inputs>({
+    getCategory: build.query<Category, number>({
+      query: (id)=>`categories/${id}`,
+      providesTags: ['Category']
+   }),
+   updateCategory: build.mutation<Category, {id: number, data: CategoryDto}>({
+     query: ({id, data})=> ({
+       url: `/categories/${id}`,
+       method: 'PUT',
+       body: {
+         ...data
+       }
+     }),
+     invalidatesTags: ['Category']
+   }),
+    addCategory: build.mutation<Category, CategoryDto>({
       query: (data) => ({
         url: "/categories",
         method: "POST",
@@ -31,6 +46,8 @@ const extendedApi = emptySplitApi.injectEndpoints({
 
 export const {
   useGetAllCategoriesQuery,
+  useGetCategoryQuery,
+  useUpdateCategoryMutation,
   useAddCategoryMutation,
   useDeleteCategoryMutation,
 } = extendedApi;

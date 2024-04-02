@@ -1,8 +1,8 @@
-import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ColorsService } from './colors.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Color } from './entities';
-import { colorDto } from './dtos/color.dto';
+import { AddColorDto} from './dtos/color.dto';
 
 @ApiTags('colors')
 @Controller('colors')
@@ -18,7 +18,7 @@ export class ColorsController {
     description: 'Успешно',
     type: Color
   })
-  createColor(@Body() body: colorDto): Promise<Color> {
+  createColor(@Body() body: AddColorDto): Promise<Color> {
          return this.colorsService.create(body)
   }
 
@@ -34,6 +34,33 @@ export class ColorsController {
   getAll(): Promise<Color[]> {
     return this.colorsService.findAll()
   }
+
+  @Get(":id")
+  @ApiOperation({
+    summary: 'Получить цвет'
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Успешно',
+    type: Color
+  })
+  getOne(@Param('id') id: string): Promise<Color> {
+   return this.colorsService.findOne(+id)
+  }
+
+  @Put(":id")
+  @ApiOperation({
+    summary: 'Изменить цвет'
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Успешно',
+    type: Color
+  })
+  update(@Param('id') id: string, @Body() body: AddColorDto):Promise<Color> {
+       return this.colorsService.update(+id, body)
+  }
+
 
   @Delete()
   @ApiOperation({

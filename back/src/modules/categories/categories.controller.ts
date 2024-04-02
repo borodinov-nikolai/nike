@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Category } from './entities/category.entity';
@@ -34,6 +34,32 @@ export class CategoriesController {
   })
   getCategories() {
      return this.categoriesService.findAll()
+  }
+
+  @Get(":id")
+  @ApiOperation({
+    summary: 'Получить категорию'
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Успешно',
+    type: Category
+  })
+  getOne(@Param('id') id: string): Promise<Category> {
+   return this.categoriesService.findOne(+id)
+  }
+
+  @Put(":id")
+  @ApiOperation({
+    summary: 'Изменить категорию'
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Успешно',
+    type: Category
+  })
+  update(@Param('id') id: string, @Body() body: AddCategoryDto):Promise<Category> {
+       return this.categoriesService.update(+id, body)
   }
 
   @Delete()

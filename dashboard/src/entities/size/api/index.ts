@@ -1,5 +1,5 @@
 import { emptySplitApi } from "../../../shared/configs/rtk_base";
-import { Size, Inputs } from "../interfaces";
+import { Size, SizeDto } from "../interfaces";
 
 const extendedApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({
@@ -7,7 +7,7 @@ const extendedApi = emptySplitApi.injectEndpoints({
       query: () => "/sizes",
       providesTags: ["Size"],
     }),
-    addSize: build.mutation<Size, Inputs>({
+    addSize: build.mutation<Size, SizeDto>({
       query: (data) => ({
         url: "/sizes",
         method: "POST",
@@ -15,6 +15,20 @@ const extendedApi = emptySplitApi.injectEndpoints({
       }),
       invalidatesTags: ["Size"],
     }),
+    getSize: build.query<Size, number>({
+      query: (id)=>`sizes/${id}`,
+      providesTags: ['Size']
+   }),
+   updateSize: build.mutation<Size, {id: number, data: {value: string}}>({
+     query: ({id, data})=> ({
+       url: `/sizes/${id}`,
+       method: 'PUT',
+       body: {
+         ...data
+       }
+     }),
+     invalidatesTags: ['Size']
+   }),
     deleteSize: build.mutation<any, number>({
       query: (id) => ({
         url: "/sizes",
@@ -31,6 +45,8 @@ const extendedApi = emptySplitApi.injectEndpoints({
 
 export const {
  useGetAllSizesQuery,
+ useGetSizeQuery,
+ useUpdateSizeMutation,
   useAddSizeMutation,
   useDeleteSizeMutation,
 } = extendedApi;

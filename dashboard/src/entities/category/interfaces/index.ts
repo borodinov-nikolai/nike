@@ -6,7 +6,7 @@ export interface Category {
   updatedAt: string;
 }
 
-export interface Inputs {
+export interface CategoryDto {
   name: string;
   value: string;
 }

@@ -21,6 +21,8 @@ export const AddMaterial = () => {
   const material = useGetMaterialQuery(Number(param), {skip: param ==='add' && true})
   const [addMaterial] = useAddMaterialMutation();
   const [updateMaterial] = useUpdateMaterialMutation();
+
+  
   const onSubmit: SubmitHandler<Inputs> = async (data: {
     name: string,
     value: string;

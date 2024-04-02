@@ -14,9 +14,30 @@ export class CategoriesService {
 
         return category
     }
-
+    async update(id: number, data: AddCategoryDto) {
+        const category = await this.db.category.update({
+          where: {
+              id
+          },
+          data
+        })
+        return category
+      }
+  
+      async findOne(id: number) {
+          const category = await this.db.category.findUniqueOrThrow({
+              where: {
+                  id
+              }
+          })
+          return category
+  }
     async findAll(): Promise<Category[]> {
-        const categories = await this.db.category.findMany()
+        const categories = await this.db.category.findMany({
+            orderBy: {
+                id: 'asc'
+            }
+        })
         return categories
     }
 

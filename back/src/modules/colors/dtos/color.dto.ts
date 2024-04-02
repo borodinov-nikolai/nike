@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger"
 
-export class colorDto {
+export class AddColorDto {
     @ApiProperty()
     name: string
     @ApiProperty()
