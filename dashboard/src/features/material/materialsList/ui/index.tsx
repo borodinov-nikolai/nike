@@ -1,13 +1,15 @@
 import styles from './MaterialsList.module.scss';
 import Button from "../../../../shared/ui/button";
-import { Link } from "react-router-dom";
-import { useDeleteSizeMutation, useGetAllSizesQuery } from "../../../../entities/size";
+import { Link, useNavigate } from "react-router-dom";
+import { useDeleteMaterialMutation, useGetAllMaterialsQuery } from '../../../../entities/material/api';
 
 export const MaterialsList = () => {
-  const { data: sizes } = useGetAllSizesQuery();
-  const [deleteSize] = useDeleteSizeMutation();
-  const handleDelete = (id: number) => {
-    deleteSize(id);
+  const navigate = useNavigate();
+  const { data: materials } = useGetAllMaterialsQuery();
+  const [deleteMaterial] = useDeleteMaterialMutation();
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: number) => {
+    e.stopPropagation();
+    deleteMaterial(id);
   };
 
   return (
@@ -18,16 +20,16 @@ export const MaterialsList = () => {
           <p>Дата создания</p>
         </div>
         <ul className={styles.list}>
-          {sizes?.map(({ id, value, createdAt }) => {
+          {materials?.map(({ id, name, value}) => {
             return (
-              <li key={id} className={styles.item}>
+              <li onClick={()=> navigate(`/materials/${id}`)} key={id} className={styles.item}>
                 <p>{id}</p>
+                <p>{name}</p>
                 <p>{value}</p>
-                <p>{createdAt}</p>
                 <p>
                   <button
                     className={styles.deleteBtn}
-                    onClick={() => handleDelete(id)}
+                    onClick={(e) => handleDelete(e, id)}
                   >
                     X
                   </button>
@@ -38,7 +40,7 @@ export const MaterialsList = () => {
         </ul>
       </div>
       <div className={styles.addBtn}>
-        <Link to={"/sizes/add"}>
+        <Link to={"/materials/add"}>
           <Button>Добавить</Button>
         </Link>
       </div>

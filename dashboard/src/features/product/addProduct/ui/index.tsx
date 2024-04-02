@@ -11,6 +11,8 @@ import { useEffect } from "react";
 import Checkbox from "../../../../shared/ui/checkbox";
 import { useGetAllSizesQuery } from "../../../../entities/size";
 import { Color, useGetAllColorsQuery } from "../../../../entities/color";
+import { Material } from "../../../../entities/material/interfaces";
+import { useGetAllMaterialsQuery } from "../../../../entities/material/api";
 
 interface Inputs {
   name: string;
@@ -19,6 +21,7 @@ interface Inputs {
   sizes: number[];
   colors: Color[];
   image: Object[];
+  materials: Material[];
 }
 
 const AddProduct = () => {
@@ -27,6 +30,7 @@ const AddProduct = () => {
   const { data: categoriesList } = useGetAllCategoriesQuery();
   const {data: sizesList} = useGetAllSizesQuery()
   const {data: colorsList} = useGetAllColorsQuery()
+  const {data: materialsList} = useGetAllMaterialsQuery()
   const [addProduct] = useAddProductMutation();
   const [updateProduct] = useUpdateProductMutation();
   const { data: product } = useGetOneProductQuery(Number(params), {
@@ -40,19 +44,22 @@ const AddProduct = () => {
       sizes: [],
       colors: [],
       categories: [],
+      materials: []
     },
   });
 
   useEffect(() => {
     if (product) {
-      setValue("name", product.name);
-      setValue("price", product.price);
       const categories: number[] = product.categories?.map(({id})=> id);
       const sizes: number[] = product.sizes?.map(({id})=> id);
       const colors: number[] = product.colors?.map(({id})=> id)
+      const materials: number[] = product.materials?.map(({id})=> id)
+      setValue("name", product.name);
+      setValue("price", product.price);
       setValue("categories", categories as never[]);
       setValue("sizes", sizes as never[]);
       setValue('colors', colors as never[])
+      setValue('materials', materials as never[])
     }
   }, [product]);
 
@@ -62,6 +69,7 @@ const AddProduct = () => {
     image,
     sizes,
     colors,
+    materials,
     categories,
   }) => {
     const formData = new FormData();
@@ -76,6 +84,9 @@ const AddProduct = () => {
     });
     colors?.forEach((color, index)=> {
       formData.append(`color_${index}`, String(color));
+    })
+    materials?.forEach((material, index)=> {
+      formData.append(`material_${index}`, String(material));
     })
     if (params === "add") {
       const res = await addProduct(formData);
@@ -218,6 +229,45 @@ const AddProduct = () => {
                             checked={(field.value as number[]).includes(id)}
                           />{" "}
                           <p className={styles.color} style={{background: value}} ></p>
+                        </label>
+                      </div>
+                    );
+                  })}
+                </>
+              );
+            }}
+          />
+        </div>
+        <div className={styles.formItem} >
+        <h2 className={styles.formItemTitle}>Материалы:</h2>
+        <Controller
+            name="materials"
+            control={control}
+            render={({ field }) => {
+              return (
+                <>
+                  {materialsList?.map(({ id, name, value }) => {
+                    return (
+                      <div key={id} className={styles.category}>
+                        <label>
+                          <Checkbox
+                            onChange={(e) => {
+                              const newValue = Number(e.target.value);
+                              const array: number[] = [...field.value];
+                              let newArray: number[];
+                              if (array.includes(newValue)) {
+                                newArray = array.filter(
+                                  (item) => item !== newValue,
+                                );
+                              } else {
+                                newArray = [...array, newValue];
+                              }
+                              field.onChange(newArray);
+                            }}
+                            value={id}
+                            checked={(field.value as number[]).includes(id)}
+                          />{" "}
+                          <p>{name}</p>
                         </label>
                       </div>
                     );

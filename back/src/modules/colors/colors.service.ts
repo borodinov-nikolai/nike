@@ -7,18 +7,19 @@ export class ColorsService {
     constructor(private readonly db: DbService){}
 
     async create(data: colorDto) {
-       const color = this.db.color.create({
+       const color = await this.db.color.create({
             data
         })
 
         return color
     }
     async findAll() {
-        const colors = this.db.color.findMany()
+        const colors = await this.db.color.findMany()
         return colors
     }
     async delete(id: number) {
-        this.db.color.delete({
+        console.log(id)
+        await this.db.color.delete({
             where: {
                 id
             }

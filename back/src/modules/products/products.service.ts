@@ -51,7 +51,9 @@ export class ProductsService {
       },
       include: {
         categories: true,
-        sizes: true
+        sizes: true,
+        colors: true,
+        materials: true
       }
     })
     return product;
@@ -61,37 +63,8 @@ export class ProductsService {
     const { price, name, image } = body
     const categories: number[] = []
     const sizes: number[] = []
-    console.log(body)
-    for (const key of Object.keys(body)) {
-      if (key.startsWith('category_'))
-        categories.push(+body[key])
-    }
-    for (const key of Object.keys(body)) {
-      if (key.startsWith('size_'))
-      sizes.push(+body[key])
-    }
-    const product = await this.db.product.create({
-      data: {
-        name,
-        image,
-        price: +price,
-        categories: {
-          connect: categories.map((category) => { return { id: category } })
-        },
-        sizes: {
-          connect: sizes.map((size)=> { return {id: size} } )
-        }
-      }
-    });
-    return product;
-  }
-
-
-  async update(id: number, body: UpdateProductDto): Promise<Product> {
-    const { image, price, name } = body
-    const categories: number[] = []
-    const sizes: number[] = []
     const colors: number[] = []
+    const materials: number[] = []
     for (const key of Object.keys(body)) {
       if (key.startsWith('category_'))
         categories.push(+body[key])
@@ -104,11 +77,59 @@ export class ProductsService {
       if(key.startsWith('color_'))
       colors.push(+body[key])
     }
+    for(const key of Object.keys(body)) {
+      if(key.startsWith('material_'))
+      materials.push(+body[key])
+    }
+    const product = await this.db.product.create({
+      data: {
+        name,
+        image,
+        price: +price,
+        categories: {
+          connect: categories.map((id) => { return {id}})
+        },
+        sizes: {
+          connect: sizes.map((id)=> { return {id} } )
+        },
+        colors: {
+          connect: colors.map((id)=> { return {id} } )
+        },
+        materials: {
+          connect: materials.map((id)=> { return {id} } )
+        }
+      }
+    });
+    return product;
+  }
+
+
+  async update(id: number, body: UpdateProductDto): Promise<Product> {
+    const { image, price, name } = body
+    const categories: number[] = []
+    const sizes: number[] = []
+    const colors: number[] = []
+    const materials: number[] = []
+    for (const key of Object.keys(body)) {
+      if (key.startsWith('category_'))
+        categories.push(+body[key])
+    }
+    for (const key of Object.keys(body)) {
+      if (key.startsWith('size_'))
+      sizes.push(+body[key])
+    }
+    for(const key of Object.keys(body)) {
+      if(key.startsWith('color_'))
+      colors.push(+body[key])
+    }
+    for(const key of Object.keys(body)) {
+      if(key.startsWith('material_'))
+      materials.push(+body[key])
+    }
     if (image) {
       const product = await this.findOne(id)
       this.fileService.deleteFile(product.image, 'images');
     } 
-    console.log(categories)
     const updatedProduct = await this.db.product.update({
       where: {
         id
@@ -118,13 +139,16 @@ export class ProductsService {
         image: image && image,
         price: +price,
         categories: {
-          set: categories.map((category) => { return { id: category } })
+          set: categories.map((id) => { return {id} })
         },
         sizes: {
-          set: sizes.map((size) => { return { id: size } })
+          set: sizes.map((id) => { return {id} })
         },
         colors: {
-          set: colors.map((color)=> { return {id: color}})
+          set: colors.map((id)=> { return {id}})
+        },
+        materials: {
+          set: materials.map((id)=> { return {id}})
         }
       }
     })

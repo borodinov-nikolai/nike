@@ -1,5 +1,6 @@
 import { Category } from "../../category";
 import { Color } from "../../color";
+import { Material } from "../../material/interfaces";
 import { Size } from "../../size";
 
 export interface Product {
@@ -10,6 +11,7 @@ export interface Product {
   categories: Category[];
   sizes: Size[];
   colors: Color[];
+  materials: Material[];
   createdAt: string;
   updatedAt: string;
 }
