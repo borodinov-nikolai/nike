@@ -30,9 +30,21 @@
 
 .colorCircle{
     position: relative;
-    width: 15px;
-    height: 15px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;   
+        transform: translate(-50%, -50%);
+        height: 24px;
+        width: 24px;
+        border-radius: 50%;
+        border: 1px solid rgb(213, 213, 213);
+    }
 
 
     &__active {
@@ -45,8 +57,8 @@
             left: 50%;
             top: 50%;   
             transform: translate(-50%, -50%);
-            height: 20px;
-            width: 20px;
+            height: 24px;
+            width: 24px;
             border-radius: 50%;
             border: 1px solid black;
          }
