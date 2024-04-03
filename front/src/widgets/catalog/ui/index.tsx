@@ -3,7 +3,7 @@ import styles from './Catalog.module.scss'
 import { getProducts } from '@/src/entities/product'
 import { ProductCard } from '@/src/entities/productCard'
 import { Filters } from '@/src/features/filters'
-import { Pagination } from '@/src/features/pagination'
+import Pagination from '@/src/shared/ui/pagination'
 
 
 const Catalog = async ({params, searchParams}:{params: {category: string}, searchParams: Record<string, string>}) => {
