@@ -6,7 +6,6 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
 
 interface FiltersState {
-    pageSize: number
     sizes: number[]
     sort: string
     price: number[]
@@ -17,7 +16,6 @@ interface FiltersState {
 
 const initialState: FiltersState = {
     sizes: [],
-    pageSize: 9,
     sort: 'asc',
     price: [0, 10000],
     colors: [],
@@ -40,9 +38,6 @@ export const filterSlice = createSlice({
                 state.sizes = items
             }
         },
-        setPageSize: (state, action: PayloadAction<number>)=> {
-            state.pageSize = action.payload
-        },
         setSort: (state, action: PayloadAction<string>)=> {
             state.sort = action.payload
         },
@@ -53,7 +48,6 @@ export const filterSlice = createSlice({
             state.price = [0, 10000]
         },
         resetFilters: (state) => {
-            state.pageSize = 9
             state.price = [0, 10000]
             state.sort = 'asc'
             state.sizes = []
@@ -85,5 +79,5 @@ export const filterSlice = createSlice({
 })
 
 
-export const {setSizes, setPageSize, setSort, setPrice, resetFilters, setColors, setMaterials, removePrice} = filterSlice.actions
+export const {setSizes, setSort, setPrice, resetFilters, setColors, setMaterials, removePrice} = filterSlice.actions
 export default filterSlice.reducer

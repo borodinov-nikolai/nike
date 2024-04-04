@@ -14,15 +14,21 @@ import { removePrice, resetFilters, setColors, setMaterials, setSizes } from '..
 import qs from 'qs'
 import { useRouter } from 'next/navigation';
 import { useDebounce } from 'use-debounce';
+import { setTotalPages } from '../../pagination/store';
 
 
 
-const Filters = () => {
+const Filters = ({totalCount}: {totalCount: number}) => {
   const router = useRouter()
   const [showPrice, setShowPrice] = useState<boolean>(false)
-   const {sizes, pageSize, sort, materials, colors, price } = useAppSelector((state)=> state.filters)
+   const {sizes, sort, materials, colors, price } = useAppSelector((state)=> state.filters)
+   const {currentPage, pageSize} = useAppSelector((state)=> state.pagination)
   const dispatch = useAppDispatch()
  const [debouncedPrice] = useDebounce(price, 500)
+
+ useEffect(()=> {
+    dispatch(setTotalPages(Math.round(totalCount/pageSize)))
+ },[totalCount,pageSize])
 
   useEffect(()=> {
     if((debouncedPrice[0] !== 0 || debouncedPrice[1] !== 10000) && !showPrice) {
@@ -32,6 +38,9 @@ const Filters = () => {
 
   useEffect(()=> {
    const queryString = qs.stringify({
+    skip: (currentPage-1 ) * pageSize,
+    take: pageSize,
+    pageSize,
     sizes,  
     colors,
     orderBy: [
@@ -40,14 +49,13 @@ const Filters = () => {
       }
     ],
     materials,
-    pageSize,
     price: {min: debouncedPrice[0], max: [debouncedPrice[1]]}
    })
   
     router.replace(`?${queryString}`)
    
    
-  },[sizes, pageSize, sort, materials, colors, debouncedPrice ])
+  },[sizes, pageSize, sort, materials, colors, debouncedPrice, currentPage, pageSize])
 
   return (
     <div className={styles.root} >
@@ -66,7 +74,7 @@ const Filters = () => {
           <div className={styles.price} ><Price/> </div>
           <div className={styles.color} ><Colors/></div>
           <div className={styles.material} ><Material/></div>
-          <div onClick={()=>{ dispatch(resetFilters()); setShowPrice(false)}} className={styles.reset} >СБРОСИТЬ ВСЕ</div>
+          <div onClick={()=>{dispatch(resetFilters()); setShowPrice(false)}} className={styles.reset} >СБРОСИТЬ ВСЕ</div>
 
         </div>
         </div>
@@ -87,7 +95,7 @@ const Filters = () => {
       </div>
       <div className={styles.filtersBottomDesktop} >
         <div className={[styles.filtersBottomInner, ' container'].join(' ')} >
-          <div className={styles.leftBlock} >Показано {pageSize} из 137 товаров</div>
+          <div className={styles.leftBlock} >Показано {pageSize > totalCount ? totalCount : pageSize} из {totalCount} товаров</div>
           <div className={styles.rightBlock}>
             <div className={styles.pageSize}><PageSize/></div>
             <div className={styles.sort}><Sort/></div>

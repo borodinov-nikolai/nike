@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { emptySplitApi } from '../configs/rtk_base'
-import filtersReducer from '@/src/features/filters/store/filtersSlice'
+import {filterSlice} from '@/src/features/filters/index'
+import {paginationSlice}  from '@/src/features/pagination'
 
 
 
 export const store = configureStore({
   reducer: {
-    filters: filtersReducer,
+    filters: filterSlice,
+    pagination: paginationSlice,
     [emptySplitApi.reducerPath]: emptySplitApi.reducer,
   },
 

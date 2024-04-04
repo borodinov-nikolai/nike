@@ -12,10 +12,10 @@ export class ProductsService {
   ) { }
 
   async findAll(query: any) {
-    const { orderBy, price, category, sizes, colors, materials} = query
-  
-
+    const { orderBy, price, category, sizes, colors, materials, skip, take} = query
     const filters = {
+      skip: +skip,
+      take: +take,
       orderBy: orderBy ?
        orderBy : {
           price: 'asc'
@@ -56,7 +56,8 @@ export class ProductsService {
     }
     
     const products = await this.db.product.findMany(filters);
-    return products;
+    const totalCount = await this.db.product.count()
+    return {products, totalCount};
   }
 
   async findOne(id: number) {

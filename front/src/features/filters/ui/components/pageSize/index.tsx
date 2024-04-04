@@ -2,14 +2,14 @@
 import React from 'react'
 import styles from './PageSize.module.scss'
 import { useAppDispatch, useAppSelector } from '@/src/shared/store/hooks'
-import { setPageSize } from '../../../store/filtersSlice'
+import { setPageSize } from '@/src/features/pagination/store'
 
 
 
 const sizes = [9,12,18,24]
 
 const PageSize = () => {
-    const {pageSize} = useAppSelector((state)=> state.filters)
+    const {pageSize} = useAppSelector((state)=> state.pagination)
     const dispatch = useAppDispatch()
   return (
     <div className={styles.root} >

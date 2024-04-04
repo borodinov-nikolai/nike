@@ -31,7 +31,7 @@ export class ProductsController {
     description: 'успешно',
     type: Product,
   })
-  getAll(@Query() query): Promise<Product[]> {
+  getAll(@Query() query): Promise<{products: Product[], totalCount: number}> {
     return this.productsService.findAll(query);
   } 
 
