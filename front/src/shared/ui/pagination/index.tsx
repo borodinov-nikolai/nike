@@ -1,62 +1,95 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import styles from './Pagination.module.scss'
 import { HiArrowLongLeft, HiArrowLongRight } from 'react-icons/hi2'
+import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from 'react-icons/md'
 
 
-const Pagination = () => {
-    const [pages, setPages] = useState<number[]>([1,2,3,4,5])
-    const [activePage, setActivePage] = useState<number>(1)
-    const [pageCount, setPageCount] = useState<number>(15)
-    const [showDots, setShowDots] = useState<boolean>(true)
-  
-    const handlePageSelect = (direction: string)=> {
-      if(direction === 'left' && activePage > 1) {
-        setActivePage((state)=> state - 1)
-        if(activePage <= pages[0]){
-          setPages((state)=> state.map(item => item - 1))
-        }
-      } else if(direction === 'right'&& pages[4]< pageCount) {
-        setActivePage((state)=> state + 1)
-        if(activePage >= pages[4]) {
-          setPages((state)=> state.map(item => item + 1))
-  
-        }
-      }
+interface Props {
+   totalPages?: number
+   onChange?: (e: number)=> void
+}
+
+const Pagination: FC<Props> = ({totalPages = 1, onChange}) => {
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [firstPages, setFirstPages] = useState<boolean>(true)
+  const [lastPages, setLastPages] = useState<boolean>(false)
+  const [visiblePages, setVisiblePages] = useState<number[]>([])
+
+
+
+  const handleStepChange = (direction: 'prev'|'next'|'prev-5'|'next-5')=>{
+    if(direction === 'prev' && currentPage > 1) {
+      setCurrentPage(currentPage -1 )
+    } else if(direction === 'next' && currentPage < totalPages) {
+      setCurrentPage(currentPage +1)
     }
-  
-    const handleLastPageSelect = ()=> {
-      
-      let value = pageCount + 1
-      const arr = []
-      for(let i=1; i<=5; i++) {
-        value = value-1
-        arr.push(value)
-      }
-      setPages(arr.reverse())
-      setActivePage(pageCount)
+
+    if(direction === 'prev-5' && currentPage > 5) {
+      setCurrentPage(currentPage - 5)
+    } else if(direction === 'prev-5') {
+      setCurrentPage(1)
     }
+
+    if(direction === 'next-5' && currentPage < totalPages-4) {
+      setCurrentPage(currentPage + 5)
+    } else if(direction === 'next-5') {
+      setCurrentPage(totalPages)
+    }
+}
   
-    useEffect(()=> {
-    if(pages[0] >= pageCount - 5){
-      setShowDots(false)
+  useEffect(()=> {
+     onChange && onChange(currentPage)
+  }, [currentPage]) 
+
+
+useEffect(()=> {
+  const arr = Array.from({length: totalPages}, (_, i)=> i+1)
+
+  if(totalPages < 7) {
+    setVisiblePages(arr.slice(1, -1))
+    setFirstPages(true)
+    setLastPages(true)
+  } else {
+    setVisiblePages(arr.slice(1, 5))
+    if(currentPage > 4) {
+      setFirstPages(false)
+     setVisiblePages(arr.slice(currentPage-3, currentPage + 2))
     } else {
-      setShowDots(true)
+      setFirstPages(true)
     }
-    },[pages, pageCount])
+  
+    if(currentPage > totalPages -4) {
+      setLastPages(true) 
+      setVisiblePages(arr.slice(totalPages-5, totalPages-1))
+    } else {
+      setLastPages(false)
+    }
+  }
+
+
+
+}, [currentPage, totalPages])
+
+ if(totalPages > 1) {
   return (
-    <div>  
-            <div onClick={()=> handlePageSelect('left')} className={styles.btn} ><HiArrowLongLeft className={styles.arrow} /> <p>Назад</p></div>
-    <ul className={styles.pagesList} >
-      {showDots && <li className={styles.page} >...</li>}
-      {pages.map(item => <li onClick={()=>setActivePage(item)} className={[styles.page, item === activePage && styles.page__active].filter(Boolean).join(' ')} key={item} >{item}</li> )}
-      {showDots && <li className={styles.page} >...</li>}
-      {showDots &&<li onClick={handleLastPageSelect} className={[styles.page, pageCount === activePage && styles.page__active].filter(Boolean).join(' ')} >{pageCount}</li>}
-    </ul>
-    <div onClick={()=> handlePageSelect('right')} className={styles.btn} >
-     <p>Вперед</p> <HiArrowLongRight/>
-    </div></div>
-  )
+    <div className={styles.root} >  
+             <div onClick={()=>handleStepChange('prev')} className={styles.step} ><HiArrowLongLeft className={styles.arrow} /> <p>Назад</p></div>
+     <ul className={styles.pagesList} >
+       <li onClick={()=>setCurrentPage(1) } className={[styles.page, currentPage === 1 && styles.page__active].filter(Boolean).join(' ')}>{1}</li>
+        {!firstPages && <li onClick={()=> handleStepChange('prev-5')} className={[styles.page, styles.longStep].join(' ')} ><p>...</p><MdKeyboardDoubleArrowLeft/></li>}
+       {visiblePages.map((item)=> {
+         return <li onClick={()=> setCurrentPage(item)} className={[styles.page, currentPage === item && styles.page__active].filter(Boolean).join(' ')} key={item} >{item}</li>
+       })}
+     {!lastPages && <li onClick={()=> handleStepChange('next-5')}  className={[styles.page, styles.longStep].join(' ')} ><p>...</p><MdKeyboardDoubleArrowRight /></li>}
+       <li onClick={()=>setCurrentPage(totalPages)} className={[styles.page, currentPage === totalPages && styles.page__active].filter(Boolean).join(' ')} >{totalPages}</li>
+     </ul>
+     <div onClick={()=> handleStepChange('next')} className={styles.step} >
+      <p>Вперед</p> <HiArrowLongRight/>
+     </div></div>
+   )
+ }
+  
 }
 
 export default Pagination

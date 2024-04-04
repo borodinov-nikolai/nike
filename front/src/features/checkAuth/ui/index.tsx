@@ -13,7 +13,7 @@ const CheckAuth = ({ children }: { children: ReactNode }) => {
   ]
 
 
-  if (forbiddenRoutes.includes(location)) {
+  if (location && forbiddenRoutes.includes(location)) {
 
     if (!isLoading && !isSuccess && typeof window !== 'undefined') {
 

@@ -53,7 +53,7 @@ useEffect(()=> {
             <li className={styles.links_item} ><Link href={"#"}>Контакты</Link></li>
             <li className={styles.links_item} ><Link href={"#"}>Индивидуальный заказ</Link></li>
           </ul>
-          <Link href={isSuccess? './account' : './authorization'} className={styles.auth}>
+          <Link href={isSuccess? '/account' : '/authorization'} className={styles.auth}>
             {isSuccess && userData?.login}
               <Svg_auth />
                 {isSuccess && <p className={styles.auth_text} > Личный кабинет</p>}

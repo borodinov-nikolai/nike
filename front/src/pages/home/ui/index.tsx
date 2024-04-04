@@ -13,7 +13,7 @@ import Advantages from './components/advantages'
 
 
 
-export const HomePage = () => {
+const HomePage = () => {
   return (
     <main className={styles.root} >
           <section className={styles.carousel} ><Carousel/></section>

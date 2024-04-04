@@ -3,7 +3,7 @@ import styles from './Catalog.module.scss'
 import { getProducts } from '@/src/entities/product'
 import { ProductCard } from '@/src/entities/productCard'
 import { Filters } from '@/src/features/filters'
-import Pagination from '@/src/shared/ui/pagination'
+import { Pagination } from '@/src/features/pagination'
 
 
 const Catalog = async ({params, searchParams}:{params: {category: string}, searchParams: Record<string, string>}) => {
@@ -21,7 +21,7 @@ const Catalog = async ({params, searchParams}:{params: {category: string}, searc
           />
         })}
       </div>
-      <div className={styles.pagination} ><Pagination/></div>
+      <div className={styles.pagination} ><Pagination totalPages={10}/></div>
 
     </div>
   )

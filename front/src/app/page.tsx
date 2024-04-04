@@ -1,8 +1,10 @@
-import { HomePage } from "../pages/home";
+import React from "react";
+import HomePage from "../pages/home";
 
 
 
-export default  async function Home() {
+
+export default function Home() {
 
 
   return (
