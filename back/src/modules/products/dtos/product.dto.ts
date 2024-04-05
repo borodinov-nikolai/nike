@@ -6,6 +6,8 @@ export class AddProductDto {
   @ApiProperty()
   price: number;
   @ApiProperty()
+  gender: string;
+  @ApiProperty()
   image: string;
 }
 
@@ -15,6 +17,8 @@ export class UpdateProductDto {
   name?: string;
   @ApiProperty()
   price?: number;
+  @ApiProperty()
+  gender: string;
   @ApiProperty()
   image?: string;
 }

@@ -6,6 +6,7 @@ import { Size } from "../../size";
 export interface Product {
   id: number;
   name: string;
+  gender: string;
   price: number;
   image: string;
   categories: Category[];

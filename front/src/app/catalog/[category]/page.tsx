@@ -1,17 +1,14 @@
 import React from 'react'
-import styles from './CatalogPage.module.scss'
-import Breadcrumb from '@/src/shared/ui/breadcrumb'
-import { Catalog } from '@/src/widgets/catalog'
+import { CatalogPage } from '@/src/pages_/catalog'
 
 
-const CatalogPage = ({params, searchParams} : {params: {category:string}, searchParams: Record<string, string>}) => {
+const page = ({params, searchParams} : {params: {category:string}, searchParams: Record<string, string>}) => {
 
   return (
-    <div className={styles.root} >
-      <Breadcrumb items={[{label: "Мужские", url: '#'}, {label:'Коллекция Air Max', url:'#'}]} />
-      <Catalog params={params} searchParams={searchParams} />
-    </div>
+    <>
+    <CatalogPage params={params} searchParams={searchParams} />
+    </>
   )
 }
 
-export default CatalogPage
+export default page

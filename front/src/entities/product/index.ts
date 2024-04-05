@@ -1,5 +1,5 @@
-import { getProducts } from "./api";
+export {getProducts} from "./api";
+export type {Product} from './interfaces'
 
 
-export {getProducts};
 

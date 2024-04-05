@@ -1,13 +1,12 @@
-import { Registration } from '@/src/features/registration'
 import React from 'react'
-import styles from './RegistrationPage.module.scss'
+import { RegistrationPage } from '@/src/pages_/registration'
 
 
 const page = () => {
   return (
-    <main className={styles.root} >
-        <section><Registration/></section>
-    </main>
+    <>
+    <RegistrationPage/>
+    </>
   )
 }
 

@@ -5,7 +5,7 @@ import Dropdown from '@/src/shared/ui/dropdown'
 import Checkbox from '@/src/shared/ui/checkbox'
 import { useAppDispatch, useAppSelector } from '@/src/shared/store/hooks'
 import { setMaterials } from '../../../store/filtersSlice'
-import { useGetAllMaterialsQuery } from '@/src/entities/material'
+import { useGetAllMaterialsQuery } from '@/src/entities/productMaterial'
 
 
 

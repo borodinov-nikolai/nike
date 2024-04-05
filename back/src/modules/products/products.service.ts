@@ -14,8 +14,8 @@ export class ProductsService {
   async findAll(query: any) {
     const { orderBy, price, category, sizes, colors, materials, skip, take} = query
     const filters = {
-      skip: +skip,
-      take: +take,
+      skip: skip? +skip: 0,
+      take: take? +take : 50 ,
       orderBy: orderBy ?
        orderBy : {
           price: 'asc'
@@ -50,8 +50,13 @@ export class ProductsService {
               in: materials 
             }
           }
-        }
-        
+        } 
+      },
+      include: {
+        categories: true,
+        sizes: true,
+        colors: true,
+        materials: true
       }
     }
     
@@ -76,7 +81,7 @@ export class ProductsService {
   }
 
   async create(body: AddProductDto): Promise<Product> {
-    const { price, name, image } = body
+    const { price, name, image, gender } = body
     const categories: number[] = []
     const sizes: number[] = []
     const colors: number[] = []
@@ -102,6 +107,7 @@ export class ProductsService {
         name,
         image,
         price: +price,
+        gender,
         categories: {
           connect: categories.map((id) => { return {id}})
         },
@@ -121,7 +127,7 @@ export class ProductsService {
 
 
   async update(id: number, body: UpdateProductDto): Promise<Product> {
-    const { image, price, name } = body
+    const { image, price, name, gender } = body
     const categories: number[] = []
     const sizes: number[] = []
     const colors: number[] = []
@@ -152,6 +158,7 @@ export class ProductsService {
       },
       data: {
         name,
+        gender,
         image: image && image,
         price: +price,
         categories: {

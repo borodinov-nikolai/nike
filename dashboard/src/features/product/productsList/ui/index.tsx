@@ -10,7 +10,7 @@ import qs from 'qs';
 
 const ProductsList = () => {
   const navigate = useNavigate();
-  const { data: products } = useGetAllProductsQuery(qs.stringify({orderBy:[{id:'asc'}]}));
+  const {data} = useGetAllProductsQuery(qs.stringify({orderBy:[{id:'asc'}]}));
   const [deleteProduct] = useDeleteProductMutation();
   const handleDelete = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -19,7 +19,7 @@ const ProductsList = () => {
     e.stopPropagation();
     deleteProduct(id);
   };
-
+console.log(data?.products)
   return (
     <div className={styles.root}>
       <div>
@@ -28,7 +28,7 @@ const ProductsList = () => {
           <p>Дата создания</p>
         </div>
         <ul className={styles.list}>
-          {products?.map(({ id, name, price, image, createdAt }) => {
+          {data?.products?.map(({ id, name, price, image, createdAt }) => {
             return (
               <li
                 onClick={() => navigate(`/products/${id}`)}

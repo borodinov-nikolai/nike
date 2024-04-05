@@ -3,7 +3,7 @@ import { Product } from "../interfaces";
 
 const extendedApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({
-    getAllProducts: build.query<Product[], any>({
+    getAllProducts: build.query<{products:Product[], totalCount: number}, any>({
       query: (params) => ({
         url: '/products',
         params

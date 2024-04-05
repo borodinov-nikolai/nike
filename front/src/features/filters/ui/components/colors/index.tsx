@@ -4,7 +4,7 @@ import styles from './Colors.module.scss'
 import Dropdown from '@/src/shared/ui/dropdown'
 import { useAppDispatch, useAppSelector } from '@/src/shared/store/hooks'
 import { setColors } from '../../../store/filtersSlice'
-import { useGetAllColorsQuery } from '@/src/entities/color'
+import { useGetAllColorsQuery } from '@/src/entities/productColor'
 
 
 

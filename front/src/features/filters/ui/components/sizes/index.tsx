@@ -4,7 +4,7 @@ import styles from './Sizes.module.scss'
 import Dropdown from '@/src/shared/ui/dropdown'
 import { useAppDispatch, useAppSelector } from '@/src/shared/store/hooks'
 import { setSizes } from '../../../store/filtersSlice'
-import { useGetAllSizesQuery } from '@/src/entities/size'
+import { useGetAllSizesQuery } from '@/src/entities/productSize'
 
 
 

@@ -50,6 +50,19 @@
   }
 }
 
+.gender {
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  >div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
 .category {
   > label {
     user-select: none;

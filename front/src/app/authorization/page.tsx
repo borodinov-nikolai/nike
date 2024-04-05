@@ -1,11 +1,11 @@
-import { Authorization } from '@/src/features/authorization'
 import React from 'react'
-import styles from './AuthPage.module.scss'
+import { AuthorizationPage } from '@/src/pages_/authorization'
+
 const page = () => {
   return (
-    <main className={styles.root}>
-      <section><Authorization/></section>
-    </main>
+   <>
+   <AuthorizationPage/>
+   </>
   )
 }
 

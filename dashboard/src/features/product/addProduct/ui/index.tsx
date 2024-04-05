@@ -13,9 +13,11 @@ import { useGetAllSizesQuery } from "../../../../entities/size";
 import { Color, useGetAllColorsQuery } from "../../../../entities/color";
 import { Material } from "../../../../entities/material/interfaces";
 import { useGetAllMaterialsQuery } from "../../../../entities/material";
+import RadioButton from "../../../../shared/ui/radioButton";
 
 interface Inputs {
   name: string;
+  gender: string,
   price: number;
   categories: number[];
   sizes: number[];
@@ -36,10 +38,11 @@ const AddProduct = () => {
   const { data: product } = useGetOneProductQuery(Number(params), {
     skip: params === "add" && true,
   });
-  const { register, handleSubmit, reset, setValue, control } = useForm({
+  const { register, handleSubmit, reset, setValue, control, watch } = useForm({
     defaultValues: {
       name: "",
       price: 0,
+      gender: '',
       image: [],
       sizes: [],
       colors: [],
@@ -48,6 +51,7 @@ const AddProduct = () => {
     },
   });
 
+
   useEffect(() => {
     if (product) {
       const categories: number[] = product.categories?.map(({id})=> id);
@@ -55,6 +59,7 @@ const AddProduct = () => {
       const colors: number[] = product.colors?.map(({id})=> id)
       const materials: number[] = product.materials?.map(({id})=> id)
       setValue("name", product.name);
+      setValue('gender', product.gender)
       setValue("price", product.price);
       setValue("categories", categories as never[]);
       setValue("sizes", sizes as never[]);
@@ -66,6 +71,7 @@ const AddProduct = () => {
   const onSubmit: SubmitHandler<Inputs> = async ({
     name,
     price,
+    gender,
     image,
     sizes,
     colors,
@@ -75,6 +81,7 @@ const AddProduct = () => {
     const formData = new FormData();
     formData.append("image", image[0] as Blob);
     formData.append("name", name);
+    formData.append("gender", gender);
     formData.append("price", String(price));
     categories?.forEach((category, index) => {
       formData.append(`category_${index}`, String(category));
@@ -119,6 +126,19 @@ const AddProduct = () => {
         <div className={styles.formItem}>
           <label htmlFor="image">Изображение</label>
           <input {...register("image")} type="file" id="image" />
+        </div>
+      <div className={styles.formItem}>
+          <h2 className={styles.formItemTitle}>Пол:</h2>
+          <Controller
+            name="gender"
+            control={control}
+            render={({ field }) => {
+              return <div className={styles.gender} >
+               <div><RadioButton checked={field.value === 'Мужские'} onChange={(e)=> field.onChange(e.target.value)} value="Мужские" name={'gender'} /> Мужские</div>  
+               <div><RadioButton checked={field.value === 'Женские'} onChange={(e)=> field.onChange(e.target.value)} value="Женские" name={'gender'} /> Женские</div>  
+              </div>
+            }}
+          />
         </div>
         {categoriesList && categoriesList.length> 0 && <div className={styles.formItem}>
           <h2 className={styles.formItemTitle}>Категории:</h2>

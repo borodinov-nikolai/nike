@@ -1,19 +1,21 @@
 import React, { FC } from 'react'
 import styles from './ProductCard.module.scss'
 import Image from 'next/image'
+import { Color } from '../../productColor'
 
 interface Props {
 id: number
 name: string
 images: string[]
 gender: string
-colors: string[]
+colors: Color[]
 price: number
 oldPrice: number | null
 }
 
 
 const ProductCard:FC<Props> = ({id, name, images, gender, colors, price, oldPrice}) => {
+
   return (
     <div className={styles.root} >
    
@@ -22,12 +24,11 @@ const ProductCard:FC<Props> = ({id, name, images, gender, colors, price, oldPric
               <Image className={styles.image} src={images?.[0]} width={440} height={440} alt='product image'/>
           </div>
       
-      
        <div className={styles.description} >
-         <p className={styles.gender} >{gender === 'm'? 'мужские': 'женские'}</p>
+         <p className={styles.gender} >{gender}</p>
          <h3 className={styles.name} >{name}</h3>
          <ul className={styles.colors} >Цвета: 
-          {colors.map((color, index ) => <li className={styles.color} style={{backgroundColor: color}} key={index} ></li>)}
+          {colors?.map(({id, value}) => <li className={styles.color} style={{backgroundColor: value}} key={id} ></li>)}
          </ul>
          <div className={styles.prices} >
            <p className={styles.price} >{price} ₽</p>
