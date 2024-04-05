@@ -1,7 +1,9 @@
+'use client'
 import React, { FC } from 'react'
 import styles from './ProductCard.module.scss'
 import Image from 'next/image'
 import { Color } from '../../productColor'
+import { useRouter } from 'next/navigation'
 
 interface Props {
 id: number
@@ -15,9 +17,9 @@ oldPrice: number | null
 
 
 const ProductCard:FC<Props> = ({id, name, images, gender, colors, price, oldPrice}) => {
-
+const router = useRouter()
   return (
-    <div className={styles.root} >
+    <div onClick={()=>router.push(`/product/${id}`)} className={styles.root} >
    
         
           <div className={styles.imageHolder} >

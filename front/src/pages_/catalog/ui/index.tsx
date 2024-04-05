@@ -9,7 +9,7 @@ export const CatalogPage = ({params, searchParams} : {params: {category:string},
 
   return (
     <main className={styles.root} >
-      <Breadcrumb items={[{label: "Мужские", url: '#'}, {label:'Коллекция Air Max', url:'#'}]} />
+      <Breadcrumb items={[{label: "Каталог", url: '/catalog/all'}, {label:params.category, url:`/catalog/${params.category}`}]} />
       <Catalog params={params} searchParams={searchParams} />
     </main>
   )

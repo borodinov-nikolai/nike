@@ -14,3 +14,15 @@ export const getProducts = async (params: Record<string, string>) => {
         console.error(e)
     }
 }
+
+
+export const getProduct = async (id: number)=> {
+
+    try {
+        const {data}: {data: Product} = await $serverAPI.get(`/products/${id}`)
+        return data
+    } catch(e) {
+        console.error(e)
+    }
+
+}

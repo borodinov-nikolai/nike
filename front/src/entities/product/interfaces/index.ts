@@ -13,7 +13,14 @@ export interface Product {
     image: string
     colors: Color[]
     sizes: Size[]
+    categories: Category[]
     materials: Material[]
     createdAt: string
     updatedAt: string
+  }
+
+  export interface Category {
+    id: number
+    name: string
+    value: string
   }
