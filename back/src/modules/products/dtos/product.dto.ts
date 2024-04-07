@@ -8,7 +8,7 @@ export class AddProductDto {
   @ApiProperty()
   gender: string;
   @ApiProperty()
-  image: string;
+  images: string[];
 }
 
 
@@ -20,5 +20,5 @@ export class UpdateProductDto {
   @ApiProperty()
   gender: string;
   @ApiProperty()
-  image?: string;
+  images?: string[];
 }

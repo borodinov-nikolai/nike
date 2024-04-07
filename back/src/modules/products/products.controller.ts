@@ -8,13 +8,14 @@ import {
   Put,
   Query,
   UploadedFile,
+  UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Product } from './entities/product.entity';
 import { AddProductDto, UpdateProductDto} from './dtos/product.dto';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { AnyFilesInterceptor, FileFieldsInterceptor, FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { multerConfig } from 'src/configs/multer.config';
 
 @ApiTags('products')
@@ -50,7 +51,7 @@ export class ProductsController {
 
 
   @Post()
-  @UseInterceptors(FileInterceptor('image', multerConfig))
+  @UseInterceptors(AnyFilesInterceptor())
   @ApiOperation({
     summary: 'добавить продукт',
   })
@@ -60,17 +61,26 @@ export class ProductsController {
     type: Product,
   })
   addProduct(
-    @UploadedFile() file: Express.Multer.File,
+    @UploadedFiles() files: Express.Multer.File[],
     @Body() body: AddProductDto,
   ) {
-    const image = file.filename;
-    delete body.image
-    return this.productsService.create({image, ...body});
+
+    const images: string[] = []
+    files.forEach((file, index)=> {
+      const filename = file.originalname.split('.').pop()
+      console.log(filename)
+    } )
+    // console.log(images)
+    // const image = files[0].filename;
+    // delete body.images
+    // return this.productsService.create({images, ...body});
   }
 
 
   @Put(':id')
-  @UseInterceptors(FileInterceptor('image', multerConfig))
+  @UseInterceptors(FileFieldsInterceptor([
+    {name: 'image', maxCount: 5}
+  ]))
   @ApiOperation({
     summary: 'изменить продукт',
   })
@@ -80,13 +90,14 @@ export class ProductsController {
     type: Product,
   })
   updateProduct(
-    @UploadedFile() file: Express.Multer.File,
+    @UploadedFiles() files: Express.Multer.File[],
     @Body() body: UpdateProductDto,
     @Param('id') id: string
   ) {
-      const image = file && file.filename;
-      delete body.image
-    return this.productsService.update(Number(id), {image, ...body});
+    console.log(files)
+    //   const image = file && file.filename;
+    //   delete body.image
+    // return this.productsService.update(Number(id), {image, ...body});
   }
 
 

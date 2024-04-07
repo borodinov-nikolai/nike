@@ -22,7 +22,7 @@ interface Inputs {
   categories: number[];
   sizes: number[];
   colors: Color[];
-  image: Object[];
+  images: Blob[];
   materials: Material[];
 }
 
@@ -30,9 +30,9 @@ const AddProduct = () => {
   const navigate = useNavigate();
   const { edit: params } = useParams();
   const { data: categoriesList } = useGetAllCategoriesQuery();
-  const {data: sizesList} = useGetAllSizesQuery()
-  const {data: colorsList} = useGetAllColorsQuery()
-  const {data: materialsList} = useGetAllMaterialsQuery()
+  const { data: sizesList } = useGetAllSizesQuery()
+  const { data: colorsList } = useGetAllColorsQuery()
+  const { data: materialsList } = useGetAllMaterialsQuery()
   const [addProduct] = useAddProductMutation();
   const [updateProduct] = useUpdateProductMutation();
   const { data: product } = useGetOneProductQuery(Number(params), {
@@ -43,7 +43,7 @@ const AddProduct = () => {
       name: "",
       price: 0,
       gender: '',
-      image: [],
+      images: [],
       sizes: [],
       colors: [],
       categories: [],
@@ -54,10 +54,10 @@ const AddProduct = () => {
 
   useEffect(() => {
     if (product) {
-      const categories: number[] = product.categories?.map(({id})=> id);
-      const sizes: number[] = product.sizes?.map(({id})=> id);
-      const colors: number[] = product.colors?.map(({id})=> id)
-      const materials: number[] = product.materials?.map(({id})=> id)
+      const categories: number[] = product.categories?.map(({ id }) => id);
+      const sizes: number[] = product.sizes?.map(({ id }) => id);
+      const colors: number[] = product.colors?.map(({ id }) => id)
+      const materials: number[] = product.materials?.map(({ id }) => id)
       setValue("name", product.name);
       setValue('gender', product.gender)
       setValue("price", product.price);
@@ -72,27 +72,30 @@ const AddProduct = () => {
     name,
     price,
     gender,
-    image,
+    images,
     sizes,
     colors,
     materials,
     categories,
   }) => {
     const formData = new FormData();
-    formData.append("image", image[0] as Blob);
     formData.append("name", name);
     formData.append("gender", gender);
     formData.append("price", String(price));
+    for (let i = 0; i < images.length; i++) {
+      console.log(images[i])
+      formData.append(`image_${i}`, images[i]);
+    }
     categories?.forEach((category, index) => {
       formData.append(`category_${index}`, String(category));
     });
     sizes?.forEach((size, index) => {
       formData.append(`size_${index}`, String(size));
     });
-    colors?.forEach((color, index)=> {
+    colors?.forEach((color, index) => {
       formData.append(`color_${index}`, String(color));
     })
-    materials?.forEach((material, index)=> {
+    materials?.forEach((material, index) => {
       formData.append(`material_${index}`, String(material));
     })
     if (params === "add") {
@@ -109,8 +112,8 @@ const AddProduct = () => {
       }
     }
   };
-
-
+  
+console.log(watch('images')[0])
 
   return (
     <div className={styles.root}>
@@ -125,22 +128,22 @@ const AddProduct = () => {
         </div>
         <div className={styles.formItem}>
           <label htmlFor="image">Изображение</label>
-          <input {...register("image")} type="file" id="image" />
+          <input {...register("images")} type="file" multiple={true} id="image" />
         </div>
-      <div className={styles.formItem}>
+        <div className={styles.formItem}>
           <h2 className={styles.formItemTitle}>Пол:</h2>
           <Controller
             name="gender"
             control={control}
             render={({ field }) => {
               return <div className={styles.gender} >
-               <div><RadioButton checked={field.value === 'Мужские'} onChange={(e)=> field.onChange(e.target.value)} value="Мужские" name={'gender'} /> Мужские</div>  
-               <div><RadioButton checked={field.value === 'Женские'} onChange={(e)=> field.onChange(e.target.value)} value="Женские" name={'gender'} /> Женские</div>  
+                <div><RadioButton checked={field.value === 'Мужские'} onChange={(e) => field.onChange(e.target.value)} value="Мужские" name={'gender'} /> Мужские</div>
+                <div><RadioButton checked={field.value === 'Женские'} onChange={(e) => field.onChange(e.target.value)} value="Женские" name={'gender'} /> Женские</div>
               </div>
             }}
           />
         </div>
-        {categoriesList && categoriesList.length> 0 && <div className={styles.formItem}>
+        {categoriesList && categoriesList.length > 0 && <div className={styles.formItem}>
           <h2 className={styles.formItemTitle}>Категории:</h2>
           <Controller
             name="categories"
@@ -217,11 +220,11 @@ const AddProduct = () => {
               );
             }}
           />
-           
+
         </div>}
-        {colorsList && colorsList?.length  > 0 && <div className={styles.formItem} >
-        <h2 className={styles.formItemTitle}>Цвета:</h2>
-        <Controller
+        {colorsList && colorsList?.length > 0 && <div className={styles.formItem} >
+          <h2 className={styles.formItemTitle}>Цвета:</h2>
+          <Controller
             name="colors"
             control={control}
             render={({ field }) => {
@@ -248,7 +251,7 @@ const AddProduct = () => {
                             value={id}
                             checked={(field.value as number[]).includes(id)}
                           />{" "}
-                          <p className={styles.color} style={{background: value}} ></p>
+                          <p className={styles.color} style={{ background: value }} ></p>
                         </label>
                       </div>
                     );
@@ -259,8 +262,8 @@ const AddProduct = () => {
           />
         </div>}
         {materialsList && materialsList.length > 0 && <div className={styles.formItem} >
-        <h2 className={styles.formItemTitle}>Материалы:</h2>
-        <Controller
+          <h2 className={styles.formItemTitle}>Материалы:</h2>
+          <Controller
             name="materials"
             control={control}
             render={({ field }) => {

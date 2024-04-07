@@ -81,7 +81,7 @@ export class ProductsService {
   }
 
   async create(body: AddProductDto): Promise<Product> {
-    const { price, name, image, gender } = body
+    const { price, name, images, gender } = body
     const categories: number[] = []
     const sizes: number[] = []
     const colors: number[] = []
@@ -105,7 +105,7 @@ export class ProductsService {
     const product = await this.db.product.create({
       data: {
         name,
-        image,
+        images,
         price: +price,
         gender,
         categories: {
@@ -127,7 +127,7 @@ export class ProductsService {
 
 
   async update(id: number, body: UpdateProductDto): Promise<Product> {
-    const { image, price, name, gender } = body
+    const { images, price, name, gender } = body
     const categories: number[] = []
     const sizes: number[] = []
     const colors: number[] = []
@@ -148,9 +148,12 @@ export class ProductsService {
       if(key.startsWith('material_'))
       materials.push(+body[key])
     }
-    if (image) {
+    if (images) {
       const product = await this.findOne(id)
-      this.fileService.deleteFile(product.image, 'images');
+      product.images.forEach((image)=> {
+
+        this.fileService.deleteFile(image, 'images');
+      })
     } 
     const updatedProduct = await this.db.product.update({
       where: {
@@ -159,7 +162,7 @@ export class ProductsService {
       data: {
         name,
         gender,
-        image: image && image,
+        images: images && images,
         price: +price,
         categories: {
           set: categories.map((id) => { return {id} })
@@ -185,7 +188,10 @@ export class ProductsService {
         id,
       },
     });
-    this.fileService.deleteFile(product.image, 'images');
+    product.images.forEach((image)=> {
+
+      this.fileService.deleteFile(image, 'images');
+    })
 
     return product;
   }

@@ -9,7 +9,7 @@ export class Product {
   @ApiProperty()
   price: number;
   @ApiProperty()
-  image: string;
+  images: string[];
   @ApiProperty()
   gender: string;
   @ApiProperty()

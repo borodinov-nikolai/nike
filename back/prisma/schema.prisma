@@ -47,7 +47,7 @@ model Product {
   price Int
   gender String
   oldPrice Int?
-  image String
+  images String[]
   new Boolean?
   hit Boolean?
   discount Boolean?

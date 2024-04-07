@@ -28,7 +28,7 @@ console.log(data?.products)
           <p>Дата создания</p>
         </div>
         <ul className={styles.list}>
-          {data?.products?.map(({ id, name, price, image, createdAt }) => {
+          {data?.products?.map(({ id, name, price, images, createdAt }) => {
             return (
               <li
                 onClick={() => navigate(`/products/${id}`)}
@@ -39,7 +39,7 @@ console.log(data?.products)
                 <p>
                   <img
                     className={styles.image}
-                    src={`http://localhost:5000/uploads/images/${image}`}
+                    src={`http://localhost:5000/uploads/images/${images[0]}`}
                   />
                 </p>{" "}
                 <p> {name}</p>

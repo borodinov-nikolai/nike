@@ -8,7 +8,7 @@ export interface Product {
   name: string;
   gender: string;
   price: number;
-  image: string;
+  images: string[];
   categories: Category[];
   sizes: Size[];
   colors: Color[];
