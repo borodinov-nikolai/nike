@@ -81,7 +81,7 @@ export class ProductsService {
   }
 
   async create(body: AddProductDto): Promise<Product> {
-    const { price, name, images, gender } = body
+    const { price, name, images, gender, preview, description, characteristics } = body
     const categories: number[] = []
     const sizes: number[] = []
     const colors: number[] = []
@@ -105,6 +105,9 @@ export class ProductsService {
     const product = await this.db.product.create({
       data: {
         name,
+        preview,
+        description,
+        characteristics,
         images,
         price: +price,
         gender,

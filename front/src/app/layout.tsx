@@ -3,6 +3,7 @@ import '@/src/shared/styles/global.scss';
 import StoreProvider from "@/src/shared/configs/storeProvider";
 import { Footer } from "@/src/widgets/footer";
 import { Header } from "@/src/widgets/header";
+import { AntdRegistry } from '@ant-design/nextjs-registry';
 import type { Metadata } from "next";
 
 import { CheckAuth } from '../features/checkAuth';
@@ -29,11 +30,13 @@ export default function RootLayout({
     <html lang="en">
       <StoreProvider>
       <body className={pragmatica.className} id='__next'>
+       <AntdRegistry>
       <CheckAuth>
       <Header/>
-        {children}
+         {children}
       <Footer/>
       </CheckAuth>
+         </AntdRegistry> 
       </body>
       </StoreProvider>
     </html>

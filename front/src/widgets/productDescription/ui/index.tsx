@@ -12,6 +12,7 @@ export const ProductDescription = ({product}:{product: Product}) => {
     <div>
       <Gallery images={product.images} />
       <Description/>
+      <textarea name="" id="" cols={30} rows={10}></textarea>
     </div>
   )
 }

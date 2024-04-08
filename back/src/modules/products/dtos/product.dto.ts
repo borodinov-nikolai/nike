@@ -6,11 +6,21 @@ export class AddProductDto {
   @ApiProperty()
   price: number;
   @ApiProperty()
+  description: string
+  @ApiProperty()
   gender: string;
+  @ApiProperty()
+  characteristics: Characteristics[];
+  @ApiProperty()
+  preview: string
   @ApiProperty()
   images: string[];
 }
 
+type Characteristics = {
+   name: string
+   value: string
+}
 
 export class UpdateProductDto {
   @ApiProperty()
@@ -18,7 +28,13 @@ export class UpdateProductDto {
   @ApiProperty()
   price?: number;
   @ApiProperty()
+  description: string
+  @ApiProperty()
   gender: string;
+  @ApiProperty()
+  characteristics: Characteristics[];
+  @ApiProperty()
+  preview: string
   @ApiProperty()
   images?: string[];
 }
