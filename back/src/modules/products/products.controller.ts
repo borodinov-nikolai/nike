@@ -7,7 +7,6 @@ import {
   Post,
   Put,
   Query,
-  UploadedFile,
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
@@ -15,8 +14,10 @@ import { ProductsService } from './products.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Product } from './entities/product.entity';
 import { AddProductDto, UpdateProductDto} from './dtos/product.dto';
-import { AnyFilesInterceptor, FileFieldsInterceptor, FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import { multerConfig } from 'src/configs/multer.config';
+import { AnyFilesInterceptor} from '@nestjs/platform-express';
+import { extname } from 'path';
+import * as fs from 'fs'
+
 
 @ApiTags('products')
 @Controller('products')
@@ -67,20 +68,20 @@ export class ProductsController {
 
     const images: string[] = []
     files.forEach((file, index)=> {
-      const filename = file.originalname.split('.').pop()
-      console.log(filename)
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      const filename = file.originalname.split('.').at(0) + '-' + uniqueSuffix + extname(file.originalname)
+      const filePath = process.cwd() + '/files' + '/uploads' + '/images' + `/${filename}`
+      const stream = fs.createWriteStream(filePath);
+      stream.write(file.buffer);
+      images.push(filename)
     } )
-    // console.log(images)
-    // const image = files[0].filename;
-    // delete body.images
-    // return this.productsService.create({images, ...body});
+    delete body.images
+    return this.productsService.create({images, ...body});
   }
 
 
   @Put(':id')
-  @UseInterceptors(FileFieldsInterceptor([
-    {name: 'image', maxCount: 5}
-  ]))
+  @UseInterceptors(AnyFilesInterceptor())
   @ApiOperation({
     summary: 'изменить продукт',
   })
@@ -94,10 +95,18 @@ export class ProductsController {
     @Body() body: UpdateProductDto,
     @Param('id') id: string
   ) {
-    console.log(files)
-    //   const image = file && file.filename;
-    //   delete body.image
-    // return this.productsService.update(Number(id), {image, ...body});
+    const images: string[] = []
+    files.forEach((file, index)=> {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      const filename = file.originalname.split('.').at(0)+ '-' + uniqueSuffix + extname(file.originalname)
+      const filePath = process.cwd() + '/files' + '/uploads' + '/images' + `/${filename}`
+      const stream = fs.createWriteStream(filePath);
+      stream.write(file.buffer);
+      images.push(filename)
+    } )
+
+      delete body.images
+    return this.productsService.update(Number(id), {images, ...body});
   }
 
 

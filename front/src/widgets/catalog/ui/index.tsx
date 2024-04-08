@@ -14,8 +14,8 @@ const Catalog = async ({params, searchParams}:{params: {category: string}, searc
     >
         <div className={styles.filters} ><Filters totalCount={data?.totalCount? data.totalCount : 0} /></div>
       <div className={[styles.inner, ' container'].join(' ')} >
-        {data?.products?.map(({id, name, price, image, colors, gender})=> {
-          return <ProductCard key={id} id={id} gender={gender} name={name} colors={colors} images={[process.env.NEXT_PUBLIC_BACKEND_UPLOADS + '/images/' + image]} price={price} 
+        {data?.products?.map(({id, name, price, images, colors, gender})=> {
+          return <ProductCard key={id} id={id} gender={gender} name={name} colors={colors} images={[process.env.NEXT_PUBLIC_BACKEND_UPLOADS + '/images/' + images[0]]} price={price} 
           oldPrice={4000}
           />
         })}

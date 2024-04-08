@@ -74,7 +74,7 @@ export class ProductsService {
         categories: true,
         sizes: true,
         colors: true,
-        materials: true
+        materials: true,
       }
     })
     return product;
@@ -148,12 +148,11 @@ export class ProductsService {
       if(key.startsWith('material_'))
       materials.push(+body[key])
     }
-    if (images) {
+    if (images.length > 0) {
       const product = await this.findOne(id)
-      product.images.forEach((image)=> {
-
-        this.fileService.deleteFile(image, 'images');
-      })
+      for (const image of product.images) {
+        await this.fileService.deleteFile(image, 'images');
+      }
     } 
     const updatedProduct = await this.db.product.update({
       where: {
@@ -162,7 +161,7 @@ export class ProductsService {
       data: {
         name,
         gender,
-        images: images && images,
+        ...(images.length > 0 ? {images} : {}),
         price: +price,
         categories: {
           set: categories.map((id) => { return {id} })

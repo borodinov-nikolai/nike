@@ -10,7 +10,7 @@ import Description from './components/description'
 export const ProductDescription = ({product}:{product: Product}) => {
   return (
     <div>
-      <Gallery/>
+      <Gallery images={product.images} />
       <Description/>
     </div>
   )

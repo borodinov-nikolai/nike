@@ -7,13 +7,14 @@ import {
 } from "../../../../entities/product/api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetAllCategoriesQuery } from "../../../../entities/category";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Checkbox from "../../../../shared/ui/checkbox";
 import { useGetAllSizesQuery } from "../../../../entities/size";
 import { Color, useGetAllColorsQuery } from "../../../../entities/color";
 import { Material } from "../../../../entities/material/interfaces";
 import { useGetAllMaterialsQuery } from "../../../../entities/material";
 import RadioButton from "../../../../shared/ui/radioButton";
+import { array } from "prop-types";
 
 interface Inputs {
   name: string;
@@ -29,6 +30,7 @@ interface Inputs {
 const AddProduct = () => {
   const navigate = useNavigate();
   const { edit: params } = useParams();
+  const [previewImages, setPreviewImages] = useState<any[]>([])
   const { data: categoriesList } = useGetAllCategoriesQuery();
   const { data: sizesList } = useGetAllSizesQuery()
   const { data: colorsList } = useGetAllColorsQuery()
@@ -50,6 +52,23 @@ const AddProduct = () => {
       materials: []
     },
   });
+
+  const images = watch('images');
+
+  useEffect(() => {
+    if(images) {
+       const files = Array.from(images)
+       files.forEach((file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e) => {
+          setPreviewImages((prevImages) => [...prevImages, e?.target?.result]);
+        };
+      });
+    }
+     
+  }, [images]);
+
 
 
   useEffect(() => {
@@ -83,7 +102,6 @@ const AddProduct = () => {
     formData.append("gender", gender);
     formData.append("price", String(price));
     for (let i = 0; i < images.length; i++) {
-      console.log(images[i])
       formData.append(`image_${i}`, images[i]);
     }
     categories?.forEach((category, index) => {
@@ -113,7 +131,7 @@ const AddProduct = () => {
     }
   };
   
-console.log(watch('images')[0])
+
 
   return (
     <div className={styles.root}>
@@ -128,7 +146,12 @@ console.log(watch('images')[0])
         </div>
         <div className={styles.formItem}>
           <label htmlFor="image">Изображение</label>
-          <input {...register("images")} type="file" multiple={true} id="image" />
+          <input {...register("images")} type="file" multiple id="image" />
+          <div className={styles.previewImages} > 
+            {previewImages.map((image, i)=> {
+              return <img key={i} src={image} width={150} height={150}  alt="" />
+            })}
+          </div>
         </div>
         <div className={styles.formItem}>
           <h2 className={styles.formItemTitle}>Пол:</h2>

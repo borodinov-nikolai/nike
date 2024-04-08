@@ -63,6 +63,13 @@
   }
 }
 
+
+.previewImages {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .category {
   > label {
     user-select: none;
