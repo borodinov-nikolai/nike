@@ -1,0 +1,37 @@
+@import "./reset";
+@import "./mixins/breakpoints";
+@import "./variables/theme_variables.scss";
+
+body {
+  color: var(--text-color);
+  background: var(--background-color);
+  min-height: 100vh;
+  position: relative;
+}
+
+
+
+main {
+  width: 100%;
+  display: flex;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1360px;
+  padding: 0 15px;
+}
+
+@include breakpoint(md) {
+  .container {
+    padding: 0 25px;
+  }
+}
+
+@include breakpoint(2xl) {
+  .container {
+    padding: 0;
+  }
+}

@@ -17,6 +17,8 @@ import { CategoriesModule } from './modules/categories/categories.module';
 import { SizesModule } from './modules/sizes/sizes.module';
 import { ColorsModule } from './modules/colors/colors.module';
 import { MaterialsModule } from './modules/materials/materials.module';
+import { ImagesModule } from './modules/images/images.module';
+import { UploadModule } from './modules/upload/upload.module';
 
 @Module({
   imports: [
@@ -36,7 +38,10 @@ import { MaterialsModule } from './modules/materials/materials.module';
     CategoriesModule,
     SizesModule,
     ColorsModule,
-    MaterialsModule
+    MaterialsModule,
+    ImagesModule,
+    FileModule,
+    UploadModule
   ],
   controllers: [],
   exports: [],

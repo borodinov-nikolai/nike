@@ -56,7 +56,8 @@ export class ProductsService {
         categories: true,
         sizes: true,
         colors: true,
-        materials: true
+        materials: true,
+        images: true
       }
     }
     
@@ -75,54 +76,35 @@ export class ProductsService {
         sizes: true,
         colors: true,
         materials: true,
+        images: true
       }
     })
     return product;
   }
 
   async create(body: AddProductDto): Promise<Product> {
-    const { price, name, images, gender, preview, description, characteristics } = body
-    const categories: number[] = []
-    const sizes: number[] = []
-    const colors: number[] = []
-    const materials: number[] = []
-    for (const key of Object.keys(body)) {
-      if (key.startsWith('category_'))
-        categories.push(+body[key])
-    }
-    for (const key of Object.keys(body)) {
-      if (key.startsWith('size_'))
-      sizes.push(+body[key])
-    }
-    for(const key of Object.keys(body)) {
-      if(key.startsWith('color_'))
-      colors.push(+body[key])
-    }
-    for(const key of Object.keys(body)) {
-      if(key.startsWith('material_'))
-      materials.push(+body[key])
-    }
+    const { price, name, gender, preview, description, characteristics } = body
+
     const product = await this.db.product.create({
       data: {
         name,
         preview,
         description,
         characteristics,
-        images,
         price: +price,
-        gender,
-        categories: {
-          connect: categories.map((id) => { return {id}})
-        },
-        sizes: {
-          connect: sizes.map((id)=> { return {id} } )
-        },
-        colors: {
-          connect: colors.map((id)=> { return {id} } )
-        },
-        materials: {
-          connect: materials.map((id)=> { return {id} } )
-        }
+        gender
+        // categories: {
+        //   connect: categories.map((id) => { return {id}})
+        // },
+        // sizes: {
+        //   connect: sizes.map((id)=> { return {id} } )
+        // },
+        // colors: {
+        //   connect: colors.map((id)=> { return {id} } )
+        // },
+        // materials: {
+        //   connect: materials.map((id)=> { return {id} } )
+        // }
       }
     });
     return product;
@@ -130,33 +112,9 @@ export class ProductsService {
 
 
   async update(id: number, body: UpdateProductDto): Promise<Product> {
-    const { images, price, name, gender } = body
-    const categories: number[] = []
-    const sizes: number[] = []
-    const colors: number[] = []
-    const materials: number[] = []
-    for (const key of Object.keys(body)) {
-      if (key.startsWith('category_'))
-        categories.push(+body[key])
-    }
-    for (const key of Object.keys(body)) {
-      if (key.startsWith('size_'))
-      sizes.push(+body[key])
-    }
-    for(const key of Object.keys(body)) {
-      if(key.startsWith('color_'))
-      colors.push(+body[key])
-    }
-    for(const key of Object.keys(body)) {
-      if(key.startsWith('material_'))
-      materials.push(+body[key])
-    }
-    if (images.length > 0) {
-      const product = await this.findOne(id)
-      for (const image of product.images) {
-        await this.fileService.deleteFile(image, 'images');
-      }
-    } 
+    const { price, name, gender } = body
+
+   
     const updatedProduct = await this.db.product.update({
       where: {
         id
@@ -164,20 +122,7 @@ export class ProductsService {
       data: {
         name,
         gender,
-        ...(images.length > 0 ? {images} : {}),
         price: +price,
-        categories: {
-          set: categories.map((id) => { return {id} })
-        },
-        sizes: {
-          set: sizes.map((id) => { return {id} })
-        },
-        colors: {
-          set: colors.map((id)=> { return {id}})
-        },
-        materials: {
-          set: materials.map((id)=> { return {id}})
-        }
       }
     })
     return updatedProduct
@@ -190,10 +135,7 @@ export class ProductsService {
         id,
       },
     });
-    product.images.forEach((image)=> {
-
-      this.fileService.deleteFile(image, 'images');
-    })
+   
 
     return product;
   }

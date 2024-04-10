@@ -14,8 +14,6 @@ export class Product {
   @ApiProperty()
   characteristics: JsonValue[]
   @ApiProperty()
-  images: string[];
-  @ApiProperty()
   gender: string;
   @ApiProperty()
   colors?: Color[]

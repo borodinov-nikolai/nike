@@ -13,8 +13,6 @@ export class AddProductDto {
   characteristics: Characteristics[];
   @ApiProperty()
   preview: string
-  @ApiProperty()
-  images: string[];
 }
 
 type Characteristics = {
@@ -35,6 +33,4 @@ export class UpdateProductDto {
   characteristics: Characteristics[];
   @ApiProperty()
   preview: string
-  @ApiProperty()
-  images?: string[];
 }

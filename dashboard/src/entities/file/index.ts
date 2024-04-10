@@ -1,1 +1,0 @@
-export {useUploadFileMutation} from './api'
