@@ -1,4 +1,4 @@
-import { Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Controller, Post, UploadedFile, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { UploadService } from './upload.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -15,8 +15,8 @@ export class UploadController {
     })
     @UseInterceptors(FileInterceptor('file'))
     UploadFile(@UploadedFile() file: Express.Multer.File) {
-             
-            console.log(file)
+             console.log(file.path)
+            return 'файл сохранен'
     }
   
   
