@@ -1,1 +1,0 @@
-export { ColorsList } from "./ui";

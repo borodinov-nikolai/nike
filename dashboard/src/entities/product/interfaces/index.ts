@@ -8,6 +8,8 @@ export interface Product {
   name: string;
   gender: string;
   price: number;
+  description: string;
+  prewiev: string[];
   images: string[];
   categories: Category[];
   sizes: Size[];

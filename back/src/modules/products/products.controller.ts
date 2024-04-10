@@ -91,22 +91,11 @@ export class ProductsController {
     type: Product,
   })
   updateProduct(
-    @UploadedFiles() files: Express.Multer.File[],
     @Body() body: UpdateProductDto,
     @Param('id') id: string
   ) {
-    const images: string[] = []
-    files.forEach((file, index)=> {
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-      const filename = file.originalname.split('.').at(0)+ '-' + uniqueSuffix + extname(file.originalname)
-      const filePath = process.cwd() + '/files' + '/uploads' + '/images' + `/${filename}`
-      const stream = fs.createWriteStream(filePath);
-      stream.write(file.buffer);
-      images.push(filename)
-    } )
 
-      delete body.images
-    return this.productsService.update(Number(id), {images, ...body});
+    return this.productsService.update(Number(id), {...body});
   }
 
 

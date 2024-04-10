@@ -1,10 +1,18 @@
-import { CategoriesList } from "../../features/category/categoriesList";
+import { useNavigate } from "react-router-dom";
+import styles from './CategoriesPage.module.scss'
+import { ItemsList } from "../../widgets/itemsList";
+import {useGetAllCategoriesQuery } from "../../entities/category";
+
+
+
 
 const CategoriesPage = () => {
+  const navigate = useNavigate()
+  const {data} = useGetAllCategoriesQuery()
   return (
-    <>
-      <CategoriesList />
-    </>
+    <div className={styles.root} >
+      {data && <ItemsList data={data}/>}
+    </div>
   );
 };
 
