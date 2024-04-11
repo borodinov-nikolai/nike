@@ -1,2 +1,2 @@
-export {useGetAllImagesQuery, useUploadImageMutation} from './api'
+export {useGetAllImagesQuery, useUploadImageMutation, useDeleteImageMutation} from './api'
 export type {Image} from './interfaces'

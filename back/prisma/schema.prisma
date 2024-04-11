@@ -62,7 +62,7 @@ model Product {
 
 model Image {
   id        Int       @id @default(autoincrement())
-  url       String
+  name       String
   product   Product[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt

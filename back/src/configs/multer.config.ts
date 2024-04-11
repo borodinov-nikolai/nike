@@ -1,13 +1,12 @@
 import { diskStorage } from "multer"
 import{ extname, join } from "path"
-
+import {v4 as uuidv4} from 'uuid'
 
 
 
 const rootPath = process.cwd()
 
 export const multerConfig = {
-    dist: './uploads',
     storage: diskStorage({
         destination: function (req, file, cb) {
             let folder:string
@@ -19,8 +18,8 @@ export const multerConfig = {
             cb(null, join(rootPath,'files', 'uploads', folder))
           },
           filename: function (req, file, cb) {
-            const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-            cb(null, file.fieldname + '-' + uniqueSuffix + extname(file.originalname))
+            const uniqueName = uuidv4()
+            cb(null, uniqueName + extname(file.originalname))
           }
     })
   }

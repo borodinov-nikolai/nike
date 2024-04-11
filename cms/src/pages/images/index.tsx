@@ -1,5 +1,7 @@
 import { useGetAllImagesQuery } from "../../entities/image"
-import { ItemsTable } from "../../widgets/itemsTable"
+import { Gallery } from "../../widgets/gallery"
+
+
 
 
 
@@ -7,7 +9,7 @@ import { ItemsTable } from "../../widgets/itemsTable"
 const ImagesPage = () => {
   const {data} = useGetAllImagesQuery()
   return (
-    <>{data && <ItemsTable data={data} name='Картинки' />}</>
+    <>{data && <Gallery data={data} />}</>
   )
 }
 

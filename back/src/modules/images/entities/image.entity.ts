@@ -6,7 +6,7 @@ export class Image {
   @ApiProperty()
   id: number
   @ApiProperty()
-  url: string
+  name: string
   @ApiProperty()
   createdAt: Date
   @ApiProperty()

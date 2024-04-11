@@ -19,9 +19,16 @@ export const extenedApi = emptySplitApi.injectEndpoints({
       }),
       invalidatesTags: ['Image']
     }),
+    deleteImage: build.mutation<string, number>({
+      query: (id)=>({
+        url: `/images/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Image']
+    })
   }),
   overrideExisting: true
 }
 )
 
-export const { useUploadImageMutation, useGetAllImagesQuery } = extenedApi
+export const { useUploadImageMutation, useGetAllImagesQuery, useDeleteImageMutation } = extenedApi
