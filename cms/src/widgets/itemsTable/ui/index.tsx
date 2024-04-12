@@ -18,7 +18,7 @@ export const ItemsTable= ({data, name}: {data: Record<string, any>[], name: stri
   };
 
    const keys = data.length > 0 ? Object.keys(data[0]): []
-   const columns: TableColumnsType = keys?.map((item)=> {
+   const columns: TableColumnsType = keys?.slice(0,4).map((item)=> {
     return {
       title: item[0].toUpperCase() + item.slice(1),
       dataIndex: item,

@@ -73,7 +73,7 @@ export const ColorEditor = () => {
                 </div>
                 <SubmitButton />
             </form>
-            <DeleteButton onConfirm={handleDelete} />
+            {params !== 'add' && <DeleteButton onConfirm={handleDelete} />}
         </div>
     )
 }

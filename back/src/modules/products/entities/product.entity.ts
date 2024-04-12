@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { JsonValue } from '@prisma/client/runtime/library';
 import { Color } from 'src/modules/colors/entities';
+import { Image } from 'src/modules/images/entities/image.entity';
 
 export class Product {
   @ApiProperty()
@@ -9,8 +10,6 @@ export class Product {
   name: string;
   @ApiProperty()
   price: number;
-  @ApiProperty()
-  preview: string
   @ApiProperty()
   characteristics: JsonValue[]
   @ApiProperty()

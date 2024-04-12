@@ -1,0 +1,76 @@
+.root {
+    width: 100%;
+    padding: 100px;
+    position: relative;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: max-content;
+    grid-auto-flow: dense;
+    width: 100%;
+    height: 100%;
+    gap: 40px;
+}
+
+.formItem {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: max-content;
+}
+
+.inputNumber {
+    width: 100%;
+}
+
+.name {
+    grid-column: 1/3;
+}
+
+.price {
+    grid-column: 1;
+    width: 90%;
+}
+
+.oldPrice {
+    grid-column: 2;
+    width: 90%;
+    justify-self: end;
+}
+
+.description {
+    grid-column: 1/3;
+}
+
+.gender {
+    grid-column: 1/3;
+}
+
+.sizes {
+    grid-column: 1/3;
+}
+
+.colors {
+    grid-column: 1/3;
+}
+
+.inputField {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+
+.preview {
+    width: 100%;
+    grid-column: 1/3;
+
+    .previewInput {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+}

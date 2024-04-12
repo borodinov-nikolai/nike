@@ -1,20 +1,24 @@
+import { FetchArgs } from "@reduxjs/toolkit/query";
 import { emptySplitApi } from "../../../shared/configs/rtk_base";
-import { Product } from "../interfaces";
+import { ICreateProductDto, IProduct } from "../interfaces";
 
+
+type ProductParams = {
+  orderBy: { id: string }[]; // Пример ожидаемой структуры параметра
+};
 const extendedApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({
-    getAllProducts: build.query<{products:Product[], totalCount: number}, any>({
+    getAllProducts: build.query<{products:IProduct[], totalCount: number}, string>({
       query: (params) => ({
-        url: '/products',
-        params
+        url: `/products?${params}`
       }),
       providesTags: ["Products"],
     }),
-    getOneProduct: build.query<Product, number>({
+    getOneProduct: build.query<IProduct, number>({
       query: (id) => `/products/${id}`,
       providesTags: ["Products", "Product"],
     }),
-    addProduct: build.mutation<Product, FormData>({
+    addProduct: build.mutation<IProduct, ICreateProductDto>({
       query: (data) => ({
         url: "/products",
         method: "POST",
@@ -22,7 +26,7 @@ const extendedApi = emptySplitApi.injectEndpoints({
       }),
       invalidatesTags: ["Products"],
     }),
-    updateProduct: build.mutation<Product, { id: number; formData: FormData }>({
+    updateProduct: build.mutation<IProduct, { id: number; formData: FormData }>({
       query: ({ id, formData }) => ({
         url: `/products/${id}`,
         method: "PUT",

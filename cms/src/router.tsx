@@ -15,6 +15,7 @@ import ColorEditPage from "./pages/colors/[edit]";
 import ProductsPage from "./pages/products";
 import ImagesPage from "./pages/images";
 import ImageEditPage from "./pages/images/[edit]";
+import ProductEditPage from "./pages/products/[edit]";
 
 
 const Router = () => {
@@ -25,10 +26,10 @@ const Router = () => {
         <Route element={SecureRoute(<Layout />)}>
           <Route path="/" element={SecureRoute(<HomePage />)} />
           <Route path="/products" element={SecureRoute(<ProductsPage />)} />
-          {/* <Route
+          <Route
             path="/products/:edit"
             element={SecureRoute(<ProductEditPage />)}
-          /> */}
+          />
           <Route path="/categories" element={SecureRoute(<CategoriesPage />)} />
           <Route
             path="/categories/:edit"

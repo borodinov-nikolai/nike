@@ -72,7 +72,7 @@ const handleDelete = ()=> {
         </div>
         <SubmitButton/>
        </form>
-       <DeleteButton onConfirm={handleDelete} />
+       {params !== 'add' && <DeleteButton onConfirm={handleDelete} />}
     </div>
   )
 }

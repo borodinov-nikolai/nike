@@ -44,7 +44,7 @@ export class ProductsService {
             }
           }
         } ,
-        materials: {
+        materials: materials && {
           some: {
             name: {
               in: materials 
@@ -57,7 +57,7 @@ export class ProductsService {
         sizes: true,
         colors: true,
         materials: true,
-        images: true
+        images: true,
       }
     }
     
@@ -83,25 +83,29 @@ export class ProductsService {
   }
 
   async create(body: AddProductDto): Promise<Product> {
-    const { price, name, gender, preview, description, characteristics } = body
+    const { price, oldPrice, name, gender, preview, description, sizes, colors } = body
 
     const product = await this.db.product.create({
       data: {
         name,
-        preview,
         description,
-        characteristics,
-        price: +price,
-        gender
+        price,
+        oldPrice,
+        gender,
+        preview: {
+          connect: {
+            id: preview
+          }
+        },
         // categories: {
         //   connect: categories.map((id) => { return {id}})
         // },
-        // sizes: {
-        //   connect: sizes.map((id)=> { return {id} } )
-        // },
-        // colors: {
-        //   connect: colors.map((id)=> { return {id} } )
-        // },
+        sizes: {
+          connect: sizes.map((id)=> { return {id} } )
+        },
+        colors: {
+          connect: colors.map((id)=> { return {id} } )
+        },
         // materials: {
         //   connect: materials.map((id)=> { return {id} } )
         // }

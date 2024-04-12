@@ -5,4 +5,4 @@ export {useGetAllProductsQuery,
     useUpdateProductMutation, } from "./api";
 
 
-export type {Product} from './interfaces'
+export type {IProduct} from './interfaces'

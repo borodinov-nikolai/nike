@@ -45,7 +45,8 @@ model Product {
   price           Int
   gender          String
   oldPrice        Int?
-  preview         String
+  preview         Image?   @relation("ProductPreview", fields: [previewId], references: [id])
+  previewId       Int?    @unique
   images          Image[]
   new             Boolean?
   hit             Boolean?
@@ -60,10 +61,14 @@ model Product {
   updatedAt       DateTime   @updatedAt
 }
 
+
+
+
 model Image {
   id        Int       @id @default(autoincrement())
   name       String
   product   Product[]
+  preview   Product?  @relation("ProductPreview")
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }

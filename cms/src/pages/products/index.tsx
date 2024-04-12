@@ -7,7 +7,7 @@ import qs from 'qs'
 const ProductsPage = () => {
     const {data} = useGetAllProductsQuery(qs.stringify({orderBy:[{id: 'asc'}]}))
   return (
-    <>{data && <ItemsTable data={data.products} name={'Продукты'} />}</>
+    <>{data?.products && <ItemsTable data={data.products} name={'Продукты'} />}</>
   )
 }
 
