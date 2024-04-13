@@ -1,0 +1,32 @@
+
+
+
+
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    
+}
+
+
+.inputField {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+.inputItem {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    gap: 10px;
+}
+
+
+.addBtn {
+    width: max-content;
+    align-self: center;
+}

@@ -4,6 +4,6 @@
 export interface Image {
   id: number
   name: string
-  createdAt: Date
-  updatetAt: Date
+  createdAt?: Date
+  updatetAt?: Date
 }

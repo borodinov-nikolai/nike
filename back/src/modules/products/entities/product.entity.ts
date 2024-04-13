@@ -21,6 +21,8 @@ export class Product {
   @ApiProperty()
   categories?: Color[]
   @ApiProperty()
+  images?: Image[]
+  @ApiProperty()
   preview?: Preview
   @ApiProperty()
   createdAt?: Date;

@@ -12,45 +12,45 @@ export class ProductsService {
   ) { }
 
   async findAll(query: any) {
-    const { orderBy, price, category, sizes, colors, materials, skip, take} = query
+    const { orderBy, price, category, sizes, colors, materials, skip, take } = query
     const filters = {
-      skip: skip? +skip: 0,
-      take: take? +take : 50 ,
+      skip: skip ? +skip : 0,
+      take: take ? +take : 50,
       orderBy: orderBy ?
-       orderBy : {
+        orderBy : {
           price: 'asc'
-       },
+        },
       where: {
         price: {
           lte: price?.max && +price.max,
           gte: price?.min && +price.min,
         },
-        categories: category && category !=="all" ? {
+        categories: category && category !== "all" ? {
           some: {
             value: category
           }
         } : undefined,
-         sizes: sizes && {
+        sizes: sizes && {
           some: {
             value: {
               in: sizes
             }
           }
-        } ,
+        },
         colors: colors && {
           some: {
             name: {
-              in: colors 
+              in: colors
             }
           }
-        } ,
+        },
         materials: materials && {
           some: {
             name: {
-              in: materials 
+              in: materials
             }
           }
-        } 
+        }
       },
       include: {
         categories: true,
@@ -61,10 +61,10 @@ export class ProductsService {
         preview: true
       }
     }
-    
+
     const products = await this.db.product.findMany(filters);
     const totalCount = await this.db.product.count()
-    return {products, totalCount};
+    return { products, totalCount };
   }
 
   async findOne(id: number) {
@@ -85,7 +85,7 @@ export class ProductsService {
   }
 
   async create(body: AddProductDto): Promise<Product> {
-    const { price, oldPrice, name, gender, preview, description, sizes, colors, materials, categories } = body
+    const { price, oldPrice, name, gender, preview, description, sizes, colors, materials, categories, images } = body
 
     const product = await this.db.product.create({
       data: {
@@ -100,16 +100,19 @@ export class ProductsService {
           }
         },
         categories: {
-          connect: categories?.map((id) => { return {id}})
+          connect: categories?.map((id) => { return { id } })
         },
         sizes: {
-          connect: sizes?.map((id)=> { return {id} } )
+          connect: sizes?.map((id) => { return { id } })
         },
         colors: {
-          connect: colors?.map((id)=> { return {id} } )
+          connect: colors?.map((id) => { return { id } })
         },
         materials: {
-          connect: materials?.map((id)=> { return {id} } )
+          connect: materials?.map((id) => { return { id } })
+        },
+        images: {
+          connect: images?.map((id) => { return { id } })
         }
       }
     });
@@ -118,9 +121,9 @@ export class ProductsService {
 
 
   async update(id: number, body: UpdateProductDto): Promise<Product> {
-    const { price, oldPrice, name, gender, preview, description, sizes, colors, materials, categories  } = body
+    const { price, oldPrice, name, gender, preview, description, sizes, colors, materials, categories, images, characteristics } = body
 
-   
+
     const updatedProduct = await this.db.product.update({
       where: {
         id
@@ -131,22 +134,26 @@ export class ProductsService {
         price,
         oldPrice,
         gender,
+        characteristics,
         preview: {
           connect: {
             id: preview
           }
         },
         categories: {
-          set: categories?.map((id) => { return {id}})
+          set: categories?.map((id) => { return { id } })
         },
         sizes: {
-          set: sizes?.map((id)=> { return {id} } )
+          set: sizes?.map((id) => { return { id } })
         },
         colors: {
-          set: colors?.map((id)=> { return {id} } )
+          set: colors?.map((id) => { return { id } })
         },
         materials: {
-          set: materials?.map((id)=> { return {id} } )
+          set: materials?.map((id) => { return { id } })
+        },
+        images: {
+          set: images?.map((id) => { return { id } })
         }
       }
     })
@@ -160,7 +167,7 @@ export class ProductsService {
         id,
       },
     });
-   
+
 
     return product;
   }

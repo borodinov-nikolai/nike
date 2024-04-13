@@ -1,5 +1,7 @@
 import { Category } from "../../category";
+import { ICharacteristic } from "../../characteristic";
 import { Color } from "../../color";
+import { Image } from "../../image";
 import { Material } from "../../material/interfaces";
 import { Size } from "../../size";
 
@@ -11,8 +13,9 @@ export interface IProduct {
   oldPrice?: number;
   description: string;
   prewiev: string;
-  images: string[];
+  images: Image[];
   categories: Category[];
+  characteristics: ICharacteristic[];
   sizes: Size[];
   colors: Color[];
   preview: Preview,
@@ -35,11 +38,13 @@ export interface ICreateProductDto {
   oldPrice?: number;
   description: string;
   preview?: number;
-  images?: string[];
+  images?: number[];
+  characteristics?: object[];
   categories?: number[];
   sizes?: number[];
   colors?: number[];
   materials?: number[];
+
 }
 
 export interface IUpdateProductDto {
@@ -49,7 +54,8 @@ export interface IUpdateProductDto {
   oldPrice?: number;
   description: string;
   preview?: number;
-  images?: string[];
+  images?: number[];
+  characteristics?: object[];
   categories?: number[];
   sizes?: number[];
   colors?: number[];

@@ -50,11 +50,7 @@
 
 .checkbox {
     position: absolute;
-    top: 5px;
+    bottom: 5px;
     right: 5px;
-     :global {
-        .ant-checkbox-inner{
-            border: 1px solid rgb(180, 180, 180);
-        }
-     }
+
 }

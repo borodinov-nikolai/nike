@@ -1,32 +1,29 @@
 import { Button, Image, Modal } from 'antd'
 import styles from './ImagePicker.module.scss'
-import { useGetAllImagesQuery } from '../../../entities/image'
+import { Image as IImage, useGetAllImagesQuery } from '../../../entities/image'
 import { FC, useState } from 'react'
 
 
 
 interface Props {
-    onChange: (value: Value[] | Value) => void
+    onChange: (value: IImage[] | IImage) => void
     multiple: boolean
 }
 
 
 
-type Value = {
-    id: number
-    name: string
-}
+
 
 export const ImagePicker: FC<Props> = ({ onChange, multiple }) => {
-    const [value, setValue] = useState<Value>()
-    const [multipleValue, setMultipleValue] = useState<Value[]>([])
+    const [value, setValue] = useState<IImage>()
+    const [multipleValue, setMultipleValue] = useState<IImage[]>([])
     const { data } = useGetAllImagesQuery()
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
 
-    const onImageChange = (image: Value) => {
+    const onImageChange = (image: IImage) => {
         if (multiple) {
-            multipleValue.some((item) => (item.id === image.id && item.name === image.name)) ? setMultipleValue((prev) => prev.filter((item: Value) => item.id !== image.id)) : setMultipleValue((prev) => [...prev, image])
+            multipleValue.some((item) => (item.id === image.id && item.name === image.name)) ? setMultipleValue((prev) => prev.filter((item: IImage) => item.id !== image.id)) : setMultipleValue((prev) => [...prev, image])
         } else {
             setValue(image)
         }
@@ -45,7 +42,7 @@ export const ImagePicker: FC<Props> = ({ onChange, multiple }) => {
 
     return (
         <>
-            <Button className={styles.openBtn} type='primary' onClick={() => setIsOpen(true)}>Выбрать изображение</Button>
+            <Button className={styles.openBtn} type='primary' onClick={() => setIsOpen(true)}>{multiple? 'Выбрать изображения': 'Выбрать изображеие'}</Button>
             <Modal onOk={onConfirm} onCancel={() => setIsOpen(false)} width={'80vw'} open={isOpen} >
                 <div className={styles.content} >
                     {data?.map(({ id, name }) => {

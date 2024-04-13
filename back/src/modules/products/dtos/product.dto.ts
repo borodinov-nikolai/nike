@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { JsonValue } from '@prisma/client/runtime/library';
 
 export class AddProductDto {
   @ApiProperty()
@@ -18,18 +19,17 @@ export class AddProductDto {
   @ApiProperty()
   materials?: number[];
   @ApiProperty()
+  images?: number[];
+  @ApiProperty()
   categories?: number[];
   @ApiProperty()
   colors?: number[];
   @ApiProperty()
-  characteristics?: Characteristics[];
+  characteristics?: JsonValue;
 
 }
 
-type Characteristics = {
-   name: string
-   value: string
-}
+
 
 export class UpdateProductDto {
   @ApiProperty()
@@ -49,10 +49,12 @@ export class UpdateProductDto {
   @ApiProperty()
   materials?: number[];
   @ApiProperty()
+  images?: number[];
+  @ApiProperty()
   categories?: number[];
   @ApiProperty()
   colors?: number[];
   @ApiProperty()
-  characteristics?: Characteristics[];
+  characteristics?: JsonValue[];
 
 }

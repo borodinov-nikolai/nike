@@ -41,7 +41,7 @@
     "webpack": "^5.90.3"
   },
   "scripts": {
-    "dev": "react-scripts start",
+    "dev": "set PORT=4000 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "format": "prettier --write src/**/* .prettierrc",
