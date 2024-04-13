@@ -26,7 +26,6 @@ const SizesForm: FC<Props> = ({ control, data }) => {
 
   return (
     <>
-      <label htmlFor="sizes"> Размеры: </label>
       <Controller
         name='sizes'
         control={control}

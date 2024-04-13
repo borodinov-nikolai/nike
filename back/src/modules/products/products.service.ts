@@ -99,9 +99,9 @@ export class ProductsService {
             id: preview
           }
         },
-        // categories: {
-        //   connect: categories?.map((id) => { return {id}})
-        // },
+        categories: {
+          connect: categories?.map((id) => { return {id}})
+        },
         sizes: {
           connect: sizes?.map((id)=> { return {id} } )
         },
@@ -136,9 +136,9 @@ export class ProductsService {
             id: preview
           }
         },
-        // categories: {
-        //   connect: categories?.map((id) => { return {id}})
-        // },
+        categories: {
+          set: categories?.map((id) => { return {id}})
+        },
         sizes: {
           set: sizes?.map((id)=> { return {id} } )
         },

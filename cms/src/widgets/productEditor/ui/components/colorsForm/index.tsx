@@ -20,7 +20,6 @@ const ColorsForm:FC<Props> = ({control, data}) => {
     }
   return (
     <>
-    <label htmlFor="">Цвета:</label>
     <Controller
     name='colors'
     control={control}

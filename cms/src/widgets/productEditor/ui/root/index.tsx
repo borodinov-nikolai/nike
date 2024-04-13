@@ -14,6 +14,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { DeleteButton } from '../../../../features/deleteButton'
 import { useGetAllMaterialsQuery } from '../../../../entities/material'
 import MaterialsForm from '../components/materialsForm'
+import { useGetAllCategoriesQuery } from '../../../../entities/category'
+import CategoriesForm from '../components/categoriesForm'
 
 
 export interface IProductFormValues {
@@ -26,6 +28,7 @@ export interface IProductFormValues {
   materials: number[]
   sizes: number[]
   colors: number[]
+  categories: number[]
 }
 
 
@@ -46,6 +49,7 @@ export const ProductEditor = () => {
   const { data: sizes } = useGetAllSizesQuery()
   const { data: colors } = useGetAllColorsQuery()
   const { data: materials} = useGetAllMaterialsQuery()
+  const { data: categories} = useGetAllCategoriesQuery()
   const { control, handleSubmit, watch, setValue } = useForm<IProductFormValues, (data: IProductFormValues)=> void>({
     defaultValues: {
       name: '',
@@ -55,13 +59,14 @@ export const ProductEditor = () => {
       preview: undefined,
       sizes: [],
       colors: [],
-      materials: []
+      materials: [],
+      categories: []
     }
   })
 
 useEffect(()=> {
   if(product) {
-    const {name, price, oldPrice, description, gender, sizes, colors, materials, preview} = product
+    const {name, price, oldPrice, description, gender, sizes, colors, materials, preview, categories} = product
     setValue('name', name)
     setValue('price', price)
     setValue('oldPrice', oldPrice)
@@ -71,6 +76,7 @@ useEffect(()=> {
     setValue('colors', colors?.map(({id})=> id))
     setValue('materials', materials?.map(({id})=> id))
     setValue('preview', preview?.id)
+    setValue('categories', categories?.map(({id})=> id))
     setPreview(preview)
   }
 }, [product])
@@ -128,38 +134,58 @@ useEffect(()=> {
             render={({ field }) => <TextArea rows={10} {...field} id='description' />}
           />
         </div>
-        <div className={[styles.formItem, styles.gender].join(' ')} >
-          <label>Пол:</label>
-          <Controller
-            name='gender'
-            control={control}
-            render={({ field }) => <div className={styles.inputField} > <Radio.Group value={field.value} onChange={(e)=>field.onChange(e.target.value)} >
-            <Radio value={'Мужские'}>мужские</Radio>
-            <Radio value={'Женские'}>женские</Radio>
-            </Radio.Group></div> }
-          />
-        </div>
         <div className={[styles.formItem, styles.preview].join(' ')} >
           <label >Превью:</label>
+          <div>
           <Controller
             name='preview'
             control={control}
             render={({ field }) => <div className={styles.previewInput} > <ImagePicker onChange={(value)=>{ setPreview(value as Image); field.onChange((value as Image).id)}} multiple={false} />
                    { preview && <Image preview={false} width={150} height={150} src={process.env.REACT_APP_BACKEND_UPLOADS + '/images/' + preview.name} alt='preview image' />}</div> }
           />
-         
+         </div>
         </div>
+        <div className={[styles.formItem, styles.gender].join(' ')} >
+          <label>Пол:</label>
+          <div className={styles.inputField} > 
+          <Controller
+            name='gender'
+            control={control}
+            render={({ field }) => <Radio.Group value={field.value} onChange={(e)=>field.onChange(e.target.value)} >
+            <Radio value={'Мужские'}>мужские</Radio>
+            <Radio value={'Женские'}>женские</Radio>
+            </Radio.Group> }
+          />
+          </div>
+          {categories && <div className={[styles.formItem, styles.categories].join(' ')} >
+         <label>Категории:</label>
+          <div className={styles.inputField} >
+            <CategoriesForm data={categories} control={control} />
+          </div>
+         </div> }
+        </div >
+
         
         {sizes && <div className={[styles.formItem, styles.sizes].join(' ')} >
-          <SizesForm data={sizes} control={control} />
+        <label htmlFor="sizes"> Размеры: </label>
+          <div className={styles.inputField} >
+            <SizesForm data={sizes} control={control} />
+          </div>
         </div>}
 
         {colors && <div className={[styles.formItem, styles.colors].join(' ')} >
-          <ColorsForm data={colors} control={control} />
+           <label>Цвета:</label>
+          <div  className={styles.inputField}>
+            <ColorsForm data={colors} control={control} />
+          </div>
         </div>}
          {materials && <div className={[styles.formItem, styles.materials].join(' ')} >
-          <MaterialsForm data={materials} control={control} />
+         <label>Материалы:</label>
+          <div className={styles.inputField} >
+            <MaterialsForm data={materials} control={control} />
+          </div>
          </div> }
+  
         <SubmitButton />
       </form>
       { product && <DeleteButton onConfirm={handleDeleteProduct} />}

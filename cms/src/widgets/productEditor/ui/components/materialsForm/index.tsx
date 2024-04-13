@@ -19,7 +19,6 @@ const MaterialsForm: FC<IProps> = ({control, data}) => {
 
   return (
     <>
-    <label>Материалы:</label>
     <Controller
     name={'materials'}
     control={control}
