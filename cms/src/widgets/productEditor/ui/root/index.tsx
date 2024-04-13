@@ -7,7 +7,7 @@ import { useGetAllSizesQuery } from '../../../../entities/size'
 import { useGetAllColorsQuery } from '../../../../entities/color'
 import { SubmitButton } from '../../../../features/submitButton'
 import ColorsForm from '../components/colorsForm'
-import { useAddProductMutation, useDeleteProductMutation, useGetOneProductQuery } from '../../../../entities/product'
+import { useAddProductMutation, useDeleteProductMutation, useGetOneProductQuery, useUpdateProductMutation } from '../../../../entities/product'
 import { ImagePicker } from '../../../../features/imagePicker'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -40,6 +40,7 @@ export const ProductEditor = () => {
   const [preview, setPreview] = useState<Image>()
   const [images, setImages] = useState<Image[]>()
   const [addProduct] = useAddProductMutation()
+  const [updateProduct] = useUpdateProductMutation()
   const [deleteProduct] = useDeleteProductMutation()
   const {data: product} = useGetOneProductQuery(+params!, {skip: params === 'add' && true})
   const { data: sizes } = useGetAllSizesQuery()
@@ -74,10 +75,14 @@ useEffect(()=> {
   }
 }, [product])
 
-console.log(product)
+
 
   const onSubmit: SubmitHandler<IProductFormValues> = (data) => {
-    addProduct(data)
+    if(params !== 'add') {
+       updateProduct({id: +params!, data})
+    } else {
+      addProduct(data)
+    }
     navigate('/products')
   }
 

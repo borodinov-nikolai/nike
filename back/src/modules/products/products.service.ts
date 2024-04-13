@@ -99,9 +99,9 @@ export class ProductsService {
             id: preview
           }
         },
-        categories: {
-          connect: categories?.map((id) => { return {id}})
-        },
+        // categories: {
+        //   connect: categories?.map((id) => { return {id}})
+        // },
         sizes: {
           connect: sizes?.map((id)=> { return {id} } )
         },
@@ -118,7 +118,7 @@ export class ProductsService {
 
 
   async update(id: number, body: UpdateProductDto): Promise<Product> {
-    const { price, name, gender } = body
+    const { price, oldPrice, name, gender, preview, description, sizes, colors, materials, categories  } = body
 
    
     const updatedProduct = await this.db.product.update({
@@ -127,8 +127,27 @@ export class ProductsService {
       },
       data: {
         name,
+        description,
+        price,
+        oldPrice,
         gender,
-        price: +price,
+        preview: {
+          connect: {
+            id: preview
+          }
+        },
+        // categories: {
+        //   connect: categories?.map((id) => { return {id}})
+        // },
+        sizes: {
+          set: sizes?.map((id)=> { return {id} } )
+        },
+        colors: {
+          set: colors?.map((id)=> { return {id} } )
+        },
+        materials: {
+          set: materials?.map((id)=> { return {id} } )
+        }
       }
     })
     return updatedProduct

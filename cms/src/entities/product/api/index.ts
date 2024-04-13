@@ -1,6 +1,6 @@
 import { FetchArgs } from "@reduxjs/toolkit/query";
 import { emptySplitApi } from "../../../shared/configs/rtk_base";
-import { ICreateProductDto, IProduct } from "../interfaces";
+import { ICreateProductDto, IProduct, IUpdateProductDto } from "../interfaces";
 
 
 
@@ -25,11 +25,11 @@ const extendedApi = emptySplitApi.injectEndpoints({
       }),
       invalidatesTags: ["Products"],
     }),
-    updateProduct: build.mutation<IProduct, { id: number; formData: FormData }>({
-      query: ({ id, formData }) => ({
+    updateProduct: build.mutation<IProduct, {id: number, data: IUpdateProductDto}>({
+      query: ({ id, data }) => ({
         url: `/products/${id}`,
         method: "PUT",
-        body: formData,
+        body: data,
       }),
       invalidatesTags: ["Products"],
     }),

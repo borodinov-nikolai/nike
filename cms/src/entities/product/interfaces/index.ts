@@ -47,7 +47,7 @@ export interface IUpdateProductDto {
   gender?: string;
   price?: number;
   oldPrice?: number;
-  description?: string;
+  description: string;
   preview?: number;
   images?: string[];
   categories?: number[];

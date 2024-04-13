@@ -83,7 +83,7 @@ export class ProductsController {
     @Param('id') id: string
   ) {
 
-    return this.productsService.update(Number(id), {...body});
+    return this.productsService.update(+id, body);
   }
 
 

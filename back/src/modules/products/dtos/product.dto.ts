@@ -35,14 +35,24 @@ export class UpdateProductDto {
   @ApiProperty()
   name?: string;
   @ApiProperty()
-  description: string
-  @ApiProperty()
-  gender: string;
+  description?: string
   @ApiProperty()
   price?: number;
   @ApiProperty()
   oldPrice?: number;
   @ApiProperty()
-  characteristics: Characteristics[];
+  preview?: number
+  @ApiProperty()
+  gender?: string;
+  @ApiProperty()
+  sizes?: number[];
+  @ApiProperty()
+  materials?: number[];
+  @ApiProperty()
+  categories?: number[];
+  @ApiProperty()
+  colors?: number[];
+  @ApiProperty()
+  characteristics?: Characteristics[];
 
 }
