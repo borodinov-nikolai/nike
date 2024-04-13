@@ -15,12 +15,18 @@ export interface IProduct {
   categories: Category[];
   sizes: Size[];
   colors: Color[];
+  preview: Preview,
   materials: Material[];
   createdAt: string;
   updatedAt: string;
 }
 
-
+type Preview = {
+  id: number,
+  name: string,
+  createdAt: Date,
+  updatedAt: Date
+}
 
 export interface ICreateProductDto {
   name: string;

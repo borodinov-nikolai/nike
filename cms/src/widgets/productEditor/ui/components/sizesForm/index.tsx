@@ -33,8 +33,10 @@ const SizesForm: FC<Props> = ({ control, data }) => {
         render={({ field }) => <div className={styles.itemsHolder} >
           {data?.map(({ id, value }) => {
             return <div className={styles.items} key={id} >
-              <label htmlFor={value}>{value}</label>
-              <Checkbox checked={(field.value as number[]).includes(id)} onChange={(e) => onCheckboxChange(e.target.checked, field, id)} id={value} className={styles.checkbox} />
+            
+              <Checkbox checked={(field.value as number[]).includes(id)} onChange={(e) => onCheckboxChange(e.target.checked, field, id)} className={styles.checkbox}>
+              <div>{value}</div>
+              </Checkbox>
             </div>
           })}
         </div>}

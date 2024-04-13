@@ -17,8 +17,20 @@ export class Product {
   @ApiProperty()
   colors?: Color[]
   @ApiProperty()
+  materials?: Color[]
+  @ApiProperty()
+  categories?: Color[]
+  @ApiProperty()
+  preview?: Preview
+  @ApiProperty()
   createdAt?: Date;
   @ApiProperty()
   updatedAt?: Date;
 }
 
+type Preview = {
+  id: number,
+  name: string,
+  createdAt: Date,
+  updatedAt: Date
+}

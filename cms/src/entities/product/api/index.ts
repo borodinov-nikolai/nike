@@ -3,9 +3,8 @@ import { emptySplitApi } from "../../../shared/configs/rtk_base";
 import { ICreateProductDto, IProduct } from "../interfaces";
 
 
-type ProductParams = {
-  orderBy: { id: string }[]; // Пример ожидаемой структуры параметра
-};
+
+
 const extendedApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({
     getAllProducts: build.query<{products:IProduct[], totalCount: number}, string>({

@@ -12,6 +12,8 @@ import { ImagePicker } from '../../../../features/imagePicker'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { DeleteButton } from '../../../../features/deleteButton'
+import { useGetAllMaterialsQuery } from '../../../../entities/material'
+import MaterialsForm from '../components/materialsForm'
 
 
 export interface IProductFormValues {
@@ -21,6 +23,7 @@ export interface IProductFormValues {
   gender: string
   preview: number
   description: string
+  materials: number[]
   sizes: number[]
   colors: number[]
 }
@@ -41,6 +44,7 @@ export const ProductEditor = () => {
   const {data: product} = useGetOneProductQuery(+params!, {skip: params === 'add' && true})
   const { data: sizes } = useGetAllSizesQuery()
   const { data: colors } = useGetAllColorsQuery()
+  const { data: materials} = useGetAllMaterialsQuery()
   const { control, handleSubmit, watch, setValue } = useForm<IProductFormValues, (data: IProductFormValues)=> void>({
     defaultValues: {
       name: '',
@@ -49,22 +53,28 @@ export const ProductEditor = () => {
       description: '',
       preview: undefined,
       sizes: [],
-      colors: []
+      colors: [],
+      materials: []
     }
   })
 
 useEffect(()=> {
   if(product) {
-    const {name, price, oldPrice, description, gender, sizes, colors} = product
+    const {name, price, oldPrice, description, gender, sizes, colors, materials, preview} = product
     setValue('name', name)
     setValue('price', price)
     setValue('oldPrice', oldPrice)
     setValue('description', description)
     setValue('gender', gender)
-    setValue('sizes', sizes.map(({id})=>id))
-    setValue('colors', colors.map(({id})=> id))
+    setValue('sizes', sizes?.map(({id})=>id))
+    setValue('colors', colors?.map(({id})=> id))
+    setValue('materials', materials?.map(({id})=> id))
+    setValue('preview', preview?.id)
+    setPreview(preview)
   }
 }, [product])
+
+console.log(product)
 
   const onSubmit: SubmitHandler<IProductFormValues> = (data) => {
     addProduct(data)
@@ -76,6 +86,7 @@ useEffect(()=> {
        product && deleteProduct(+params!)
        navigate('/products')
   }
+
 
   return (
     <div className={styles.root} >
@@ -141,7 +152,9 @@ useEffect(()=> {
         {colors && <div className={[styles.formItem, styles.colors].join(' ')} >
           <ColorsForm data={colors} control={control} />
         </div>}
-      
+         {materials && <div className={[styles.formItem, styles.materials].join(' ')} >
+          <MaterialsForm data={materials} control={control} />
+         </div> }
         <SubmitButton />
       </form>
       { product && <DeleteButton onConfirm={handleDeleteProduct} />}

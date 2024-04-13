@@ -27,8 +27,9 @@ const ColorsForm:FC<Props> = ({control, data}) => {
     render={({field})=> <div className={styles.itemsHolder} >
         {data?.map(({id, name, value})=> {
             return <div className={styles.item} key={id} >
-                <label style={{background: value}} className={styles.label} htmlFor={name}></label>
-                 <Checkbox checked={field.value.includes(id)} id={name} onChange={(e)=>onCheckboxChange(e.target.checked, field, id)} />
+                 <Checkbox checked={field.value.includes(id)} onChange={(e)=>onCheckboxChange(e.target.checked, field, id)}>
+                 <div style={{background: value}} className={styles.label}></div>
+                 </Checkbox>
             </div>
         })}
     </div> }

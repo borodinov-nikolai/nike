@@ -16,6 +16,10 @@ export class AddProductDto {
   @ApiProperty()
   sizes?: number[];
   @ApiProperty()
+  materials?: number[];
+  @ApiProperty()
+  categories?: number[];
+  @ApiProperty()
   colors?: number[];
   @ApiProperty()
   characteristics?: Characteristics[];
