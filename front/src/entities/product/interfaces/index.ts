@@ -17,6 +17,7 @@ export interface Product {
     sizes: Size[]
     preview: IImage
     description: string
+    characteristics: ICharacteristic[]
     categories: Category[]
     materials: Material[]
     createdAt: string
@@ -29,4 +30,8 @@ export interface Product {
     value: string
   }
 
-  
+  export interface ICharacteristic {
+           id: number
+           name: string
+           value: string
+  }

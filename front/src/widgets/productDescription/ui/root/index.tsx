@@ -11,22 +11,23 @@ import Characteristics from '../components/characteristics'
 
 
 export const ProductDescription = ({product}:{product: Product}) => {
+  const {description, images, characteristics} = product
   return (
     <div className={styles.root} >
       <div className={styles.decriptionHolder} >
         <div className={styles.descriptionGallery} >
           <div className={styles.mobileGallery} >
-           {product.images && <MobileGallery images={product.images} />}
+           {images && <MobileGallery images={images} />}
           </div>
           <div className={styles.desktopGallery} >
-            {product.images && <DesktopGallery images={product.images}/>}
+            {images && <DesktopGallery images={images}/>}
           </div>
         </div>
         <div className={styles.descriptionInfo} >
           <DescriptionInfo product={product} />
           </div>
           <div className={styles.characteristics} >
-          <Characteristics/>
+          <Characteristics description={description} characteristics={characteristics} />
           </div>
       </div>
     </div>

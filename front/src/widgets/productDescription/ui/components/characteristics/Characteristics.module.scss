@@ -1,0 +1,82 @@
+@import '../../../../../shared/styles/mixins/breakpoints';
+
+
+.root {
+    width: 100%;
+    overflow: hidden;
+}
+
+
+.swiper {
+    width: 90vw;
+    overflow: hidden;
+}
+
+.decktopTabs {
+    display: none;
+}
+.tabsItem {
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 500;
+    color: #808080;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    border-bottom: 1px solid transparent;
+
+    &__active {
+        color: black;
+        border-bottom: 1px solid black;
+    }
+}
+
+.content {
+    margin-top: 35px;
+    width: 100%;
+}
+
+.description {
+    font-size: 15px;
+    line-height: 28px;
+    color: #4B4B4B;
+}
+
+.characteristicsList {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    max-width: 525px;
+  
+}
+
+.characteristicsItem {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  height: 28px;
+  font-size: 14px;
+  line-height: 28px;
+}
+
+.characteristicsDivider {
+  width: 100%;
+  border-bottom: 1px dashed #D1D1D1;
+} 
+
+.characteristicValue {
+    color: #484757;
+}
+
+@include breakpoint(md) {
+    .mobileTabs {
+        display: none;
+    }
+    .decktopTabs {
+        display: block;
+        display: flex;
+        gap: 51px;
+    }
+}

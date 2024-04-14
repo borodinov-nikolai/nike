@@ -1,0 +1,30 @@
+.root {
+    display: flex;
+}
+
+.btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    color: #e9edf2;
+    height: 65px;
+    border: 1px solid #e9edf2;
+
+    &:hover {
+        background-color: rgb(224, 224, 224);
+    }
+}
+
+
+.count {
+    font-size: 14px;
+    width: 45px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #e9edf2;
+    border-bottom: 1px solid #e9edf2;
+}
