@@ -1,1 +1,1 @@
-export {ProductDescription} from './ui'
+export {ProductDescription} from './ui/root'

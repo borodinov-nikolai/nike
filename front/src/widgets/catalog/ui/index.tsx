@@ -8,15 +8,15 @@ import { Pagination } from '@/src/features/pagination'
 
 const Catalog = async ({params, searchParams}:{params: {category: string}, searchParams: Record<string, string>}) => {
    const data = await getProducts({...params, ...searchParams})
-
+       console.log(data?.products)
   return (
     <div className={styles.root} 
     >
         <div className={styles.filters} ><Filters totalCount={data?.totalCount? data.totalCount : 0} /></div>
       <div className={[styles.inner, ' container'].join(' ')} >
-        {data?.products?.map(({id, name, price, images, colors, gender})=> {
-          return <ProductCard key={id} id={id} gender={gender} name={name} colors={colors} images={[process.env.NEXT_PUBLIC_BACKEND_UPLOADS + '/images/' + images[0]]} price={price} 
-          oldPrice={4000}
+        {data?.products?.map(({id, name, price, colors, gender, preview, oldPrice})=> {
+          return <ProductCard key={id} id={id} gender={gender} name={name} colors={colors} image={process.env.NEXT_PUBLIC_BACKEND_UPLOADS + '/images/' + preview.name} price={price} 
+          oldPrice={oldPrice}
           />
         })}
       </div>

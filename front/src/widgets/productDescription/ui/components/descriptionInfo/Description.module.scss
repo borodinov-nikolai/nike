@@ -1,0 +1,84 @@
+
+
+
+.root {
+    width: 100%;
+}
+
+.name {
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 31px;
+}
+
+.description {
+    margin-top: 15px;
+}
+
+.descriptionText {
+    font-size: 14px;
+    line-height: 24px;
+    color: #4B4B4B;
+    height: 100px;
+    overflow: hidden;
+}
+
+.descriptionShowMore {
+    cursor: pointer;
+    margin-top: 5px;
+    width: max-content;
+    font-size: 15px;
+    line-height: 15px;
+    color: #4B4B4B;
+    border-bottom: dotted 1px  #4B4B4B;
+}
+
+.colors {
+    display: flex;
+    margin-top: 35px;
+    gap: 10px;
+}
+
+.colorsList {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+}
+
+.color {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+
+.sizes {
+    margin-top: 21px;
+}
+
+.sizesList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 75px);
+    grid-auto-rows: max-content;
+    gap: 10px;
+}
+
+.size {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    line-height: 15px;
+    width: 75px;
+    height: 45px;
+    border: 1px solid #EFEFEF;
+    border-radius: 4px;
+
+    &__disabled {
+        cursor: default;
+        color: #c1c1c1;
+      background: #F4F4F4;
+    }
+
+}

@@ -4,6 +4,6 @@
 
 export interface Size {
     id: number
-    value: number
+    value: string
 }
 

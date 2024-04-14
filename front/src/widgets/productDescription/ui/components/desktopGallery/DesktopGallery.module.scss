@@ -1,0 +1,27 @@
+@import '../../../../../shared/styles/mixins/breakpoints';
+
+
+
+.root {
+    width: 100%;
+    display: grid;
+     grid-template-columns: 1fr 1fr;
+     grid-auto-rows: max-content;
+     gap: 15px;
+}
+
+.mainImageHolder {
+    grid-column: 1/3;
+    grid-row: 1;
+}
+
+.imageHolder {
+    overflow: hidden;
+}
+
+@include breakpoint(xl) {
+
+    .root {
+        gap: 20px;
+    }
+}

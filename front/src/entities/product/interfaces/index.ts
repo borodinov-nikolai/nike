@@ -1,3 +1,4 @@
+import { IImage } from "../../image"
 import { Color } from "../../productColor"
 import { Material } from "../../productMaterial"
 import { Size } from "../../productSize"
@@ -10,9 +11,12 @@ export interface Product {
     name: string
     gender: string
     price: number
-    images: string[]
+    oldPrice: number
+    images: IImage[]
     colors: Color[]
     sizes: Size[]
+    preview: IImage
+    description: string
     categories: Category[]
     materials: Material[]
     createdAt: string
@@ -24,3 +28,5 @@ export interface Product {
     name: string
     value: string
   }
+
+  

@@ -1,0 +1,27 @@
+
+
+
+
+.root {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+}
+
+.swiper {
+    width: 90vw;
+    overflow: hidden;
+}
+
+.swiperSlide {
+    width: max-content;
+    align-self: flex-start;
+}
+
+.previewImage {
+    justify-self: flex-end;
+}
+

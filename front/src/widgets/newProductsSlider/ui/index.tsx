@@ -11,7 +11,7 @@ const products = [
   {
     id: 1,
     name: 'Nike Air VaporMax 2023 Flyknit',
-    images: ['/images/product_img_4.png'],
+    image: '/images/product_img_4.png',
     colors: [{id: 1, name: 'Серый', value: 'gray'},{id: 2, name: 'Черный', value: 'black'}, {id: 3, name: 'Красный', value: 'red'}, {id: 4, name: 'Белый', value: 'white'}],
     gender: "w",
     price: 7899,
@@ -20,7 +20,7 @@ const products = [
   {
     id: 2,
     name: 'Nike Air VaporMax 2023 Flyknit',
-    images: ['/images/product_img_5.png'],
+    image: '/images/product_img_5.png',
     colors: [{id: 1, name: 'Серый', value: 'gray'},{id: 2, name: 'Черный', value: 'black'}, {id: 3, name: 'Красный', value: 'red'}, {id: 4, name: 'Белый', value: 'white'}],
     gender: "m",
     price: 7899,
@@ -29,7 +29,7 @@ const products = [
   {
     id: 3,
     name: 'Nike Air VaporMax 2023 Flyknit',
-    images: ['/images/product_img_6.png'],
+    image: '/images/product_img_6.png',
     colors: [{id: 1, name: 'Серый', value: 'gray'},{id: 2, name: 'Черный', value: 'black'}, {id: 3, name: 'Красный', value: 'red'}, {id: 4, name: 'Белый', value: 'white'}],
     gender: "w",
     price: 6389,
@@ -38,7 +38,7 @@ const products = [
   {
     id: 4,
     name: 'Nike Air VaporMax 2023 Flyknit',
-    images: ['/images/product_img_4.png'],
+    image: '/images/product_img_4.png',
     colors: [{id: 1, name: 'Серый', value: 'gray'},{id: 2, name: 'Черный', value: 'black'}, {id: 3, name: 'Красный', value: 'red'}, {id: 4, name: 'Белый', value: 'white'}],
     gender: "w",
     price: 7899,
@@ -47,7 +47,7 @@ const products = [
   {
     id: 5,
     name: 'Nike Air VaporMax 2023 Flyknit',
-    images: ['/images/product_img_5.png'],
+    image: '/images/product_img_5.png',
     colors: [{id: 1, name: 'Серый', value: 'gray'},{id: 2, name: 'Черный', value: 'black'}, {id: 3, name: 'Красный', value: 'red'}, {id: 4, name: 'Белый', value: 'white'}],
     gender: "m",
     price: 7899,
@@ -56,7 +56,7 @@ const products = [
   {
     id: 6,
     name: 'Nike Air VaporMax 2023 Flyknit',
-    images: ['/images/product_img_6.png'],
+    image: '/images/product_img_6.png',
     colors: [{id: 1, name: 'Серый', value: 'gray'},{id: 2, name: 'Черный', value: 'black'}, {id: 3, name: 'Красный', value: 'red'}, {id: 4, name: 'Белый', value: 'white'}],
     gender: "w",
     price: 6389,
@@ -65,7 +65,7 @@ const products = [
   {
     id: 7,
     name: 'Nike Air VaporMax 2023 Flyknit',
-    images: ['/images/product_img_4.png'],
+    image: '/images/product_img_4.png',
     colors: [{id: 1, name: 'Серый', value: 'gray'},{id: 2, name: 'Черный', value: 'black'}, {id: 3, name: 'Красный', value: 'red'}, {id: 4, name: 'Белый', value: 'white'}],
     gender: "w",
     price: 7899,
@@ -74,7 +74,7 @@ const products = [
   {
     id: 8,
     name: 'Nike Air VaporMax 2023 Flyknit',
-    images: ['/images/product_img_5.png'],
+    image: '/images/product_img_5.png',
     colors: [{id: 1, name: 'Серый', value: 'gray'},{id: 2, name: 'Черный', value: 'black'}, {id: 3, name: 'Красный', value: 'red'}, {id: 4, name: 'Белый', value: 'white'}],
     gender: "m",
     price: 7899,
@@ -83,12 +83,12 @@ const products = [
 
 ]
 
-const productCards = products.map(({ id, name, images, colors, price, oldPrice, gender }) => {
+const productCards = products.map(({ id, name, image, colors, price, oldPrice, gender }) => {
   return <ProductCard
     key={id}
     id={id}
     name={name}
-    images={images}
+    image={image}
     colors={colors}
     gender={gender}
     price={price}

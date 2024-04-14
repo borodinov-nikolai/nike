@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 interface Props {
 id: number
 name: string
-images: string[]
+image: string
 gender: string
 colors: Color[]
 price: number
@@ -16,14 +16,14 @@ oldPrice: number | null
 }
 
 
-const ProductCard:FC<Props> = ({id, name, images, gender, colors, price, oldPrice}) => {
+const ProductCard:FC<Props> = ({id, name, image, gender, colors, price, oldPrice}) => {
 const router = useRouter()
   return (
     <div onClick={()=>router.push(`/product/${id}`)} className={styles.root} >
    
         
           <div className={styles.imageHolder} >
-              <Image className={styles.image} src={images?.[0]} width={440} height={440} alt='product image'/>
+              <Image className={styles.image} src={image} width={440} height={440} alt='product image'/>
           </div>
       
        <div className={styles.description} >

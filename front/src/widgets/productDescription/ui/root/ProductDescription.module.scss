@@ -1,0 +1,55 @@
+@import '../../../../shared/styles/mixins/breakpoints';
+
+
+.root {
+    padding-top: 25px;
+}
+.decriptionHolder {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, max-content);
+    row-gap: 25px;
+}
+
+.descriptionGallery {
+    grid-row: 1;
+}
+
+.descriptionInfo {
+    grid-row: 2;
+}
+
+.desktopGallery {
+    display: none;
+}
+
+@include breakpoint(md) {
+
+    .decriptionHolder {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 20px;
+    }
+
+    .descriptionGallery {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .descriptionInfo {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .mobileGallery {
+        display: none;
+    }
+    .desktopGallery {
+        display: block;
+    }
+}
+
+@include breakpoint(2xl) {
+     .decriptionHolder {
+        column-gap: 50px;
+     }
+}
