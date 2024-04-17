@@ -119,7 +119,7 @@ useEffect(()=> {
             </Link>
              
              
-            <Link className={[styles.cart, styles.icon].join(' ')} href={'#'} >
+            <Link className={[styles.cart, styles.icon].join(' ')} href={'/cart'} >
                 <IoBagOutline />
             </Link>
              

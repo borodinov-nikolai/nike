@@ -15,9 +15,9 @@ export const ProductPage : FC<Props> = ({product}) => {
   return (
     <main className={styles.root} >
      <div className="container">
-       {/* <Breadcrumb items={[{label: 'Каталог', url: '/catalog/all'}, {label: product.categories[0].name, url: `/catalog/${product.categories[0].value}`},
+       <Breadcrumb items={[{label: 'Каталог', url: '/catalog/all'}, {label: product.categories[0].name, url: `/catalog/${product.categories[0].value}`},
         {label: product.name, url:'#'}
-           ]} /> */}
+           ]} />
           <ProductDescription product={product} />
      </div>
     </main>
