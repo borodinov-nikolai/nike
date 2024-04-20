@@ -16,12 +16,14 @@ export interface ICartItem {
 
 interface IInitialState {
     items: ICartItem[]
+    totalCount: number
 }
 
 
 
 const initialState: IInitialState = {
-    items: []
+    items: [],
+    totalCount: 0
 }
 
 export const cartSlice = createSlice({
@@ -30,6 +32,7 @@ export const cartSlice = createSlice({
     reducers: {
         setCartItems: (state, action: PayloadAction<ICartItem[]>)=> {
           state.items = action.payload
+          state.totalCount = action.payload.reduce((sum, item)=> sum + item.count, 0)
         },
         addCartItem: (state, action: PayloadAction<ICartItem>) => {
             const itemsArray = state.items
@@ -40,10 +43,11 @@ export const cartSlice = createSlice({
             } else {
                 itemsArray.forEach((item)=> {
                     if(addedItem.id === item.id) {
-                      item.count += addedItem.count
+                        item.count += addedItem.count
                     }
-                })
+                })   
             }
+            state.totalCount += addedItem.count
         }
     }
 })

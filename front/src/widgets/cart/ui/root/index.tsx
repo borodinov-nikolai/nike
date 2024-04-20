@@ -10,7 +10,7 @@ export const Cart = () => {
     <div className={styles.root} >
       <h1>Корзина товаров</h1>
      <div className={styles.componentsHolder} >
-      <div className={styles.component}><ItemsList/></div>
+      <div className={styles.itemsList}><ItemsList/></div>
       <div className={styles.component}><PromoCode/></div>
      </div>
     </div>

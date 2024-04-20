@@ -1,5 +1,5 @@
 'use client'
-import React, { ReactNode, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './Header.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -13,6 +13,8 @@ import MobileNavabr from './components/mobileNavbar'
 import Drawer from '@/src/shared/ui/drawer'
 import DropdownMenu from './components/dropdownMenu'
 import { usePathname } from 'next/navigation'
+import { Badge } from 'antd'
+import { useAppSelector } from '@/src/shared/store/hooks'
 
 
 
@@ -27,6 +29,7 @@ const pathname = usePathname()
 const [showDropdown, setShowDropdown] = useState<boolean>(false)
 const {data: userData, isSuccess} = useGetUserQuery()
 const dropdownMenu = useRef<HTMLDivElement>(null)
+const {totalCount} = useAppSelector((state)=> state.cart)
 
 
 useEffect(()=> {
@@ -114,14 +117,20 @@ useEffect(()=> {
           </ul>
           <div className={styles.icons} >
             
+            <Badge color='rgba(255, 105, 21, 1)'  >
             <Link className={[styles.favorites, styles.icon].join(' ')} href={"#"} >
                 <GrFavorite/>
             </Link>
+            </Badge>
+            
              
              
+              <Badge color='rgba(255, 105, 21, 1)'count={totalCount} >
             <Link className={[styles.cart, styles.icon].join(' ')} href={'/cart'} >
+
                 <IoBagOutline />
             </Link>
+              </Badge>
              
 
               

@@ -2,6 +2,98 @@
 
 
 
+.root {
+    width: 100%;
+ display: flex;
+}
+
+
+.table {
+    border: 1px solid rgba(236, 236, 236, 1);   
+    width: 100%;
+}
+
 .tableRow {
-    padding: 20px 15px;
+
+
+    >th {    
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 14px;
+            border-bottom: 1px solid rgba(236, 236, 236, 1);
+            vertical-align: middle;
+            text-align: center;
+            >div {
+                padding: 15px 20px;
+
+            }
+    }
+
+    .firstHeader {
+        text-align: start;
+    }
+
+    >td {
+            border-bottom: 1px solid rgba(236, 236, 236, 1);
+            vertical-align: middle;
+            text-align: center;
+            >div {
+                height: 120px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 15px 20px;
+                max-width: 320px;
+            }
+        
+    }
+}
+
+.firstCell {
+text-align: start;
+}
+
+.productInfo {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.itemDescription {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.itemName {
+    text-align: start;
+    font-size: 16px;
+    line-height: 26px;
+    white-space: nowrap;
+}
+
+
+
+.color {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.itemParametrs {
+
+}
+.itemColor {
+    display: flex;
+    gap: 5px;
+}
+
+.price {
+
+}
+
+.counter {
+
+margin: 0 auto;
 }
