@@ -97,7 +97,7 @@ useEffect(()=> {
             </Link>
                 </li>
             <li>
-            <Link passHref={true} className={styles.categoriesLink} href={pathname === '/catalog/woman'? "#" : '/catalog/woman'}>
+            <Link passHref={true} className={styles.categoriesLink} href={pathname === '/catalog/wooman'? "#" : '/catalog/wooman'}>
               Женские
             </Link>
               </li>
@@ -107,7 +107,7 @@ useEffect(()=> {
             </Link>
             </li>
             <li>
-            <Link className={styles.categoriesLink} href={'#'}>
+            <Link className={styles.categoriesLink} href={pathname === '/catalog/sale'? "#" : '/catalog/sale'}>
                 Распродажа
             </Link>
             </li>

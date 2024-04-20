@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styles from "./Cart.module.scss";
-import ItemsList from "../components/itemsList";
+import ItemsList from "../components/desktopItemsList";
 import PromoCode from "../components/promoCode";
 
 

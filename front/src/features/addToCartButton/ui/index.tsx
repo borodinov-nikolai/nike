@@ -1,5 +1,5 @@
 'use client'
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import Button from '@/src/shared/ui/button'
 import { IoBagOutline } from 'react-icons/io5'
 import { useAppDispatch, useAppSelector } from '@/src/shared/store/hooks'
@@ -13,6 +13,7 @@ interface IProps {
         size: string | undefined,
         color: string | undefined,
         count: number
+        image: string
     }
 
 }
@@ -21,7 +22,15 @@ interface IProps {
 export const AddToCartButton: FC<IProps> = ({product}) => {
   const dispatch = useAppDispatch()
   const {items} = useAppSelector((state)=> state.cart)
-  console.log(items)
+ 
+
+useEffect(()=> {
+  if(items.length > 0) {
+
+    const storageItems = JSON.stringify(items)
+    localStorage.setItem('cart', storageItems)
+  }
+}, [items])
 
 
   const handleAddItem = ()=> {

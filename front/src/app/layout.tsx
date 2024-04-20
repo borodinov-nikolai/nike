@@ -5,8 +5,8 @@ import { Footer } from "@/src/widgets/footer";
 import { Header } from "@/src/widgets/header";
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import type { Metadata } from "next";
-
 import { CheckAuth } from '../features/checkAuth';
+import { LoadCart } from '../entities/cart';
 
 
 const pragmatica = localFont({
@@ -29,15 +29,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <StoreProvider>
-      <body className={pragmatica.className} id='__next'>
-       <AntdRegistry>
-      <CheckAuth>
-      <Header/>
-         {children}
-      <Footer/>
-      </CheckAuth>
-         </AntdRegistry> 
-      </body>
+        <body className={pragmatica.className} id='__next'>
+          <AntdRegistry>
+            <CheckAuth>
+              <LoadCart />
+              <Header />
+              {children}
+              <Footer />
+            </CheckAuth>
+          </AntdRegistry>
+        </body>
       </StoreProvider>
     </html>
   );

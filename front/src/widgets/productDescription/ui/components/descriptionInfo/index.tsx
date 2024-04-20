@@ -14,7 +14,7 @@ interface IProps {
 const allSizes = ['36', '36,5', '37', '37,5', '38', '38,5', '39', '39,5', '40','40,5', '41', '41,5', '42', '42,5', '43', '43,5', '44,5']
 
 const DescriptionInfo: FC<IProps> = ({ product }) => {
-  const { id, name, colors, sizes, price, oldPrice, description } = product
+  const { id, name, colors, sizes, price, oldPrice, description, preview } = product
   const [showDescription, setShowDescription] = useState<boolean>(false)
   const [activeSize, setActiveSize] = useState<string>()
   const [activeColor, setActiveColor] = useState<string>()
@@ -59,7 +59,7 @@ const DescriptionInfo: FC<IProps> = ({ product }) => {
         <div className={styles.counter} >
               <Counter onChange={(value)=> setCount(value)} />
         </div>
-        <div className={styles.toCartBtn} ><AddToCartButton product={{id, name, size: activeSize, color:activeColor, price, count}} /></div>
+        <div className={styles.toCartBtn} ><AddToCartButton product={{id, name, image: preview?.name, size: activeSize, color:activeColor, price, count}} /></div>
       </div>
     </div>
   )
