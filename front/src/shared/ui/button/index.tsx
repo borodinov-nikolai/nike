@@ -9,6 +9,7 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 
 interface Props {
     variant?: 'primary' | 'secondary'
+    onClick?:()=> void 
     type?: 'button' | 'reset' | 'submit'
     children?: ReactNode
     className?: string
@@ -17,12 +18,12 @@ interface Props {
     [key: string]: any
 }
 
-const Button: FC<Props> = ({ children, type='button', variant = 'primary', className, icon, ...props }) => {
+const Button: FC<Props> = ({ children, onClick, type='button', variant = 'primary', className, icon, ...props }) => {
 
 
     
     return (
-        <button type={type}   {...props} className={[styles.root, styles[variant], className].filter(Boolean).join(' ')} >
+        <button onClick={onClick} type={type}   {...props} className={[styles.root, styles[variant], className].filter(Boolean).join(' ')} >
             <p className={styles.text} >
                 {children}
                 </p>

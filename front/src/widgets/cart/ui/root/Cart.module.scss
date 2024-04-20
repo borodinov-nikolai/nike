@@ -1,0 +1,22 @@
+@import '../../../../shared/styles/mixins/breakpoints';
+
+
+
+.root {
+width: 100%;
+}
+
+
+.componentsHolder {
+    display: flex;
+    width: 100%;
+}
+
+.component {
+    flex-basis: 50%;
+}
+
+
+@include breakpoint(2xl) {
+
+}

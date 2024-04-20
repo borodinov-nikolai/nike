@@ -7,7 +7,6 @@ import {
   Post,
   Put,
   Query,
-  UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';

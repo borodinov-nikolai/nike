@@ -5,6 +5,7 @@ import { Product } from '@/src/entities/product'
 import Button from '@/src/shared/ui/button'
 import Counter from '@/src/shared/ui/counter'
 import { IoBagOutline } from "react-icons/io5";
+import { AddToCartButton } from '@/src/features/addToCartButton'
 
 interface IProps {
   product: Product
@@ -16,13 +17,13 @@ const DescriptionInfo: FC<IProps> = ({ product }) => {
   const { id, name, colors, sizes, price, oldPrice, description } = product
   const [showDescription, setShowDescription] = useState<boolean>(false)
   const [activeSize, setActiveSize] = useState<string>()
-  const [activeColor, setActiveColor] = useState<number>(0)
+  const [activeColor, setActiveColor] = useState<string>()
   const [count, setCount] = useState<number>(1)
   const availableSizes = sizes.map(({value})=> value)
 
   useEffect(()=> {
    setActiveSize(sizes[0].value)
-   setActiveColor(colors[0].id)
+   setActiveColor(colors[0].value)
     }, [sizes, colors])
 
   return (
@@ -36,7 +37,7 @@ const DescriptionInfo: FC<IProps> = ({ product }) => {
       <div className={styles.colors} >
         <span>Цвета:</span>
         <ul className={styles.colorsList} >
-          {colors?.map(({ id, value }) => <li onClick={()=> setActiveColor(id)} key={id} className={[styles.color, activeColor === id && styles.color__active].filter(Boolean).join(' ') } style={{ background: value }} ></li>)}
+          {colors?.map(({ id, value }) => <li onClick={()=> setActiveColor(value)} key={id} className={[styles.color, activeColor === value && styles.color__active].filter(Boolean).join(' ') } style={{ background: value }} ></li>)}
         </ul>
       </div>
 
@@ -58,7 +59,7 @@ const DescriptionInfo: FC<IProps> = ({ product }) => {
         <div className={styles.counter} >
               <Counter onChange={(value)=> setCount(value)} />
         </div>
-        <div className={styles.toCartBtn} ><Button icon={<IoBagOutline />} >Добавить в корзину</Button></div>
+        <div className={styles.toCartBtn} ><AddToCartButton product={{id, name, size: activeSize, color:activeColor, price, count}} /></div>
       </div>
     </div>
   )
