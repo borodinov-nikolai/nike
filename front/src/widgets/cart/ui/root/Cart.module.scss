@@ -5,6 +5,7 @@
 .root {
 width: 100%;
 padding-top: 15px;
+padding-bottom: 50px;
 }
 
 .title {
@@ -13,10 +14,15 @@ padding-top: 15px;
   font-weight: 500;
 }
 
+.desktopItemsList {
+  display: none;
+}
+
 .componentsHolder {
   margin-top: 15px;
     display: flex;
     flex-direction: column;
+    gap: 30px;
     width: 100%;
 }
 
@@ -27,12 +33,23 @@ padding-top: 15px;
 
 
 @include breakpoint(md) {
+
+
+
+  .desktopItemsList {
+    display: block;
+  }
+
+  .mobileItemsList {
+    display: none;
+  }
+
  .componentsHolder {
     margin-top: 27px;
  }
 }
 
-@include breakpoint(2xl) {
+@include breakpoint(xl) {
 
   .root {
     padding-top: 25px;

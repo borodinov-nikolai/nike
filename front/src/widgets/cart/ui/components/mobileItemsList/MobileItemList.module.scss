@@ -1,0 +1,110 @@
+
+
+
+
+.root {
+    width: 100%;
+}
+
+.itemList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(236, 236, 236, 1);
+    border-bottom: none;
+}
+
+.item {
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(236, 236, 236, 1);
+    gap: 20px;
+}
+
+.itemTop {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.itemName {
+    font-size: 15px;
+    line-height: 26px;
+}
+
+.itemInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.itemParameters {
+    display: flex;
+    gap: 13px;
+    font-size: 14px;
+    line-height: 26px;
+}
+
+.ItemColor {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+
+.itemSize {
+display: flex;
+gap: 5px;
+}
+
+.color {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin-bottom: 2px;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        border-radius: 50%;
+        border: 1px solid rgba(235, 235, 235, 1);
+
+    }
+
+}
+
+.itemBottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ItemCounter {
+    >div {
+        width: 111px;
+        height: 50px;
+    }
+}
+
+.itemPrice {
+    font-size: 17px;
+    line-height: 26px;
+}
+
+.itemDeleteBtn {
+    cursor: pointer;
+    >svg {
+        stroke: rgba(173, 173, 173, 1);
+        width: 22px;
+        height: 22px;
+        margin-bottom: 4px;
+    }
+}
+

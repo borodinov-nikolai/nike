@@ -8,7 +8,7 @@ import Counter from '@/src/shared/ui/counter'
 import { IoTrashOutline } from 'react-icons/io5'
 import { deleteCartItem, setCartItemCount } from '@/src/entities/cart/store/cartSlice'
 
-const ItemsList = () => {
+const DesktopItemList = () => {
   const dispatch = useAppDispatch()
   const { items } = useAppSelector((state) => state.cart)
   return (
@@ -49,4 +49,4 @@ const ItemsList = () => {
   )
 }
 
-export default ItemsList
+export default DesktopItemList
