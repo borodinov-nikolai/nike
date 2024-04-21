@@ -5,9 +5,11 @@ import styles from './Counter.module.scss'
 interface IProps {
     value?: number
     onChange?: (value: number)=> void
+    onMinusClik?: ()=> void 
+    onPlusClik?: ()=> void 
 }
 
-const Counter:FC<IProps> = ({value, onChange}) => {
+const Counter:FC<IProps> = ({value, onChange, onMinusClik, onPlusClik}) => {
     const [count, setCount] = useState<number>(1)
 
 
@@ -23,9 +25,9 @@ const Counter:FC<IProps> = ({value, onChange}) => {
 
   return (
     <div className={styles.root} >
-        <div onClick={()=> handleCountChange('minus')} className={styles.btn} >-</div>
+        <div onClick={()=>{ handleCountChange('minus'); onMinusClik && onMinusClik()}} className={styles.btn} >-</div>
         <div className={styles.count}>{count}</div>
-        <div onClick={()=> handleCountChange('plus')} className={styles.btn} >+</div>
+        <div onClick={()=>{ handleCountChange('plus'); onPlusClik && onPlusClik() }} className={styles.btn} >+</div>
     </div>
   )
 }

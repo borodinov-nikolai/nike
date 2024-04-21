@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from './ProductDescription.module.scss'
 import { Product } from '@/src/entities/product'
-import Gallery from '../components/mobileGallery'
 import DescriptionInfo from '../components/descriptionInfo'
 import MobileGallery from '../components/mobileGallery'
 import DesktopGallery from '../components/desktopGallery'

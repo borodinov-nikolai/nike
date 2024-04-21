@@ -6,7 +6,7 @@ import { Header } from "@/src/widgets/header";
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import type { Metadata } from "next";
 import { CheckAuth } from '../features/checkAuth';
-import { LoadCart } from '../entities/cart';
+import { CartSaveAndLoad } from '../entities/cart';
 
 
 const pragmatica = localFont({
@@ -32,7 +32,7 @@ export default function RootLayout({
         <body className={pragmatica.className} id='__next'>
           <AntdRegistry>
             <CheckAuth>
-              <LoadCart />
+              <CartSaveAndLoad />
               <Header />
               {children}
               <Footer />

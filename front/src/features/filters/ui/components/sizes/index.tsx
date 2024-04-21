@@ -26,7 +26,7 @@ const Sizes = () => {
     <div className={styles.sizesContent} >
       <ul className={styles.list} >
         {sizesList?.map(({id, value})=> {
-            return <li className={[styles.listItem, sizes.includes(value) && styles.listItem__active].filter(Boolean).join(' ')} onClick={()=> dispatch(setSizes(value))} key={value} >{value}</li>
+            return <li className={[styles.listItem, sizes.includes(+value) && styles.listItem__active].filter(Boolean).join(' ')} onClick={()=> dispatch(setSizes(+value))} key={value} >{value}</li>
         } )}
        
       </ul>

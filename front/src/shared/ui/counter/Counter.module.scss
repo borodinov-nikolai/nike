@@ -1,5 +1,6 @@
 .root {
     display: flex;
+    height: 65px;
 }
 
 .btn {
@@ -9,7 +10,7 @@
     justify-content: center;
     width: 35px;
     color: #e9edf2;
-    height: 65px;
+    height: 100%;
     border: 1px solid #e9edf2;
 
     &:hover {
@@ -21,7 +22,7 @@
 .count {
     font-size: 14px;
     width: 45px;
-    height: 65px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -4,11 +4,19 @@
 
 .root {
 width: 100%;
+padding-top: 15px;
 }
 
+.title {
+  font-size: 25px;
+  line-height: 31px;
+  font-weight: 500;
+}
 
 .componentsHolder {
+  margin-top: 15px;
     display: flex;
+    flex-direction: column;
     width: 100%;
 }
 
@@ -17,6 +25,27 @@ width: 100%;
 }
 
 
+
+@include breakpoint(md) {
+ .componentsHolder {
+    margin-top: 27px;
+ }
+}
+
 @include breakpoint(2xl) {
+
+  .root {
+    padding-top: 25px;
+  }
+
+  .title {
+    font-size: 45px;
+    line-height: 48px;
+  }
+
+  .componentsHolder {
+    margin-top: 40px;
+    flex-direction: row;
+  }
 
 }

@@ -1,5 +1,5 @@
 export {getProducts, getProduct} from "./api";
-export type {Product, Characteristic} from './interfaces'
+export type {Product, ICharacteristic} from './interfaces'
 
 
 

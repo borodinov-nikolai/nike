@@ -1,4 +1,4 @@
-
+@import '../../../../../shared/styles/mixins/breakpoints';
 
 
 
@@ -17,46 +17,35 @@
 
 
     >th {    
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
-            line-height: 14px;
+            line-height: 24px;
             border-bottom: 1px solid rgba(236, 236, 236, 1);
             vertical-align: middle;
-            text-align: center;
-            >div {
-                padding: 15px 20px;
-
-            }
+            text-align: start;
+            padding: 15px 20px;
     }
 
-    .firstHeader {
-        text-align: start;
-    }
+
 
     >td {
             border-bottom: 1px solid rgba(236, 236, 236, 1);
             vertical-align: middle;
-            text-align: center;
-            >div {
-                height: 120px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 15px 20px;
-                max-width: 320px;
-            }
-        
+            text-align: start;
+            padding: 15px 20px;        
     }
 }
 
-.firstCell {
-text-align: start;
-}
 
-.productInfo {
-  display: flex;
-  justify-content: flex-start;
-  gap: 15px;
+
+.productInfoCell {
+    width: 420px;
+    min-width: 300px;
+    >div {
+        display: flex;
+        gap: 15px;
+    }
+
 }
 
 .itemDescription {
@@ -70,30 +59,106 @@ text-align: start;
     text-align: start;
     font-size: 16px;
     line-height: 26px;
-    white-space: nowrap;
+}
+
+.itemParametrs {
+    font-size: 14px;
+    line-height: 26px;
+    display: flex;
+    gap: 12px;
 }
 
 
+
+.itemColor {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
 .color {
     width: 15px;
     height: 15px;
     border-radius: 50%;
+    position: relative;
+    margin-bottom: 4px;
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        width: 23px;
+        height: 23px;
+        border-radius: 50%;
+        border: 1px solid rgba(235, 235, 235, 1);
+
+    }
 }
 
-.itemParametrs {
 
-}
-.itemColor {
+.itemSize {
     display: flex;
     gap: 5px;
 }
 
-.price {
+
+
+.priceCell {
+width: 190px;
+>div {
+    font-size: 17px;
+    white-space: nowrap;
+    line-height: 26px;
+}
+}
+
+.counterCell {
+    width: 240px;
+    >div {
+        margin: 0 auto;
+        > div {
+            height: 50px;
+            width: 111px;
+           }
+    }
+}
+
+.totalCell {
+    width: 120px;
+    >div {
+        white-space: nowrap;
+        font-size: 17px;
+        line-height: 26px;
+    }
+}
+
+.deleteBtnCell {
+    width: 70px;
+    >div {
+        display: flex;
+        align-items: center;
+      cursor: pointer;
+        >svg {
+            stroke: rgba(173, 173, 173, 1);
+            width: 22px;
+            height: 22px;
+            margin-bottom: 4px;
+        }
+    }
 
 }
 
-.counter {
 
-margin: 0 auto;
+@include breakpoint(2xl) {
+    
+  .tableRow {
+
+    >th {
+        font-size: 14px;
+        line-height: 24px;
+    }
+  }
+
+
 }

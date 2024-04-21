@@ -21,17 +21,8 @@ interface IProps {
 
 export const AddToCartButton: FC<IProps> = ({product}) => {
   const dispatch = useAppDispatch()
-  const {items} = useAppSelector((state)=> state.cart)
+
  
-
-useEffect(()=> {
-  if(items.length > 0) {
-
-    const storageItems = JSON.stringify(items)
-    localStorage.setItem('cart', storageItems)
-  }
-}, [items])
-
 
   const handleAddItem = ()=> {
     if(product.size && product.color) {

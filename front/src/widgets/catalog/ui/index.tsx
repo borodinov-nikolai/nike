@@ -8,7 +8,6 @@ import { Pagination } from '@/src/features/pagination'
 
 const Catalog = async ({params, searchParams}:{params: {category: string}, searchParams: Record<string, string>}) => {
    const data = await getProducts({...params, ...searchParams})
-       console.log(data?.products)
   return (
     <div className={styles.root} 
     >

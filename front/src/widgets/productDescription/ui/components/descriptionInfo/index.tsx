@@ -47,7 +47,7 @@ const DescriptionInfo: FC<IProps> = ({ product }) => {
           <p>Размерная таблица</p>
         </div>
         <ul className={styles.sizesList} >
-           {allSizes.map((size)=> availableSizes.includes(size) ? <li onClick={()=> setActiveSize(size)} className={[styles.size, activeSize === size && styles.size__active].filter(Boolean).join(' ')} key={size} >{size}</li>: <li className={[styles.size, styles.size__disabled].join(' ')} key={size} >{size}</li> )}
+           {allSizes.map((size)=><li onClick={()=> setActiveSize(size)} className={[styles.size, activeSize === size && styles.size__active,  !availableSizes.includes(size) && styles.size__disabled].filter(Boolean).join(' ')} key={size} >{size}</li> )}
         </ul>
       </div>
 
