@@ -2,10 +2,10 @@
 import React, { FC, useEffect, useState } from 'react'
 import styles from './Description.module.scss'
 import { Product } from '@/src/entities/product'
-import Button from '@/src/shared/ui/button'
 import Counter from '@/src/shared/ui/counter'
-import { IoBagOutline } from "react-icons/io5";
 import { AddToCartButton } from '@/src/features/addToCartButton'
+import Button from '@/src/shared/ui/button'
+import { IoBagOutline } from 'react-icons/io5'
 
 interface IProps {
   product: Product
@@ -59,7 +59,7 @@ const DescriptionInfo: FC<IProps> = ({ product }) => {
         <div className={styles.counter} >
               <Counter onChange={(value)=> setCount(value)} />
         </div>
-        <div className={styles.toCartBtn} ><AddToCartButton product={{id, name, image: preview?.name, size: activeSize, color:activeColor, price, count}} /></div>
+        <div className={styles.toCartBtn} ><AddToCartButton product={{id, name, image: preview?.name, size: activeSize, color:activeColor, price, count}}><Button icon={<IoBagOutline />}>Добавить в корзину</Button></AddToCartButton></div>
       </div>
     </div>
   )

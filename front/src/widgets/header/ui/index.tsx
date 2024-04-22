@@ -69,14 +69,7 @@ useEffect(()=> {
       <div className={styles.menu} >
         <div className={styles.menu_inner + ' container'} >
             <div className={styles.burger} >
-          <Drawer content={<MobileNavabr/>} >
-          <svg width="37" height="11" viewBox="0 0 37 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-<line x1="36.0878" y1="1.96484" x2="11.0878" y2="1.96484" stroke="black" strokeWidth="2"/>
-<line x1="36.0878" y1="9.96484" x2="0.0877685" y2="9.96484" stroke="black" strokeWidth="2"/>
-</svg>
-
-              <p className={styles.burger_text} >Меню</p>
-          </Drawer>
+                <MobileNavabr/>
             </div>
        
             <Link className={styles.logo} href={'/'}>
@@ -125,7 +118,7 @@ useEffect(()=> {
             
              
              
-              <Badge color='rgba(255, 105, 21, 1)'count={totalCount} >
+              <Badge  color='rgba(255, 105, 21, 1)'count={totalCount} >
             <Link className={[styles.cart, styles.icon].join(' ')} href={'/cart'} >
 
                 <IoBagOutline />

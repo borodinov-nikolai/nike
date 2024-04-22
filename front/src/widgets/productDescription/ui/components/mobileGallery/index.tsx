@@ -4,7 +4,7 @@ import styles from './MobileGallery.module.scss'
 import { Image } from 'antd'
 import { IImage } from '@/src/entities/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css';
+
 
 interface IProps {
   images: IImage[]

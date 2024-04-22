@@ -40,12 +40,12 @@ export const cartSlice = createSlice({
         addCartItem: (state, action: PayloadAction<ICartItem>) => {
             const items = state.items
             const addedItem = action.payload
-            const findedItem = state.items.find(({id})=>addedItem.id === id)
+            const findedItem = state.items.find(({id, size, color})=>(addedItem.id === id && addedItem.size === size && addedItem.color === color))
             if(!findedItem) {
                 items.push(addedItem)
             } else {
                 items.forEach((item)=> {
-                    if(addedItem.id === item.id) {
+                    if(addedItem.id === item.id && addedItem.size === item.size && addedItem.color === item.color) {
                         item.count += addedItem.count
                     }
                 })   
@@ -53,20 +53,20 @@ export const cartSlice = createSlice({
             state.totalCount = items.reduce((sum, item)=> sum + item.count, 0)
             state.totalPrice = items.reduce((sum, item)=> sum + (item.count * item.price), 0)
         },
-        setCartItemCount: (state, action: PayloadAction<{id: number, count: number}>) => {
+        setCartItemCount: (state, action: PayloadAction<{id: number, size: string, color: string, count: number}>) => {
                 const items = state.items
-                const {id, count} = action.payload
+                const {id, count, size, color} = action.payload
                 items.forEach((item)=> {
-                    if(item.id === id) {
+                    if(item.id === id && item.color === color && item.size === size ) {
                         item.count = count
                     }
                 })
                 state.totalCount = items.reduce((sum, item)=> sum + item.count, 0)
                 state.totalPrice = items.reduce((sum, item)=> sum + (item.count * item.price), 0)
         },
-        deleteCartItem: (state, action: PayloadAction<number>)=> {
-             const payloadId = action.payload
-             state.items = state.items.filter(({id})=> id !== payloadId)
+        deleteCartItem: (state, action: PayloadAction<{id: number, color: string, size: string}>)=> {
+             const payload = action.payload
+             state.items = state.items.filter(({id, color, size})=> !(id === payload.id && color === payload.color && size === payload.size))
              state.totalCount = state.items.reduce((sum, item)=> sum + item.count, 0)
              state.totalPrice = state.items.reduce((sum, item)=> sum + (item.count * item.price), 0)
         }

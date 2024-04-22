@@ -9,7 +9,6 @@ import Link from 'next/link'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { useRegistrationMutation } from '../api'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
-import { useRouter } from 'next/navigation'
 import PasswordInput from '@/src/shared/ui/passwordInput'
 
 
@@ -24,7 +23,6 @@ type Inputs = {
 
 const Registration = () => {
   const [registration, result] = useRegistrationMutation()
-  const router = useRouter()
   const { control, setError, handleSubmit, watch, formState: { errors } } = useForm<Inputs>({
     defaultValues: {
       email: '',
@@ -53,9 +51,11 @@ const Registration = () => {
       }
 
       if("data" in res) {
-        localStorage.setItem('jwt', res.data.accessToken
-        )
-       router.push('/')
+        await new Promise<void>((resolve)=> {
+          localStorage.setItem('jwt', res.data.accessToken) 
+          resolve()
+        })
+         window.location.href='/'
       }
  
     }

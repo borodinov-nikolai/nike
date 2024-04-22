@@ -3,12 +3,6 @@
 
 .root {
     position: relative;
-}
-
-.swiper {
-    height: max-content;
-    width: 100%;
-    padding-bottom: 56px;
     :global {
         
         .swiper-pagination {
@@ -24,6 +18,13 @@
             height: 8px;
         }
     }
+}
+
+.swiper {
+    height: max-content;
+    width: 100%;
+    padding-bottom: 56px;
+   
   
  }
  

@@ -1,11 +1,10 @@
 'use client'
-import React, { FC, useEffect } from 'react'
-import Button from '@/src/shared/ui/button'
-import { IoBagOutline } from 'react-icons/io5'
-import { useAppDispatch, useAppSelector } from '@/src/shared/store/hooks'
+import React, { FC, ReactNode} from 'react'
+import { useAppDispatch} from '@/src/shared/store/hooks'
 import { addCartItem } from '@/src/entities/cart/store/cartSlice'
 
 interface IProps {
+  children: ReactNode,
     product: {
         id: number
         name: string,
@@ -19,7 +18,7 @@ interface IProps {
 }
 
 
-export const AddToCartButton: FC<IProps> = ({product}) => {
+export const AddToCartButton: FC<IProps> = ({children, product}) => {
   const dispatch = useAppDispatch()
 
  
@@ -31,6 +30,6 @@ export const AddToCartButton: FC<IProps> = ({product}) => {
   }
 
   return (
-    <Button onClick={handleAddItem} icon={<IoBagOutline />} >Добавить в корзину</Button>
+    <div onClick={handleAddItem}>{children}</div>
   )
 }

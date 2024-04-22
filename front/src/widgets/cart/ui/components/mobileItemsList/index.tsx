@@ -16,7 +16,7 @@ const MobileItemList = ({}) => {
   return (
     <div className={styles.root} >
      {items.length > 0 && <ul className={styles.itemList} >
-           {items?.map(({id, name, price, image, size, color})=> <li className={styles.item} key={id} >
+           {items?.map(({id, name, price, image, size, color, count}, index)=> <li className={styles.item} key={index} >
                       <div className={styles.itemTop} >
                         <Image src={imageUrl + image} width={65} height={65} alt='cart item preview'/>
                         <div className={styles.itemInfo} >
@@ -35,10 +35,10 @@ const MobileItemList = ({}) => {
                       </div>
                       <div className={styles.itemBottom} >
                         <div className={styles.ItemCounter} >
-                          <Counter onChange={(count)=> dispatch(setCartItemCount({id, count}))}  />
+                          <Counter value={count} onChange={(count)=> dispatch(setCartItemCount({id, size: size!, color: color!, count}))}  />
                         </div>
                         <div className={styles.itemPrice} >{price} ₽</div>
-                        <div onClick={()=> dispatch(deleteCartItem(id))} className={styles.itemDeleteBtn}><IoTrashOutline/></div>
+                        <div onClick={()=> dispatch(deleteCartItem({id, size: size!, color:color!}))} className={styles.itemDeleteBtn}><IoTrashOutline/></div>
                       </div>
            </li> )}
       </ul>}

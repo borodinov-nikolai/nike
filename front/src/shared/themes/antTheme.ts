@@ -2,11 +2,18 @@ import { ThemeConfig } from "antd";
 
 
 
-const theme: ThemeConfig = {
-  
- }
+const antTheme: ThemeConfig = {
+    components: {
+        Slider: {
+            colorPrimary: '#000000',
+            handleLineWidthHover: 2,
+            railSize: 2,
+            algorithm: true,
+        }
+    }
+}
 
 
-export default theme
+export default antTheme
 
 

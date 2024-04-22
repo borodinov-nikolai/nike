@@ -8,9 +8,9 @@ import type { Metadata } from "next";
 import { CheckAuth } from '../features/checkAuth';
 import { CartSaveAndLoad } from '../entities/cart';
 import { ConfigProvider} from 'antd';
-import theme from '../shared/themes/antTheme';
-
-
+import 'swiper/css';
+import 'swiper/css/grid';
+import antTheme from '../shared/themes/antTheme';
 
 const pragmatica = localFont({
   src: '../../public/fonts/Pragmatica.ttf',
@@ -34,7 +34,7 @@ export default function RootLayout({
       <StoreProvider>
         <body className={pragmatica.className} id='__next'>
           <AntdRegistry>
-          <ConfigProvider theme={theme}>
+          <ConfigProvider  theme={antTheme}>
             <CheckAuth>
               <CartSaveAndLoad />
               <Header />

@@ -24,8 +24,8 @@ const DesktopItemList = () => {
           </tr>
         </thead>
         <tbody>
-          {items?.map(({ id, name, price, color, count, image, size }) =>
-            <tr className={styles.tableRow} key={id} >
+          {items?.map(({ id, name, price, color, count, image, size }, index) =>
+            <tr className={styles.tableRow} key={index} >
               <td className={styles.productInfoCell} >
                 <div className={styles.productInfo}>
                   <Image src={imageUrl + image} width={90} height={90} alt="cart preview" />
@@ -38,9 +38,9 @@ const DesktopItemList = () => {
                 </div>
               </td>
               <td className={styles.priceCell} ><div>{price} ₽</div></td>
-              <td className={styles.counterCell} ><div><Counter onChange={(value)=> dispatch(setCartItemCount({id, count:value})) } value={count} /></div></td>
+              <td className={styles.counterCell} ><div><Counter onChange={(count)=> dispatch(setCartItemCount({id, size: size!, color: color!, count})) } value={count} /></div></td>
               <td className={styles.totalCell} ><div>{price * count} ₽</div></td>
-              <td className={styles.deleteBtnCell} ><div onClick={()=> dispatch(deleteCartItem(id))} ><IoTrashOutline/></div></td>
+              <td className={styles.deleteBtnCell} ><div onClick={()=> dispatch(deleteCartItem({id, size: size!, color:color!}))} ><IoTrashOutline/></div></td>
             </tr>)}
         </tbody>
       </table>}

@@ -4,34 +4,37 @@
 .root {
     width: 100%;
     overflow: hidden;
+
+    .swiper {
+        width: 90vw;
+        overflow: hidden;
+    }
+    
+    .tabsItem {
+        cursor: pointer;
+        font-size: 15px;
+        line-height: 18px;
+        font-weight: 500;
+        color: #808080;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        width: max-content;
+        border-bottom: 1px solid transparent;
+    
+        &__active {
+            color: black;
+            border-bottom: 1px solid black;
+        }
+    }
 }
 
 
-.swiper {
-    width: 90vw;
-    overflow: hidden;
-}
 
 .decktopTabs {
     display: none;
 }
-.tabsItem {
-    cursor: pointer;
-    font-size: 15px;
-    line-height: 18px;
-    font-weight: 500;
-    color: #808080;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    width: max-content;
-    border-bottom: 1px solid transparent;
 
-    &__active {
-        color: black;
-        border-bottom: 1px solid black;
-    }
-}
 
 .content {
     margin-top: 35px;

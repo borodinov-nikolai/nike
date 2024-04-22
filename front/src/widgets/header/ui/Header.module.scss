@@ -3,13 +3,13 @@
 .root {
     width: 100%;
     position: relative;
-
     :global {
         .ant-badge-count {
-            top: 5px !important;
-            right: 5px !important;
+            top: 25px !important;
+            right: -5px !important;
         }
     }
+    
 
 }
 
@@ -57,9 +57,7 @@
 
 
 
-.burger_text {
-    display: none;
-}
+
 
 .logo {
     grid-row: 1;
@@ -121,6 +119,16 @@
 }
 
 @include breakpoint(md) {
+
+    .root {
+        :global {
+            .ant-badge-count {
+                top: 25px !important;
+                right: 21px !important;
+            }
+        }
+    }
+
     .menu_inner {
         grid-template-columns: max-content 1fr max-content;
     }
@@ -172,6 +180,15 @@
 }
 
 @include breakpoint(2xl) {
+
+    .root {
+        :global {
+            .ant-badge-count {
+                top: 5px !important;
+                right: 5px !important;
+            }
+        }
+    }
     .navbar {
         display: block;
     }

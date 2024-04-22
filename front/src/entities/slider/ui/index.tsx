@@ -5,8 +5,7 @@ import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
 import { Grid } from 'swiper/modules';
 
 
-import 'swiper/css';
-import 'swiper/css/grid';
+
 
 const Slider = ({productCards, title}:{productCards: ReactNode[], title: string}) => {
   const [mdScreen, setMdScreen] = useState<boolean>(false)

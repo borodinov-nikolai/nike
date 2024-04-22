@@ -2,8 +2,8 @@
 import React, { FC, useState } from 'react'
 import styles from './Characteristics.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
 import { ICharacteristic } from '@/src/entities/product/interfaces'
+
 
 const tabs: Tab[] = [
   {id: 1, value: 'Описание'},
