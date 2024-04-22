@@ -7,6 +7,9 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import type { Metadata } from "next";
 import { CheckAuth } from '../features/checkAuth';
 import { CartSaveAndLoad } from '../entities/cart';
+import { ConfigProvider} from 'antd';
+import theme from '../shared/themes/antTheme';
+
 
 
 const pragmatica = localFont({
@@ -31,12 +34,14 @@ export default function RootLayout({
       <StoreProvider>
         <body className={pragmatica.className} id='__next'>
           <AntdRegistry>
+          <ConfigProvider theme={theme}>
             <CheckAuth>
               <CartSaveAndLoad />
               <Header />
               {children}
               <Footer />
             </CheckAuth>
+            </ConfigProvider>
           </AntdRegistry>
         </body>
       </StoreProvider>
