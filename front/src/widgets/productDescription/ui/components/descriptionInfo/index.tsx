@@ -6,6 +6,7 @@ import Counter from '@/src/shared/ui/counter'
 import { AddToCartButton } from '@/src/features/addToCartButton'
 import Button from '@/src/shared/ui/button'
 import { IoBagOutline } from 'react-icons/io5'
+import cn from 'classnames'
 
 interface IProps {
   product: Product
@@ -37,7 +38,7 @@ const DescriptionInfo: FC<IProps> = ({ product }) => {
       <div className={styles.colors} >
         <span>Цвета:</span>
         <ul className={styles.colorsList} >
-          {colors?.map(({ id, value }) => <li onClick={()=> setActiveColor(value)} key={id} className={[styles.color, activeColor === value && styles.color__active].filter(Boolean).join(' ') } style={{ background: value }} ></li>)}
+          {colors?.map(({ id, value }) => <li onClick={()=> setActiveColor(value)} key={id} className={cn(styles.color, activeColor === value && styles.color__active)} style={{ background: value }} ></li>)}
         </ul>
       </div>
 
@@ -47,7 +48,7 @@ const DescriptionInfo: FC<IProps> = ({ product }) => {
           <p>Размерная таблица</p>
         </div>
         <ul className={styles.sizesList} >
-           {allSizes.map((size)=><li onClick={()=> setActiveSize(size)} className={[styles.size, activeSize === size && styles.size__active,  !availableSizes.includes(size) && styles.size__disabled].filter(Boolean).join(' ')} key={size} >{size}</li> )}
+           {allSizes.map((size)=><li onClick={()=> setActiveSize(size)} className={cn(styles.size, activeSize === size && styles.size__active, !availableSizes.includes(size) && styles.size__disabled)} key={size} >{size}</li> )}
         </ul>
       </div>
 

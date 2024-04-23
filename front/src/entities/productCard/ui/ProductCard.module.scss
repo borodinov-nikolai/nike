@@ -2,6 +2,7 @@
 
 
 .root {
+    position: relative;
     cursor: pointer;
     max-width: 440px;
 }
@@ -75,6 +76,15 @@
     line-height: 6vw;
     color: #8888;
     text-decoration:line-through;
+}
+
+.toCartBtn {
+    cursor: pointer;
+ position: absolute;
+ right: 15px;
+ bottom: 10px;
+ border: none;
+ background-color: white;
 }
 
 

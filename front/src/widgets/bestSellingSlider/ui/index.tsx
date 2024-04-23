@@ -86,12 +86,13 @@ const BestSellingSlider = async () => {
     const data = await getProducts({hit: 'true'})
 
 
-    const productCards =  data?.products?.map(({ id, name, preview, colors, price, oldPrice, gender }) => {
+    const productCards =  data?.products?.map(({ id, name, preview, colors, price, oldPrice, gender, sizes }) => {
       return <ProductCard
         key={id}
         id={id}
+        sizes={sizes}
         name={name}
-        image={imageUrl + preview.name}
+        image={preview?.name}
         colors={colors}
         gender={gender}
         price={price}

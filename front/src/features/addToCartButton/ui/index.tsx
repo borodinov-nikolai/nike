@@ -23,13 +23,14 @@ export const AddToCartButton: FC<IProps> = ({children, product}) => {
 
  
 
-  const handleAddItem = ()=> {
+  const handleAddItem = (e:React.MouseEvent<HTMLDivElement, MouseEvent>)=> {
+    e.stopPropagation()
     if(product.size && product.color) {
          dispatch(addCartItem(product))
     }
   }
 
   return (
-    <div onClick={handleAddItem}>{children}</div>
+    <div onClick={(e)=>handleAddItem(e)}>{children}</div>
   )
 }

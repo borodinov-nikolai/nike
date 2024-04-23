@@ -8,7 +8,7 @@ import Accordion from '@/src/shared/ui/accordion'
 const Footer = () => {
 
   const informationLinks = [
-    {id:1, lable:"О магазине", link: '#'},
+    {id:1, lable:"О магазине", link: '/about'},
     {id:2, lable:"Наш блог", link: '#'},
     {id:3, lable:"Доставка", link: '#'},
     {id:4, lable:"Оплата", link: '#'},
@@ -17,22 +17,22 @@ const Footer = () => {
   ]
 
   const categoriesList = [
-    {id:1, lable:"Каталог", link: '#'},
-    {id:2, lable:"Мужские", link: '#'},
-    {id:3, lable:"Женские", link: '#'},
-    {id:4, lable:"Детские", link: '#'},
-    {id:5, lable:"Распродажа", link: '#'},
+    {id:1, lable:"Каталог", link: '/catalog/all'},
+    {id:2, lable:"Мужские", link: '/catalog/man'},
+    {id:3, lable:"Женские", link: '/catalog/wooman'},
+    {id:4, lable:"Детские", link: '/catalog/children'},
+    {id:5, lable:"Распродажа", link: '/catalog/sail'},
   ]
 
   const shopSectionsList = [
-    {id:1, lable:"Личный кабинет", link: '#'},
-    {id:2, lable:"Избранное", link: '#'},
-    {id:3, lable:"Корзина", link: '#'},
+    {id:1, lable:"Личный кабинет", link: '/account'},
+    {id:2, lable:"Избранное", link: '/favorites'},
+    {id:3, lable:"Корзина", link: '/cart'},
   ]
 
   return (
     <footer className={styles.root} >
-      <div className={[styles.inner, ' container'].join(" ")} >
+      <div className={[styles.inner, 'container'].join(" ")} >
         <div className={styles.blocks} >
           <div className={styles.startBlock} >
               <Link href={'/'} >
@@ -57,7 +57,7 @@ const Footer = () => {
           <div className={styles.centerBlock_mobile} >  
 
             <div className={styles.accordion} >
-              <Accordion title='ИНФОРМАЦИЯ  '>
+              <Accordion title='ИНФОРМАЦИЯ'>
                 <ul className={styles.linksList} >
                   {informationLinks.map(({id, lable, link})=>{
                     return <li key={id} ><Link href={link}>{lable}</Link></li>

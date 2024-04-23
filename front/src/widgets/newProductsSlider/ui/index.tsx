@@ -91,12 +91,13 @@ const NewProductsSlider = async () => {
   const data = await getProducts({new: 'true'})
 
 
-  const productCards = data?.products?.map(({ id, name, preview, colors, price, oldPrice, gender }) => {
+  const productCards = data?.products?.map(({ id, name, preview, colors, price, oldPrice, gender, sizes }) => {
     return <ProductCard
       key={id}
       id={id}
       name={name}
-      image={imageUrl + preview.name}
+      sizes={sizes}
+      image={preview?.name}
       colors={colors}
       gender={gender}
       price={price}
