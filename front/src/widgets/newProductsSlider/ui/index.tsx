@@ -1,11 +1,13 @@
 import React from 'react'
 import styles from './NewProductsSlider.module.scss'
-
-
-
-
 import { Slider } from '@/src/entities/slider';
 import { ProductCard } from '@/src/entities/productCard';
+import { getProducts } from '@/src/entities/product';
+import { imageUrl } from '@/src/entities/image';
+
+
+
+export const dynamic = 'force-dynamic'
 
 const products = [
   {
@@ -83,25 +85,31 @@ const products = [
 
 ]
 
-const productCards = products.map(({ id, name, image, colors, price, oldPrice, gender }) => {
-  return <ProductCard
-    key={id}
-    id={id}
-    name={name}
-    image={image}
-    colors={colors}
-    gender={gender}
-    price={price}
-    oldPrice={oldPrice}
-  />
-})
 
-const NewProductsSlider = () => {
+
+const NewProductsSlider = async () => {
+  const data = await getProducts({new: 'true'})
+
+
+  const productCards = data?.products?.map(({ id, name, preview, colors, price, oldPrice, gender }) => {
+    return <ProductCard
+      key={id}
+      id={id}
+      name={name}
+      image={imageUrl + preview.name}
+      colors={colors}
+      gender={gender}
+      price={price}
+      oldPrice={oldPrice}
+    />
+  })
+   
+
   return (
     <div className={styles.root} >
       <div className='container' >
 
-        <Slider title={'ПОСЛЕДНИЕ ПОСТУПЛЕНИЯ'} productCards={productCards} />
+        {(productCards && productCards.length > 0) && <Slider title={'ПОСЛЕДНИЕ ПОСТУПЛЕНИЯ'} productCards={productCards} />}
 
       </div>
     </div>

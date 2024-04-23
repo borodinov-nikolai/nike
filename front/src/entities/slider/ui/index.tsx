@@ -7,7 +7,7 @@ import { Grid } from 'swiper/modules';
 
 
 
-const Slider = ({productCards, title}:{productCards: ReactNode[], title: string}) => {
+const Slider = ({productCards, title}:{productCards?: ReactNode[], title: string}) => {
   const [mdScreen, setMdScreen] = useState<boolean>(false)
 const [swiper, setSwiper] = useState<SwiperClass>();
 
@@ -70,7 +70,7 @@ return (
         }}
         className={styles.slider}
         >
-          {productCards.map((card, index)=>{
+          {productCards?.map((card, index)=>{
             return <SwiperSlide key={index} className={styles.slide} >
             {card}
             </SwiperSlide>

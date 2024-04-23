@@ -1,6 +1,6 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import styles from './ProductEditor.module.scss'
-import { Image, Input, InputNumber, Radio } from 'antd'
+import { Image, Input, InputNumber, Radio, Switch } from 'antd'
 import TextArea from 'antd/es/input/TextArea'
 import SizesForm from '../components/sizesForm'
 import { useGetAllSizesQuery } from '../../../../entities/size'
@@ -35,6 +35,10 @@ export interface IProductFormValues {
   categories: number[]
   images: number[]
   characteristics: ICharacteristic[]
+  new: boolean
+  hit: boolean
+  discount: boolean
+  
 }
 
  
@@ -60,6 +64,9 @@ export const ProductEditor = () => {
       oldPrice: undefined,
       description: '',
       preview: undefined,
+      discount: false,
+      new: false,
+      hit: false,
       sizes: [],
       colors: [],
       materials: [],
@@ -69,10 +76,10 @@ export const ProductEditor = () => {
     }
   })
   
-
+console.log(watch('hit'))
   useEffect(() => {
     if (product) {
-      const { name, price, oldPrice, description, gender, sizes, colors, materials, preview, categories, images, characteristics} = product
+      const { name, price, oldPrice, description, gender, sizes, colors, materials, preview, categories, images, characteristics, hit, new:isNew, discount} = product
       setValue('name', name)
       setValue('price', price)
       setValue('oldPrice', oldPrice)
@@ -85,6 +92,9 @@ export const ProductEditor = () => {
       setValue('categories', categories?.map(({ id }) => id))
       setValue('images', images?.map(({ id }) => id))
       setValue('characteristics', characteristics)
+      setValue('new', isNew)
+      setValue('hit', hit)
+      setValue('discount', discount)
       setPreview(preview)
       setImagesPreview(images)
     }
@@ -204,6 +214,35 @@ export const ProductEditor = () => {
             <MaterialsForm data={materials} control={control} />
           </div>
         </div>}
+         <div className={[styles.formItem, styles.materials].join(' ')} >
+          <label>Параметры:</label>
+          <div className={[styles.inputField, styles.inputField_parameters].join(' ')} >
+            <div className={styles.formItem_parametr} >
+              <label htmlFor="">Хит:</label>
+              <Controller
+              name='hit'
+              control={control}
+              render={(({field})=> <Switch {...field} /> )}
+              />
+            </div>
+            <div className={styles.formItem_parametr} >
+              <label htmlFor="">Новинка:</label>
+              <Controller
+              name='new'
+              control={control}
+              render={(({field})=> <Switch {...field} /> )}
+              />
+            </div>
+            <div className={styles.formItem_parametr} >
+              <label htmlFor="">Распродажа</label>
+              <Controller
+              name='discount'
+              control={control}
+              render={(({field})=> <Switch {...field} /> )}
+              />
+            </div>
+          </div>
+        </div>
         <div className={[styles.formItem, styles.characteristics].join(' ')} >
           <label>Характеристики:</label>
           <div className={styles.inputField} >

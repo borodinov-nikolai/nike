@@ -25,6 +25,12 @@ export class Product {
   @ApiProperty()
   preview?: Preview
   @ApiProperty()
+  hit?: boolean;
+  @ApiProperty()
+  new?: boolean;
+  @ApiProperty()
+  discount?: boolean;
+  @ApiProperty()
   createdAt?: Date;
   @ApiProperty()
   updatedAt?: Date;

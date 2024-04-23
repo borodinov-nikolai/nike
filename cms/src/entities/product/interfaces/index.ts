@@ -18,6 +18,9 @@ export interface IProduct {
   characteristics: ICharacteristic[];
   sizes: Size[];
   colors: Color[];
+  hit: boolean;
+  new: boolean;
+  discount: boolean;
   preview: Preview,
   materials: Material[];
   createdAt: string;
@@ -44,6 +47,9 @@ export interface ICreateProductDto {
   sizes?: number[];
   colors?: number[];
   materials?: number[];
+  hit?: boolean;
+  new?: boolean;
+  discount?: boolean;
 
 }
 
@@ -60,4 +66,7 @@ export interface IUpdateProductDto {
   sizes?: number[];
   colors?: number[];
   materials?: number[];
+  hit?: boolean;
+  new?: boolean;
+  discount?: boolean;
 }

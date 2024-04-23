@@ -3,6 +3,7 @@ import { DbService } from 'src/modules/db/db.service';
 import { AddProductDto, UpdateProductDto } from './dtos/product.dto';
 import { FileService } from 'src/modules/file/file.service';
 import { Product } from './entities/product.entity';
+import { equals } from 'class-validator';
 
 @Injectable()
 export class ProductsService {
@@ -12,7 +13,8 @@ export class ProductsService {
   ) { }
 
   async findAll(query: any) {
-    const { orderBy, price, category, sizes, colors, materials, skip, take } = query
+    const { orderBy, price, category, sizes, colors, materials, skip, take, hit, new: isNew, discount } = query
+    console.log()
     const filters = {
       skip: skip ? +skip : 0,
       take: take ? +take : 50,
@@ -49,9 +51,19 @@ export class ProductsService {
             name: {
               in: materials
             }
-          }
+          },
+        },
+        new: isNew && {
+          equals: JSON.parse(isNew)
+        },
+        hit: hit && {
+          equals: JSON.parse(hit)
+        },
+        discount: discount && {
+          equals: JSON.parse(discount)
         }
       },
+      
       include: {
         categories: true,
         sizes: true,
@@ -85,7 +97,7 @@ export class ProductsService {
   }
 
   async create(body: AddProductDto): Promise<Product> {
-    const { price, oldPrice, name, gender, preview, description, sizes, colors, materials, categories, images } = body
+    const { price, oldPrice, name, gender, preview, description, sizes, colors, materials, categories, images, hit, new: isNew, discount } = body
 
     const product = await this.db.product.create({
       data: {
@@ -94,6 +106,9 @@ export class ProductsService {
         price,
         oldPrice,
         gender,
+        hit,
+        new: isNew,
+        discount,
         preview: {
           connect: {
             id: preview
@@ -121,7 +136,7 @@ export class ProductsService {
 
 
   async update(id: number, body: UpdateProductDto): Promise<Product> {
-    const { price, oldPrice, name, gender, preview, description, sizes, colors, materials, categories, images, characteristics } = body
+    const { price, oldPrice, name, gender, preview, description, sizes, colors, materials, categories, images, characteristics, hit, new: isNew, discount } = body
 
 
     const updatedProduct = await this.db.product.update({
@@ -135,6 +150,9 @@ export class ProductsService {
         oldPrice,
         gender,
         characteristics,
+        new: isNew,
+        hit,
+        discount,
         preview: {
           connect: {
             id: preview

@@ -45,12 +45,12 @@ model Product {
   price           Int
   gender          String
   oldPrice        Int?
-  preview         Image?   @relation("ProductPreview", fields: [previewId], references: [id])
-  previewId       Int?    @unique
+  preview         Image?     @relation("ProductPreview", fields: [previewId], references: [id])
+  previewId       Int?       @unique
   images          Image[]
-  new             Boolean?
-  hit             Boolean?
-  discount        Boolean?
+  new             Boolean?   @default(false)
+  hit             Boolean?   @default(false)
+  discount        Boolean?   @default(false)
   description     String?
   characteristics Json[]
   categories      Category[]
@@ -61,12 +61,9 @@ model Product {
   updatedAt       DateTime   @updatedAt
 }
 
-
-
-
 model Image {
   id        Int       @id @default(autoincrement())
-  name       String
+  name      String
   product   Product[]
   preview   Product?  @relation("ProductPreview")
   createdAt DateTime  @default(now())

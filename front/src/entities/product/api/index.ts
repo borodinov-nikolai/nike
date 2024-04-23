@@ -4,7 +4,7 @@ import { Product } from "../interfaces"
 
 
 export const getProducts = async (params: Record<string, string>) => {
- 
+
     try {
         const { data }: { data: {products: Product[], totalCount: number} } = await $serverAPI.get('/products', {
             params: params

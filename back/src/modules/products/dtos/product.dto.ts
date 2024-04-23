@@ -26,6 +26,13 @@ export class AddProductDto {
   colors?: number[];
   @ApiProperty()
   characteristics?: JsonValue;
+  @ApiProperty()
+  hit?: boolean;
+  @ApiProperty()
+  new?: boolean;
+  @ApiProperty()
+  discount?: boolean;
+
 
 }
 
@@ -56,5 +63,11 @@ export class UpdateProductDto {
   colors?: number[];
   @ApiProperty()
   characteristics?: JsonValue[];
+  @ApiProperty()
+  hit?: boolean;
+  @ApiProperty()
+  new?: boolean;
+  @ApiProperty()
+  discount?: boolean;
 
 }

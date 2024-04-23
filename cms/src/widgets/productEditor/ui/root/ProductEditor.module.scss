@@ -84,6 +84,21 @@
 }
 
 
+.inputField_parameters {
+  display: flex;
+  gap: 40px;
+}
+
+
+.formItem_parametr {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
 .characteristics {
     grid-column: 1/3;
 }
+
