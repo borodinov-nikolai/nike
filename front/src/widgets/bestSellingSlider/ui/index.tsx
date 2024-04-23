@@ -2,6 +2,8 @@ import React from 'react'
 import styles from './BestSellingSlider.module.scss';
 import { ProductCard } from '@/src/entities/productCard';
 import { Slider } from '@/src/entities/slider';
+import { getProducts } from '@/src/entities/product';
+import { imageUrl } from '@/src/entities/image';
 
 const products = [
     {
@@ -79,24 +81,29 @@ const products = [
 
   ]
 
-  const productCards = products.map(({ id, name, image, colors, price, oldPrice, gender }) => {
-    return <ProductCard
-      key={id}
-      id={id}
-      name={name}
-      image={image}
-      colors={colors}
-      gender={gender}
-      price={price}
-      oldPrice={oldPrice}
-    />
-  }).reverse()
-const BestSellingSlider = () => {
+
+const BestSellingSlider = async () => {
+    const data = await getProducts({hit: 'true'})
+
+
+    const productCards =  data?.products?.map(({ id, name, preview, colors, price, oldPrice, gender }) => {
+      return <ProductCard
+        key={id}
+        id={id}
+        name={name}
+        image={imageUrl + preview.name}
+        colors={colors}
+        gender={gender}
+        price={price}
+        oldPrice={oldPrice}
+      />
+    })
+
     return (
         <div className={styles.root} >
           <div className='container' >
     
-            <Slider title={'САМЫЕ ПРОДАВАЕМЫЕ'} productCards={productCards} />
+            {data?.products && data.products.length >0 && <Slider title={'САМЫЕ ПРОДАВАЕМЫЕ'} productCards={productCards} />}
     
           </div>
         </div>

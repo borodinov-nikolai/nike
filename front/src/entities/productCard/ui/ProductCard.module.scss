@@ -10,7 +10,10 @@
 
 
 .imageHolder {
+    display: flex;
+    align-items: center;
     overflow: hidden;
+    height: 45vw;
 }
 
 
@@ -18,7 +21,8 @@
 .image {
     width: 100%;
     height: auto;
-        transition: scale 0.3s ease; 
+    min-height: 100%;
+    transition: scale 0.3s ease; 
     
 }
 
@@ -75,6 +79,12 @@
 
 
 @include breakpoint(md){
+
+
+    .imageHolder {
+        height: 30vw;
+    }
+
     .gender {
         font-size: 11px;
         line-height: 11px;
@@ -134,10 +144,14 @@
         height: 15px;
         width: 15px;
     }
+
+    .imageHolder {
+        height: 440px;
+    }
     
     .image {
         width: 100%;
-        height: 440px;
+        height: auto;
     }
 
     .prices {

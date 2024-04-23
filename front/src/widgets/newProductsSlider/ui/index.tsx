@@ -7,7 +7,7 @@ import { imageUrl } from '@/src/entities/image';
 
 
 
-export const dynamic = 'force-dynamic'
+
 
 const products = [
   {
