@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import InputMask from 'react-input-mask';
 import styles from './Registration.module.scss'
 import TextInput from '@/src/shared/ui/textInput'
 import Image from 'next/image'
@@ -99,7 +100,16 @@ const Registration = () => {
                 name="phoneNumber"
                 control={control}
                 rules={{ required: "это поле обязательно" }}
-                render={({ field }) => <TextInput  {...field} className={styles.input} id='phoneNumber' type={'text'} placeholder={'+7 (___) ___ - ___ - ___'} />}
+                render={({ field }) =>    
+                    <InputMask
+                    className={styles.phoneInput}
+                mask="+7 (999) 999-99-99"
+                {...field}
+                placeholder="+7 (___) ___-__-__"
+                
+              />
+           }
+               
               />
                {errors.phoneNumber && <span className={styles.error} >{errors.phoneNumber?.message}</span>}
 
