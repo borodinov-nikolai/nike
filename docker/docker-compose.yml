@@ -1,3 +1,38 @@
 version: '3.9'
 
 
+services:
+  db:
+    build:
+     context: ../db
+     dockerfile: Dockerfile
+    restart: always
+    environment:
+      POSTGRES_DB: nike
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - '5432:5432'
+
+  back: 
+   build:
+    context: ../back
+    dockerfile: Dockerfile
+   restart: always
+   ports:
+    - '5000:5000'
+   depends_on:
+    - db
+   
+
+  front: 
+   build:
+    context: ../front
+    dockerfile: Dockerfile
+   restart: always
+   ports: 
+    - '3000:3000'
+   depends_on: 
+    - back
+
+

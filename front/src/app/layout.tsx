@@ -11,6 +11,7 @@ import { ConfigProvider} from 'antd';
 import 'swiper/css';
 import 'swiper/css/grid';
 import antTheme from '../shared/themes/antTheme';
+import Script from 'next/script';
 
 const pragmatica = localFont({
   src: '../../public/fonts/Pragmatica.ttf',

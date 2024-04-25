@@ -11,10 +11,16 @@ const nextConfig = {
         hostname: '127.0.0.1',
         port: '5000',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.petproekt.ru',
+        pathname: '/**',
       }
     
     ],
   },
+  crossOrigin: 'use-credentials',
 
   webpack(config, { isServer }) {
 
