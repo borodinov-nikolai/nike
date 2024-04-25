@@ -8,9 +8,7 @@ import { ValidationPipe } from '@nestjs/common';
 async function start() {
   const PORT = process.env.PORT || 5000;
   const app = await NestFactory.create(AppModule);
-  app.enableCors({
-    origin: false
-  });
+  app.enableCors({});
   app.setGlobalPrefix('api', { exclude: ['admin*'] });
   const config = new DocumentBuilder().setTitle('nike').build();
   const document = SwaggerModule.createDocument(app, config);
