@@ -1,3 +1,5 @@
-/node_modules
-/.storybook
-/.next
+/node_modules/
+/.storybook/
+/.next/
+.env.production
+.env.development

@@ -1,38 +1,40 @@
 version: '3.9'
 
-
 services:
   db:
     build:
-     context: ../db
-     dockerfile: Dockerfile
+      context: ../db
+      dockerfile: Dockerfile
     restart: always
-    environment:
-      POSTGRES_DB: nike
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1234
     ports:
       - '5432:5432'
 
-  back: 
-   build:
-    context: ../back
-    dockerfile: Dockerfile
-   restart: always
-   ports:
-    - '5000:5000'
-   depends_on:
-    - db
-   
+  back:
+    build:
+      context: ../back
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_URL=postgresql://petproekt_nike:ewd499r32r0f94f904f484@db:5432/nike?schema=public
+    restart: always
+    ports:
+      - '5000:5000'
+    depends_on:
+      - db
 
-  front: 
-   build:
-    context: ../front
-    dockerfile: Dockerfile
-   restart: always
-   ports: 
-    - '3000:3000'
-   depends_on: 
-    - back
+  front:
+    build:
+      context: ../front
+      dockerfile: Dockerfile
+    environment:
+      - NEXT_PUBLIC_BACKEND_API=https://api.petproekt.ru/api
+      - NEXT_PUBLIC_BACKEND_UPLOADS=https://api.petproekt.ru/uploads
+    restart: always
+    ports:
+      - '3000:3000'
+    depends_on:
+      - back
 
-
+networks:
+  internal:
+    driver: bridge
+    internal: true
