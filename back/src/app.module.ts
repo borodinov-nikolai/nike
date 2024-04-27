@@ -19,10 +19,25 @@ import { ImagesModule } from './modules/images/images.module';
 import { UploadModule } from './modules/upload/upload.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { join } from 'path';
+import { MailModule } from './modules/mail/mail.module';
+import { MailerModule} from '@nestjs-modules/mailer';
+import { PasswordResetModule } from './modules/password-reset/password-reset.module';
 
 
 @Module({
   imports: [
+    MailerModule.forRoot({
+      transport: {
+        host: "smtp.beget.com",
+        port: 465,
+        secure: true,
+        auth: {
+            user: process.env.MAILER_USER,
+            pass: process.env.MAILER_PASS
+        }
+      },
+      preview: true
+    }),
     ConfigModule.forRoot({
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
@@ -44,7 +59,9 @@ import { join } from 'path';
     MaterialsModule,
     ImagesModule,
     FileModule,
-    UploadModule
+    UploadModule,
+    MailModule,
+    PasswordResetModule,
   ],
   controllers: [],
   exports: [],
