@@ -14,11 +14,11 @@ import { removePrice, resetFilters, setColors, setMaterials, setSizes } from '..
 import qs from 'qs'
 import { useRouter } from 'next/navigation';
 import { useDebounce } from 'use-debounce';
-import { setTotalPages } from '../../pagination/store';
+import { setCurrentPage, setTotalPages } from '../../pagination/store';
 
 
 
-const Filters = ({totalCount}: {totalCount: number}) => {
+const Filters = ({totalCount, count}: {totalCount: number, count:number | undefined}) => {
   const router = useRouter()
   const [showPrice, setShowPrice] = useState<boolean>(false)
    const {sizes, sort, materials, colors, price } = useAppSelector((state)=> state.filters)
@@ -27,8 +27,15 @@ const Filters = ({totalCount}: {totalCount: number}) => {
  const [debouncedPrice] = useDebounce(price, 500)
 
  useEffect(()=> {
-    dispatch(setTotalPages(Math.round(totalCount/pageSize)))
- },[totalCount,pageSize])
+     if(totalCount/pageSize > 1) {
+      dispatch(setTotalPages(Math.ceil(totalCount/pageSize)))
+      dispatch(setCurrentPage(1))
+     } else {
+      dispatch(setTotalPages(1))
+      dispatch(setCurrentPage(1))
+     }
+   
+ },[totalCount, pageSize])
 
   useEffect(()=> {
     if((debouncedPrice[0] !== 0 || debouncedPrice[1] !== 10000) && !showPrice) {
@@ -95,7 +102,7 @@ const Filters = ({totalCount}: {totalCount: number}) => {
       </div>
       <div className={styles.filtersBottomDesktop} >
         <div className={[styles.filtersBottomInner, ' container'].join(' ')} >
-          <div className={styles.leftBlock} >Показано {pageSize > totalCount ? totalCount : pageSize} из {totalCount} товаров</div>
+          <div className={styles.leftBlock} >Показано {count} из {totalCount} товаров</div>
           <div className={styles.rightBlock}>
             <div className={styles.pageSize}><PageSize/></div>
             <div className={styles.sort}><Sort/></div>

@@ -76,7 +76,7 @@ export const ProductEditor = () => {
     }
   })
   
-console.log(watch('hit'))
+
   useEffect(() => {
     if (product) {
       const { name, price, oldPrice, description, gender, sizes, colors, materials, preview, categories, images, characteristics, hit, new:isNew, discount} = product

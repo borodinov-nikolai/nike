@@ -69,7 +69,7 @@ useEffect(()=> {
       <div className={styles.menu} >
         <div className={styles.menu_inner + ' container'} >
             <div className={styles.burger} >
-                <MobileNavabr/>
+                <MobileNavabr isAuth={isSuccess} />
             </div>
        
             <Link className={styles.logo} href={'/'}>

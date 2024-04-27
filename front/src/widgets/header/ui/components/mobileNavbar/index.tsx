@@ -4,10 +4,13 @@ import styles from './MobileNavbar.module.scss'
 import Accordion from '@/src/shared/ui/accordion'
 import Link from 'next/link'
 import Drawer from '@/src/shared/ui/drawer'
+import { User } from '@/src/entities/user'
 
 
 
-const MobileNavabr = () => {
+
+
+const MobileNavabr = ({isAuth}:{isAuth: boolean}) => {
   const [isOpen, setIsOpen] = useState<boolean>()
 
 
@@ -88,6 +91,7 @@ const MobileNavabr = () => {
           <li onClick={handleClose} ><Link href={'/catalog/all'} >Оплата</Link></li>
           <li onClick={handleClose} ><Link href={'/catalog/all'} >Контакты</Link></li>
           <li onClick={handleClose} ><Link href={'/catalog/all'} >Индивидуальный заказ</Link></li>
+          <li onClick={handleClose} ><Link href={!isAuth ? '/authorization': '/account'} >{!isAuth ? "Авторизация": 'Личный кабинет'}</Link></li>
         </ul>
       </div>
 
